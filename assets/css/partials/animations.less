@@ -1,0 +1,92 @@
+/* 
+  Animation Styles 
+*/
+
+/* -- Breathing Animation -- */
+@-webkit-keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+
+@keyframes breathing {
+  0% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  25% {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+  }
+
+  60% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  100% {
+    -webkit-transform: scale(0.8);
+    -ms-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+}
+
+/* -- Scale Animation -- */
+@-webkit-keyframes scaleout {
+  0% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+    opacity:1;
+  } 75% {
+    transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    opacity: 0.5;
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes scaleout {
+  0% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+    opacity:1;
+  } 75% {
+    transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    opacity: 0.5;
+  } 100% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+/* -- Bg Scroll -- */
+
+@-webkit-keyframes bgscroll {
+    from {background-position:0 0;}
+    to {background-position:0 100%;}
+}

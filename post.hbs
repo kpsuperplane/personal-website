@@ -1,0 +1,22 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+<div id="nav-spacer"></div> 
+<div class="container">
+    <div class="{{post_class}}">
+        {{#post}}
+        <div class="post-inner">
+            <h1 class="title">{{{title}}}</h1>
+            <span class="post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time> {{tags prefix="in " separator=" | "}}</span>
+            {{#if image}}
+                <img src="{{image}}" class="cover-image"/>
+            {{/if}}
+            <div>
+                {{content}}
+            </div>
+        </div>
+        {{/post}}
+    </div>
+</div>
+<script src="{{asset "js/post.js"}}"></script>

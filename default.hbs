@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html ng-app="site" class="wf-loading">
+	<head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{meta_title}}</title>
+        <meta name="description" content="{{meta_description}}">
+        <link rel="stylesheet" href="{{asset "css/main.css"}}">
+    	<link rel="shortcut icon" href="{{asset "assets/favicon.ico"}}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        {{ghost_head}}
+	</head>
+	<body class="no-animate">
+		<div id="nav" class="not-open white">
+			<div id="menu">
+				<div class="container">
+					<div class="social">
+						<a href="https://github.com/kpsuperplane" class="el el-github" target="_blank"></a>
+						<a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank"></a>
+						<a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank"></a>
+					</div>
+					<a href="/#home" class="quickNav" style="transition-delay: 0s">HOME</a><div class="empty"></div>
+					<a href="/#about" class="quickNav" style="transition-delay: 0.075s">ABOUT ME</a><div class="empty"></div>
+					<a href="/#design" class="quickNav" style="transition-delay: 0.15s">DESIGN</a><div class="empty"></div>
+					<a href="/#work" class="quickNav" style="transition-delay: 0.225s">WORK</a><div class="empty"></div>
+					<a href="/#projects" class="quickNav" style="transition-delay: 0.3s">PROJECTS</a><div class="empty"></div>
+					<a href="/#contact" class="quickNav" style="transition-delay: 0.375s">CONTACT</a><div class="empty"></div>
+					<a href="/#blog" class="quickNav" class="active" style="transition-delay: 0.45s">BLOG</a>
+				</div>
+			</div>
+			<div class="container">
+				<a href="/#home" id="logo" onclick="skipTo('home')"><img src="{{asset "img/logo-white.png"}}" class="light"/><img src="{{asset "img/logo-dark.png"}}" class="dark"/></a>
+				<a href="javascript:void(0);" id="hamburger" class="visible-xs"><span></span></a>
+			</div>
+		</div>
+		<script src="//code.jquery.com/jquery-latest.min.js"></script>
+        <script src="{{asset "js/vendor/modernizr-2.6.2.min.js"}}"></script>
+        {{{body}}}
+		<div class="footer">
+			<p>&copy; 2015 Kevin Pei</p>
+		</div>
+		<script src="{{asset "js/vendor/source.js"}}"></script>
+		<script src="{{asset "js/vendor/wow.min.js"}}"></script>
+		<script src="{{asset "js/main.js"}}"></script>
+		<script src="//use.typekit.net/upz7elf.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
+	</body>
+</html>

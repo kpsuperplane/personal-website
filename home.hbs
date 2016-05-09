@@ -1,0 +1,166 @@
+{{!< default}}
+<div class="loader"><div class="spinner"></div><img src="{{asset "img/logo.png"}}" id="logo"/></div>
+<div id="loader-overlay"></div>
+<section id="home" class="afterActive no-scroll">
+	<video loop id="home-bg" preload="none">
+		<source src="{{asset "img/scrollbg.mp4"}} type="video/mp4">
+	</video>
+	<img src="{{asset "img/project5k.png"}}" id="home-image"/>
+	<div class="container vcenter">
+		<br/><br/><br/>
+		<h1 class="title wow slideInDown">HELLO THERE, I'M <strong>KEVIN PEI</strong></h1>
+		<p>Handcrafting Websites to <strong>Absolute Perfection</strong></p>
+		<div class="social">
+			<a href="https://github.com/kpsuperplane" class="el el-github" target="_blank"></a>
+			<a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank"></a>
+			<a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank"></a>
+		</div>
+		<a href="/#about" id="down-icon" class="next-link quickNav"><i class="el el-chevron-down"></i></a>
+	</div>
+</section>
+<section id="about">
+	<div class="container vcenter">
+		<div class="row">
+			<div class="col-sm-6 wow fadeInLeft" id="about-one">
+				<h2>I MAKE<br/><strong>WEBSITES</strong></h2>
+				<p>Hello there! My name is Kevin, and I am a 17 year old high school student + web developer from the beautiful city of Markham, Ontario. With a passion in computer science and web development, I create beautiful yet sensible sites in my spare time. You know, sites that will have your customers saying wow, sites that'll bring a smile to those who use it.</p>
+				<p class="no-bottom">Often the best things come easy, simple, and clean. When your goal is to deliver a message across the board to your audience, fast and seamless design is of the essence. Subsequently, my goal is to create well-optimized websites that offer no hassle to their viewers.</p>
+			</div>
+			<div class="col-sm-6 wow fadeInRight" id="about-two">
+				<h3>The Nitty Gritty</h3>
+				<h4>MVC Architecture</h4>
+				<p>With MVC Architecture, sites become maintainable and flexible. Adding pages is easy and simple, and even multilingual support becomes a trivial task. In essence, MVC (Model-View-Controller) Architecture is an industry standard that allows the separation of all the components of your site, allowing you to change one thing and have it spread across the entire site.</p>
+				<h4>Languages/Tools I Use</h4>
+				<p class="no-bottom">HTML5, CSS3, LESS, AJAX, JavaScript, jQuery Library, AngularJS, PHP, Bootstrap Framework, Semantic UI, Laravel Framework, MySQL</p>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="design">
+	<div id="phone-container" class="full-height">
+		<div class="container">
+			<div id="phone" class="contcenter hidden-xs wow slideInUp" data-target="design-main">
+				<video loop preload="none" id="phone-video">
+					<source src="{{asset "img/mobile-video.mp4"}}" type="video/mp4">
+					<source src="{{asset "mg/mobile-video.webm"}}" type="video/webm">
+				</video>
+				<img src="{{asset "img/phone-inner.png"}}" />
+				<img src="{{asset "img/phone-shell.png"}}" id="shell" />
+			</div>
+		</div>
+	</div>
+	<div class="container vcenter wow fadeIn" id="design-main">
+		<div class="row">
+			<div class="col-sm-6"></div> 
+			<div class="col-sm-6">
+				<h2><strong>RESPONSIVE</strong>DESIGN</h2>
+				<p>In our evergrowing world, phones and tablets have become a staple in everyday life. As such, we can no longer expect our users to always be on a computer. Yet, a dedicated mobile site is often an expensive and time-consuming hassle. With responsive design, your site will <strong>automatically adjust</strong> itself and look great on whatever device it's being viewed on.</p>
+				<img src="{{asset "img/responsive.png"}}" class="visible-xs"/>
+			</div>
+		</div>
+	</div>
+</section>
+<section id="work" class="white no-bottom" ng-controller="workController">
+	<div class="container vcenter">
+	<hr class="spacer"/>
+		<h2 class="wow fadeInDown">MY <strong>WORK</strong></h2>
+		<div class="row">
+			<a class="col-sm-6 col-md-4 card" ng-href="[[ image[1] ]]" ng-repeat="image in images" target="_blank">
+				<span class="inner">
+					<img ng-src="assets/[[ image[0] ]]" />
+					<span class="title">[[ image[2] ]]</span>
+				</span>
+			</a>
+		</div>
+	</div>
+</section>
+<section id="projects" class="white no-top" ng-controller="projectController">
+	<div class="container vcenter">
+		<h2 class="wow fadeInDown">MY <strong>PROJECTS</strong></h2>
+		<div class="row">
+			<a class="col-sm-6 col-md-4 card" ng-href="[[ image[1] ]]" ng-repeat="image in images" target="_blank">
+				<span class="inner">
+					<img ng-src="assets/[[ image[0] ]]" />
+					<span class="title">[[ image[2] ]]</span>
+				</span>
+			</a>
+		</div>
+	</div>
+</section>
+<section id="contact">
+	<div class="container vcenter">
+			<div class="row">
+				<div class="col-sm-6">
+					<div id="card">
+						<h2><strong>CONTACT</strong> ME<div class="visible-xs"></diV><div class="social">
+							<a href="https://github.com/kpsuperplane" class="el el-github" target="_blank"></a>
+							<a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank"></a>
+							<a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank"></a>
+						</div></h2><!--
+						<div ng-controller="FormController">
+							<form ng-hide="complete" id="contact-form" method="post" ng-submit="sendForm()">
+								<div>
+									<label for="name"><strong>Name</strong>&nbsp;<small>([[100-form.name.length]] chars remaining)</small></label>
+									<input ng-disabled="submitting" type="text" id="name" name="name" ng-model="form.name" placeholder="To which honorable human am I speaking to?" maxlength="100">
+								</div>
+								<div>
+									<label for="email"><strong>Email</strong>&nbsp;<small>([[100-form.email.length]] chars remaining)</small></label>
+									<input ng-disabled="submitting" type="text" id="email" name="email" ng-model="form.email" placeholder="Because post offices take too long" maxlength="100">
+								</div>
+								<div>
+									<label for="message"><strong>Your Message</strong>&nbsp;<small>([[200-form.message.length]] chars remaining)</small></label>
+									<textarea ng-disabled="submitting" type="text" id="message" name="message" ng-model="form.message" placeholder="Don't worry, I won't bite" maxlength="200"></textarea>
+								</div> 
+								<div class="g-recaptcha" data-callback="angularVerified" data-sitekey="6LchegMTAAAAANDL28TrDFoQaiGItMrYoRSgbbx4"></div>
+								<p id="contact-error">[[error]]</p>
+								<button class="btn">Fly Pigeon!</button>
+							</form>
+							<p class="center" ng-show="complete">Thanks! Enjoy your day!</p>
+						</div>-->
+						<br/>
+						<p>Let's Talk:</p>
+						<h3><a href="mailto:hello@kevinpei.com">hello@kevinpei.com</a></h3><br/>
+					</div>
+				</div>
+				<div class="col-sm-6 contcenter hidden-xs wow fadeIn">
+					<img src="{{asset "img/mailbox.png"}} id="mailbox"/>
+				</div> 
+			</div>
+		</div>
+	</div>
+</section>
+<section id="blog" class="white">
+	<div class="container">
+	<hr class="spacer"/>
+	<hr class="spacer"/>
+	<hr class="spacer"/>
+	<hr class="spacer"/>
+		<h2>MY <strong>BLOG</strong></h2>
+		<div class="row">
+			<div class="col-sm-1 col-md-2"></div>
+			<div class="col-sm-10 col-md-8">
+			{{#foreach posts}}
+				<a class="post-entry {{classes}}" href="{{url}}">
+					<span class="inner">
+						{{#if image}}
+							<img src="{{image}}"/>
+						{{/if}}
+						<span class="content">
+							<span class="title">
+								{{{title}}}
+							</span>
+							<span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time></span>
+							<span class="excerpt">{{excerpt}}&hellip;</span>
+						</span>
+					</span>
+				</a>
+			{{/foreach}}
+			</div>
+		</div>
+		<br/>
+		{{pagination}}
+		<br/><br/>
+	</div>
+</section>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="{{asset "js/home.js"}}"></script>

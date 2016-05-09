@@ -1,0 +1,36 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+<div id="nav-spacer"></div> 
+<div class="container">
+    <div class="{{post_class}}">
+        <div class="post-inner">
+            <h1 class="title">Blog Posts</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 col-md-2"></div>
+        <div class="col-sm-10 col-md-8">
+            {{#foreach posts}}
+                <a class="post-entry {{classes}}" href="{{url}}">
+                    <span class="inner">
+                        {{#if image}}
+                            <img src="{{image}}"/>
+                        {{/if}}
+                        <span class="content">
+                            <span class="title">
+                                {{{title}}}
+                            </span>
+                            <span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time></span>
+                            <span class="excerpt">{{excerpt}}&hellip;</span>
+                        </span>
+                    </span>
+                </a>
+            {{/foreach}}
+            <br/>
+            {{pagination}}
+        </div>
+    </div>
+</div>
+<script src="{{asset "js/post.js"}}"></script>

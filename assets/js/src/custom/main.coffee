@@ -205,7 +205,8 @@ home = ->
     lastAnim = 0; 
 
     $('#portfolio .slide').bind('mousewheel DOMMouseScroll', (event) -> 
-
+        if $(window).width() <= 768
+             return #ignore mobile
         now = (new Date()).getTime()
         
         if (now - lastAnim) < 100 

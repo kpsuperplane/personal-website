@@ -5,15 +5,20 @@ var homeData = {
 var projectColors = ['#1577E8', '#EA16F5', '#16F516', '#A200FF', '#FFFB00', '#FF0000', '#00FFB3'];
 var projectData = [
     {
+        'name' : 'PROJECT 5K',
+        'image' : 'project5k.jpg',
+        'subtitle' : 'Promoting greater volunteerism among youth.',
+        'url' : 'http://project5k.ca'
+    },{
         'name' : 'VIA MUSICA',
         'image' : 'viamusica.jpg',
         'subtitle' : 'Enhancing music study through digital innovation.',
         'url' : 'http://viamusica.com',
     },{
-        'name' : 'PROJECT 5K',
-        'image' : 'project5k.jpg',
-        'subtitle' : 'Promoting greater volunteerism among youth.',
-        'url' : 'http://project5k.ca'
+        'name' : 'IN THE LOOP',
+        'image' : 'intheloop.jpg',
+        'subtitle' : 'Easing access to breaking news through machine-learning.',
+        'url' : 'http://devpost.com/software/in-the-loop-real-time-news-aggregating-web-app'
     },{
         'name' : 'YIELD FUNDING GROUP',
         'image' : 'yieldfunding.jpg',
@@ -24,11 +29,6 @@ var projectData = [
         'image' : 'markvillehistory.jpg',
         'subtitle' : 'Improving experiences for a traditional school website.',
         'url' : 'http://markvillehistory.com'
-    },{
-        'name' : 'IN THE LOOP',
-        'image' : 'intheloop.jpg',
-        'subtitle' : 'Easing access to breaking news through machine-learning.',
-        'url' : 'http://devpost.com/software/in-the-loop-real-time-news-aggregating-web-app'
     },{
         'name' : 'MARKHAM GETTING TOGETHER',
         'image' : 'mgt.jpg',

@@ -209,7 +209,7 @@ home = ->
              return #ignore mobile
         now = (new Date()).getTime()
         
-        if (now - lastAnim) < 100 
+        if (now - lastAnim) < 500 
             return
         
         lastAnim = now

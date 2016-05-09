@@ -1,0 +1,20 @@
+{{!< default}}
+<div id="spacer"></div>
+<div id="nav-spacer"></div> 
+<div class="container">
+    <div class="{{post_class}}">
+        {{#post}}
+        <div class="post-inner">
+            <h1 class="title">{{{title}}}</h1>
+            <span class="post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time> {{tags prefix="in " separator=" | "}}</span>
+            {{#if image}}
+                <img src="{{image}}" class="cover-image"/>
+            {{/if}}
+            <div>
+                {{content}}
+            </div>
+        </div>
+        {{/post}}
+    </div>
+</div>
+{{>footer}}

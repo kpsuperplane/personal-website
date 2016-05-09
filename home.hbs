@@ -1,0 +1,142 @@
+{{!< default}}
+<div id="center-fix"></div>
+<div id="pages">
+	<div id="spacer"></div>
+	<div id="home" class="page">
+		<div class="container v-center">
+			<h1 id="home-title">HELLO, I'M</h1>
+			<h1 id="home-name-alt">KEVIN PEI</h1>
+			<canvas id="home-name"></canvas>
+			<p id="home-subtitle" class="hidden-xs">STUDENT&nbsp;&nbsp;&nbsp;&nbsp;DEVELOPER&nbsp;&nbsp;&nbsp;&nbsp;LEADER</p>
+			<div id="home-buttons"><a href="#!/about" class="btn">ABOUT ME</a><a href="#!/blog" class="btn">MY BLOG</a></div>
+			<div class="social">
+				<a href="https://github.com/kpsuperplane" class="el el-github" target="_blank" title="GitHub"></a>
+				<a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank" title="StackOverflow"></a>
+				<a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank" title="LinkedIn"></a>
+				<a href="./documents/resume.pdf" class="el el-file" target="_blank" title="Resume"></a>
+			</div>
+		</div>
+	</div>
+	<div id="portfolio" class="page">
+		<div class="container">
+			<div class="page-height" id="portfolio-content">
+				<div id="portfolio-bottom">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="about" class="page">
+		<div class="container page-height" id="about-part-1-parent">
+			<div id="about-part-1" class="v-center-self">
+				<h1 id="about-title">IMAGINE. CREATE. INSPIRE.</h1>
+				<p id="about-subtitle">Skiing like a madman, git commiting with passion, and coding for the betterment of society.</p>
+			</div>
+			<img src="/assets/img/arrow-bottom.png" id="about-down-arrow"/>
+		</div>
+		<div class="container">
+			<div id="about-part-2">
+				<div class="row">
+					<div class="col-sm-5">
+						<img src="/assets/img/self.jpg" id="about-part-2-image"/>
+					</div>
+					<div class="col-sm-7">
+						<h1 id="about-part-2-title">ABOUT ME</h1>
+						<p id="about-part-2-paragraph">Hello there! My name is Kevin, and I am a 17 year old high school student from the beautiful city of Markham, Ontario. With a passion in computer science and web development, I work on earth-shaking (and sometimes not-so-earth-shaking) portfolio in my spare time. You know, things that get you right out of bed at the start of the day :)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div id="about-part-3">
+				<div id="about-part-3-code">
+					<p><span class="green">life@kevin</span><span class="blue"> ~ $</span> apt-get install <strong>innovate</strong></p>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 v-center-self" id="about-part-3-main">
+						<div id="about-part-3-img-container">
+							<img src="/assets/img/iPhone.png" id="about-part-3-image"/>
+							<img src="/assets/img/iPhone-markville.png" id="about-part-3-img-1" class="expand-img"/>
+							<img src="/assets/img/iPhone-5k.png" id="about-part-3-img-2" class="expand-img"/>
+						</div>
+					</div>
+					<div class="col-sm-7">
+						<h1 id="about-part-3-title">USING TECH TO BETTER SOCIETY</h1>
+						<p id="about-part-3-paragraph"><span id="about-part-3-paragraph-content">Technology is absolutely unique in its ability to rapidly permeate itself into everyone's daily life. Not only is this great for getting thousands of people to fly birds through pipes together, it's great for making real, positive social impact and change. It is this power that I harness on a daily basis.
+						</span><br/><br/><a href="#!/portfolio" class="btn">CHECK OUT MY WORK</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="about-steps">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-4" id="about-steps-idea">
+						<span class="el el-idea"></span>
+						IMAGINE
+					</div>
+					<div class="col-xs-4" id="about-steps-gear">
+						<span class="el el-cog"></span>
+						CREATE
+					</div>
+					<div class="col-xs-4" id="about-steps-star">
+						<span class="el el-star"></span>
+						INSPIRE
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="about-part-4">
+			<img src="/assets/img/skiing.jpg" id="about-part-4-image"/>
+			<div id="about-part-4-title"><div class="container"><h1>FEEL THE RUSH</h1></div></div>
+			<div class="container">
+				<p id="about-part-4-paragraph">Be it 36 hours of programming, an all-nighter of studying, or plain, simple snow flying in my face, there is nothing like the adreneline of doing something <strong>cool.</strong></p>
+				<p><a href="#!/blog" class="btn">READ MY BLOG</a></p>
+			</div>
+		</div>
+	</div>
+	<div id="blog" class="page">
+		<div class="container">
+			<div class="{{post_class}}">
+				<div class="post-inner">
+					<h1 class="title">Blog Posts</h1>
+				</div>
+			</div>
+			{{#foreach posts}}
+				<a class="post-entry {{classes}}" href="{{url}}">
+					<span class="inner">
+						{{#if image}}
+							<img src="{{image}}"/>
+						{{/if}}
+						<span class="content">
+							<span class="title">
+								{{{title}}}
+							</span>
+							<span class="post-meta"><time datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMM YYYY"}}</time></span>
+							<span class="excerpt">{{excerpt}}&hellip;</span>
+						</span>
+					</span>
+				</a>
+			{{/foreach}}
+			<br/>
+			{{pagination}}
+			<br/><br/>
+		</div>
+	</div>
+	{{>footer}}
+</div>
+<div id="contact-overlay" class="contact-link"></div>
+<div id="contact">
+	<div class="container">
+		<h2>Let's Talk. <a class="contact-link" href="javascript:void(0);"></a></h2>
+		<p id="contact-paragraph">Opportunity, cordiality, or just plain curiosity? Either way, feel free to get in touch with one of the ways below!</p>
+		<a id="contact-email" href="mailto:hello@kevinpei.com">hello@kevinpei.com</a>
+		<div class="social">
+			<a href="https://github.com/kpsuperplane" class="el el-github" target="_blank" title="GitHub"></a>
+			<a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank" title="StackOverflow"></a>
+			<a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank" title="LinkedIn"></a>
+			<a href="./documents/resume.pdf" class="el el-file" target="_blank" title="Resume"></a>
+		</div>
+	</div>
+</div>
+<script src="{{asset "js/home.js"}}"></script>

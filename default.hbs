@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html ng-app="site" class="wf-loading">
+	<head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{meta_title}}</title>
+		<!--[if lt IE 10]>
+            <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+			<script type="text/javascript" src="{{asset "js/polyfills.js"}}"></script>
+			<style type="text/css">
+				#nav.loaded{
+					opacity: 1 !important;
+				}
+				#contact{
+					display:none;
+				}
+				body.contact #contact{
+						display:block;
+					}
+				}
+			</style>
+		<![endif]-->
+        <meta name="description" content="{{meta_description}}">
+        <link rel="stylesheet" href="{{asset "css/main.css"}}">
+    	<link rel="shortcut icon" href="{{asset "assets/favicon.ico"}}">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+        <script src="https://use.typekit.net/upz7elf.js"></script>
+        <script>try{Typekit.load({ async: true });}catch(e){}</script>
+        <script src="//cdn.jsdelivr.net/emojione/2.1.4/lib/js/emojione.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/emojione/2.1.4/assets/css/emojione.min.css"/>
+        {{ghost_head}}
+	</head>
+	<body>
+        <!--[if lt IE 9]>
+            <div id="ie-overlay"><h1>Your browser is not supported</h1>
+            <p>Hello there, you are using an outdated and insecure browser. Unfortunately, our website does not support this browser. Please update your browser to experience our website.</p><a class="btn" href="http://www.whatbrowser.org/">Learn More</a></div>
+        <![endif]-->
+        <div id="nav">
+            <div id="nav-inner">
+                <div id="nav-left">
+                    <a href="/#!/about" style="transition-delay:0.14s">ABOUT</a>
+                    <a href="/#!/contact" class="contact-link" style="transition-delay:0.07s">CONTACT</a>
+                </div>
+                <a href="/#!/home" id="nav-home"><img src="/assets/img/logo.png" /></a>
+                <a href="javascript:void(0);" id="hamburger" class="visible-xs"><span></span></a>
+                <div id="nav-right">
+                    <a href="/#!/portfolio" style="transition-delay:0.07s">PORTFOLIO</a>
+                    <a href="/#!/blog" class="active" style="transition-delay:0.14s">BLOG</a>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu">
+            <div class="container">
+                <div class="social">
+                    <a href="https://github.com/kpsuperplane" class="el el-github" target="_blank" title="GitHub"></a>
+                    <a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank" title="StackOverflow"></a>
+                    <a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank" title="LinkedIn"></a>
+                    <a href="./documents/resume.pdf" class="el el-file" target="_blank" title="Resume"></a>
+                </div>
+                <a href="/#!/home" class="quickNav active" style="transition-delay: 0s">HOME</a><div class="empty"></div>
+                <a href="/#!/about" class="quickNav" style="transition-delay: 0.075s">ABOUT</a><div class="empty"></div>
+                <a href="/#!/contact" class="quickNav contact-link" style="transition-delay: 0.3s">CONTACT</a><div class="empty"></div>
+                <a href="/#!/portfolio" class="quickNav" style="transition-delay: 0.375s">PORTFOLIO</a><div class="empty"></div>
+                <a href="/#!/blog" class="quickNav active" style="transition-delay: 0.45s">BLOG</a>
+            </div>
+        </div>
+		<script src="{{asset "js/jquery.min.js"}}"></script>
+		<script src="{{asset "js/app.js"}}"></script>
+        {{{body}}}
+	</body>
+</html>

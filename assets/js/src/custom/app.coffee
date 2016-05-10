@@ -18,7 +18,7 @@ $('#mobile-menu a').click ->
 
 scroll = ->
     st = $(this).scrollTop()
-    if st < 0 then
+    if st < 0
         return #macs are silly. They return negative scroll positions
     if st > lastScrollTop
         if !scrollHidden

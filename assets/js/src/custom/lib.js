@@ -186,8 +186,8 @@ window.home = function(){
             }
         });
         $(document).on('mousemove.controller', function(event) {
-            camera.position.x = -Math.min(12, Math.max(-12, Math.round((event.pageX - winWidth) / 50)));
-            camera.position.y = Math.round((event.pageY - winHeight) / 7);
+            camera.position.x = -Math.min(12, Math.max(-12, (event.pageX - winWidth) / 50));
+            camera.position.y = (event.pageY - winHeight) / 7;
             camera.lookAt({
                 x: 0,
                 y: 0,

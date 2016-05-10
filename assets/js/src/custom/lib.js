@@ -7,32 +7,32 @@ var projectData = [
     {
         'name' : 'PROJECT 5K',
         'image' : 'project5k.jpg',
-        'subtitle' : 'Promoting greater volunteerism among youth.',
+        'subtitle' : 'Promoting greater volunteerism among youth',
         'url' : 'http://project5k.ca'
     },{
         'name' : 'VIA MUSICA',
         'image' : 'viamusica.jpg',
-        'subtitle' : 'Enhancing music study through digital innovation.',
+        'subtitle' : 'Enhancing music study through digital innovation',
         'url' : 'http://viamusica.com',
     },{
         'name' : 'IN THE LOOP',
         'image' : 'intheloop.jpg',
-        'subtitle' : 'Easing access to breaking news through machine-learning.',
+        'subtitle' : 'Easing access to breaking news through machine-learning',
         'url' : 'http://devpost.com/software/in-the-loop-real-time-news-aggregating-web-app'
     },{
         'name' : 'YIELD FUNDING GROUP',
         'image' : 'yieldfunding.jpg',
-        'subtitle' : 'Enabling a new generation of B2B funding.',
+        'subtitle' : 'Enabling a new generation of B2B funding',
         'url' : 'http://yieldfunding.com'
     },{
         'name' : 'MARKVILLE HISTORY',
         'image' : 'markvillehistory.jpg',
-        'subtitle' : 'Improving experiences for a traditional school website.',
+        'subtitle' : 'Improving experiences for a traditional school website',
         'url' : 'http://markvillehistory.com'
     },{
         'name' : 'MARKHAM GETTING TOGETHER',
         'image' : 'mgt.jpg',
-        'subtitle' : 'Faciliating greater outreach for community events.',
+        'subtitle' : 'Faciliating greater outreach for community events',
         'url' : 'http://markham-getting-together.com'
     }
 ];

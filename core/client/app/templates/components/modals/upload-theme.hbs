@@ -1,0 +1,105 @@
+<header class="modal-header">
+    <h1>
+        {{#if theme}}
+            {{#if validationWarnings}}
+                Uploaded with warnings
+            {{else}}
+                Upload successful!
+            {{/if}}
+        {{else if validationErrors}}
+            Invalid theme
+        {{else}}
+            Upload a theme
+        {{/if}}
+    </h1>
+</header>
+<a class="close icon-x" href="#" title="Close" {{action "closeModal"}}><span class="hidden">Close</span></a>
+
+<div class="modal-body">
+    {{#if theme}}
+        {{#if validationWarnings}}
+            <ul class="theme-validation-errors">
+                <li>
+                    <p>
+                        "{{themeName}}" uploaded successfully but some warnings were generated...
+                    </p>
+                </li>
+                {{#each validationWarnings as |error|}}
+                    <li>
+                        {{#if error.details}}
+                            {{{error.details}}}
+                        {{else}}
+                            {{{error.rule}}}
+                        {{/if}}
+
+                        <ul>
+                            {{#each error.failures as |failure|}}
+                                <li><code>{{failure.ref}}</code>{{#if failure.message}}: {{failure.message}}{{/if}}</li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+            </ul>
+        {{else}}
+            <p>
+                "{{themeName}}" uploaded successfully.
+                {{#if canActivateTheme}}Do you want to activate it now?{{/if}}
+            </p>
+        {{/if}}
+    {{else if displayOverwriteWarning}}
+        <p>
+            "{{fileThemeName}}" will overwrite an existing theme of the same name. Are you sure?
+        </p>
+    {{else if validationErrors}}
+        <ul class="theme-validation-errors">
+            {{#each validationErrors as |error|}}
+                <li>
+                    {{#if error.details}}
+                        {{{error.details}}}
+                    {{else}}
+                        {{{error.rule}}}
+                    {{/if}}
+
+                    <ul>
+                        {{#each error.failures as |failure|}}
+                            <li><code>{{failure.ref}}</code>{{#if failure.message}}: {{failure.message}}{{/if}}</li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+    {{else}}
+        {{gh-file-uploader
+            url=uploadUrl
+            paramName="theme"
+            accept=accept
+            labelText="Click to select or drag-and-drop your theme zip file here."
+            validate=(action "validateTheme")
+            uploadStarted=(action "uploadStarted")
+            uploadFinished=(action "uploadFinished")
+            uploadSuccess=(action "uploadSuccess")
+            uploadFailed=(action "uploadFailed")
+            listenTo="themeUploader"}}
+    {{/if}}
+</div>
+
+<div class="modal-footer">
+    <button {{action "closeModal"}} disabled={{closeDisabled}} class="btn btn-default btn-minor">
+        {{#if theme}}Close{{else}}Cancel{{/if}}
+    </button>
+    {{#if displayOverwriteWarning}}
+        <button {{action "confirmOverwrite"}} class="btn btn-red">
+            Overwrite
+        </button>
+    {{/if}}
+    {{#if validationErrors}}
+        <button {{action "reset"}} class="btn btn-green">
+            Try Again
+        </button>
+    {{/if}}
+    {{#if canActivateTheme}}
+        <button {{action "activate"}} class="btn btn-green">
+            Activate Now
+        </button>
+    {{/if}}
+</div>

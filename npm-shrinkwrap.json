@@ -3105,9 +3105,9 @@
       }
     },
     "pg": {
-      "version": "4.1.1",
-      "from": "pg@4.1.1",
-      "resolved": "https://registry.npmjs.org/pg/-/pg-4.1.1.tgz",
+      "version": "4.5.5",
+      "from": "pg@4.5.5",
+      "resolved": "https://registry.npmjs.org/pg/-/pg-4.5.5.tgz",
       "dependencies": {
         "buffer-writer": {
           "version": "1.0.0",

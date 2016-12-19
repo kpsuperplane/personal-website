@@ -1,0 +1,36 @@
+{
+    "name": "personal",
+    "description": "Kevin Pei's Personal Theme",
+    "demo": "https://beta.kevinpei.com",
+    "version": "0.1",
+    "engines": {
+        "ghost": ">=0.9.0 <1.0.0"
+    },
+    "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
+    "author": {
+        "name": "Kevin Pei",
+        "email": "hello@kevinpei.com",
+        "url": "http://kevinpei.com"
+    },
+    "gpm": {
+        "type": "theme",
+        "categories": [
+            "Minimal",
+            "Personal Blogs"
+        ]
+    },
+    "keywords": [
+        "ghost",
+        "theme"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kpsuperplane/personal-website"
+    },
+    "bugs": "https://github.com/kpsuperplane/personal-website/issues",
+    "contributors": "https://github.com/kpsuperplane/personal-website/graphs/contributors"
+}

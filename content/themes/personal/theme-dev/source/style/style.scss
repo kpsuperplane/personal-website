@@ -1,0 +1,111 @@
+$theme: #2AC648;
+$darkGrey: #151515;
+$textGrey: rgba(33,33,33,0.8);
+
+@function asset($path){ 
+  @return "./" + $path;
+} 
+@function highlight($color){
+    @return darken($color, 10%);
+}
+
+@import './components.scss';
+
+.codeFont{
+    font-family: "source-code-pro",sans-serif;
+}
+.standardFont{
+    font-family: "proxima-nova", Segoe UI, Helvetica, sans-serif; 
+}
+.slabFont{
+    font-family: "museo-slab", serif;
+}
+
+body,html{
+  padding:0;
+  margin:0;
+}
+body{
+  font-size:14px;
+  @extend .standardFont;
+}
+/* ------------
+  Typography
+------------ */
+
+h1{
+    @extend .standardFont;
+    font-size:3em;
+    font-weight:900;
+}
+h1.title{
+    font-size:4em;
+    margin-top:0px;
+}
+.standardFormat{
+    font-size:1.4em;
+    line-height:1.7em;
+    margin:0 0 2em 0;
+}
+h2{
+    font-size:3em;
+    @extend .slabFont;
+}
+h1, h2{
+    color:$theme;
+    margin-bottom:0.7em;
+}
+h3{
+    @extend .slabFont;
+    font-weight:300;
+    font-size:2em;
+    color:$textGrey;
+    margin-top:2em;
+    margin-bottom:0.7em;
+    text-align:left;
+}
+h5{
+    @extend .standardFont;
+    color:$textGrey;
+    font-size:1.5em;
+    text-align:left;
+    margin-top:1em;
+    margin-bottom:0.7em;
+    font-weight:700;
+}
+
+/* ------------
+    Content
+------------ */
+.container{
+    max-width:800px;
+    padding:0 1.5em;
+    box-sizing:border-box;
+    margin:0 auto;
+}
+
+@media(min-width:800px){
+    .row{
+        margin:-1em;
+        .cell{
+            width:50%;
+            box-sizing:border-box;
+            margin:0px;
+            vertical-align:middle;
+            display:inline-block;
+        }
+        .cell-left{
+            padding-right:4em;
+        }
+        .cell-right{
+            padding-left:4em;
+        }
+    }
+}
+
+/* ------------
+     Pages
+------------ */
+section#home{
+  @import 'home.scss';
+}

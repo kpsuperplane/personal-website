@@ -1,0 +1,58 @@
+button,.button{
+    font-size:1em;
+    color:#FFF;
+    padding: 0.7em 1.5em;
+    letter-spacing: .1em;
+    @extend .standardFont;
+    font-weight:100;
+    text-transform:uppercase;
+    display:inline-block;
+    background:$theme;
+    text-decoration:none;
+    cursor: pointer;
+    border-radius:5px;
+    border-style:none;
+    transition:background 500ms;
+    box-shadow: 0px 0.5em 1em rgba(0,0,0,0.1);
+    &:hover{
+        text-decoration:none;
+        background: highlight($theme);
+    }
+}
+.social{
+    margin:2em 0;
+    a{
+        margin:0.5em;
+        font-size:1.5em;
+        text-decoration:none;
+        color:$darkGrey;
+        opacity:0.2;
+        transition:opacity 500ms;
+        vertical-align:middle;
+        &:hover{
+            text-decoration:none;
+            opacity:0.5;
+        }
+    }
+    a.button.resume{
+        font-size:0.8em;
+        margin:0 0 0 1em;
+        background:transparent;
+        border:1px solid $textGrey;
+        color:$textGrey;
+        font-weight:700;
+        transition:opacity 500ms;
+        opacity:0.6;
+        &:hover{
+            background:transparent;
+            opacity:1;
+        }
+    }
+}
+.card{
+    overflow:hidden;
+    padding:1.5em;
+    border-radius:5px;
+    background:#FFF;
+    box-shadow:0px 0px 50px rgba(0,0,0,0.1);
+}

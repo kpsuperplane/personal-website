@@ -13,7 +13,7 @@
   <link href="./build/style.css" rel="stylesheet" />
 </head>
 <body>
-  <section id="home">
+  <main id="home">
     <section id="banner" class="page-height">
       <div id="banner-background">
         <div id="banner-background-background"></div>
@@ -47,7 +47,7 @@
 						</div>
           </div><div class="cell cell-right">
             <h1 id="about-title">ABOUT ME</h1>
-            <p id="about-content">Hey there! My name is Kevin, and I am an 18 year old student currently studying Computer Science at the University of Waterloo. Between coursework and the ocassional hackathon, I work on earth-shaking (and sometimes not-so-earth-shaking) projects in my spare time. You know, things that get you right out of bed at the start of the day :)</p>
+            <p id="about-content" class="content">Hey there! My name is Kevin, and I am an 18 year old student currently studying Computer Science at the University of Waterloo. Between coursework and the ocassional hackathon, I work on earth-shaking (and sometimes not-so-earth-shaking) projects in my spare time. You know, things that get you right out of bed at the start of the day :)</p>
           </div>
         </div>
       </div>
@@ -80,10 +80,38 @@
         </div>
       </div>
     </section>
-    <!--<section id="contact">
+    <section id="code">
       <div class="container">
+        <span class="green">life@kevin</span><span class="blue"> ~ $</span> apt-get install <strong>innovate</strong>
+      </div>
+    </section>
+    <section id="blog-summary">
+      <div class="container">
+        <div class="row">
+          <div class="cell cell-left">
+            <h1 id="blog-summary-title">MY BLOG</h1>
+            <h3 class="caption">I like to write things from time to time.</h3>
+            <a href="#blog" class="button">READ MORE</a>
+          </div><!--
+          --><div class="cell">
+            <a class="card blog-card" href="javascript:void(0);" id="blog-summary-main-card">
+              <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/10/IMG_20161016_001226.jpg"/>
+              <div class="blog-card-content">
+                <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
+                <div class="blog-card-date">01 Nov 2016</div>
+                <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="container">
+        <h1>GET IN TOUCH</h1>
+        <h3 class="caption">Opportunity, cordiality, or just plain curiosity? Either way, feel free to get in touch with one of the ways below!</h3>
         <div class="card" style="padding:0">
-          <pre class="brush: js">
+          <pre class="brush: js, highlight: [9,10,11,12,13,14,15]">
             {
               "name": "Kevin Pei",
               "location": "Waterloo, Ontario",
@@ -92,7 +120,8 @@
                 "program": "Honors Bachelor of Computer Science",
                 "year": "Class of 2021 (Expected)"
               },
-              "links": {
+              "contact-information": {
+                "email": "hello@kevinpei.com",
                 "linkedin": "http://linkedin.com/in/kpsuperplane",
                 "github": "http://github.com/kpsuperplane",
                 "devpost": "http://devpost.com/kpsuperplane",
@@ -103,8 +132,46 @@
         </div>
       </div>
     </section>
-  </section>-->
-  <div style="height:1000px;"></div>
+    <section id="blog">
+      <div class="container">
+        <h1 id="blog-title">MY BLOG</h1>
+        <h3 class="caption">I like to write things from time to time.</h3>
+        <a class="card blog-card" href="javascript:void(0);" id="blog-main-card">
+          <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/07/13580570_987379448047499_2576373745155151480_o.jpg"/>
+          <div class="blog-card-content">
+            <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
+            <div class="blog-card-date">01 Nov 2016</div>
+            <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
+          </div>
+        </a>
+        <div id="blog-article-list">
+          <div id="blog-article-list-content" class="card hassub">
+            <a class="card blog-card subcard" href="javascript:void(0);">
+              <div class="blog-card-content">
+                <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
+                <div class="blog-card-date">01 Nov 2016</div>
+                <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
+              </div>
+            </a>
+            <a class="card blog-card subcard" href="javascript:void(0);">
+              <div class="blog-card-content">
+                <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
+                <div class="blog-card-date">01 Nov 2016</div>
+                <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
+              </div>
+            </a>
+            <a class="card blog-card subcard" href="javascript:void(0);">
+              <div class="blog-card-content">
+                <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
+                <div class="blog-card-date">01 Nov 2016</div>
+                <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
   <script type="text/javascript" src="./lib/syntaxhighlighter/shCore.js"></script>
   <script type="text/javascript" src="./lib/syntaxhighlighter/shBrushJScript.js"></script>
   <script type="text/javascript" src="./build/index.js"></script>

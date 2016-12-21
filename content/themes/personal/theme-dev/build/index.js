@@ -127,7 +127,7 @@
 	        value: function init() {
 	            this.listeners = { //default window resize listeners
 	                pageHeightSections: function pageHeightSections(e) {
-	                    (0, _umbrellajs.u)('section.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
+	                    (0, _umbrellajs.u)('.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
 	                }
 	            };
 

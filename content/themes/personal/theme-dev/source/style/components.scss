@@ -4,7 +4,7 @@ button,.button{
     padding: 0.7em 1.5em;
     letter-spacing: .1em;
     @extend .standardFont;
-    font-weight:100;
+    font-weight:300;
     text-transform:uppercase;
     display:inline-block;
     background:$theme;
@@ -52,7 +52,95 @@ button,.button{
 .card{
     overflow:hidden;
     padding:1.5em;
+    display:block;
     border-radius:5px;
     background:#FFF;
+    transition: all 200ms;
     box-shadow:0px 0px 50px rgba(0,0,0,0.1);
+    &.hassub{
+        padding:0;
+        overflow:visible;
+        .subcard:first-child{
+            border-top-left-radius:5px;
+            border-top-right-radius:5px;
+        }
+        .subcard:last-child{
+            border-bottom-left-radius:5px;
+            border-bottom-right-radius:5px;
+        }
+    }
+    &.blog-card{
+        padding:0;
+        img.blog-card-image{
+            margin:0;
+            display:block;
+            width:100%;
+        }
+        div.blog-card-content{
+            margin:0;
+            border:2px solid #FFF;
+            padding:2em;
+            transition:border 200ms;
+            border-radius:5px;
+            h2.blog-card-title{
+                font-size:1.5em;
+                margin-top:0;
+            }
+            div.blog-card-date{
+                @extend .standardFont;
+                font-size:1.1em;
+                color: $textGrey;
+                font-weight:700; 
+            }
+            p.blog-card-snippet{
+                @extend .standardFont;
+                font-size:1.2em;
+                margin-bottom:0;
+                color: $textGrey;
+                line-height:1.7em;
+                font-weight:400;
+            }
+        }
+        &:hover div.blog-card-content{
+            border-color:$theme;
+        }
+        &.subcard{
+            overflow:hidden;
+            div.blog-card-content{
+                border-radius:0;
+            }
+            &:first-child{
+                div.blog-card-content{
+                    border-top-left-radius:5px;
+                    border-top-right-radius:5px;
+                }
+            }
+            &:last-child{
+                div.blog-card-content{
+                    border-bottom-left-radius:5px;
+                    border-bottom-right-radius:5px;
+                }
+            }
+        }
+    }
+    &.subcard{
+        border-radius:0px;
+        box-shadow:none;
+        position: relative;
+        transform: scale(1, 1);
+        &:hover{
+            z-index: 2;
+            transform: scale(1.05, 1.05);
+        }
+    }
+}
+a.card{
+    text-decoration:none;
+    transform: scale(1, 1);
+    &:hover{
+        z-index: 2;
+        transform: scale(1.05, 1.05);
+        text-decoration:none;
+        box-shadow:0px 0px 70px rgba(0,0,0,0.2);
+    }
 }

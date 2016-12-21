@@ -102,10 +102,15 @@ h5{
         }
     }
 }
+@media(max-width: 800px){
+    body{
+        font-size: 12px;
+    }
+}
 
 /* ------------
      Pages
 ------------ */
-section#home{
+main#home{
   @import 'home.scss';
 }

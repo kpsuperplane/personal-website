@@ -36,7 +36,7 @@ config = {
             'ghost-s3': {
                 accessKeyId: process.env.S3_ACCESS_KEY,
                 secretAccessKey: process.env.S3_ACCESS_SECRET,
-                bucket: 'kevin-pei',
+                bucket: 'static.kevinpei.com',
                 region: 'ca-central-1',
                 assetHost: 'static.kevinpei.com'
             }

@@ -115,10 +115,28 @@ a.card {
     text-decoration: none;
     box-shadow: 0px 0px 70px rgba(0, 0, 0, 0.2); }
 
+#blog-article-navigation {
+  text-align: center;
+  margin: 4em 0; }
+  #blog-article-navigation span, #blog-article-navigation a {
+    font-weight: 700;
+    font-size: 1.2em;
+    padding: 0.7em;
+    border-radius: 5px; }
+  #blog-article-navigation span {
+    color: #AAA; }
+  #blog-article-navigation a {
+    transition: all 200ms;
+    text-decoration: none;
+    color: rgba(33, 33, 33, 0.8); }
+    #blog-article-navigation a:hover {
+      text-decoration: none;
+      color: #2AC648; }
+
 .codeFont {
   font-family: "source-code-pro",sans-serif; }
 
-.standardFont, button, .button, .card.blog-card div.blog-card-content div.blog-card-date, .card.blog-card div.blog-card-content p.blog-card-snippet, body, h1, h5, main#home section#banner #banner-overlay #banner-inner h1, main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content h2.card-caption, main#home h3.caption, main#home p.content {
+.standardFont, button, .button, .card.blog-card div.blog-card-content div.blog-card-date, .card.blog-card div.blog-card-content p.blog-card-snippet, body, h1, h5, main#home section#banner #banner-overlay #banner-inner h1, main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content h2.card-caption, main#home h3.caption, main#home p.content {
   font-family: "proxima-nova", Segoe UI, Helvetica, sans-serif; }
 
 .slabFont, h2, h3 {
@@ -169,6 +187,74 @@ h5 {
   margin-top: 1em;
   margin-bottom: 0.7em;
   font-weight: 700; }
+
+/* ---------------
+    Navigation 
+--------------- */
+#nav {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  background: #FFF;
+  padding: 10px 0px;
+  z-index: 20;
+  opacity: 0;
+  margin-right: 16px;
+  transition: opacity 1s ease-out, transform 300ms ease; }
+  #nav.scroll-hidden {
+    transform: translate3d(0, -100%, 0) !important;
+    opacity: 0; }
+  #nav.loaded.blog {
+    background-color: #FFF !important;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05) !important; }
+  #nav #nav-inner {
+    position: relative;
+    text-align: center; }
+    #nav #nav-inner #nav-left {
+      right: 50%;
+      position: absolute;
+      margin-right: 56px;
+      top: 0px; }
+    #nav #nav-inner #nav-right {
+      top: 0px;
+      left: 50%;
+      position: absolute;
+      margin-left: 56px; }
+    #nav #nav-inner a {
+      color: #BBB;
+      display: inline-block;
+      box-sizing: border-box;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 5px;
+      line-height: 14px;
+      text-decoration: none;
+      transition: all 500ms cubic;
+      transform: tarnslate3d(0, -100%, 0);
+      padding: 26px; }
+      #nav #nav-inner a:hover, #nav #nav-inner a.active {
+        color: #2AC648; }
+    #nav #nav-inner #nav-home {
+      transform: translate3d(0, -100%, 0);
+      transition: 500ms cubic;
+      margin: 4px;
+      padding: 0px;
+      height: 56px;
+      width: 56px; }
+      #nav #nav-inner #nav-home img {
+        height: 64px;
+        width: 64px;
+        margin-top: -4px;
+        margin-left: -4px; }
+  #nav.loaded {
+    opacity: 1; }
+    #nav.loaded #nav-inner #nav-home, #nav.loaded #nav-inner a {
+      transform: translate3d(0, 0, 0); }
+
+@media (min-width: 601px) {
+  .visible-xs {
+    display: none !important; } }
 
 /* ------------
     Content
@@ -276,7 +362,7 @@ main#home section#about {
       main#home section#about #about-iphone-container .expand-img#about-iphone-img-2 {
         transform: translate3d(60%, 0, 0); }
 
-main#home section#work {
+main#home section#projects {
   padding: 4em 0 0 0;
   margin: 0 0 4em 0;
   background: #F5FAFA;
@@ -284,28 +370,28 @@ main#home section#work {
   -ms-transform: skew(0deg, 10deg);
   /* IE 9 */
   -webkit-transform: skew(0deg, 10deg); }
-  main#home section#work > div.container {
+  main#home section#projects > div.container {
     transform: skew(0deg, -10deg);
     -ms-transform: skew(0deg, -10deg);
     /* IE 9 */
     -webkit-transform: skew(0deg, -10deg); }
-    main#home section#work > div.container h1#work-title {
+    main#home section#projects > div.container h1#projects-title {
       text-align: center;
       margin-bottom: 0; }
-    main#home section#work > div.container h3.caption {
+    main#home section#projects > div.container h3.caption {
       text-align: center; }
-    main#home section#work > div.container div#work-card-wrapper {
+    main#home section#projects > div.container div#projects-card-wrapper {
       padding: 0 4em;
       position: relative; }
-      main#home section#work > div.container div#work-card-wrapper div#work-card {
+      main#home section#projects > div.container div#projects-card-wrapper div#projects-card {
         padding: 0 0 2px 0;
         line-height: 0px;
         position: relative;
         background: linear-gradient(#1577E8, #EA16F5); }
-        main#home section#work > div.container div#work-card-wrapper div#work-card img#work-card-overlay {
+        main#home section#projects > div.container div#projects-card-wrapper div#projects-card img#projects-card-overlay {
           width: 100%;
           position: relative; }
-        main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-image {
+        main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-image {
           position: absolute;
           top: 0px;
           left: 0px;
@@ -314,7 +400,7 @@ main#home section#work {
           background-image: url(.//img/project5k.jpg);
           background-size: cover;
           opacity: 0.2; }
-        main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content {
+        main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content {
           line-height: normal;
           position: absolute;
           bottom: 0px;
@@ -323,23 +409,23 @@ main#home section#work {
           text-align: left;
           padding: 3em;
           box-sizing: border-box; }
-          main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content h1.card-title {
+          main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content h1.card-title {
             margin: 0;
             padding: 0;
             color: rgba(33, 33, 33, 0.8); }
-          main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content h2.card-caption {
+          main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content h2.card-caption {
             color: #2AC648;
             font-weight: 300;
             margin: 1em 0 1.5em 0;
             padding: 0;
             font-size: 1.3em; }
-          main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation {
+          main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation {
             position: absolute;
             line-height: normal;
             right: 3em;
             bottom: 3em;
             text-align: right; }
-            main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a {
+            main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a {
               float: left;
               text-decoration: none;
               opacity: 0.3;
@@ -349,7 +435,7 @@ main#home section#work {
               width: 1.5em;
               transition: opacity 200ms;
               vertical-align: bottom; }
-              main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a:after {
+              main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a:after {
                 content: '';
                 display: inline-block;
                 height: 1em;
@@ -359,11 +445,11 @@ main#home section#work {
                 transform-origin: 0 100%;
                 transform: scale(1, 1);
                 background: rgba(33, 33, 33, 0.8); }
-              main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a:hover, main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a.active {
+              main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a:hover, main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a.active {
                 opacity: 1; }
-                main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a:hover:after, main#home section#work > div.container div#work-card-wrapper div#work-card div#work-card-content div#work-card-navigation a.active:after {
+                main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a:hover:after, main#home section#projects > div.container div#projects-card-wrapper div#projects-card div#projects-card-content div#projects-card-navigation a.active:after {
                   transform: scale(1, 2); }
-      main#home section#work > div.container div#work-card-wrapper a.work-card-chevron {
+      main#home section#projects > div.container div#projects-card-wrapper a.projects-card-chevron {
         position: absolute;
         text-decoration: none;
         font-size: 2em;
@@ -373,11 +459,11 @@ main#home section#work {
         top: 50%;
         transition: opacity 200ms;
         margin-top: -0.5em; }
-        main#home section#work > div.container div#work-card-wrapper a.work-card-chevron#work-card-chevron-left {
+        main#home section#projects > div.container div#projects-card-wrapper a.projects-card-chevron#projects-card-chevron-left {
           left: 0; }
-        main#home section#work > div.container div#work-card-wrapper a.work-card-chevron#work-card-chevron-right {
+        main#home section#projects > div.container div#projects-card-wrapper a.projects-card-chevron#projects-card-chevron-right {
           right: 0; }
-        main#home section#work > div.container div#work-card-wrapper a.work-card-chevron:hover {
+        main#home section#projects > div.container div#projects-card-wrapper a.projects-card-chevron:hover {
           opacity: 1; }
 
 main#home section#code {
@@ -404,22 +490,24 @@ main#home section#contact {
 
 main#home section#blog {
   position: fixed;
-  display: none;
   top: 0px;
   left: 0px;
   width: 100%;
+  opacity: 0;
   height: 100%;
   overflow-y: auto;
   background: #FFF;
   z-index: 10; }
   main#home section#blog h1#blog-title {
     text-align: center;
-    margin-top: 3em; }
+    margin-top: 4em; }
   main#home section#blog h3.caption {
     text-align: center;
     margin-bottom: 3em; }
   main#home section#blog #blog-main-card {
     margin-bottom: 3em; }
+  main#home section#blog .container {
+    transform: translate(0, 100%); }
 
 main#home h3.caption {
   margin: 1em 0 1.5em 0;
@@ -428,30 +516,30 @@ main#home h3.caption {
   line-height: 1.5em; }
 
 @media (min-width: 850px) {
-  main#home div#work-card-wrapper {
+  main#home div#projects-card-wrapper {
     padding: 0 0 !important; }
-    main#home div#work-card-wrapper #work-card-chevron-left {
+    main#home div#projects-card-wrapper #projects-card-chevron-left {
       left: -1.5em !important; }
-    main#home div#work-card-wrapper #work-card-chevron-right {
+    main#home div#projects-card-wrapper #projects-card-chevron-right {
       right: -1.5em !important; } }
 
 @media (max-width: 600px) {
-  main#home div#work-card-wrapper {
+  main#home div#projects-card-wrapper {
     padding: 0 0 !important; }
-    main#home div#work-card-wrapper #work-card-chevron-left {
+    main#home div#projects-card-wrapper #projects-card-chevron-left {
       font-size: 1em !important;
       right: 6em !important;
       top: auto !important;
       padding: 1em !important;
       left: auto !important;
       bottom: 2.9em !important; }
-    main#home div#work-card-wrapper #work-card-chevron-right {
+    main#home div#projects-card-wrapper #projects-card-chevron-right {
       font-size: 1em !important;
       right: 3em !important;
       padding: 1em !important;
       top: auto !important;
       bottom: 2.9em !important; }
-    main#home div#work-card-wrapper #work-card-navigation {
+    main#home div#projects-card-wrapper #projects-card-navigation {
       display: none; } }
 
 @media (max-width: 470px) {
@@ -464,18 +552,18 @@ main#home h3.caption {
 @media (max-width: 370px) {
   main#home h2.card-caption {
     display: none; }
-  main#home #work-card-content {
+  main#home #projects-card-content {
     padding: 2em !important; }
-  main#home #work-card-content .button {
+  main#home #projects-card-content .button {
     letter-spacing: normal !important; }
-  main#home #work-card-chevron-left {
+  main#home #projects-card-chevron-left {
     font-size: 1em !important;
     right: 5em !important;
     top: auto !important;
     padding: 1em !important;
     left: auto !important;
     bottom: 1.9em !important; }
-  main#home #work-card-chevron-right {
+  main#home #projects-card-chevron-right {
     font-size: 1em !important;
     right: 2em !important;
     padding: 1em !important;

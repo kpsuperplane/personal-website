@@ -90,7 +90,7 @@ section#about{
         }
     }
 }
-section#work{
+section#projects{
     padding:4em 0 0 0;
     margin: 0 0 4em 0;
     background:#F5FAFA;
@@ -101,26 +101,26 @@ section#work{
         transform:skew(0deg,-10deg);
         -ms-transform:skew(0deg,-10deg); /* IE 9 */
         -webkit-transform:skew(0deg,-10deg); 
-        h1#work-title{
+        h1#projects-title{
             text-align:center;
             margin-bottom:0;
         }
         h3.caption{
             text-align:center;
         }
-        div#work-card-wrapper{
+        div#projects-card-wrapper{
             padding:0 4em;
             position:relative;
-            div#work-card{
+            div#projects-card{
                 padding:0 0 2px 0;
                 line-height: 0px; 
                 position:relative;
                 background: linear-gradient(#1577E8, #EA16F5);
-                img#work-card-overlay{
+                img#projects-card-overlay{
                     width:100%;
                     position:relative;
                 }
-                div#work-card-image{
+                div#projects-card-image{
                     position:absolute;
                     top:0px;
                     left:0px;
@@ -130,7 +130,7 @@ section#work{
                     background-size:cover;
                     opacity:0.2;
                 }
-                div#work-card-content{
+                div#projects-card-content{
                     line-height:normal;
                     position:absolute;
                     bottom:0px;
@@ -152,7 +152,7 @@ section#work{
                         padding:0;
                         font-size:1.3em;
                     }
-                    div#work-card-navigation{
+                    div#projects-card-navigation{
                         position:absolute;
                         line-height:normal;
                         right:3em;
@@ -189,7 +189,7 @@ section#work{
                     }
                 }
             }
-            a.work-card-chevron{
+            a.projects-card-chevron{
                 position:absolute;
                 text-decoration:none;
                 font-size:2em;
@@ -199,10 +199,10 @@ section#work{
                 top:50%;
                 transition:opacity 200ms;
                 margin-top:-0.5em;
-                &#work-card-chevron-left{
+                &#projects-card-chevron-left{
                     left:0;
                 }
-                &#work-card-chevron-right{
+                &#projects-card-chevron-right{
                     right:0;
                 }
                 &:hover{
@@ -240,17 +240,18 @@ section#contact{
 }
 section#blog{
     position:fixed;
-    display:none;
+    //display:none;
     top:0px;
     left:0px;
     width:100%;
+    opacity:0;
     height:100%;
     overflow-y:auto;
     background:#FFF;
     z-index:10;
     h1#blog-title{
         text-align:center;
-        margin-top:3em;
+        margin-top:4em;
     }
     h3.caption{
         text-align:center;
@@ -258,6 +259,9 @@ section#blog{
     }
     #blog-main-card{
         margin-bottom:3em;
+    }
+    .container{
+        transform: translate(0, 100%);
     }
 }
 h3.caption{
@@ -268,20 +272,20 @@ h3.caption{
     line-height:1.5em;
 }
 @media(min-width:850px){
-    div#work-card-wrapper{
+    div#projects-card-wrapper{
         padding:0 0 !important;
-        #work-card-chevron-left{
+        #projects-card-chevron-left{
             left: -1.5em !important;
         }
-        #work-card-chevron-right{
+        #projects-card-chevron-right{
             right: -1.5em !important;
         }
     }
 }
 @media(max-width: 600px){
-    div#work-card-wrapper{
+    div#projects-card-wrapper{
         padding:0 0 !important;
-        #work-card-chevron-left{
+        #projects-card-chevron-left{
             font-size:1em !important;
             right: 6em !important;
             top: auto !important;
@@ -289,14 +293,14 @@ h3.caption{
             left: auto !important;
             bottom: 2.9em !important;
         }
-        #work-card-chevron-right{
+        #projects-card-chevron-right{
             font-size:1em !important;
             right: 3em !important;
             padding: 1em !important;
             top: auto !important;
             bottom: 2.9em !important;
         }
-        #work-card-navigation{
+        #projects-card-navigation{
             display:none;
         }
     }
@@ -314,13 +318,13 @@ h3.caption{
     h2.card-caption{
         display:none;
     }
-    #work-card-content{
+    #projects-card-content{
         padding: 2em !important;
     }
-    #work-card-content .button{
+    #projects-card-content .button{
         letter-spacing:normal !important;
     }
-    #work-card-chevron-left{
+    #projects-card-chevron-left{
         font-size:1em !important;
         right: 5em !important;
         top: auto !important;
@@ -328,7 +332,7 @@ h3.caption{
         left: auto !important;
         bottom: 1.9em !important;
     }
-    #work-card-chevron-right{
+    #projects-card-chevron-right{
         font-size:1em !important;
         right: 2em !important;
         padding: 1em !important;

@@ -144,3 +144,25 @@ a.card{
         box-shadow:0px 0px 70px rgba(0,0,0,0.2);
     }
 }
+#blog-article-navigation{
+    text-align:center;
+    margin:4em 0;
+    span, a{
+        font-weight:700;
+        font-size:1.2em;
+        padding:0.7em;
+        border-radius:5px;
+    }
+    span{
+        color:#AAA;
+    }
+    a{
+        transition:all 200ms;
+        text-decoration: none;
+        color:$textGrey;
+        &:hover{
+            text-decoration:none;
+            color: $theme;
+        }
+    }
+}

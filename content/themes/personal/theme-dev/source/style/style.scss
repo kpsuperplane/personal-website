@@ -74,6 +74,90 @@ h5{
     font-weight:700;
 }
 
+
+/* ---------------
+    Navigation 
+--------------- */
+#nav{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%;
+    background:#FFF;
+    padding:10px 0px;
+    z-index:20;
+    opacity:0;
+    margin-right: 16px ;
+    &.scroll-hidden{
+        transform: translate3d(0, -100%, 0) !important;
+        opacity:0;
+    }
+    &.loaded.blog{
+        background-color:#FFF !important; 
+        box-shadow: 0px 0px 20px rgba(0,0,0,0.05) !important;
+    }
+    transition: opacity 1s ease-out, transform 300ms ease;
+    #nav-inner{
+        position:relative;
+        text-align:center;
+        #nav-left{
+            right:50%;
+            position:absolute;
+            margin-right:56px;
+            top:0px;
+        }
+        #nav-right{
+            top:0px;
+            left:50%;
+            position:absolute;
+            margin-left:56px;
+        }
+        a{
+            color: #BBB;
+            display:inline-block;
+            box-sizing:border-box;
+            font-weight:400;
+            font-size:14px;
+            letter-spacing: 5px;
+            line-height:14px;
+            text-decoration:none;
+            transition: all 500ms cubic; 
+            transform: tarnslate3d(0, -100%, 0);
+            padding:26px;
+            &:hover, &.active{
+                color:$theme;
+            }
+        }
+        #nav-home{
+            transform: translate3d(0, -100%, 0);
+            transition: 500ms cubic; 
+            margin:4px;
+            padding:0px;
+            height:56px;
+            width:56px;
+            img{
+                height:64px;
+                width:64px;
+                margin-top:-4px;
+                margin-left:-4px;
+            }
+        }
+    }
+    &.loaded{
+        opacity:1;
+        #nav-inner{
+            #nav-home, a{
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    }
+}
+@media(min-width:601px){
+    .visible-xs{
+        display:none !important;
+    }
+}
+
 /* ------------
     Content
 ------------ */

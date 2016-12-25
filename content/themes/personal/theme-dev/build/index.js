@@ -55,21 +55,19 @@
 
 	__webpack_require__(2);
 
-	var _serviceManager = __webpack_require__(3);
+	var _umbrellajs = __webpack_require__(3);
 
-	var _serviceManager2 = _interopRequireDefault(_serviceManager);
-
-	var _resizeService = __webpack_require__(4);
-
-	var _resizeService2 = _interopRequireDefault(_resizeService);
-
-	var _home = __webpack_require__(6);
+	var _home = __webpack_require__(4);
 
 	var _home2 = _interopRequireDefault(_home);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_serviceManager2.default.init(_resizeService2.default);
+	_home2.default.init();
+
+	window.onload = function () {
+	    (0, _umbrellajs.u)('#nav').attr({ class: 'loaded' });
+	};
 
 /***/ },
 /* 2 */
@@ -81,16 +79,8 @@
 /* 3 */
 /***/ function(module, exports) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = {
-	    init: function init(service) {
-	        new service().init();
-	    }
-	};
+	/* Umbrella JS 2.6.7 umbrellajs.com */
+	function ajax(a,b,c,d){c=c||function(){},b=b||{},b.body=b.body||{},b.method=(b.method||"GET").toUpperCase(),b.headers=b.headers||{},b.headers["X-Requested-With"]=b.headers["X-Requested-With"]||"XMLHttpRequest","undefined"!=typeof window.FormData&&b.body instanceof window.FormData||(b.headers["Content-Type"]=b.headers["Content-Type"]||"application/x-www-form-urlencoded"),/json/.test(b.headers["Content-Type"])&&(b.body=JSON.stringify(b.body)),"object"!=typeof b.body||b.body instanceof window.FormData||(b.body=u().param(b.body));var e=new window.XMLHttpRequest;u(e).on("error timeout abort",function(){c(new Error,null,e)}).on("load",function(){var a=/^(4|5)/.test(e.status)?new Error(e.status):null,b=parseJson(e.response)||e.response;return c(a,b,e)}),e.open(b.method,a);for(var f in b.headers)e.setRequestHeader(f,b.headers[f]);return d&&d(e),e.send(b.body),e}function parseJson(a){try{var b=JSON.parse(a);if(b&&"object"==typeof b)return b}catch(c){}return!1}var u=function(a,b){return this instanceof u?a instanceof u?a:("string"==typeof a&&(a=this.select(a,b)),a&&a.nodeName&&(a=[a]),void(this.nodes=this.slice(a))):new u(a,b)};u.prototype={get length(){return this.nodes.length}},u.prototype.nodes=[],u.prototype.addClass=function(){return this.eacharg(arguments,function(a,b){a.classList.add(b)})},u.prototype.adjacent=function(a,b,c){return"number"==typeof b&&(b=0===b?[]:new Array(b).join().split(",").map(Number.call,Number)),this.each(function(d,e){var f=document.createDocumentFragment();u(b||{}).map(function(b,c){var f="function"==typeof a?a.call(this,b,c,d,e):a;return"string"==typeof f?this.generate(f):u(f)}).each(function(a){this.isInPage(a)?f.appendChild(u(a).clone().first()):f.appendChild(a)}),c.call(this,d,f)})},u.prototype.after=function(a,b){return this.adjacent(a,b,function(a,b){a.parentNode.insertBefore(b,a.nextSibling)})},u.prototype.ajax=function(a,b){return this.handle("submit",function(c){ajax(u(this).attr("action"),{body:u(this).serialize(),method:u(this).attr("method")},a&&a.bind(this),b&&b.bind(this))})},u.prototype.append=function(a,b){return this.adjacent(a,b,function(a,b){a.appendChild(b)})},u.prototype.args=function(a,b,c){return"function"==typeof a&&(a=a(b,c)),"string"!=typeof a&&(a=this.slice(a).map(this.str(b,c))),a.toString().split(/[\s,]+/).filter(function(a){return a.length})},u.prototype.array=function(a){a=a;var b=this;return this.nodes.reduce(function(c,d,e){var f;return a?(f=a.call(b,d,e),f||(f=!1),"string"==typeof f&&(f=u(f)),f instanceof u&&(f=f.nodes)):f=d.innerHTML,c.concat(f!==!1?f:[])},[])},u.prototype.attr=function(a,b,c){if(c=c?"data-":"",void 0!==b){var d=a;a={},a[d]=b}return"object"==typeof a?this.each(function(b){for(var d in a)b.setAttribute(c+d,a[d])}):this.length?this.first().getAttribute(c+a):""},u.prototype.before=function(a,b){return this.adjacent(a,b,function(a,b){a.parentNode.insertBefore(b,a)})},u.prototype.children=function(a){return this.map(function(a){return this.slice(a.children)}).filter(a)},u.prototype.clone=function(){return this.map(function(a,b){var c=a.cloneNode(!0),d=this.getAll(c);return this.getAll(a).each(function(a,b){for(var c in this.mirror)this.mirror[c](a,d.nodes[b])}),c})},u.prototype.getAll=function(a){return u([a].concat(u("*",a).nodes))},u.prototype.mirror={},u.prototype.mirror.events=function(a,b){if(a._e)for(var c in a._e)a._e[c].forEach(function(a){u(b).on(c,a)})},u.prototype.mirror.select=function(a,b){u(a).is("select")&&(b.value=a.value)},u.prototype.mirror.textarea=function(a,b){u(a).is("textarea")&&(b.value=a.value)},u.prototype.closest=function(a){return this.map(function(b){do if(u(b).is(a))return b;while((b=b.parentNode)&&b!==document)})},u.prototype.data=function(a,b){return this.attr(a,b,!0)},u.prototype.each=function(a){return this.nodes.forEach(a.bind(this)),this},u.prototype.eacharg=function(a,b){return this.each(function(c,d){this.args(a,c,d).forEach(function(a){b.call(this,c,a)},this)})},u.prototype.filter=function(a){var b=function(b){return b.matches=b.matches||b.msMatchesSelector||b.webkitMatchesSelector,b.matches(a||"*")};return"function"==typeof a&&(b=a),a instanceof u&&(b=function(b){return a.nodes.indexOf(b)!==-1}),u(this.nodes.filter(b))},u.prototype.find=function(a){return this.map(function(b){return u(a||"*",b)})},u.prototype.first=function(){return this.nodes[0]||!1},u.prototype.generate=function(a){return/^\s*<t(h|r|d)/.test(a)?u(document.createElement("table")).html(a).children().nodes:/^\s*</.test(a)?u(document.createElement("div")).html(a).children().nodes:document.createTextNode(a)},u.prototype.handle=function(){var a=this.slice(arguments).map(function(a){return"function"==typeof a?function(b){b.preventDefault(),a.apply(this,arguments)}:a},this);return this.on.apply(this,a)},u.prototype.hasClass=function(){return this.is("."+this.args(arguments).join("."))},u.prototype.html=function(a){return void 0===a?this.first().innerHTML||"":this.each(function(b){b.innerHTML=a})},u.prototype.is=function(a){return this.filter(a).length>0},u.prototype.isInPage=function(a){return a!==document.body&&document.body.contains(a)},u.prototype.last=function(){return this.nodes[this.length-1]||!1},u.prototype.map=function(a){return a?u(this.array(a)).unique():this},u.prototype.not=function(a){return this.filter(function(b){return!u(b).is(a||!0)})},u.prototype.off=function(a){return this.eacharg(a,function(a,b){u(a._e?a._e[b]:[]).each(function(c){a.removeEventListener(b,c)})})},u.prototype.on=function(a,b,c){if("string"==typeof b){var d=b;b=function(a){var b=arguments;u(a.currentTarget).find(d).each(function(d){if(d===a.target||d.contains(a.target)){try{Object.defineProperty(a,"currentTarget",{get:function(){return d}})}catch(e){}c.apply(d,b)}})}}var e=function(a){return b.apply(this,[a].concat(a.detail||[]))};return this.eacharg(a,function(a,b){a.addEventListener(b,e),a._e=a._e||{},a._e[b]=a._e[b]||[],a._e[b].push(e)})},u.prototype.param=function(a){return Object.keys(a).map(function(b){return this.uri(b)+"="+this.uri(a[b])}.bind(this)).join("&")},u.prototype.parent=function(a){return this.map(function(a){return a.parentNode}).filter(a)},u.prototype.prepend=function(a,b){return this.adjacent(a,b,function(a,b){a.insertBefore(b,a.firstChild)})},u.prototype.remove=function(){return this.each(function(a){a.parentNode.removeChild(a)})},u.prototype.removeClass=function(){return this.eacharg(arguments,function(a,b){a.classList.remove(b)})},u.prototype.replace=function(a,b){var c=[];return this.adjacent(a,b,function(a,b){c=c.concat(this.slice(b.children)),a.parentNode.replaceChild(b,a)}),u(c)},u.prototype.scroll=function(){return this.first().scrollIntoView({behavior:"smooth"}),this},u.prototype.select=function(a,b){if(a=a.replace(/^\s*/,"").replace(/\s*$/,""),b)return this.select.byCss(a,b);for(var c in this.selectors)if(b=c.split("/"),new RegExp(b[1],b[2]).test(a))return this.selectors[c](a);return this.select.byCss(a)},u.prototype.select.byCss=function(a,b){return(b||document).querySelectorAll(a)},u.prototype.selectors={},u.prototype.selectors[/^\.[\w\-]+$/]=function(a){return document.getElementsByClassName(a.substring(1))},u.prototype.selectors[/^\w+$/]=function(a){return document.getElementsByTagName(a)},u.prototype.selectors[/^\#[\w\-]+$/]=function(a){return document.getElementById(a.substring(1))},u.prototype.selectors[/^</]=function(a){return u().generate(a)},u.prototype.serialize=function(){var a=this;return this.slice(this.first().elements).reduce(function(b,c){return!c.name||c.disabled||"file"===c.type?b:/(checkbox|radio)/.test(c.type)&&!c.checked?b:"select-multiple"===c.type?(u(c.options).each(function(d){d.selected&&(b+="&"+a.uri(c.name)+"="+a.uri(d.value))}),b):b+"&"+a.uri(c.name)+"="+a.uri(c.value)},"").slice(1)},u.prototype.siblings=function(a){return this.parent().children(a).not(this)},u.prototype.size=function(){return this.first().getBoundingClientRect()},u.prototype.slice=function(a){return a&&0!==a.length&&"string"!=typeof a&&"[object Function]"!==a.toString()?a.length?[].slice.call(a.nodes||a):[a]:[]},u.prototype.str=function(a,b){return function(c){return"function"==typeof c?c.call(this,a,b):c.toString()}},u.prototype.text=function(a){return void 0===a?this.first().textContent||"":this.each(function(b){b.textContent=a})},u.prototype.toggleClass=function(a,b){return!!b===b?this[b?"addClass":"removeClass"](a):this.eacharg(a,function(a,b){a.classList.toggle(b)})},u.prototype.trigger=function(a){var b=this.slice(arguments).slice(1);return this.eacharg(a,function(a,c){var d,e={bubbles:!0,cancelable:!0,detail:b};try{d=new window.CustomEvent(c,e)}catch(f){d=document.createEvent("CustomEvent"),d.initCustomEvent(c,!0,!0,b)}a.dispatchEvent(d)})},u.prototype.unique=function(){return u(this.nodes.reduce(function(a,b){var c=null!==b&&void 0!==b&&b!==!1;return c&&a.indexOf(b)===-1?a.concat(b):a},[]))},u.prototype.uri=function(a){return encodeURIComponent(a).replace(/!/g,"%21").replace(/'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A").replace(/%20/g,"+")},u.prototype.wrap=function(a){function b(a){for(;a.firstElementChild;)a=a.firstElementChild;return u(a)}return this.map(function(c){return u(a).each(function(a){b(a).append(c.cloneNode(!0)),c.parentNode.replaceChild(a,c)})})},"object"==typeof module&&module.exports&&(module.exports={u:u,ajax:ajax});
 
 /***/ },
 /* 4 */
@@ -102,92 +92,82 @@
 	    value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _umbrellajs = __webpack_require__(5);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var resizeService = function () {
-	    function resizeService() {
-	        _classCallCheck(this, resizeService);
-	    }
-
-	    _createClass(resizeService, [{
-	        key: 'resizeHook',
-	        value: function resizeHook(e) {
-	            var listeners = this.listeners;
-
-	            for (var listener in listeners) {
-	                listeners[listener](e);
-	            }
-	        }
-	    }, {
-	        key: 'init',
-	        value: function init() {
-	            this.listeners = { //default window resize listeners
-	                pageHeightSections: function pageHeightSections(e) {
-	                    (0, _umbrellajs.u)('.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
-	                }
-	            };
-
-	            window.onresize = this.resizeHook.bind(this); //bind resize hook
-
-	            var evt = window.document.createEvent('UIEvents'); //trigger resize hook on initial load
-	            evt.initUIEvent('resize', true, false, window, 0);
-	            window.dispatchEvent(evt);
-	        }
-	    }]);
-
-	    return resizeService;
-	}();
-
-	exports.default = resizeService;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	/* Umbrella JS 2.6.7 umbrellajs.com */
-	function ajax(a,b,c,d){c=c||function(){},b=b||{},b.body=b.body||{},b.method=(b.method||"GET").toUpperCase(),b.headers=b.headers||{},b.headers["X-Requested-With"]=b.headers["X-Requested-With"]||"XMLHttpRequest","undefined"!=typeof window.FormData&&b.body instanceof window.FormData||(b.headers["Content-Type"]=b.headers["Content-Type"]||"application/x-www-form-urlencoded"),/json/.test(b.headers["Content-Type"])&&(b.body=JSON.stringify(b.body)),"object"!=typeof b.body||b.body instanceof window.FormData||(b.body=u().param(b.body));var e=new window.XMLHttpRequest;u(e).on("error timeout abort",function(){c(new Error,null,e)}).on("load",function(){var a=/^(4|5)/.test(e.status)?new Error(e.status):null,b=parseJson(e.response)||e.response;return c(a,b,e)}),e.open(b.method,a);for(var f in b.headers)e.setRequestHeader(f,b.headers[f]);return d&&d(e),e.send(b.body),e}function parseJson(a){try{var b=JSON.parse(a);if(b&&"object"==typeof b)return b}catch(c){}return!1}var u=function(a,b){return this instanceof u?a instanceof u?a:("string"==typeof a&&(a=this.select(a,b)),a&&a.nodeName&&(a=[a]),void(this.nodes=this.slice(a))):new u(a,b)};u.prototype={get length(){return this.nodes.length}},u.prototype.nodes=[],u.prototype.addClass=function(){return this.eacharg(arguments,function(a,b){a.classList.add(b)})},u.prototype.adjacent=function(a,b,c){return"number"==typeof b&&(b=0===b?[]:new Array(b).join().split(",").map(Number.call,Number)),this.each(function(d,e){var f=document.createDocumentFragment();u(b||{}).map(function(b,c){var f="function"==typeof a?a.call(this,b,c,d,e):a;return"string"==typeof f?this.generate(f):u(f)}).each(function(a){this.isInPage(a)?f.appendChild(u(a).clone().first()):f.appendChild(a)}),c.call(this,d,f)})},u.prototype.after=function(a,b){return this.adjacent(a,b,function(a,b){a.parentNode.insertBefore(b,a.nextSibling)})},u.prototype.ajax=function(a,b){return this.handle("submit",function(c){ajax(u(this).attr("action"),{body:u(this).serialize(),method:u(this).attr("method")},a&&a.bind(this),b&&b.bind(this))})},u.prototype.append=function(a,b){return this.adjacent(a,b,function(a,b){a.appendChild(b)})},u.prototype.args=function(a,b,c){return"function"==typeof a&&(a=a(b,c)),"string"!=typeof a&&(a=this.slice(a).map(this.str(b,c))),a.toString().split(/[\s,]+/).filter(function(a){return a.length})},u.prototype.array=function(a){a=a;var b=this;return this.nodes.reduce(function(c,d,e){var f;return a?(f=a.call(b,d,e),f||(f=!1),"string"==typeof f&&(f=u(f)),f instanceof u&&(f=f.nodes)):f=d.innerHTML,c.concat(f!==!1?f:[])},[])},u.prototype.attr=function(a,b,c){if(c=c?"data-":"",void 0!==b){var d=a;a={},a[d]=b}return"object"==typeof a?this.each(function(b){for(var d in a)b.setAttribute(c+d,a[d])}):this.length?this.first().getAttribute(c+a):""},u.prototype.before=function(a,b){return this.adjacent(a,b,function(a,b){a.parentNode.insertBefore(b,a)})},u.prototype.children=function(a){return this.map(function(a){return this.slice(a.children)}).filter(a)},u.prototype.clone=function(){return this.map(function(a,b){var c=a.cloneNode(!0),d=this.getAll(c);return this.getAll(a).each(function(a,b){for(var c in this.mirror)this.mirror[c](a,d.nodes[b])}),c})},u.prototype.getAll=function(a){return u([a].concat(u("*",a).nodes))},u.prototype.mirror={},u.prototype.mirror.events=function(a,b){if(a._e)for(var c in a._e)a._e[c].forEach(function(a){u(b).on(c,a)})},u.prototype.mirror.select=function(a,b){u(a).is("select")&&(b.value=a.value)},u.prototype.mirror.textarea=function(a,b){u(a).is("textarea")&&(b.value=a.value)},u.prototype.closest=function(a){return this.map(function(b){do if(u(b).is(a))return b;while((b=b.parentNode)&&b!==document)})},u.prototype.data=function(a,b){return this.attr(a,b,!0)},u.prototype.each=function(a){return this.nodes.forEach(a.bind(this)),this},u.prototype.eacharg=function(a,b){return this.each(function(c,d){this.args(a,c,d).forEach(function(a){b.call(this,c,a)},this)})},u.prototype.filter=function(a){var b=function(b){return b.matches=b.matches||b.msMatchesSelector||b.webkitMatchesSelector,b.matches(a||"*")};return"function"==typeof a&&(b=a),a instanceof u&&(b=function(b){return a.nodes.indexOf(b)!==-1}),u(this.nodes.filter(b))},u.prototype.find=function(a){return this.map(function(b){return u(a||"*",b)})},u.prototype.first=function(){return this.nodes[0]||!1},u.prototype.generate=function(a){return/^\s*<t(h|r|d)/.test(a)?u(document.createElement("table")).html(a).children().nodes:/^\s*</.test(a)?u(document.createElement("div")).html(a).children().nodes:document.createTextNode(a)},u.prototype.handle=function(){var a=this.slice(arguments).map(function(a){return"function"==typeof a?function(b){b.preventDefault(),a.apply(this,arguments)}:a},this);return this.on.apply(this,a)},u.prototype.hasClass=function(){return this.is("."+this.args(arguments).join("."))},u.prototype.html=function(a){return void 0===a?this.first().innerHTML||"":this.each(function(b){b.innerHTML=a})},u.prototype.is=function(a){return this.filter(a).length>0},u.prototype.isInPage=function(a){return a!==document.body&&document.body.contains(a)},u.prototype.last=function(){return this.nodes[this.length-1]||!1},u.prototype.map=function(a){return a?u(this.array(a)).unique():this},u.prototype.not=function(a){return this.filter(function(b){return!u(b).is(a||!0)})},u.prototype.off=function(a){return this.eacharg(a,function(a,b){u(a._e?a._e[b]:[]).each(function(c){a.removeEventListener(b,c)})})},u.prototype.on=function(a,b,c){if("string"==typeof b){var d=b;b=function(a){var b=arguments;u(a.currentTarget).find(d).each(function(d){if(d===a.target||d.contains(a.target)){try{Object.defineProperty(a,"currentTarget",{get:function(){return d}})}catch(e){}c.apply(d,b)}})}}var e=function(a){return b.apply(this,[a].concat(a.detail||[]))};return this.eacharg(a,function(a,b){a.addEventListener(b,e),a._e=a._e||{},a._e[b]=a._e[b]||[],a._e[b].push(e)})},u.prototype.param=function(a){return Object.keys(a).map(function(b){return this.uri(b)+"="+this.uri(a[b])}.bind(this)).join("&")},u.prototype.parent=function(a){return this.map(function(a){return a.parentNode}).filter(a)},u.prototype.prepend=function(a,b){return this.adjacent(a,b,function(a,b){a.insertBefore(b,a.firstChild)})},u.prototype.remove=function(){return this.each(function(a){a.parentNode.removeChild(a)})},u.prototype.removeClass=function(){return this.eacharg(arguments,function(a,b){a.classList.remove(b)})},u.prototype.replace=function(a,b){var c=[];return this.adjacent(a,b,function(a,b){c=c.concat(this.slice(b.children)),a.parentNode.replaceChild(b,a)}),u(c)},u.prototype.scroll=function(){return this.first().scrollIntoView({behavior:"smooth"}),this},u.prototype.select=function(a,b){if(a=a.replace(/^\s*/,"").replace(/\s*$/,""),b)return this.select.byCss(a,b);for(var c in this.selectors)if(b=c.split("/"),new RegExp(b[1],b[2]).test(a))return this.selectors[c](a);return this.select.byCss(a)},u.prototype.select.byCss=function(a,b){return(b||document).querySelectorAll(a)},u.prototype.selectors={},u.prototype.selectors[/^\.[\w\-]+$/]=function(a){return document.getElementsByClassName(a.substring(1))},u.prototype.selectors[/^\w+$/]=function(a){return document.getElementsByTagName(a)},u.prototype.selectors[/^\#[\w\-]+$/]=function(a){return document.getElementById(a.substring(1))},u.prototype.selectors[/^</]=function(a){return u().generate(a)},u.prototype.serialize=function(){var a=this;return this.slice(this.first().elements).reduce(function(b,c){return!c.name||c.disabled||"file"===c.type?b:/(checkbox|radio)/.test(c.type)&&!c.checked?b:"select-multiple"===c.type?(u(c.options).each(function(d){d.selected&&(b+="&"+a.uri(c.name)+"="+a.uri(d.value))}),b):b+"&"+a.uri(c.name)+"="+a.uri(c.value)},"").slice(1)},u.prototype.siblings=function(a){return this.parent().children(a).not(this)},u.prototype.size=function(){return this.first().getBoundingClientRect()},u.prototype.slice=function(a){return a&&0!==a.length&&"string"!=typeof a&&"[object Function]"!==a.toString()?a.length?[].slice.call(a.nodes||a):[a]:[]},u.prototype.str=function(a,b){return function(c){return"function"==typeof c?c.call(this,a,b):c.toString()}},u.prototype.text=function(a){return void 0===a?this.first().textContent||"":this.each(function(b){b.textContent=a})},u.prototype.toggleClass=function(a,b){return!!b===b?this[b?"addClass":"removeClass"](a):this.eacharg(a,function(a,b){a.classList.toggle(b)})},u.prototype.trigger=function(a){var b=this.slice(arguments).slice(1);return this.eacharg(a,function(a,c){var d,e={bubbles:!0,cancelable:!0,detail:b};try{d=new window.CustomEvent(c,e)}catch(f){d=document.createEvent("CustomEvent"),d.initCustomEvent(c,!0,!0,b)}a.dispatchEvent(d)})},u.prototype.unique=function(){return u(this.nodes.reduce(function(a,b){var c=null!==b&&void 0!==b&&b!==!1;return c&&a.indexOf(b)===-1?a.concat(b):a},[]))},u.prototype.uri=function(a){return encodeURIComponent(a).replace(/!/g,"%21").replace(/'/g,"%27").replace(/\(/g,"%28").replace(/\)/g,"%29").replace(/\*/g,"%2A").replace(/%20/g,"+")},u.prototype.wrap=function(a){function b(a){for(;a.firstElementChild;)a=a.firstElementChild;return u(a)}return this.map(function(c){return u(a).each(function(a){b(a).append(c.cloneNode(!0)),c.parentNode.replaceChild(a,c)})})},"object"==typeof module&&module.exports&&(module.exports={u:u,ajax:ajax});
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _scrollmagic = __webpack_require__(7);
+	var _scrollmagic = __webpack_require__(5);
 
 	var _scrollmagic2 = _interopRequireDefault(_scrollmagic);
 
-	__webpack_require__(8);
+	__webpack_require__(6);
+
+	__webpack_require__(13);
+
+	var _serviceManager = __webpack_require__(11);
+
+	var _serviceManager2 = _interopRequireDefault(_serviceManager);
+
+	var _resizeService = __webpack_require__(12);
+
+	var _resizeService2 = _interopRequireDefault(_resizeService);
+
+	var _umbrellajs = __webpack_require__(3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var controller = new _scrollmagic2.default.Controller();
+	_serviceManager2.default.use(_resizeService2.default);
 
-	/* --- BANNER --- */
-	var bannerVerticalOffset = window.innerHeight - window.innerWidth * 1068 / 1600 + window.innerHeight / 8;
-	bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
-	var bannerTimeline = new TimelineMax();
-	bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone })]);
-	var bannerScene = new _scrollmagic2.default.Scene({ duration: '100%', offset: 0, triggerHook: 0, triggerElement: '#banner-background', reverse: true });
-	bannerScene.setTween(bannerTimeline);
-	controller.addScene(bannerScene);
+	exports.default = {
+	    init: function init() {
+	        var controller = new _scrollmagic2.default.Controller();
 
-	/* --- ABOUT-- */
-	var aboutTimeline = new TimelineMax();
-	aboutTimeline.add([TweenMax.fromTo("#about-iphone-container", 1, { x: "0%" }, { x: "-30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-1", 1, { x: "0%" }, { x: "30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-2", 1, { x: "0%" }, { x: "60%", ease: Power1.easeOut }), TweenMax.fromTo("#about-title", 1, { y: "50px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#about-content", 1, { y: "150px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut })]);
-	var aboutScene = new _scrollmagic2.default.Scene({ duration: '90%', offset: 0, triggerHook: 1, triggerElement: '#about', reverse: true });
-	aboutScene.setTween(aboutTimeline);
-	controller.addScene(aboutScene);
+	        /* --- BANNER --- */
+	        var bannerVerticalOffset = window.innerHeight - window.innerWidth * 1068 / 1600 + window.innerHeight / 8;
+	        bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
+	        var bannerTimeline = new TimelineMax();
+	        bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#nav", 1, { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
+	        var bannerScene = new _scrollmagic2.default.Scene({ duration: '100%', offset: 0, triggerHook: 0, triggerElement: '#banner-background', reverse: true });
+	        bannerScene.setTween(bannerTimeline);
+	        controller.addScene(bannerScene);
 
-	SyntaxHighlighter.defaults['quick-code'] = false;
-	SyntaxHighlighter.all();
+	        /* --- ABOUT-- */
+	        var aboutTimeline = new TimelineMax();
+	        aboutTimeline.add([TweenMax.fromTo("#about-iphone-container", 1, { x: "0%" }, { x: "-30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-1", 1, { x: "0%" }, { x: "30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-2", 1, { x: "0%" }, { x: "60%", ease: Power1.easeOut }), TweenMax.fromTo("#about-title", 1, { y: "50px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#about-content", 1, { y: "150px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut })]);
+	        var aboutScene = new _scrollmagic2.default.Scene({ duration: '90%', offset: 0, triggerHook: 1, triggerElement: '#about', reverse: true });
+	        aboutScene.setTween(aboutTimeline);
+	        controller.addScene(aboutScene);
+
+	        SyntaxHighlighter.defaults['quick-code'] = false;
+	        SyntaxHighlighter.all();
+
+	        /* --- BLOG-- */
+	        var blogTimeline = new TimelineMax({ paused: true });
+	        blogTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "100%" }, { y: "0%", ease: Expo.easeOut })]);
+	        var blogReverseTimeline = new TimelineMax({ paused: true, onComplete: function onComplete() {
+	                (0, _umbrellajs.u)('#blog').first().style.display = "none";
+	            } });
+	        blogReverseTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 1 }, { opacity: 0, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "0%" }, { y: "100%", ease: Power0.easeNone })]);
+	        (0, _umbrellajs.u)('.blog-toggle').on('click', function (e) {
+	            var blog = (0, _umbrellajs.u)('#blog').first();
+	            if (blog.style.display != "block") {
+	                blogTimeline.play(0);
+	                blog.style.display = "block";
+	                (0, _umbrellajs.u)('#nav').addClass('blog');
+	                document.getElementsByTagName('html')[0].style.overflow = "hidden";
+	            }
+	        });
+	        (0, _umbrellajs.u)('#nav a').on('click', function (e) {
+	            if (e.target.hash != '#!/blog') {
+	                if ((0, _umbrellajs.u)('#blog').first().style.display == "block") {
+	                    blogReverseTimeline.play(0);
+	                    (0, _umbrellajs.u)('#nav').removeClass('blog');
+	                    document.getElementsByTagName('html')[0].style.overflow = "auto";
+	                }
+	                TweenMax.to(window, 0.5, { scrollTo: Math.max(0, document.getElementById(this.hash.substring(3) + "-target").getBoundingClientRect().top - document.body.getBoundingClientRect().top - 150), ease: Power3.easeOut });
+	            }
+	        });
+	    }
+	};
 
 /***/ },
-/* 7 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -2972,7 +2952,7 @@
 	}));
 
 /***/ },
-/* 8 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -3005,7 +2985,7 @@
 	(function (root, factory) {
 		if (true) {
 			// AMD. Register as an anonymous module.
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(7), __webpack_require__(9), __webpack_require__(11)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(5), __webpack_require__(7), __webpack_require__(9)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if (typeof exports === 'object') {
 			// CommonJS
 			// Loads whole gsap package onto global scope.
@@ -3287,7 +3267,7 @@
 	}));
 
 /***/ },
-/* 9 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -9279,7 +9259,7 @@
 							if (global) {
 								_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 								hasModule = (typeof(module) !== "undefined" && module.exports);
-								if (!hasModule && "function" === "function" && __webpack_require__(10)){ //AMD
+								if (!hasModule && "function" === "function" && __webpack_require__(8)){ //AMD
 									!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 								} else if (hasModule){ //node
 									if (ns === moduleName) {
@@ -11093,7 +11073,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 10 */
+/* 8 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
@@ -11101,7 +11081,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ },
-/* 11 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -12384,7 +12364,7 @@
 			return (_gsScope.GreenSockGlobals || _gsScope)[name];
 		};
 		if (true) { //AMD
-			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(12)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 		} else if (typeof(module) !== "undefined" && module.exports) { //node
 			require("./TweenLite.js"); //dependency
 			module.exports = getGlobal();
@@ -12393,7 +12373,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 12 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -12503,7 +12483,7 @@
 							if (global) {
 								_globals[n] = _exports[n] = cl; //provides a way to avoid global namespace pollution. By default, the main classes like TweenLite, Power1, Strong, etc. are added to window unless a GreenSockGlobals is defined. So if you want to have things added to a custom object instead, just do something like window.GreenSockGlobals = {} before loading any GreenSock files. You can even set up an alias like window.GreenSockGlobals = windows.gs = {} so that you can access everything like gs.TweenLite. Also remember that ALL classes are added to the window.com.greensock object (in their respective packages, like com.greensock.easing.Power1, com.greensock.TweenLite, etc.)
 								hasModule = (typeof(module) !== "undefined" && module.exports);
-								if (!hasModule && "function" === "function" && __webpack_require__(10)){ //AMD
+								if (!hasModule && "function" === "function" && __webpack_require__(8)){ //AMD
 									!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function() { return cl; }.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 								} else if (hasModule){ //node
 									if (ns === moduleName) {
@@ -14314,6 +14294,275 @@
 			_tickerActive = false; //ensures that the first official animation forces a ticker.tick() to update the time when it is instantiated
 
 	})((typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window, "TweenLite");
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.default = {
+	    use: function use(service) {
+	        if (_typeof(window.services) != 'object') window.services = {};
+	        if (!(service in window.services)) {
+	            console.log("Initializing service " + service);
+	            var instance = new service();
+	            instance.init();
+	            window.services[service] = instance;
+	        }
+	        return window.services[service];
+	    }
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _umbrellajs = __webpack_require__(3);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var resizeService = function () {
+	    function resizeService() {
+	        _classCallCheck(this, resizeService);
+	    }
+
+	    _createClass(resizeService, [{
+	        key: 'resizeHook',
+	        value: function resizeHook(e) {
+	            var listeners = this.listeners;
+
+	            for (var listener in listeners) {
+	                listeners[listener](e);
+	            }
+	        }
+	    }, {
+	        key: 'init',
+	        value: function init() {
+	            this.listeners = { //default window resize listeners
+	                pageHeightSections: function pageHeightSections(e) {
+	                    (0, _umbrellajs.u)('.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
+	                }
+	            };
+
+	            window.onresize = this.resizeHook.bind(this); //bind resize hook
+
+	            var evt = window.document.createEvent('UIEvents'); //trigger resize hook on initial load
+	            evt.initUIEvent('resize', true, false, window, 0);
+	            window.dispatchEvent(evt);
+	        }
+	    }]);
+
+	    return resizeService;
+	}();
+
+	exports.default = resizeService;
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
+	 * VERSION: 1.8.0
+	 * DATE: 2016-07-09
+	 * UPDATES AND DOCS AT: http://greensock.com
+	 *
+	 * @license Copyright (c) 2008-2016, GreenSock. All rights reserved.
+	 * This work is subject to the terms at http://greensock.com/standard-license or for
+	 * Club GreenSock members, the software agreement that was issued with your membership.
+	 * 
+	 * @author: Jack Doyle, jack@greensock.com
+	 **/
+	var _gsScope = (typeof(module) !== "undefined" && module.exports && typeof(global) !== "undefined") ? global : this || window; //helps ensure compatibility with AMD/RequireJS and CommonJS/Node
+	(_gsScope._gsQueue || (_gsScope._gsQueue = [])).push( function() {
+
+		"use strict";
+
+		var _doc = document.documentElement,
+			_window = window,
+			_max = function(element, axis) {
+				var dim = (axis === "x") ? "Width" : "Height",
+					scroll = "scroll" + dim,
+					client = "client" + dim,
+					body = document.body;
+				return (element === _window || element === _doc || element === body) ? Math.max(_doc[scroll], body[scroll]) - (_window["inner" + dim] || _doc[client] || body[client]) : element[scroll] - element["offset" + dim];
+			},
+			_unwrapElement = function(value) {
+				if (typeof(value) === "string") {
+					value = TweenLite.selector(value);
+				}
+				if (value.length && value !== _window && value[0] && value[0].style && !value.nodeType) {
+					value = value[0];
+				}
+				return (value === _window || (value.nodeType && value.style)) ? value : null;
+			},
+			_buildGetter = function(e, axis) { //pass in an element and an axis ("x" or "y") and it'll return a getter function for the scroll position of that element (like scrollTop or scrollLeft, although if the element is the window, it'll use the pageXOffset/pageYOffset or the documentElement's scrollTop/scrollLeft or document.body's. Basically this streamlines things and makes a very fast getter across browsers.
+				var p = "scroll" + ((axis === "x") ? "Left" : "Top");
+				if (e === _window) {
+					if (e.pageXOffset != null) {
+						p = "page" + axis.toUpperCase() + "Offset";
+					} else if (_doc[p] != null) {
+						e = _doc;
+					} else {
+						e = document.body;
+					}
+				}
+				return function() {
+					return e[p];
+				};
+			},
+			_getOffset = function(element, container) {
+				var rect = _unwrapElement(element).getBoundingClientRect(),
+					isRoot = (!container || container === _window || container === document.body),
+					cRect = (isRoot ? _doc : container).getBoundingClientRect(),
+					offsets = {x: rect.left - cRect.left, y: rect.top - cRect.top};
+				if (!isRoot && container) { //only add the current scroll position if it's not the window/body.
+					offsets.x += _buildGetter(container, "x")();
+					offsets.y += _buildGetter(container, "y")();
+				}
+				return offsets;
+			},
+			_parseVal = function(value, target, axis) {
+				var type = typeof(value);
+				if (type === "number" || (type === "string" && value.charAt(1) === "=")) {
+					return value;
+				} else if (value === "max") {
+					return _max(target, axis);
+				}
+				return Math.min(_max(target, axis), _getOffset(value, target)[axis]);
+			},
+
+			ScrollToPlugin = _gsScope._gsDefine.plugin({
+				propName: "scrollTo",
+				API: 2,
+				version:"1.8.0",
+
+				//called when the tween renders for the first time. This is where initial values should be recorded and any setup routines should run.
+				init: function(target, value, tween) {
+					this._wdw = (target === _window);
+					this._target = target;
+					this._tween = tween;
+					if (typeof(value) !== "object") {
+						value = {y:value}; //if we don't receive an object as the parameter, assume the user intends "y".
+						if (typeof(value.y) === "string" && value.y !== "max" && value.y.charAt(1) !== "=") {
+							value.x = value.y;
+						}
+					} else if (value.nodeType) {
+						value = {y:value, x:value};
+					}
+					this.vars = value;
+					this._autoKill = (value.autoKill !== false);
+					this.getX = _buildGetter(target, "x");
+					this.getY = _buildGetter(target, "y");
+					this.x = this.xPrev = this.getX();
+					this.y = this.yPrev = this.getY();
+					if (value.x != null) {
+						this._addTween(this, "x", this.x, _parseVal(value.x, target, "x") - (value.offsetX || 0), "scrollTo_x", true);
+						this._overwriteProps.push("scrollTo_x");
+					} else {
+						this.skipX = true;
+					}
+					if (value.y != null) {
+						this._addTween(this, "y", this.y, _parseVal(value.y, target, "y") - (value.offsetY || 0), "scrollTo_y", true);
+						this._overwriteProps.push("scrollTo_y");
+					} else {
+						this.skipY = true;
+					}
+					return true;
+				},
+
+				//called each time the values should be updated, and the ratio gets passed as the only parameter (typically it's a value between 0 and 1, but it can exceed those when using an ease like Elastic.easeOut or Back.easeOut, etc.)
+				set: function(v) {
+					this._super.setRatio.call(this, v);
+
+					var x = (this._wdw || !this.skipX) ? this.getX() : this.xPrev,
+						y = (this._wdw || !this.skipY) ? this.getY() : this.yPrev,
+						yDif = y - this.yPrev,
+						xDif = x - this.xPrev,
+						threshold = ScrollToPlugin.autoKillThreshold;
+
+					if (this.x < 0) { //can't scroll to a position less than 0! Might happen if someone uses a Back.easeOut or Elastic.easeOut when scrolling back to the top of the page (for example)
+						this.x = 0;
+					}
+					if (this.y < 0) {
+						this.y = 0;
+					}
+					if (this._autoKill) {
+						//note: iOS has a bug that throws off the scroll by several pixels, so we need to check if it's within 7 pixels of the previous one that we set instead of just looking for an exact match.
+						if (!this.skipX && (xDif > threshold || xDif < -threshold) && x < _max(this._target, "x")) {
+							this.skipX = true; //if the user scrolls separately, we should stop tweening!
+						}
+						if (!this.skipY && (yDif > threshold || yDif < -threshold) && y < _max(this._target, "y")) {
+							this.skipY = true; //if the user scrolls separately, we should stop tweening!
+						}
+						if (this.skipX && this.skipY) {
+							this._tween.kill();
+							if (this.vars.onAutoKill) {
+								this.vars.onAutoKill.apply(this.vars.onAutoKillScope || this._tween, this.vars.onAutoKillParams || []);
+							}
+						}
+					}
+					if (this._wdw) {
+						_window.scrollTo((!this.skipX) ? this.x : x, (!this.skipY) ? this.y : y);
+					} else {
+						if (!this.skipY) {
+							this._target.scrollTop = this.y;
+						}
+						if (!this.skipX) {
+							this._target.scrollLeft = this.x;
+						}
+					}
+					this.xPrev = this.x;
+					this.yPrev = this.y;
+				}
+
+			}),
+			p = ScrollToPlugin.prototype;
+
+		ScrollToPlugin.max = _max;
+		ScrollToPlugin.getOffset = _getOffset;
+		ScrollToPlugin.autoKillThreshold = 7;
+
+		p._kill = function(lookup) {
+			if (lookup.scrollTo_x) {
+				this.skipX = true;
+			}
+			if (lookup.scrollTo_y) {
+				this.skipY = true;
+			}
+			return this._super._kill.call(this, lookup);
+		};
+
+	}); if (_gsScope._gsDefine) { _gsScope._gsQueue.pop()(); }
+
+	//export to AMD/RequireJS and CommonJS/Node (precursor to full modular build system coming at a later date)
+	(function(name) {
+		"use strict";
+		var getGlobal = function() {
+			return (_gsScope.GreenSockGlobals || _gsScope)[name];
+		};
+		if (true) { //AMD
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(10)], __WEBPACK_AMD_DEFINE_FACTORY__ = (getGlobal), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else if (typeof(module) !== "undefined" && module.exports) { //node
+			require("../TweenLite.js");
+			module.exports = getGlobal();
+		}
+	}("ScrollToPlugin"));
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }

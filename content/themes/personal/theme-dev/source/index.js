@@ -1,10 +1,9 @@
 import './style/style.scss';
-
-import serviceManager from './services/serviceManager';
-import resizeService from './services/resizeService';
-
+import {u} from 'umbrellajs';
 import home from './pages/home';
 
-serviceManager.init(resizeService); 
+home.init();
 
-
+window.onload = function(){
+    u('#nav').attr({class: 'loaded'});
+}

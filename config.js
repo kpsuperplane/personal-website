@@ -38,7 +38,7 @@ config = {
                 secretAccessKey: process.env.S3_ACCESS_SECRET,
                 bucket: 'static.kevinpei.com',
                 region: 'ca-central-1',
-                assetHost: 'http://static.kevinpei.com/'
+                assetHost: 'https://static.kevinpei.com/'
             }
         }
     },

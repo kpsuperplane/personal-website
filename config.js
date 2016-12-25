@@ -29,6 +29,17 @@ config = {
         server: {
             host: '0.0.0.0',
             port: process.env.PORT
+        },
+        
+        storage: {
+            active: 'ghost-s3',
+            'ghost-s3': {
+                accessKeyId: process.env.S3_ACCESS_KEY,
+                secretAccessKey: process.env.S3_ACCESS_SECRET,
+                bucket: 'kevin-pei',
+                region: 'ca-central-1',
+                assetHost: 'static.kevinpei.com'
+            }
         }
     },
 

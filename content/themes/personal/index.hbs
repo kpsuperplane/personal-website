@@ -150,13 +150,14 @@
             {{!-- This is the post loop - each post will be output using this markup --}}
             {{#foreach posts}}
                 {{#unless (and @first (is "home"))}}
-                <a class="card blog-card subcard" href="{{url}}">
-                    <div class="blog-card-content">
-                    <h2 class="blog-card-title">{{title}}</h2>
-                    <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
-                    <p class="blog-card-snippet">{{excerpt words="26"}}</p>
-                    </div>
-                </a>
+                    <a class="card blog-card subcard" href="{{url}}">
+                        <div class="blog-card-content">
+                        <h2 class="blog-card-title">{{title}}</h2>
+                        <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                        <p class="blog-card-snippet">{{excerpt words="26"}}</p>
+                        </div>
+                    </a>
+                {{/unless}}
             {{/foreach}}
         </div>
         <div id="blog-article-navigation">

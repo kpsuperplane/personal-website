@@ -141,7 +141,11 @@
 	        var blogTimeline = new TimelineMax({ paused: true });
 	        blogTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "100%" }, { y: "0%", ease: Expo.easeOut })]);
 	        var blogReverseTimeline = new TimelineMax({ paused: true, onComplete: function onComplete() {
-	                (0, _umbrellajs.u)('#blog').first().style.display = "none";
+	                var blog = (0, _umbrellajs.u)('#blog').first();
+	                blog.style.display = "none";
+	                blog.style.position = null;
+	                blog.style.height = null;
+	                blog.style.overflow = null;
 	            } });
 	        blogReverseTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 1 }, { opacity: 0, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "0%" }, { y: "100%", ease: Power0.easeNone })]);
 	        (0, _umbrellajs.u)('.blog-toggle').on('click', function (e) {
@@ -153,11 +157,16 @@
 	                document.getElementById('home').style.overflow = "hidden";
 	                document.getElementById('home').style.position = "absolute";
 	                document.getElementById('home').style.height = window.innerHeight + "px";
+	                TweenMax.to(window, 0.5, { scrollTo: 0, ease: Power3.easeOut });
 	            }
 	        });
 	        (0, _umbrellajs.u)('#nav a').on('click', function (e) {
 	            if (e.target.hash != '#!/blog') {
-	                if ((0, _umbrellajs.u)('#blog').first().style.display == "block") {
+	                var blog = (0, _umbrellajs.u)('#blog').first();
+	                if (blog.style.display == "block") {
+	                    blog.style.position = "absolute";
+	                    blog.style.height = window.innerHeight + "px";
+	                    blog.style.overflow = "hidden";
 	                    blogReverseTimeline.play(0);
 	                    (0, _umbrellajs.u)('#nav').removeClass('blog');
 	                    document.getElementById('home').style.position = "static";

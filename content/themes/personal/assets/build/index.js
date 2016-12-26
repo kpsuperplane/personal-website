@@ -57,6 +57,12 @@
 
 	var _umbrellajs = __webpack_require__(3);
 
+	var _scrollmagic = __webpack_require__(5);
+
+	var _scrollmagic2 = _interopRequireDefault(_scrollmagic);
+
+	__webpack_require__(6);
+
 	var _home = __webpack_require__(4);
 
 	var _home2 = _interopRequireDefault(_home);
@@ -64,6 +70,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	if ((0, _umbrellajs.u)('body').hasClass('home-template')) _home2.default.init(); //initialize home js on homepage
+	else {
+	        //auto "shadowify" nav on non-homepages
+	        var controller = new _scrollmagic2.default.Controller();
+
+	        var pageTimeline = new TimelineMax();
+	        pageTimeline.add([TweenMax.fromTo("#nav", 1, { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
+	        var pageScene = new _scrollmagic2.default.Scene({ duration: window.innerHeight + 'px', offset: 0, triggerHook: 0, triggerElement: (0, _umbrellajs.u)('body').first(), reverse: true });
+	        pageScene.setTween(pageTimeline);
+	        controller.addScene(pageScene);
+	    }
 
 	window.onload = function () {
 	    (0, _umbrellajs.u)('#nav').attr({ class: 'loaded' });

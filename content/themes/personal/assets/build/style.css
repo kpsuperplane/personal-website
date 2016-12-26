@@ -255,11 +255,11 @@ h5 {
     #nav.loaded #nav-inner #nav-home, #nav.loaded #nav-inner a {
       transform: translate3d(0, 0, 0); }
 
-@media (min-width: 601px) {
+@media (min-width: 769px) {
   .visible-xs {
     display: none !important; } }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   #nav {
     padding: 10px; }
     #nav #nav-inner {

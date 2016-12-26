@@ -88,8 +88,8 @@
             --><div class="cell">
             {{#foreach posts}}
                 {{#if @first}}
-                    <a class="card blog-card" href="{{url}}" id="blog-summary-main-card">
-                        <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/07/13580570_987379448047499_2576373745155151480_o.jpg"/>
+                    <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-summary-main-card">
+                        {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                         <div class="blog-card-content">
                         <h2 class="blog-card-title">{{title}}</h2>
                         <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
@@ -136,8 +136,8 @@
     <h3 class="caption">I like to write things from time to time.</h3>
     {{#foreach posts}}
         {{#if @first}}
-            <a class="card blog-card" href="{{url}}" id="blog-main-card">
-                <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/07/13580570_987379448047499_2576373745155151480_o.jpg"/>
+            <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-main-card">
+                {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                 <div class="blog-card-content">
                 <h2 class="blog-card-title">{{title}}</h2>
                 <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
@@ -150,12 +150,13 @@
         <div id="blog-article-list-content" class="card hassub">
             {{!-- This is the post loop - each post will be output using this markup --}}
             {{#foreach posts}}
-                {{#unless (and @first (eq body_class "home-template"))}}
-                    <a class="card blog-card subcard" href="{{url}}">
+                {{#unless (and @first))}}
+                    <a class="card blog-card subcard{{#if image}} hasimage{{/if}}" href="{{url}}">
                         <div class="blog-card-content">
-                        <h2 class="blog-card-title">{{title}}</h2>
-                        <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
-                        <p class="blog-card-snippet">{{excerpt words="26"}}</p>
+                            {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
+                            <h2 class="blog-card-title">{{title}}</h2>
+                            <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                            <p class="blog-card-snippet">{{excerpt words="26"}}</p>
                         </div>
                     </a>
                 {{/unless}}

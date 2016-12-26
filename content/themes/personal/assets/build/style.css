@@ -62,6 +62,9 @@ button, .button {
       border-bottom-right-radius: 5px; }
   .card.blog-card {
     padding: 0; }
+    .card.blog-card.has-image div.blog-card-content {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0; }
     .card.blog-card img.blog-card-image {
       margin: 0;
       display: block;

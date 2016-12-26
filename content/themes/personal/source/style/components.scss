@@ -70,6 +70,12 @@ button,.button{
         }
     }
     &.blog-card{
+        &.has-image{
+            div.blog-card-content{
+                border-top-left-radius:0;
+                border-top-right-radius:0;
+            }
+        }
         padding:0;
         img.blog-card-image{
             margin:0;

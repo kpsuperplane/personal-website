@@ -152,8 +152,8 @@
                 {{#foreach posts}}
                     {{#unless @first}}
                         <a class="card blog-card subcard{{#if image}} hasimage{{/if}}" href="{{url}}">
+                            {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                             <div class="blog-card-content">
-                                {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                                 <h2 class="blog-card-title">{{title}}</h2>
                                 <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
                                 <p class="blog-card-snippet">{{excerpt words="26"}}...</p>

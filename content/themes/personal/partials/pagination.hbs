@@ -1,0 +1,13 @@
+<div id="blog-article-navigation">
+    {{#if prev}}
+        <a class="el el-chevron-left" href="{{page_url prev}}"></a>
+    {{else}}
+        <span class="el el-chevron-left"></span>
+    {{/if}}
+        <span>Page {{page}} of {{pages}}</span>
+    {{#if next}}
+        <a class="el el-chevron-right" href="{{page_url next}}"></a>
+    {{else}}
+        <span class="el el-chevron-right"></span>
+    {{/if}}
+</div>

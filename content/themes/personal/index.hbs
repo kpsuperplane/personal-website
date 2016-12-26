@@ -86,14 +86,18 @@
             <a href="#blog" class="button blog-toggle">READ MORE</a>
             </div><!--
             --><div class="cell">
-            <a class="card blog-card" href="javascript:void(0);" id="blog-summary-main-card">
-                <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/10/IMG_20161016_001226.jpg"/>
-                <div class="blog-card-content">
-                <h2 class="blog-card-title">Post-Midtermania: 1st Edition</h2>
-                <div class="blog-card-date">01 Nov 2016</div>
-                <p class="blog-card-snippet">"Why is math so hard?" I hear my friend yell as he stumbles down the stairs, comically bumping into a supporting pole in the process. "Yeah, at least you got the answer", I think. I look down...</p>
-                </div>
-            </a>
+            {{#foreach posts}}
+                {{#if @first}}
+                    <a class="card blog-card" href="{{url}}" id="blog-summary-main-card">
+                        <img class="blog-card-image" src="http://kevinpei.com/content/images/2016/07/13580570_987379448047499_2576373745155151480_o.jpg"/>
+                        <div class="blog-card-content">
+                        <h2 class="blog-card-title">{{title}}</h2>
+                        <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                        <p class="blog-card-snippet">{{excerpt words="26"}}</p>
+                        </div>
+                    </a>
+                {{/if}}
+            {{/foreach}}
             </div>
         </div>
         </div>
@@ -146,7 +150,7 @@
         <div id="blog-article-list-content" class="card hassub">
             {{!-- This is the post loop - each post will be output using this markup --}}
             {{#foreach posts}}
-                {{#unless @first}}
+                {{#unless (and @first (eq body_class "home-template"))}}
                     <a class="card blog-card subcard" href="{{url}}">
                         <div class="blog-card-content">
                         <h2 class="blog-card-title">{{title}}</h2>
@@ -157,18 +161,6 @@
                 {{/unless}}
             {{/foreach}}
         </div>
-        <div id="blog-article-navigation">
-            {{#if prev}}
-                <a class="el el-chevron-left" href="{{page_url prev}}"></a>
-            {{else}}
-                <span class="el el-chevron-left"></span>
-            {{/if}}
-                <span>Page {{page}} of {{pages}}</span>
-            {{#if next}}
-                <a class="el el-chevron-right" href="{{page_url next}}"></a>
-            {{else}}
-                <span class="el el-chevron-right"></span>
-            {{/if}}
-        </div>
+        {{pagination}}
     </div>
 </section>

@@ -1,241 +1,343 @@
-section#banner{
-    height:100%;
-    #banner-background{
-        position:absolute;
-        top:0px;
-        left:0px;
-        width:100%;
-        opacity:0.8;
+#home{
+    width:100%;
+    section#banner{
         height:100%;
-        overflow:hidden;
-        &>div{
+        #banner-background{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:100%;
+            opacity:0.8;
+            height:100%;
+            overflow:hidden;
+            &>div{
+                position:absolute;
+                top:0px;
+                left:0px;
+                width:100%;
+                height:100%;
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-position:center center;
+                &#banner-background-background{
+                    background-image:url(asset('img/banner/banner-back.jpg'));
+                }
+                &#banner-background-foreground{
+                    background-image:url(asset('img/banner/banner-front.png'));
+                }
+                &#banner-background-overlay{
+                    background-size:auto 100%;
+                    background-repeat:repeat-x;
+                    background-position:center center;
+                    background-image:url(asset('img/banner/banner-overlay.png'));
+                }
+            } 
+        }
+        #banner-overlay{
             position:absolute;
             top:0px;
             left:0px;
             width:100%;
             height:100%;
-            background-size:cover;
-            background-repeat:no-repeat;
-            background-position:center center;
-            &#banner-background-background{
-                background-image:url(asset('img/banner/banner-back.jpg'));
+            padding:100px 0;
+            box-sizing:border-box;
+            #banner-inner{
+                text-align:center;
+                position:relative;
+                height:100%;
+                h1{
+                    @extend .standardFont;
+                    font-weight:100; 
+                    display:inline-block;
+                    text-shadow:0px 0px 10px white;
+                    margin:0 auto;
+                    padding:0;
+                    color:$theme;
+                }
+                div#banner-button-container{
+                    position:absolute;
+                    bottom:0px;
+                    left:0px;
+                    width:100%;
+                }
             }
-            &#banner-background-foreground{
-                background-image:url(asset('img/banner/banner-front.png'));
-            }
-            &#banner-background-overlay{
-                background-size:auto 100%;
-                background-repeat:repeat-x;
-                background-position:center center;
-                background-image:url(asset('img/banner/banner-overlay.png'));
-            }
-        } 
+        }
     }
-    #banner-overlay{
-        position:absolute;
-        top:0px;
-        left:0px;
-        width:100%;
-        height:100%;
-        padding:100px 0;
-        box-sizing:border-box;
-        #banner-inner{
-            text-align:center;
-            position:relative;
-            height:100%;
-            h1{
-                @extend .standardFont;
-                font-weight:100; 
-                display:inline-block;
-                text-shadow:0px 0px 10px white;
-                margin:0 auto;
-                padding:0;
-                color:$theme;
+    section#about{
+        padding-bottom:1em;
+        z-index:2;
+        h1{
+            margin-top:0;
+        }
+        #about-iphone-container{
+            transform: translate3d(-30%, 0, 0); 
+            img{
+                width:100%;
             }
-            div#banner-button-container{
+            .expand-img{
+                background-image:url(asset('img/iphone-shadow.png'));
+                &#about-iphone-img-1{ 
+                    transform: translate3d(30%, 0, 0);
+                }
+                &#about-iphone-img-2{
+                    transform: translate3d(60%, 0, 0);
+                } 
                 position:absolute;
-                bottom:0px;
+                top:0px;
+                background-position:top left;
+                background-repeat:no-repeat;
+                background-size:cover;
                 left:0px;
                 width:100%;
             }
         }
     }
-}
-section#about{
-    padding-bottom:1em;
-    z-index:2;
-    h1{
-        margin-top:0;
-    }
-    #about-iphone-container{
-        transform: translate3d(-30%, 0, 0); 
-        img{
-            width:100%;
-        }
-        .expand-img{
-            background-image:url(asset('img/iphone-shadow.png'));
-            &#about-iphone-img-1{ 
-                transform: translate3d(30%, 0, 0);
+    section#projects{
+        padding:4em 0 0 0;
+        margin: 0 0 4em 0;
+        background:#F5FAFA;
+        transform:skew(0deg,10deg);
+        -ms-transform:skew(0deg,10deg); /* IE 9 */
+        -webkit-transform:skew(0deg,10deg); 
+        &>div.container{
+            transform:skew(0deg,-10deg);
+            -ms-transform:skew(0deg,-10deg); /* IE 9 */
+            -webkit-transform:skew(0deg,-10deg); 
+            h1#projects-title{
+                text-align:center;
+                margin-bottom:0;
             }
-            &#about-iphone-img-2{
-                transform: translate3d(60%, 0, 0);
-            } 
-            position:absolute;
-            top:0px;
-            background-position:top left;
-            background-repeat:no-repeat;
-            background-size:cover;
-            left:0px;
-            width:100%;
-        }
-    }
-}
-section#projects{
-    padding:4em 0 0 0;
-    margin: 0 0 4em 0;
-    background:#F5FAFA;
-    transform:skew(0deg,10deg);
-    -ms-transform:skew(0deg,10deg); /* IE 9 */
-    -webkit-transform:skew(0deg,10deg); 
-    &>div.container{
-        transform:skew(0deg,-10deg);
-        -ms-transform:skew(0deg,-10deg); /* IE 9 */
-        -webkit-transform:skew(0deg,-10deg); 
-        h1#projects-title{
-            text-align:center;
-            margin-bottom:0;
-        }
-        h3.caption{
-            text-align:center;
-        }
-        div#projects-card-wrapper{
-            padding:0 4em;
-            position:relative;
-            div#projects-card{
-                padding:0 0 2px 0;
-                line-height: 0px; 
+            h3.caption{
+                text-align:center;
+            }
+            div#projects-card-wrapper{
+                padding:0 4em;
                 position:relative;
-                background: linear-gradient(#1577E8, #EA16F5);
-                img#projects-card-overlay{
-                    width:100%;
+                div#projects-card{
+                    padding:0 0 2px 0;
+                    line-height: 0px; 
                     position:relative;
-                }
-                div#projects-card-image{
-                    position:absolute;
-                    top:0px;
-                    left:0px;
-                    width:100%;
-                    height:100%;
-                    background-image:url(asset('img/projects/project5k.jpg'));
-                    background-size:cover;
-                    opacity:0.2;
-                }
-                div#projects-card-content{
-                    line-height:normal;
-                    position:absolute;
-                    bottom:0px;
-                    left:0px;
-                    width:100%;
-                    text-align:left;
-                    padding:3em;
-                    box-sizing:border-box;
-                    h1.card-title{
-                        margin:0;
-                        padding:0;
-                        color:$textGrey;
+                    background: linear-gradient(#1577E8, #EA16F5);
+                    img#projects-card-overlay{
+                        width:100%;
+                        position:relative;
                     }
-                    h2.card-caption{
-                        color:$theme;
-                        font-weight:300;
-                        @extend .standardFont;
-                        margin:1em 0 1.5em 0;
-                        padding:0;
-                        font-size:1.3em;
-                    }
-                    div#projects-card-navigation{
+                    div#projects-card-image{
                         position:absolute;
+                        top:0px;
+                        left:0px;
+                        width:100%;
+                        height:100%;
+                        background-image:url(asset('img/projects/project5k.jpg'));
+                        background-size:cover;
+                        opacity:0.2;
+                    }
+                    div#projects-card-content{
                         line-height:normal;
-                        right:3em;
-                        bottom:3em;
-                        text-align:right;
-                        a{
-                            float:left;
-                            text-decoration:none;
-                            opacity:0.3;
-                            display:inline-block;
-                            height: 2em;
-                            text-align:center;
-                            width:1.5em;
-                            transition: opacity 200ms;
-                            vertical-align:bottom;
-                            &:after{
-                                content: '';
+                        position:absolute;
+                        bottom:0px;
+                        left:0px;
+                        width:100%;
+                        text-align:left;
+                        padding:3em;
+                        box-sizing:border-box;
+                        h1.card-title{
+                            margin:0;
+                            padding:0;
+                            color:$textGrey;
+                        }
+                        h2.card-caption{
+                            color:$theme;
+                            font-weight:300;
+                            @extend .standardFont;
+                            margin:1em 0 1.5em 0;
+                            padding:0;
+                            font-size:1.3em;
+                        }
+                        div#projects-card-navigation{
+                            position:absolute;
+                            line-height:normal;
+                            right:3em;
+                            bottom:3em;
+                            text-align:right;
+                            a{
+                                float:left;
+                                text-decoration:none;
+                                opacity:0.3;
                                 display:inline-block;
-                                height:1em;
-                                width:1px;
-                                margin-top:1em;
-                                transition: transform 200ms;
-                                transform-origin: 0 100%;
-                                transform: scale(1, 1);
-                                background:$textGrey;
-                            }
-                            &:hover, &.active{
-                                opacity:1;
+                                height: 2em;
+                                text-align:center;
+                                width:1.5em;
+                                transition: opacity 200ms;
+                                vertical-align:bottom;
                                 &:after{
-                                    transform:scale(1, 2);
+                                    content: '';
+                                    display:inline-block;
+                                    height:1em;
+                                    width:1px;
+                                    margin-top:1em;
+                                    transition: transform 200ms;
+                                    transform-origin: 0 100%;
+                                    transform: scale(1, 1);
+                                    background:$textGrey;
+                                }
+                                &:hover, &.active{
+                                    opacity:1;
+                                    &:after{
+                                        transform:scale(1, 2);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            a.projects-card-chevron{
-                position:absolute;
-                text-decoration:none;
-                font-size:2em;
-                opacity:0.5;
-                z-index:2;
-                color:$textGrey; 
-                top:50%;
-                transition:opacity 200ms;
-                margin-top:-0.5em;
-                &#projects-card-chevron-left{
-                    left:0;
-                }
-                &#projects-card-chevron-right{
-                    right:0;
-                }
-                &:hover{
-                    opacity:1;
+                a.projects-card-chevron{
+                    position:absolute;
+                    text-decoration:none;
+                    font-size:2em;
+                    opacity:0.5;
+                    z-index:2;
+                    color:$textGrey; 
+                    top:50%;
+                    transition:opacity 200ms;
+                    margin-top:-0.5em;
+                    &#projects-card-chevron-left{
+                        left:0;
+                    }
+                    &#projects-card-chevron-right{
+                        right:0;
+                    }
+                    &:hover{
+                        opacity:1;
+                    }
                 }
             }
         }
     }
-}
-section#code{
-    font-size:2.5em;
-    font-weight:300;
-    text-align:center;
-    padding:2em 0;
-    color:$textGrey;
-    .green{
-        color:$theme;
-    }
-    .blue{
-        color:#2098e8;
-    }
-}
-section#blog-summary{
-    padding:6em 0 12em 0;
-    h1#blog-summary-title{
-        margin-top:0;
-    }
-}
-section#contact{
-    padding-bottom:7em;
-    text-align:center;
-    h3.caption{
+    section#code{
+        font-size:2.5em;
+        font-weight:300;
         text-align:center;
+        padding:2em 0;
+        color:$textGrey;
+        .green{
+            color:$theme;
+        }
+        .blue{
+            color:#2098e8;
+        }
+    }
+    section#blog-summary{
+        padding:6em 0 12em 0;
+        h1#blog-summary-title{
+            margin-top:0;
+        }
+    }
+    section#contact{
+        padding-bottom:7em;
+        text-align:center;
+        h3.caption{
+            text-align:center;
+        }
+    }
+    h3.caption{
+        margin:1em 0 1.5em 0;
+        font-weight:300;
+        @extend .standardFont;
+        color: rgba(0,0,0,0.6);
+        line-height:1.5em;
+    }
+    @media(min-width:850px){
+        div#projects-card-wrapper{
+            padding:0 0 !important;
+            #projects-card-chevron-left{
+                left: -1.5em !important;
+            }
+            #projects-card-chevron-right{
+                right: -1.5em !important;
+            }
+        }
+    }
+    @media(max-width: 600px){
+        div#projects-card-wrapper{
+            padding:0 0 !important;
+            #projects-card-chevron-left{
+                font-size:1em !important;
+                right: 6em !important;
+                top: auto !important;
+                padding: 1em !important;
+                left: auto !important;
+                bottom: 2.9em !important;
+            }
+            #projects-card-chevron-right{
+                font-size:1em !important;
+                right: 3em !important;
+                padding: 1em !important;
+                top: auto !important;
+                bottom: 2.9em !important;
+            }
+            #projects-card-navigation{
+                display:none;
+            }
+        }
+    }
+    @media(max-width:470px){
+        h1.card-title{
+            font-size:2em !important;
+            margin-bottom:1em !important;
+        }
+        h2.card-caption{
+            display:none;
+        }
+    }
+    @media(max-width:370px){
+        h2.card-caption{
+            display:none;
+        }
+        #projects-card-content{
+            padding: 2em !important;
+        }
+        #projects-card-content .button{
+            letter-spacing:normal !important;
+        }
+        #projects-card-chevron-left{
+            font-size:1em !important;
+            right: 5em !important;
+            top: auto !important;
+            padding: 1em !important;
+            left: auto !important;
+            bottom: 1.9em !important;
+        }
+        #projects-card-chevron-right{
+            font-size:1em !important;
+            right: 2em !important;
+            padding: 1em !important;
+            top: auto !important;
+            bottom: 1.9em !important;
+        }
+    } 
+    @media(max-width:800px){
+        #about .cell-left{
+            height:100px;
+            margin-bottom:2em;
+            padding:0 3em 3em 3em;
+            border-bottom:1px solid $theme;
+            overflow:hidden;
+        }
+    }
+    p.content{
+        font-size: 1.3em;
+        color:$textGrey;
+        font-weight: 300;
+        line-height: 2.3em;
+        @extend .standardFont;
+    }
+    .syntaxhighlighter .line{
+        padding-top: 0.3em !important; 
+        padding-bottom: 0.3em !important; 
+    }
+    section{
+        position:relative;
     }
 }
 section#blog{
@@ -256,103 +358,4 @@ section#blog{
     .container{
         transform: translate(0, 100%);
     }
-}
-h3.caption{
-    margin:1em 0 1.5em 0;
-    font-weight:300;
-    @extend .standardFont;
-    color: rgba(0,0,0,0.6);
-    line-height:1.5em;
-}
-@media(min-width:850px){
-    div#projects-card-wrapper{
-        padding:0 0 !important;
-        #projects-card-chevron-left{
-            left: -1.5em !important;
-        }
-        #projects-card-chevron-right{
-            right: -1.5em !important;
-        }
-    }
-}
-@media(max-width: 600px){
-    div#projects-card-wrapper{
-        padding:0 0 !important;
-        #projects-card-chevron-left{
-            font-size:1em !important;
-            right: 6em !important;
-            top: auto !important;
-            padding: 1em !important;
-            left: auto !important;
-            bottom: 2.9em !important;
-        }
-        #projects-card-chevron-right{
-            font-size:1em !important;
-            right: 3em !important;
-            padding: 1em !important;
-            top: auto !important;
-            bottom: 2.9em !important;
-        }
-        #projects-card-navigation{
-            display:none;
-        }
-    }
-}
-@media(max-width:470px){
-    h1.card-title{
-        font-size:2em !important;
-        margin-bottom:1em !important;
-    }
-    h2.card-caption{
-        display:none;
-    }
-}
-@media(max-width:370px){
-    h2.card-caption{
-        display:none;
-    }
-    #projects-card-content{
-        padding: 2em !important;
-    }
-    #projects-card-content .button{
-        letter-spacing:normal !important;
-    }
-    #projects-card-chevron-left{
-        font-size:1em !important;
-        right: 5em !important;
-        top: auto !important;
-        padding: 1em !important;
-        left: auto !important;
-        bottom: 1.9em !important;
-    }
-    #projects-card-chevron-right{
-        font-size:1em !important;
-        right: 2em !important;
-        padding: 1em !important;
-        top: auto !important;
-        bottom: 1.9em !important;
-    }
-} 
-@media(max-width:800px){
-    #about .cell-left{
-        height:100px;
-        margin-bottom:2em;
-        padding:0 3em 3em 3em;
-        border-bottom:1px solid $theme;
-        overflow:hidden;
-    }
-}
-p.content{
-    font-size: 1.3em;
-    color:$textGrey;
-    font-weight: 300;
-    line-height: 2.3em;
-    @extend .standardFont;
-}
-.syntaxhighlighter .line{
-    padding-top: 0.3em !important; 
-    padding-bottom: 0.3em !important; 
-}
-section{
-    position:relative;
 }

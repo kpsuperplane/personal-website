@@ -150,8 +150,9 @@
 	                blogTimeline.play(0);
 	                blog.style.display = "block";
 	                (0, _umbrellajs.u)('#nav').addClass('blog');
-	                document.getElementById('main').style.overflow = "hidden";
-	                document.getElementById('main').style.height = window.innerHeight;
+	                document.getElementById('home').style.overflow = "hidden";
+	                document.getElementById('home').style.position = "absolute";
+	                document.getElementById('home').style.height = window.innerHeight;
 	            }
 	        });
 	        (0, _umbrellajs.u)('#nav a').on('click', function (e) {
@@ -159,8 +160,9 @@
 	                if ((0, _umbrellajs.u)('#blog').first().style.display == "block") {
 	                    blogReverseTimeline.play(0);
 	                    (0, _umbrellajs.u)('#nav').removeClass('blog');
-	                    document.getElementById('main').style.overflow = "auto";
-	                    document.getElementById('main').style.height = null;
+	                    document.getElementById('home').style.position = "static";
+	                    document.getElementById('home').style.overflow = "auto";
+	                    document.getElementById('home').style.height = null;
 	                }
 	                TweenMax.to(window, 0.5, { scrollTo: Math.max(0, document.getElementById(this.hash.substring(3) + "-target").getBoundingClientRect().top - document.body.getBoundingClientRect().top - 150), ease: Power3.easeOut });
 	            }

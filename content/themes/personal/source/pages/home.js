@@ -61,7 +61,7 @@ export default {
                 u('#nav').addClass('blog');
                 document.getElementById('home').style.overflow="hidden";
                 document.getElementById('home').style.position="absolute";
-                document.getElementById('home').style.height=window.innerHeight;
+                document.getElementById('home').style.height=window.innerHeight+"px";
             }
         });
         u('#nav a').on('click', function(e){

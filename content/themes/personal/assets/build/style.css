@@ -287,6 +287,7 @@ h5 {
      Pages
 ------------ */
 #home {
+  top: 0px;
   width: 100%; }
   #home section#banner {
     height: 100%; }
@@ -559,12 +560,14 @@ h5 {
     position: relative; }
 
 section#blog {
+  padding-top: 12em;
+  position: relative;
   opacity: 0;
   background: #FFF;
   z-index: 10; }
   section#blog h1#blog-title {
     text-align: center;
-    margin-top: 4em; }
+    margin-top: 0; }
   section#blog h3.caption {
     text-align: center;
     margin-bottom: 3em; }

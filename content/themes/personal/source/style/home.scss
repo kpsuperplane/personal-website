@@ -1,4 +1,5 @@
 #home{
+    top:0px;
     width:100%;
     section#banner{
         height:100%;
@@ -341,12 +342,14 @@
     }
 }
 section#blog{
+    padding-top:12em;
+    position:relative;
     opacity:0;
     background:#FFF;
     z-index:10;
     h1#blog-title{
         text-align:center;
-        margin-top:4em;
+        margin-top:0;
     }
     h3.caption{
         text-align:center;

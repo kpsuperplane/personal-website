@@ -46,7 +46,7 @@ module.exports = {
     }
   },
   output: {
-    path: './build',
+    path: './assets/build',
     filename: 'index.js',
     publicPath: './'
   },

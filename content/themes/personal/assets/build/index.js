@@ -98,13 +98,13 @@
 
 	__webpack_require__(6);
 
-	__webpack_require__(13);
+	__webpack_require__(11);
 
-	var _serviceManager = __webpack_require__(11);
+	var _serviceManager = __webpack_require__(12);
 
 	var _serviceManager2 = _interopRequireDefault(_serviceManager);
 
-	var _resizeService = __webpack_require__(12);
+	var _resizeService = __webpack_require__(13);
 
 	var _resizeService2 = _interopRequireDefault(_resizeService);
 
@@ -14298,83 +14298,6 @@
 
 /***/ },
 /* 11 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-	exports.default = {
-	    use: function use(service) {
-	        if (_typeof(window.services) != 'object') window.services = {};
-	        if (!(service in window.services)) {
-	            console.log("Initializing service " + service);
-	            var instance = new service();
-	            instance.init();
-	            window.services[service] = instance;
-	        }
-	        return window.services[service];
-	    }
-	};
-
-/***/ },
-/* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _umbrellajs = __webpack_require__(3);
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var resizeService = function () {
-	    function resizeService() {
-	        _classCallCheck(this, resizeService);
-	    }
-
-	    _createClass(resizeService, [{
-	        key: 'resizeHook',
-	        value: function resizeHook(e) {
-	            var listeners = this.listeners;
-
-	            for (var listener in listeners) {
-	                listeners[listener](e);
-	            }
-	        }
-	    }, {
-	        key: 'init',
-	        value: function init() {
-	            this.listeners = { //default window resize listeners
-	                pageHeightSections: function pageHeightSections(e) {
-	                    (0, _umbrellajs.u)('.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
-	                }
-	            };
-
-	            window.onresize = this.resizeHook.bind(this); //bind resize hook
-
-	            var evt = window.document.createEvent('UIEvents'); //trigger resize hook on initial load
-	            evt.initUIEvent('resize', true, false, window, 0);
-	            window.dispatchEvent(evt);
-	        }
-	    }]);
-
-	    return resizeService;
-	}();
-
-	exports.default = resizeService;
-
-/***/ },
-/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global) {/*!
@@ -14564,6 +14487,83 @@
 		}
 	}("ScrollToPlugin"));
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 12 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+	exports.default = {
+	    use: function use(service) {
+	        if (_typeof(window.services) != 'object') window.services = {};
+	        if (!(service in window.services)) {
+	            console.log("Initializing service " + service);
+	            var instance = new service();
+	            instance.init();
+	            window.services[service] = instance;
+	        }
+	        return window.services[service];
+	    }
+	};
+
+/***/ },
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _umbrellajs = __webpack_require__(3);
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var resizeService = function () {
+	    function resizeService() {
+	        _classCallCheck(this, resizeService);
+	    }
+
+	    _createClass(resizeService, [{
+	        key: 'resizeHook',
+	        value: function resizeHook(e) {
+	            var listeners = this.listeners;
+
+	            for (var listener in listeners) {
+	                listeners[listener](e);
+	            }
+	        }
+	    }, {
+	        key: 'init',
+	        value: function init() {
+	            this.listeners = { //default window resize listeners
+	                pageHeightSections: function pageHeightSections(e) {
+	                    (0, _umbrellajs.u)('.page-height').attr({ style: 'min-height:' + window.innerHeight + 'px' });
+	                }
+	            };
+
+	            window.onresize = this.resizeHook.bind(this); //bind resize hook
+
+	            var evt = window.document.createEvent('UIEvents'); //trigger resize hook on initial load
+	            evt.initUIEvent('resize', true, false, window, 0);
+	            window.dispatchEvent(evt);
+	        }
+	    }]);
+
+	    return resizeService;
+	}();
+
+	exports.default = resizeService;
 
 /***/ }
 /******/ ]);

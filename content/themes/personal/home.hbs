@@ -1,0 +1,168 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+<main id="home">
+    <div id="home-target"></div>
+    <section id="banner" class="page-height">
+        <div style="height:453px"></div>
+        <div id="banner-background">
+        <div id="banner-background-background"></div>
+        <div id="banner-background-foreground"></div>
+        <div id="banner-background-overlay"></div>
+        </div>
+        <div id="banner-overlay">
+        <div id="banner-inner">
+            <h1>Hey, I'm Kevin</h1>
+            <div id="banner-button-container">
+            <a class="button" href="#about">ABOUT ME</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class="button blog-toggle" href="#blog">MY BLOG</a>
+            <div class="social">
+                <a href="https://github.com/kpsuperplane" class="el el-github" target="_blank" title="GitHub"></a>
+                <a href="http://stackoverflow.com/users/864528/kevin-pei" class="el el-stackoverflow" target="_blank" title="StackOverflow"></a>
+                <a href="http://ca.linkedin.com/in/kpsuperplane/en" class="el el-linkedin" target="_blank" title="LinkedIn"></a>
+                <a class="button resume" href="/assets/documents/kevin-pei-resume-public.pdf">RESUME</a>
+            </div>
+            </div>
+        </div>
+        </div> 
+    </section>
+    <section id="about">
+        <div class="container">
+        <div class="row" id="about-target">
+            <div class="cell cell-left">
+                        <div id="about-iphone-container">
+                            <img src="/assets/lib/img/iPhone.png" id="about-iphone-image"/>
+                            <img src="/assets/lib/img/iPhone-markville.png" id="about-iphone-img-1" class="expand-img"/>
+                            <img src="/assets/lib/img/iPhone-5k.png" id="about-iphone-img-2" class="expand-img"/>
+                        </div>
+            </div><div class="cell cell-right">
+            <h1 id="about-title">ABOUT ME</h1>
+            <p id="about-content" class="content">Hey there! My name is Kevin, and I am an 18 year old student currently studying Computer Science at the University of Waterloo. Between coursework and the ocassional hackathon, I work on earth-shaking (and sometimes not-so-earth-shaking) projects in my spare time. You know, things that get you right out of bed at the start of the day :)</p>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="container">
+        <div id="projects-target"></div>
+        <h1 id="projects-title">MY PROJECTS</h1>
+        <h3 class="caption">Skiing like a madman, git commiting with passion, and coding for the betterment of society.</h3>
+        <div id="projects-container">
+            <div id="projects-card-wrapper">
+            <div class="card" id="projects-card">
+                <div id="projects-card-image"></div>
+                <img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/>
+                <div id="projects-card-content">
+                <h1 class="card-title">Project 5K</h1>
+                <h2 class="card-caption">Promoting greater volunteerism among youth</h2>
+                <a href="http://www.kevinpei.com" class="button">LEARN MORE</a>
+                <div id="projects-card-navigation">
+                    <a href="javascript:void(0);" class="active"></a>
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                    <a href="javascript:void(0);"></a>
+                </div>
+                </div>
+            </div>
+            <a href="javascript:void(0);" class="projects-card-chevron el el-chevron-left" id="projects-card-chevron-left"></a>
+            <a href="javascript:void(0);" class="projects-card-chevron el el-chevron-right" id="projects-card-chevron-right"></a>
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="code">
+        <div id="code-target"></div>
+        <div class="container">
+        <span class="green">life@kevin</span><span class="blue"> ~ $</span> apt-get install <strong>innovate</strong>
+        </div>
+    </section>
+    <section id="blog-summary">
+        <div id="blog-target"></div>
+        <div class="container">
+        <div class="row">
+            <div class="cell cell-left">
+            <h1 id="blog-summary-title">MY BLOG</h1>
+            <h3 class="caption">I like to write things from time to time.</h3>
+            <a href="#blog" class="button blog-toggle">READ MORE</a>
+            </div><!--
+            --><div class="cell">
+            {{#foreach posts}}
+                {{#if @first}}
+                    <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-summary-main-card">
+                        {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
+                        <div class="blog-card-content">
+                        <h2 class="blog-card-title">{{title}}</h2>
+                        <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                        <p class="blog-card-snippet">{{excerpt words="26"}}...</p>
+                        </div>
+                    </a>
+                {{/if}}
+            {{/foreach}}
+            </div>
+        </div>
+        </div>
+    </section>
+    <section id="contact">
+        <div id="contact-target"></div>
+        <div class="container">
+        <h1>GET IN TOUCH</h1>
+        <h3 class="caption">Opportunity, cordiality, or just plain curiosity? Either way, feel free to get in touch with one of the ways below!</h3>
+        <div class="card" style="padding:0">
+            <pre class="brush: js, highlight: [9,10,11,12,13,14,15]">
+            {
+                "name": "Kevin Pei",
+                "location": "Waterloo, Ontario",
+                "education": {
+                "school": "University of Waterloo",
+                "program": "Honors Bachelor of Computer Science",
+                "year": "Class of 2021 (Expected)"
+                },
+                "contact-information": {
+                "email": "hello@kevinpei.com",
+                "linkedin": "http://linkedin.com/in/kpsuperplane",
+                "github": "http://github.com/kpsuperplane",
+                "devpost": "http://devpost.com/kpsuperplane",
+                "resume": "http://kevinpei.com/resume.pdf"
+                }
+            }
+            </pre>
+        </div>
+        </div>
+    </section>
+</main> 
+<section id="blog" style="display:none;">
+    <div class="container">
+        <h1 id="blog-title">MY BLOG</h1>
+        <h3 class="caption">I like to write things from time to time.</h3>
+        {{#foreach posts}}
+            {{#if @first}}
+                <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-main-card">
+                    {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
+                    <div class="blog-card-content">
+                    <h2 class="blog-card-title">{{title}}</h2>
+                    <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                    <p class="blog-card-snippet">{{excerpt words="26"}}...</p>
+                    </div>
+                </a>
+            {{/if}}
+        {{/foreach}}
+        <div id="blog-article-list">
+            <div id="blog-article-list-content" class="card hassub">
+                {{!-- This is the post loop - each post will be output using this markup --}}
+                {{#foreach posts}}
+                    {{#unless @first}}
+                        <a class="card blog-card subcard{{#if image}} hasimage{{/if}}" href="{{url}}">
+                            <div class="blog-card-content">
+                                {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
+                                <h2 class="blog-card-title">{{title}}</h2>
+                                <div class="blog-card-date">{{date format="DD MMMM YYYY"}}</div>
+                                <p class="blog-card-snippet">{{excerpt words="26"}}...</p>
+                            </div>
+                        </a>
+                    {{/unless}}
+                {{/foreach}}
+            </div>
+            {{pagination}}
+        </div>
+    </div>
+</section>

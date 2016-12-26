@@ -156,6 +156,8 @@ h5{
     .visible-xs{
         display:none !important;
     }
+}
+@media(max-width:600px){
     #nav{
         padding:10px;
         #nav-inner{

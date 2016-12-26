@@ -562,10 +562,14 @@ h5 {
   #home section {
     position: relative; }
 
+.home-template section#blog {
+  opacity: 0; }
+  .home-template section#blog .container {
+    transform: translate(0, 100%); }
+
 section#blog {
   padding-top: 12em;
   position: relative;
-  opacity: 0;
   top: 0;
   left: 0;
   width: 100%;
@@ -579,5 +583,3 @@ section#blog {
     margin-bottom: 3em; }
   section#blog #blog-main-card {
     margin-bottom: 3em; }
-  section#blog .container {
-    transform: translate(0, 100%); }

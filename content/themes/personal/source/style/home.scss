@@ -341,10 +341,15 @@
         position:relative;
     }
 }
+.home-template section#blog{
+    opacity:0;
+    .container{
+        transform: translate(0, 100%);
+    }
+}
 section#blog{
     padding-top:12em;
     position:relative;
-    opacity:0;
     top:0;
     left:0;
     width:100%;
@@ -360,8 +365,5 @@ section#blog{
     }
     #blog-main-card{
         margin-bottom:3em;
-    }
-    .container{
-        transform: translate(0, 100%);
     }
 }

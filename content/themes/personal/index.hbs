@@ -7,7 +7,7 @@
             <div id="blog-article-list-content" class="card hassub">
                 {{!-- This is the post loop - each post will be output using this markup --}}
                 {{#foreach posts}}
-                    <a class="card blog-card subcard{{#if image}} hasimage{{/if}}" href="{{url}}">
+                    <a class="card blog-card subcard{{#if image}} has-image{{/if}}" href="{{url}}">
                         {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                         <div class="blog-card-content">
                             <h2 class="blog-card-title">{{title}}</h2>

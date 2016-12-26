@@ -136,7 +136,7 @@
         <h3 class="caption">I like to write things from time to time.</h3>
         {{#foreach posts}}
             {{#if @first}}
-                <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-main-card">
+                <a class="card blog-card{{#if image}} has-image{{/if}}" href="{{url}}" id="blog-main-card">
                     {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                     <div class="blog-card-content">
                     <h2 class="blog-card-title">{{title}}</h2>
@@ -151,7 +151,7 @@
                 {{!-- This is the post loop - each post will be output using this markup --}}
                 {{#foreach posts}}
                     {{#unless @first}}
-                        <a class="card blog-card subcard{{#if image}} hasimage{{/if}}" href="{{url}}">
+                        <a class="card blog-card subcard{{#if image}} has-image{{/if}}" href="{{url}}">
                             {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                             <div class="blog-card-content">
                                 <h2 class="blog-card-title">{{title}}</h2>

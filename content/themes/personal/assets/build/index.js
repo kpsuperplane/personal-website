@@ -63,7 +63,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_home2.default.init();
+	if ((0, _umbrellajs.u)('body').hasClass('home-template')) _home2.default.init(); //initialize home js on homepage
 
 	window.onload = function () {
 	    (0, _umbrellajs.u)('#nav').attr({ class: 'loaded' });

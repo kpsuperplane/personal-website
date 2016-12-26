@@ -147,7 +147,7 @@
 	                blog.style.height = null;
 	                blog.style.overflow = null;
 	            } });
-	        blogReverseTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 1 }, { opacity: 0, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "0%" }, { y: "100%", ease: Power0.easeNone })]);
+	        blogReverseTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 1 }, { opacity: 0, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "0%" }, { y: "100%", ease: Power0.easeNone }), TweenMax.to(window, 0.25, { scrollTo: 0, ease: Power3.easeOut })]);
 	        (0, _umbrellajs.u)('.blog-toggle').on('click', function (e) {
 	            var blog = (0, _umbrellajs.u)('#blog').first();
 	            if (blog.style.display != "block") {
@@ -157,7 +157,6 @@
 	                document.getElementById('home').style.overflow = "hidden";
 	                document.getElementById('home').style.position = "absolute";
 	                document.getElementById('home').style.height = window.innerHeight + "px";
-	                TweenMax.to(window, 0.5, { scrollTo: 0, ease: Power3.easeOut });
 	            }
 	        });
 	        (0, _umbrellajs.u)('#nav a').on('click', function (e) {

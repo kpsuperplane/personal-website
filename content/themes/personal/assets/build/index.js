@@ -14294,7 +14294,7 @@
 	                blog.style.overflow = null;
 	            } });
 	        blogReverseTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 1 }, { opacity: 0, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "0%" }, { y: "100%", ease: Power0.easeNone })]);
-	        (0, _umbrellajs.u)('.blog-toggle').on('click', function (e) {
+	        function openBlog() {
 	            var blog = (0, _umbrellajs.u)('#blog').first();
 	            if (blog.style.display != "block") {
 	                blogTimeline.play(0);
@@ -14304,7 +14304,9 @@
 	                document.getElementById('home').style.position = "absolute";
 	                document.getElementById('home').style.height = window.innerHeight + "px";
 	            }
-	        });
+	        }
+	        if (location.hash == "#!/blog") openBlog();
+	        (0, _umbrellajs.u)('.blog-toggle').on('click', openBlog);
 	        (0, _umbrellajs.u)('#nav a').on('click', function (e) {
 	            if (e.target.hash != '#!/blog') {
 	                var blog = (0, _umbrellajs.u)('#blog').first();

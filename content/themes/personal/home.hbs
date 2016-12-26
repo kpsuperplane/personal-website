@@ -88,7 +88,7 @@
             --><div class="cell">
             {{#foreach posts}}
                 {{#if @first}}
-                    <a class="card blog-card{{#if image}} hasimage{{/if}}" href="{{url}}" id="blog-summary-main-card">
+                    <a class="card blog-card{{#if image}} has-image{{/if}}" href="{{url}}" id="blog-summary-main-card">
                         {{#if image}} <img class="blog-card-image" src="{{image}}"/> {{/if}}
                         <div class="blog-card-content">
                         <h2 class="blog-card-title">{{title}}</h2>
@@ -132,7 +132,7 @@
 </main> 
 <section id="blog" style="display:none;">
     <div class="container">
-        <h1 id="blog-title">MY BLOG</h1>
+        <h1 id="blog-title">MY BLOG</h1> 
         <h3 class="caption">I like to write things from time to time.</h3>
         {{#foreach posts}}
             {{#if @first}}

@@ -79,6 +79,7 @@
 	        var pageScene = new _scrollmagic2.default.Scene({ duration: '50px', offset: 0, triggerHook: 0, triggerElement: (0, _umbrellajs.u)('body').first(), reverse: true });
 	        pageScene.setTween(pageTimeline);
 	        controller.addScene(pageScene);
+	        (0, _umbrellajs.u)('iframe').wrap('<div class="video-wrapper">');
 	    }
 
 	window.onload = function () {

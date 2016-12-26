@@ -257,7 +257,78 @@ h5 {
 
 @media (min-width: 601px) {
   .visible-xs {
-    display: none !important; } }
+    display: none !important; }
+  #nav {
+    padding: 10px; }
+    #nav #nav-inner {
+      text-align: left; }
+      #nav #nav-inner #nav-left, #nav #nav-inner #nav-right {
+        display: none; }
+      #nav #nav-inner #nav-home {
+        height: 40px;
+        width: 40px; }
+        #nav #nav-inner #nav-home img {
+          height: 48px;
+          width: 48px; }
+      #nav #nav-inner a#hamburger {
+        display: block;
+        z-index: 13;
+        float: right;
+        position: relative;
+        overflow: hidden;
+        margin: 4px;
+        right: 0px;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        font-size: 0;
+        text-indent: -9999px;
+        appearance: none;
+        box-shadow: none;
+        border-radius: none;
+        border: none;
+        cursor: pointer;
+        transition: background 0.2s; }
+        #nav #nav-inner a#hamburger:focus {
+          outline: none; }
+        #nav #nav-inner a#hamburger span {
+          display: block;
+          position: absolute;
+          top: 18px;
+          left: 4px;
+          right: 4px;
+          height: 2px;
+          background: #000;
+          opacity: 1;
+          transition-delay: 0.2s; }
+          #nav #nav-inner a#hamburger span, #nav #nav-inner a#hamburger span::before, #nav #nav-inner a#hamburger span::after {
+            border-radius: 5px; }
+          #nav #nav-inner a#hamburger span::before, #nav #nav-inner a#hamburger span::after {
+            transition-duration: 0.2s, 0.2s;
+            transition-delay: 0.2s, 0s;
+            position: absolute;
+            display: block;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #000;
+            content: ""; }
+          #nav #nav-inner a#hamburger span::before {
+            transition-property: top, transform;
+            top: -9px; }
+          #nav #nav-inner a#hamburger span::after {
+            bottom: -9px;
+            transition-property: bottom, transform; }
+        #nav #nav-inner a#hamburger.active span {
+          background: none !important; }
+          #nav #nav-inner a#hamburger.active span::before {
+            top: 0;
+            transform: rotate(45deg); }
+          #nav #nav-inner a#hamburger.active span::after {
+            bottom: 0;
+            transform: rotate(-45deg); }
+          #nav #nav-inner a#hamburger.active span::before, #nav #nav-inner a#hamburger.active span::after {
+            transition-delay: 0s, 0.2s; } }
 
 /* ------------
     Content

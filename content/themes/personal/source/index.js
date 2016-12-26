@@ -16,6 +16,7 @@ else{ //auto "shadowify" nav on non-homepages
     var pageScene = new ScrollMagic.Scene({duration: '50px', offset:0, triggerHook: 0, triggerElement: u('body').first(), reverse: true})
     pageScene.setTween(pageTimeline);
     controller.addScene(pageScene);
+    u('iframe').wrap('<div class="video-wrapper">')
 }
 
 window.onload = function(){

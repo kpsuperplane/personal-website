@@ -489,13 +489,7 @@ main#home section#contact {
     text-align: center; }
 
 main#home section#blog {
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100%;
   opacity: 0;
-  height: 100%;
-  overflow-y: auto;
   background: #FFF;
   z-index: 10; }
   main#home section#blog h1#blog-title {

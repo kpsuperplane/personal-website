@@ -239,14 +239,7 @@ section#contact{
     }
 }
 section#blog{
-    position:fixed;
-    //display:none;
-    top:0px;
-    left:0px;
-    width:100%;
     opacity:0;
-    height:100%;
-    overflow-y:auto;
     background:#FFF;
     z-index:10;
     h1#blog-title{

@@ -59,7 +59,8 @@ export default {
                 blogTimeline.play(0);
                 blog.style.display = "block";
                 u('#nav').addClass('blog');
-                document.getElementsByTagName('html')[0].style.overflow="hidden";
+                document.getElementById('main').style.overflow="hidden";
+                document.getElementById('main').style.height=window.innerHeight;
             }
         });
         u('#nav a').on('click', function(e){
@@ -67,7 +68,8 @@ export default {
                 if(u('#blog').first().style.display == "block"){
                     blogReverseTimeline.play(0);
                     u('#nav').removeClass('blog');
-                    document.getElementsByTagName('html')[0].style.overflow="auto";
+                    document.getElementById('main').style.overflow="auto";
+                    document.getElementById('main').style.height=null;
                 }
                 TweenMax.to(window, 0.5, {scrollTo:Math.max(0, document.getElementById(this.hash.substring(3)+"-target").getBoundingClientRect().top - document.body.getBoundingClientRect().top - 150), ease: Power3.easeOut});
             }

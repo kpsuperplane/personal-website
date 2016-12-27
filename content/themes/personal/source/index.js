@@ -65,5 +65,6 @@ function scroll() {
 window.addEventListener('scroll', scroll);
 
 window.onload = function(){
-    u('#nav').attr({class: 'loaded'});
+    u('body').addClass('loaded');
+    u('#nav').addClass('loaded');
 }

@@ -22,12 +22,17 @@ $textGrey: rgba(33,33,33,0.8);
 }
 
 body,html{
-  padding:0;
-  margin:0;
+    padding:0;
+    margin:0;
 }
 body{
-  font-size:14px;
-  @extend .standardFont;
+    opacity:0;
+    font-size:14px;
+    @extend .standardFont;
+    transition: opacity 500ms;
+    &.loaded{
+        opacity:1;
+    }
 }
 /* ------------
   Typography

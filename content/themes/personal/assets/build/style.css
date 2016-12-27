@@ -150,7 +150,11 @@ body, html {
   margin: 0; }
 
 body {
-  font-size: 14px; }
+  opacity: 0;
+  font-size: 14px;
+  transition: opacity 500ms; }
+  body.loaded {
+    opacity: 1; }
 
 /* ------------
   Typography

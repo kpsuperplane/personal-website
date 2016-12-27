@@ -20,8 +20,14 @@
     {{!-- Styles'n'Scripts --}}
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato:400,700|Slabo+13px" />
     <style amp-custom>
+        .content{
+            max-width:600px;
+            box-sizing:border-box;
+            margin:0 auto;
+            padding:1em;
+        }
     .post {
-    padding: 12em 0px 3em 0;
+    padding: 0em 0px 3em 0;
     transition: 500ms;
     opacity: 1; }
     .post h1 {
@@ -40,8 +46,7 @@
         font-weight: 300;
         color: rgba(33, 33, 33, 0.8);
         text-align: center;
-        margin-top: 2em;
-        margin-bottom: 0.7em; }
+        margin:0.7em 0;}
     .post h3 {
         font-weight: 300;
         font-size: 2em;
@@ -131,7 +136,7 @@
         height: 0; }
         .main-header{
             padding:1em;
-
+            background:#2AC648;
         }
         .main-header a{
             text-decoration:none;
@@ -142,7 +147,13 @@
             font-family: "Lato", sans-serif;
         }
         h1, h2, h3, .post-meta{
-            font-family: "Slabo", sans-serif;
+            font-family: "Slabo 13px", sans-serif;
+        }
+        p{
+            color: #555;
+            font-size: 1.3em;
+            line-height: 1.8em;
+            font-weight: 400
         }
     </style>
 

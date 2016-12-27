@@ -5,6 +5,7 @@ deployment:
       - ./deploy.sh
 dependencies:
     override:
+        - echo "dependencies"    
 test:
     override:
         - echo "test"    

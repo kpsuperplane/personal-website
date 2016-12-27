@@ -24,9 +24,8 @@ export default {
         controller.addScene(bannerScene);
 
         resizeServiceInstance.addListener("banner", function(){
-            //creds to http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
-            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var h = document.documentElement.clientHeight;
+            var w = document.documentElement.clientWidth;
             var bannerVerticalOffset = h - (w*1068)/(1600) + h/8;
             bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
             bannerTimeline.clear();

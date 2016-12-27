@@ -14332,33 +14332,27 @@
 	            var bannerVerticalOffset = h - w * 1068 / 1600 + h / 8;
 	            bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
 	            bannerTimeline.clear();
-	            if (!isMobile()) {
-	                //ignore mobile browsers
-	                bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone })]);
-	            }
+	            bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone })]);
 	            controller.removeScene(bannerScene);
 	            bannerScene.setTween(bannerTimeline);
 	            controller.addScene(bannerScene);
 	        }
-	        resizeServiceInstance.addListener("banner", bannerResizeListener);
-	        bannerResizeListener();
+	        if (!isMobile()) {
+	            //ignore mobile browsers
+	            resizeServiceInstance.addListener("banner", bannerResizeListener);
+	            bannerResizeListener();
+	        }
 
 	        /* --- ABOUT-- */
-	        var aboutTimeline = new TimelineMax();
-	        var aboutScene = new _scrollmagic2.default.Scene({ duration: '90%', offset: 0, triggerHook: 1, triggerElement: '#about', reverse: true });
-	        controller.addScene(aboutScene);
-	        function aboutResizeListener() {
-	            aboutTimeline.clear();
-	            if (!isMobile()) {
-	                //ignore mobile browsers
-	                aboutTimeline.add([TweenMax.fromTo("#about-iphone-container", 1, { x: "0%" }, { x: "-30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-1", 1, { x: "0%" }, { x: "30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-2", 1, { x: "0%" }, { x: "60%", ease: Power1.easeOut }), TweenMax.fromTo("#about-title", 1, { y: "50px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#about-content", 1, { y: "150px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut })]);
-	            }
-	            controller.removeScene(aboutScene);
+	        if (!isMobile()) {
+	            //ignore mobile browsers
+	            var aboutTimeline = new TimelineMax();
+	            var aboutScene = new _scrollmagic2.default.Scene({ duration: '90%', offset: 0, triggerHook: 1, triggerElement: '#about', reverse: true });
+	            controller.addScene(aboutScene);
+	            aboutTimeline.add([TweenMax.fromTo("#about-iphone-container", 1, { x: "0%" }, { x: "-30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-1", 1, { x: "0%" }, { x: "30%", ease: Power1.easeOut }), TweenMax.fromTo("#about-iphone-img-2", 1, { x: "0%" }, { x: "60%", ease: Power1.easeOut }), TweenMax.fromTo("#about-title", 1, { y: "50px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#about-content", 1, { y: "150px", opacity: 0 }, { y: "0%", opacity: 1, ease: Power1.easeOut })]);
 	            aboutScene.setTween(aboutTimeline);
 	            controller.addScene(aboutScene);
 	        }
-	        resizeServiceInstance.addListener("about", aboutResizeListener);
-	        aboutResizeListener();
 
 	        SyntaxHighlighter.defaults['quick-code'] = false;
 	        SyntaxHighlighter.all();

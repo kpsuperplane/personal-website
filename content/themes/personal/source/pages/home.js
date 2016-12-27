@@ -71,7 +71,7 @@ export default {
         }
         if(location.hash == "#!/blog") openBlog();
         u('.blog-toggle').on('click', openBlog);
-        u('#nav a').on('click', function(e){
+        u('#nav a, .quicknav').on('click', function(e){
             if(e.target.hash != '#!/blog'){
                 var blog = u('#blog').first();
                 if(blog.style.display == "block"){

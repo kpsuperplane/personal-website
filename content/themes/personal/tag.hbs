@@ -2,9 +2,9 @@
 <section id="blog">
     <div class="container">
         <h1 id="blog-title">MY BLOG</h1>
-        {{/tag}}
-        <h3 class="caption">Posts tagged "{{name}}"</h3>
         {{#tag}}
+            <h3 class="caption">Posts tagged "{{name}}"</h3>
+        {{/tag}}
         <div id="blog-article-list">
             <div id="blog-article-list-content" class="card hassub">
                 {{!-- This is the post loop - each post will be output using this markup --}}

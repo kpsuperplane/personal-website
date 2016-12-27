@@ -234,6 +234,14 @@
             margin-top:0;
         }
     }
+    @media(max-width:800px){
+        section#blog-summary{
+            .cell-left{
+                text-align:center;
+                padding-bottom:2em;
+            }
+        }
+    }
     section#contact{
         padding-bottom:7em;
         text-align:center;

@@ -604,6 +604,10 @@ h5 {
     padding: 6em 0 12em 0; }
     #home section#blog-summary h1#blog-summary-title {
       margin-top: 0; }
+  @media (max-width: 800px) {
+    #home section#blog-summary .cell-left {
+      text-align: center;
+      padding-bottom: 2em; } }
   #home section#contact {
     padding-bottom: 7em;
     text-align: center; }

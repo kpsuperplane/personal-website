@@ -19,6 +19,50 @@ else{ //auto "shadowify" nav on non-homepages
     u('iframe').wrap('<div class="video-wrapper">')
 }
 
+
+var lastScrollTop = 0, scrollHidden = false;
+
+u('#hamburger').on('click', function() {
+    u(this).toggleClass('active');
+    if (u(this).hasClass('active')) {
+        u('#mobile-menu').first().style.display="block";
+        setTimeout(function() {
+            u('#mobile-menu').addClass('active');
+        }, 20);
+    } else {
+        u('#mobile-menu').removeClass('active');
+        setTimeout(function(){
+            u('#mobile-menu').first().style.display="none";
+        }, 200);
+    }
+});
+
+u('#mobile-menu a').on('click', function() {
+    u('#hamburger').removeClass('active');
+    u('#mobile-menu').removeClass('active');
+    setTimeout(function(){
+        u('#mobile-menu').first().style.display="none";
+    }, 200);
+});
+
+function scroll() {
+    var st = $(this).scrollTop();
+    if (st > lastScrollTop) {
+        if (!scrollHidden) {
+            u('#nav').addClass('scroll-hidden');
+            scrollHidden = true;
+        }
+    } else {
+        if (scrollHidden) {
+            u('#nav').removeClass('scroll-hidden');
+            scrollHidden = false;
+        }
+    }
+    lastScrollTop = st;
+};
+
+window.addEventListener('scroll', scroll);
+
 window.onload = function(){
     u('#nav').attr({class: 'loaded'});
 }

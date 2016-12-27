@@ -44,11 +44,10 @@ export default {
         var blogTimeline = new TimelineMax({paused: true});
         blogTimeline.add([
             TweenMax.fromTo("#blog", 0.25, {opacity: 0}, {opacity: 1, ease: Power1.easeOut}),
-            TweenMax.fromTo("#blog .container", 0.5, {y: "100%"}, {y: "0%", ease: Expo.easeOut}),
-            TweenMax.to(window, 0.25, {scrollTo:0, ease: Power3.easeOut})
+            TweenMax.fromTo("#blog .container", 0.5, {y: "100%"}, {y: "0%", ease: Expo.easeOut})
         ]);
         var blogReverseTimeline = new TimelineMax({paused: true, onComplete: function(){
-            var blog = u('#blog').first();
+            var blog = u('#blog').first(); 
             blog.style.display = "none";
             blog.style.position = null;
             blog.style.height = null;
@@ -67,6 +66,7 @@ export default {
                 document.getElementById('home').style.overflow="hidden";
                 document.getElementById('home').style.position="absolute";
                 document.getElementById('home').style.height=window.innerHeight+"px";
+                TweenMax.to(window, 0.25, {scrollTo:0, ease: Power3.easeOut});
             }
         }
         if(location.hash == "#!/blog") openBlog();

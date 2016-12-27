@@ -82,6 +82,50 @@
 	        (0, _umbrellajs.u)('iframe').wrap('<div class="video-wrapper">');
 	    }
 
+	var lastScrollTop = 0,
+	    scrollHidden = false;
+
+	(0, _umbrellajs.u)('#hamburger').on('click', function () {
+	    (0, _umbrellajs.u)(this).toggleClass('active');
+	    if ((0, _umbrellajs.u)(this).hasClass('active')) {
+	        (0, _umbrellajs.u)('#mobile-menu').first().style.display = "block";
+	        setTimeout(function () {
+	            (0, _umbrellajs.u)('#mobile-menu').addClass('active');
+	        }, 20);
+	    } else {
+	        (0, _umbrellajs.u)('#mobile-menu').removeClass('active');
+	        setTimeout(function () {
+	            (0, _umbrellajs.u)('#mobile-menu').first().style.display = "none";
+	        }, 200);
+	    }
+	});
+
+	(0, _umbrellajs.u)('#mobile-menu a').on('click', function () {
+	    (0, _umbrellajs.u)('#hamburger').removeClass('active');
+	    (0, _umbrellajs.u)('#mobile-menu').removeClass('active');
+	    setTimeout(function () {
+	        (0, _umbrellajs.u)('#mobile-menu').first().style.display = "none";
+	    }, 200);
+	});
+
+	function scroll() {
+	    var st = $(this).scrollTop();
+	    if (st > lastScrollTop) {
+	        if (!scrollHidden) {
+	            (0, _umbrellajs.u)('#nav').addClass('scroll-hidden');
+	            scrollHidden = true;
+	        }
+	    } else {
+	        if (scrollHidden) {
+	            (0, _umbrellajs.u)('#nav').removeClass('scroll-hidden');
+	            scrollHidden = false;
+	        }
+	    }
+	    lastScrollTop = st;
+	};
+
+	window.addEventListener('scroll', scroll);
+
 	window.onload = function () {
 	    (0, _umbrellajs.u)('#nav').attr({ class: 'loaded' });
 	};
@@ -14286,7 +14330,7 @@
 
 	        /* --- BLOG-- */
 	        var blogTimeline = new TimelineMax({ paused: true });
-	        blogTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "100%" }, { y: "0%", ease: Expo.easeOut }), TweenMax.to(window, 0.25, { scrollTo: 0, ease: Power3.easeOut })]);
+	        blogTimeline.add([TweenMax.fromTo("#blog", 0.25, { opacity: 0 }, { opacity: 1, ease: Power1.easeOut }), TweenMax.fromTo("#blog .container", 0.5, { y: "100%" }, { y: "0%", ease: Expo.easeOut })]);
 	        var blogReverseTimeline = new TimelineMax({ paused: true, onComplete: function onComplete() {
 	                var blog = (0, _umbrellajs.u)('#blog').first();
 	                blog.style.display = "none";
@@ -14304,6 +14348,7 @@
 	                document.getElementById('home').style.overflow = "hidden";
 	                document.getElementById('home').style.position = "absolute";
 	                document.getElementById('home').style.height = window.innerHeight + "px";
+	                TweenMax.to(window, 0.25, { scrollTo: 0, ease: Power3.easeOut });
 	            }
 	        }
 	        if (location.hash == "#!/blog") openBlog();

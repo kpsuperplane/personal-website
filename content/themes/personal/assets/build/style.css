@@ -816,7 +816,7 @@ section#blog {
       .post .post-inner p ul, .post .post-inner p ol, .post .post-inner ol ul, .post .post-inner ol ol, .post .post-inner ul ul, .post .post-inner ul ol {
         font-size: 1em; }
     .post .post-inner p {
-      margin: 2em 0; }
+      margin: 1.7em 0; }
     .post .post-inner .caption {
       display: block;
       margin-top: -2em;

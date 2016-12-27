@@ -1,5 +1,5 @@
 deployment:  
   production:
-    branch: master    
+    branch: 4.0    
     commands:
       - ./deploy.sh

@@ -90,6 +90,6 @@ export default {
                 scrollToHash(this.hash);
             }
         });
-        if(location.hash != null) scrollToHash(location.hash);
+        if(location.hash) scrollToHash(location.hash);
     }    
 }

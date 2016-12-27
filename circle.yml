@@ -1,5 +1,8 @@
 deployment:  
   production:
-    branch: 4.0    
+    branch: 4.0 
+    test:
+    override:
+        - echo "test"    
     commands:
       - ./deploy.sh

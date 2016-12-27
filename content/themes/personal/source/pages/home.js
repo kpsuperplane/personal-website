@@ -5,24 +5,28 @@ import serviceManager from '../services/serviceManager';
 import resizeService from '../services/resizeService';
 import { u } from 'umbrellajs';
 
-serviceManager.use(resizeService); 
+const resizeServiceInstance = serviceManager.use(resizeService); 
 
 export default {
     init: function(){
         var controller = new ScrollMagic.Controller();
 
         /* --- BANNER --- */
-        var bannerVerticalOffset = window.innerHeight - (window.innerWidth*1068)/(1600) + window.innerHeight/8;
-        bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
         var bannerTimeline = new TimelineMax();
-        bannerTimeline.add([
-            TweenMax.fromTo("#banner-background-foreground", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset - 80)+"px", ease: Power0.easeNone}),
-            TweenMax.fromTo("#banner-background-background", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset + 160)+"px", ease: Power0.easeNone}),
-            TweenMax.fromTo("#nav", 1, {backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)"}, {backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)" , ease: Power0.easeNone})
-        ]) 
-        var bannerScene = new ScrollMagic.Scene({duration: '100%', offset:0, triggerHook: 0, triggerElement: '#banner-background', reverse: true})
+        var bannerScene = new ScrollMagic.Scene({duration: '100%', offset:0, triggerHook: 0, triggerElement: '#banner-background', reverse: true});
         bannerScene.setTween(bannerTimeline);
         controller.addScene(bannerScene);
+
+        resizeServiceInstance.addListener("banner", function(){
+            var bannerVerticalOffset = window.innerHeight - (window.innerWidth*1068)/(1600) + window.innerHeight/8;
+            bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
+            bannerTimeline.clear();
+            bannerTimeline.add([
+                TweenMax.fromTo("#banner-background-foreground", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset - 80)+"px", ease: Power0.easeNone}),
+                TweenMax.fromTo("#banner-background-background", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset + 160)+"px", ease: Power0.easeNone}),
+                TweenMax.fromTo("#nav", 1, {backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)"}, {backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)" , ease: Power0.easeNone})
+            ]) 
+        });
 
         /* --- ABOUT-- */
         var aboutTimeline = new TimelineMax();
@@ -89,7 +93,7 @@ export default {
                 }
                 scrollToHash(this.hash);
             }
-        });
+        }); 
         if(location.hash) scrollToHash(location.hash);
     }    
 }

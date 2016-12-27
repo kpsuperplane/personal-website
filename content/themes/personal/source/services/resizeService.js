@@ -6,6 +6,9 @@ export default class resizeService{
             listeners[listener](e);
         }
     }
+    addListener(name, fn){
+        this.listeners[name] = fn;
+    }
     init(){
         this.listeners = { //default window resize listeners
             pageHeightSections: function(e){

@@ -14305,20 +14305,24 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_serviceManager2.default.use(_resizeService2.default);
+	var resizeServiceInstance = _serviceManager2.default.use(_resizeService2.default);
 
 	exports.default = {
 	    init: function init() {
 	        var controller = new _scrollmagic2.default.Controller();
 
 	        /* --- BANNER --- */
-	        var bannerVerticalOffset = window.innerHeight - window.innerWidth * 1068 / 1600 + window.innerHeight / 8;
-	        bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
 	        var bannerTimeline = new TimelineMax();
-	        bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#nav", 1, { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
 	        var bannerScene = new _scrollmagic2.default.Scene({ duration: '100%', offset: 0, triggerHook: 0, triggerElement: '#banner-background', reverse: true });
 	        bannerScene.setTween(bannerTimeline);
 	        controller.addScene(bannerScene);
+
+	        resizeServiceInstance.addListener("banner", function () {
+	            var bannerVerticalOffset = window.innerHeight - window.innerWidth * 1068 / 1600 + window.innerHeight / 8;
+	            bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
+	            bannerTimeline.clear();
+	            bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#nav", 1, { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
+	        });
 
 	        /* --- ABOUT-- */
 	        var aboutTimeline = new TimelineMax();
@@ -14624,6 +14628,11 @@
 	            for (var listener in listeners) {
 	                listeners[listener](e);
 	            }
+	        }
+	    }, {
+	        key: 'addListener',
+	        value: function addListener(name, fn) {
+	            this.listeners[name] = fn;
 	        }
 	    }, {
 	        key: 'init',

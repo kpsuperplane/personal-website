@@ -3,6 +3,8 @@ deployment:
     branch: 4.0 
     commands:
       - ./deploy.sh
+dependencies:
+    override:
 test:
     override:
         - echo "test"    

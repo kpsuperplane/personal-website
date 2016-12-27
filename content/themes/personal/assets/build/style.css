@@ -719,7 +719,8 @@ section#blog {
 .post {
   padding: 12em 0px 3em 0;
   transition: 500ms;
-  opacity: 1; }
+  opacity: 1;
+  font-size: 14px; }
   .post h1 {
     font-size: 3em;
     font-weight: 700; }

@@ -144,7 +144,9 @@
             font-weight:700;
             color:#2AC648;
             display:block;
-            margin-top:0.5em;
+        }
+        .main-header a amp-img{
+            margin-bottom:0.5em;
         }
         body{
             font-family: "Lato", sans-serif;
@@ -154,13 +156,22 @@
         }
         p{
             color: #555;
-            font-size: 1.3em;
+            font-size: 1.05em;
             line-height: 1.8em;
             font-weight: 400
         }
         .post-meta{
             text-align:center;
             font-size:1.5em;
+        }
+        footer{
+            text-align:center;
+            background:#232323;
+            color:#FFF;
+            padding:2em 0;
+        }
+        a{
+            color:#2AC648;
         }
     </style>
 
@@ -176,7 +187,7 @@
     {{#post}}
     <header class="main-header">
         <nav class="blog-title">
-            <a href="{{@blog.url}}"><amp-img src="/assets/lib/img/logo.png" alt="Kevin Pei" height="128" width="128"></amp-img>KEVIN PEI'S BLOG</a>
+            <a href="{{@blog.url}}"><amp-img src="/assets/lib/img/logo.png" alt="Kevin Pei" height="44" width="44"></amp-img><br/>KEVIN PEI'S BLOG</a>
         </nav>
     </header>
 

@@ -46,7 +46,7 @@ u('#mobile-menu a').on('click', function() {
 });
 
 function scroll() {
-    var st = $(this).scrollTop();
+    var st = - document.body.getBoundingClientRect().top;
     if (st > lastScrollTop) {
         if (!scrollHidden) {
             u('#nav').addClass('scroll-hidden');

@@ -109,7 +109,7 @@
 	});
 
 	function scroll() {
-	    var st = $(this).scrollTop();
+	    var st = -document.body.getBoundingClientRect().top;
 	    if (st > lastScrollTop) {
 	        if (!scrollHidden) {
 	            (0, _umbrellajs.u)('#nav').addClass('scroll-hidden');

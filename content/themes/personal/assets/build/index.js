@@ -14733,7 +14733,7 @@
 	    }, {
 	        key: "init",
 	        value: function init() {
-	            window.onload = onLoad.bind(this);
+	            window.onload = this.onLoad.bind(this);
 	            this.listeners = {};
 	        }
 	    }]);

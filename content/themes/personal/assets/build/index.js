@@ -126,7 +126,7 @@
 	    lastScrollTop = st;
 	};
 
-	window.addEventListener('scroll', scroll);
+	if (!isHome) window.addEventListener('scroll', scroll);
 
 	window.onload = function () {
 	    (0, _umbrellajs.u)('body').addClass('loaded');

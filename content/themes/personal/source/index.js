@@ -63,7 +63,7 @@ function scroll() {
     lastScrollTop = st;
 };
 
-window.addEventListener('scroll', scroll);
+if(!isHome) window.addEventListener('scroll', scroll);
 
 window.onload = function(){
     u('body').addClass('loaded');

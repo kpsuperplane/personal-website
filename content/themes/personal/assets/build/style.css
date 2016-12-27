@@ -809,7 +809,7 @@ section#blog {
         text-decoration: none;
         border-bottom-color: #2AC648; }
     .post .post-inner p, .post .post-inner ol, .post .post-inner ul {
-      color: #555;
+      color: #444;
       font-size: 1.3em;
       line-height: 1.8em;
       font-weight: 400; }

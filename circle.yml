@@ -1,6 +1,6 @@
 deployment:  
   production:
-    branch: 4.0 
+    branch: "4.0" 
     commands:
       - ./deploy.sh
 dependencies:

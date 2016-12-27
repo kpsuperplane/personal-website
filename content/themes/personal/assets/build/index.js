@@ -14399,7 +14399,6 @@
 	                TweenMax.to(window, 0.25, { scrollTo: 0, ease: Power3.easeOut });
 	            }
 	        }
-	        if (location.hash == "#!/blog") openBlog();
 	        (0, _umbrellajs.u)('.blog-toggle').on('click', openBlog);
 	        (0, _umbrellajs.u)('#nav a, .quickNav').on('click', function (e) {
 	            if (e.target.hash != '#!/blog') {
@@ -14418,7 +14417,9 @@
 	            }
 	        });
 	        onloadServiceInstance.addListener(function () {
-	            if (location.hash) scrollToHash(location.hash);
+	            if (location.hash) {
+	                if (location.hash == "#!/blog") openBlog();else scrollToHash(location.hash);
+	            }
 	        });
 	    }
 	};

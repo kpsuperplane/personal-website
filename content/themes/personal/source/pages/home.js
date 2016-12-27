@@ -96,7 +96,6 @@ export default {
                 TweenMax.to(window, 0.25, {scrollTo:0, ease: Power3.easeOut});
             }
         }
-        if(location.hash == "#!/blog") openBlog();
         u('.blog-toggle').on('click', openBlog);
         u('#nav a, .quickNav').on('click', function(e){
             if(e.target.hash != '#!/blog'){
@@ -115,7 +114,10 @@ export default {
             }
         }); 
         onloadServiceInstance.addListener(function(){
-            if(location.hash) scrollToHash(location.hash);
+            if(location.hash){
+                if(location.hash == "#!/blog") openBlog();
+                else scrollToHash(location.hash);
+            } 
         });
 
     }    

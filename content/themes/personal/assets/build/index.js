@@ -14734,7 +14734,7 @@
 	        key: "init",
 	        value: function init() {
 	            window.onload = this.onLoad.bind(this);
-	            this.listeners = {};
+	            this.listeners = [];
 	        }
 	    }]);
 

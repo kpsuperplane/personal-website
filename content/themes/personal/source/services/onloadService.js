@@ -10,6 +10,6 @@ export default class onloadService{
     }
     init(){
         window.onload = this.onLoad.bind(this);
-        this.listeners = {};
+        this.listeners = [];
     }
 }

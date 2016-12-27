@@ -24,14 +24,19 @@ export default {
         controller.addScene(bannerScene);
 
         resizeServiceInstance.addListener("banner", function(){
-            var bannerVerticalOffset = window.innerHeight - (window.innerWidth*1068)/(1600) + window.innerHeight/8;
+            //creds to http://stackoverflow.com/questions/1248081/get-the-browser-viewport-dimensions-with-javascript
+            var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            var bannerVerticalOffset = h - (w*1068)/(1600) + h/8;
             bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
             bannerTimeline.clear();
+            bannerTimeline.add([
+                TweenMax.fromTo("#nav", 1, {backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)"}, {backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)" , ease: Power0.easeNone})
+            ]);
             if(isMobile()) return; //ignore mobile browsers
             bannerTimeline.add([
                 TweenMax.fromTo("#banner-background-foreground", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset - 80)+"px", ease: Power0.easeNone}),
-                TweenMax.fromTo("#banner-background-background", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset + 160)+"px", ease: Power0.easeNone}),
-                TweenMax.fromTo("#nav", 1, {backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)"}, {backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)" , ease: Power0.easeNone})
+                TweenMax.fromTo("#banner-background-background", 1, {backgroundPosition: "center "+bannerVerticalOffset+"px"}, {backgroundPosition: "center "+(bannerVerticalOffset + 160)+"px", ease: Power0.easeNone})
             ]);
         });
 

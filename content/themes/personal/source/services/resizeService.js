@@ -12,7 +12,7 @@ export default class resizeService{
     init(){
         this.listeners = { //default window resize listeners
             pageHeightSections: function(e){
-                u('.page-height').attr({style: 'min-height:'+window.innerHeight+'px'});
+                u('.page-height').attr({style: 'min-height:'+Math.max(document.documentElement.clientHeight, window.innerHeight || 0)+'px'});
             }
         };
 

@@ -14354,7 +14354,7 @@
 	        }
 	        if (location.hash == "#!/blog") openBlog();
 	        (0, _umbrellajs.u)('.blog-toggle').on('click', openBlog);
-	        (0, _umbrellajs.u)('#nav a, .quicknav').on('click', function (e) {
+	        (0, _umbrellajs.u)('#nav a, .quickNav').on('click', function (e) {
 	            if (e.target.hash != '#!/blog') {
 	                var blog = (0, _umbrellajs.u)('#blog').first();
 	                if (blog.style.display == "block") {

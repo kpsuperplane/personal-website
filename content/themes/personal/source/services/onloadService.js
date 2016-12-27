@@ -6,7 +6,7 @@ export default class onloadService{
         }
     }
     addListener(fn){
-        this.listeners.append(fn);
+        this.listeners.push(fn);
     }
     init(){
         window.onload = this.onLoad.bind(this);

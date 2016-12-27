@@ -14728,7 +14728,7 @@
 	    }, {
 	        key: "addListener",
 	        value: function addListener(fn) {
-	            this.listeners.append(fn);
+	            this.listeners.push(fn);
 	        }
 	    }, {
 	        key: "init",

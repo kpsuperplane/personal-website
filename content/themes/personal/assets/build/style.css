@@ -717,10 +717,9 @@ section#blog {
 
 /* Post Styles */
 .post {
-  padding: 12em 0px 3em 0;
+  padding: 12em 1em 3em 1em;
   transition: 500ms;
-  opacity: 1;
-  font-size: 14px; }
+  opacity: 1; }
   .post h1 {
     font-size: 3em;
     font-weight: 700; }

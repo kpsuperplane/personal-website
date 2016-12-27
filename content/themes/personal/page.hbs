@@ -1,13 +1,19 @@
 {{!< default}}
 <div id="spacer"></div>
-<div>
+<div id="nav-spacer"></div> 
+<main class="container">
     <article class="{{post_class}}">
         {{#post}}
-            <h1>{{{title}}}</h1>
-            <section>
+        <div class="post-inner">
+            <h1 class="title">{{{title}}}</h1>
+            <span class="post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time> {{tags prefix="in " separator=" | "}}</span>
+            {{#if image}}
+                <img src="{{image}}" class="cover-image"/>
+            {{/if}}
+            <div>
                 {{content}}
-            </section>
+            </div>
+        </div>
         {{/post}}
     </article>
-</div>
-{{>footer}}
+</main>

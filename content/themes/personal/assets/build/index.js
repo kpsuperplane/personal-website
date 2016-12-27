@@ -67,7 +67,22 @@
 
 	var _home2 = _interopRequireDefault(_home);
 
+	var _serviceManager = __webpack_require__(12);
+
+	var _serviceManager2 = _interopRequireDefault(_serviceManager);
+
+	var _onloadService = __webpack_require__(14);
+
+	var _onloadService2 = _interopRequireDefault(_onloadService);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var onloadServiceInstance = _serviceManager2.default.use(_onloadService2.default);
+
+	onloadServiceInstance.addListener(function () {
+	    (0, _umbrellajs.u)('body').addClass('loaded');
+	    (0, _umbrellajs.u)('#nav').addClass('loaded');
+	});
 
 	var isHome = true;
 
@@ -127,11 +142,6 @@
 	};
 
 	if (!isHome) window.addEventListener('scroll', scroll);
-
-	window.onload = function () {
-	    (0, _umbrellajs.u)('body').addClass('loaded');
-	    (0, _umbrellajs.u)('#nav').addClass('loaded');
-	};
 
 /***/ },
 /* 2 */
@@ -14302,11 +14312,17 @@
 
 	var _resizeService2 = _interopRequireDefault(_resizeService);
 
+	var _onloadService = __webpack_require__(14);
+
+	var _onloadService2 = _interopRequireDefault(_onloadService);
+
 	var _umbrellajs = __webpack_require__(3);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var resizeServiceInstance = _serviceManager2.default.use(_resizeService2.default);
+
+	var onloadServiceInstance = _serviceManager2.default.use(_onloadService2.default);
 
 	function isMobile() {
 	    //credit to http://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
@@ -14401,7 +14417,9 @@
 	                scrollToHash(this.hash);
 	            }
 	        });
-	        if (location.hash) scrollToHash(location.hash);
+	        onloadServiceInstance.addListener(function () {
+	            if (location.hash) scrollToHash(location.hash);
+	        });
 	    }
 	};
 
@@ -14678,6 +14696,52 @@
 	}();
 
 	exports.default = resizeService;
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var onloadService = function () {
+	    function onloadService() {
+	        _classCallCheck(this, onloadService);
+	    }
+
+	    _createClass(onloadService, [{
+	        key: "onLoad",
+	        value: function onLoad() {
+	            var listeners = this.listeners;
+
+	            for (var i = 0; i < listeners.length; i++) {
+	                listeners[i]();
+	            }
+	        }
+	    }, {
+	        key: "addListener",
+	        value: function addListener(fn) {
+	            this.listeners.append(fn);
+	        }
+	    }, {
+	        key: "init",
+	        value: function init() {
+	            window.onload = onLoad.bind(this);
+	            this.listeners = {};
+	        }
+	    }]);
+
+	    return onloadService;
+	}();
+
+	exports.default = onloadService;
 
 /***/ }
 /******/ ]);

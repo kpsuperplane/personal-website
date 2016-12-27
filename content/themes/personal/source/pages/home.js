@@ -3,9 +3,13 @@ import 'animation.gsap';
 import 'ScrollToPlugin'; 
 import serviceManager from '../services/serviceManager';
 import resizeService from '../services/resizeService';
+import onloadService from '../services/onloadService';
+
 import { u } from 'umbrellajs';
 
 const resizeServiceInstance = serviceManager.use(resizeService); 
+
+const onloadServiceInstance = serviceManager.use(onloadService);
 
 function isMobile() { //credit to http://stackoverflow.com/questions/11381673/detecting-a-mobile-browser
   var check = false;
@@ -110,6 +114,9 @@ export default {
                 scrollToHash(this.hash);
             }
         }); 
-        if(location.hash) scrollToHash(location.hash);
+        onloadServiceInstance.addListener(function(){
+            if(location.hash) scrollToHash(location.hash);
+        });
+
     }    
 }

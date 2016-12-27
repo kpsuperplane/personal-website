@@ -3,6 +3,15 @@ import {u} from 'umbrellajs';
 import ScrollMagic from 'scrollmagic';
 import 'animation.gsap';
 import home from './pages/home';
+import serviceManager from './services/serviceManager';
+import onloadService from './services/onloadService';
+
+const onloadServiceInstance = serviceManager.use(onloadService);
+
+onloadServiceInstance.addListener(function(){
+    u('body').addClass('loaded');
+    u('#nav').addClass('loaded'); 
+});
 
 var isHome = true;
 
@@ -64,8 +73,3 @@ function scroll() {
 };
 
 if(!isHome) window.addEventListener('scroll', scroll);
-
-window.onload = function(){
-    u('body').addClass('loaded');
-    u('#nav').addClass('loaded');
-}

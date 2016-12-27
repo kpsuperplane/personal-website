@@ -367,6 +367,9 @@ h5 {
         opacity: 1 !important; }
       #mobile-menu a:hover::after {
         transform: scale(1, 1); }
+    #mobile-menu .social .button.resume {
+      font-size: 1.2em !important;
+      margin-left: 1em !important; }
     #mobile-menu.active {
       opacity: 1; }
       #mobile-menu.active a {

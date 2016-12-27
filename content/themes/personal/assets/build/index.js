@@ -69,18 +69,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	if ((0, _umbrellajs.u)('body').hasClass('home-template')) _home2.default.init(); //initialize home js on homepage
-	else {
-	        //auto "shadowify" nav on non-homepages
-	        var controller = new _scrollmagic2.default.Controller();
+	var isHome = true;
 
-	        var pageTimeline = new TimelineMax();
-	        pageTimeline.add([TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
-	        var pageScene = new _scrollmagic2.default.Scene({ duration: '50px', offset: 0, triggerHook: 0, triggerElement: (0, _umbrellajs.u)('body').first(), reverse: true });
-	        pageScene.setTween(pageTimeline);
-	        controller.addScene(pageScene);
-	        (0, _umbrellajs.u)('iframe').wrap('<div class="video-wrapper">');
-	    }
+	if ((0, _umbrellajs.u)('body').hasClass('home-template')) _home2.default.init(); //initialize home js on homepage 
+	else isHome = false;
+	//auto "shadowify" nav on non-homepages
+	var controller = new _scrollmagic2.default.Controller();
+
+	var pageTimeline = new TimelineMax();
+	pageTimeline.add([isHome ? TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)", background: "rgba(255,255,255,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", background: "rgba(255,255,255,1)", ease: Power0.easeNone }) : TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
+	var pageScene = new _scrollmagic2.default.Scene({ duration: '50px', offset: 0, triggerHook: 0, triggerElement: (0, _umbrellajs.u)('body').first(), reverse: true });
+	pageScene.setTween(pageTimeline);
+	controller.addScene(pageScene);
+	(0, _umbrellajs.u)('iframe').wrap('<div class="video-wrapper">');
 
 	var lastScrollTop = 0,
 	    scrollHidden = false;
@@ -14332,7 +14333,6 @@
 	            var bannerVerticalOffset = h - w * 1068 / 1600 + h / 8;
 	            bannerVerticalOffset = bannerVerticalOffset < 0 ? bannerVerticalOffset : 0;
 	            bannerTimeline.clear();
-	            bannerTimeline.add([TweenMax.fromTo("#nav", 1, { backgroundColor: "rgba(255,255,255,0)", boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { backgroundColor: "rgba(255,255,255,1)", boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
 	            if (isMobile()) return; //ignore mobile browsers
 	            bannerTimeline.add([TweenMax.fromTo("#banner-background-foreground", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset - 80) + "px", ease: Power0.easeNone }), TweenMax.fromTo("#banner-background-background", 1, { backgroundPosition: "center " + bannerVerticalOffset + "px" }, { backgroundPosition: "center " + (bannerVerticalOffset + 160) + "px", ease: Power0.easeNone })]);
 	        });

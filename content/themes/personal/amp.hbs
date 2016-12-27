@@ -24,7 +24,7 @@
             max-width:600px;
             box-sizing:border-box;
             margin:0 auto;
-            padding:1em;
+            padding:0 2em;
         }
     .post {
     padding: 0em 0px 3em 0;
@@ -136,12 +136,15 @@
         height: 0; }
         .main-header{
             padding:1em;
-            background:#2AC648;
+            text-align:center;
         }
         .main-header a{
             text-decoration:none;
             color:#FFF;
             font-weight:700;
+            color:#2AC648;
+            display:block;
+            margin-top:0.5em;
         }
         body{
             font-family: "Lato", sans-serif;
@@ -154,6 +157,10 @@
             font-size: 1.3em;
             line-height: 1.8em;
             font-weight: 400
+        }
+        .post-meta{
+            text-align:center;
+            font-size:1.5em;
         }
     </style>
 
@@ -169,7 +176,7 @@
     {{#post}}
     <header class="main-header">
         <nav class="blog-title">
-            <a href="{{@blog.url}}">KEVIN PEI'S BLOG</a>
+            <a href="{{@blog.url}}"><amp-img src="/assets/lib/img/logo.png" alt="Kevin Pei" height="128" width="128"></amp-img>KEVIN PEI'S BLOG</a>
         </nav>
     </header>
 
@@ -179,9 +186,6 @@
             <header class="post-header">
                 <h1 class="post-title">{{title}}</h1>
                 <section class="post-meta">
-                    {{#author}}
-                    <p class="author">by <a href="{{url}}">{{name}}</a></p>
-                    {{/author}}
                     <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY-MM-DD"}}</time>
                 </section>
             </header>

@@ -174,7 +174,7 @@ export default {
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];
             var link = u('<a href="javascript:void(0);"></a>');
-            var card = u('<div class="projects-card-item"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
+            var card = u('<div class="projects-card-item"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button" target="_blank">SEE PROJECT</a></div></div>');
             u('#projects-card-navigation').append(link);
             u('#projects-card').prepend(card);
             projectCards.push(card);

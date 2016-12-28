@@ -336,6 +336,84 @@ h5{
 }
 
 /* ------------
+    Footer
+------------ */
+#footer{
+    background:#232323;
+    color:#666;
+    padding:4em 0;
+    text-align:center;
+    #footer-nav{
+        position:relative;
+        margin-bottom:2em;
+        #footer-nav-home{
+            display:inline-block;
+            img{ 
+                display:block;
+                height:64px;
+                width:64px;
+            }
+        }
+        #footer-nav-left{
+            position:absolute;
+            right:50%;
+            top:0;
+            margin-right:64px;
+            text-align:right;
+            width:400px;
+        }
+        #footer-nav-right{
+            position:absolute;
+            left:50%;
+            top:0;
+            margin-left:64px;
+            width:400px;
+            text-align:left;
+        }
+        #footer-nav-left a, #footer-nav-right a{
+            font-size:14px;
+            font-weight:700;
+            color:#666;
+            transition: color 500ms;
+            text-decoration:none;
+            &:hover{
+                color:$theme;
+                text-decoration:none;
+            }
+            display:inline-block;
+            padding:25px;
+        }
+    }
+    .social a{
+        color:#CCC;
+        &.button{
+            border-color:#AAA;
+            color:#AAA;
+        }
+    }
+    #footer-copyright{
+        color:#888; 
+        .text-cross{
+            position:relative;
+            &:after{
+                position:absolute;
+                left:0px;
+                width:100%;
+                box-sizing:content-box;
+                padding:0 2px;
+                top:50%;
+                margin-left:-2px;
+                height:2px;
+                margin-top:-1px;
+                background:#AAA;
+                transform:rotate(-10deg);
+                content: '';
+            }
+        }
+    }
+}
+
+/* ------------
      Pages
 ------------ */
 @import 'home.scss';

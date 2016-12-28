@@ -132,6 +132,16 @@
                         background-size:cover;
                         opacity:0.2;
                     }
+                    div.projects-card-item{
+                        position:relative;
+                        display:none;
+                        width:100%;
+                        top:0;
+                        left:0;
+                        &.active{
+                            display:block;
+                        }
+                    }
                     div#projects-card-navigation{
                         position:absolute;
                         line-height:normal;

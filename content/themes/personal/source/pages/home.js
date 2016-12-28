@@ -88,20 +88,33 @@ export default {
                 'subtitle' : 'Improving experiences for a traditional school website',
                 'url' : 'http://markvillehistory.com'
             },{
-                'name' : 'MARKHAM GETTING TOGETHER',
+                'name' : 'MGT',
                 'image' : 'mgt.jpg',
                 'subtitle' : 'Faciliating greater outreach for community events',
                 'url' : 'http://markham-getting-together.com'
             }
         ];
+        var currentIndex = 0;
+        var projectCards = [];
+        function showItem(index){
+            currentIndex = index;
+            var card = projectCards[index].first();
+            card.style.position = "absolute";
+            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Power1.easeOut, onComplete: function(){
+                u('.projects-card-item.active').removeClass('active');
+                projectCards[index].addClass('active');
+            }});
+        }
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];
             var link = u('<a href="javascript:void(0);"></a>');
-            var card = u('<div class="projects-card-item" style="background: linear-gradient('+projectColors[i]+', '+projectColors[i+1]+');"><div id="projects-card-image" style="background-image:url(\''+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
+            var card = u('<div class="projects-card-item" style="background: linear-gradient('+projectColors[i]+', '+projectColors[i+1]+');"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
             u('#projects-card-navigation').append(u);
             u('#projects-card').prepend(card);
-            link.on('click', alert.bind(this, i));
+            projectCards.push(card);
+            link.on('click', showItem.bind(this, i));
         }
+        showItem(0);
 
         /* --- BLOG-- */
         var blogTimeline = new TimelineMax({paused: true});

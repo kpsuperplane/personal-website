@@ -1,7 +1,6 @@
 import {u} from 'umbrellajs';
 import ScrollMagic from 'scrollmagic';
 import 'animation.gsap';
-import 'ScrollToPlugin'; 
 export default class navigationService{
     init(){
         var isHome = u('body').hasClass('home-template');

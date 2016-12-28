@@ -94,15 +94,18 @@ export default {
                 'url' : 'http://markham-getting-together.com'
             }
         ];
-        var currentIndex = 0;
+        var currentIndex = -1;
         var projectCards = [];
         var projectLinks = [];
         function showItem(index){
+            if(index == currentIndex) return;
             currentIndex = index;
             var card = projectCards[index].first();
             card.style.position = "absolute";
             card.style.display = "block";
             card.style.zIndex = 10;
+            document.getElementById('projects-card-chevron-left').style.display = index == 0 ? "none" : "block";
+            document.getElementById('projects-card-chevron-right').style.display = index == projects.length-1 ? "none" : "block";
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
             u('#projects-card').first().style.background = 'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')';
@@ -117,6 +120,12 @@ export default {
                 card.style.zIndex = null;
             }).bind(this, index)});
         }
+        u('#projects-card-chevron-left').on('click', function(){
+            showItem(currentIndex - 1);
+        });
+        u('#projects-card-chevron-right').on('click', function(){
+            showItem(currentIndex + 1);
+        });
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];
             var link = u('<a href="javascript:void(0);"></a>');

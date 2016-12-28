@@ -103,8 +103,10 @@ export default {
             card.style.display = "block";
             TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Power1.easeOut, onComplete: function(){
                 var currentlyActive = u('.projects-card-item.active');
-                currentlyActive.removeClass('active');
-                currentlyActive.first().style.display = "none";
+                if(currentlyActive.length > 0){
+                    currentlyActive.removeClass('active');
+                    currentlyActive.first().style.display = "none";
+                }
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
             }});
@@ -154,7 +156,7 @@ export default {
         }
         u('.blog-toggle').on('click', openBlog);
         u('#nav a, .quickNav').on('click', function(e){
-            if(e.target.hash != '#!/blog'){
+            if(e.target.hash && e.target.hash != '#!/blog'){
                 var blog = u('#blog').first();
                 if(blog.style.display == "block"){
                     blog.style.position = "absolute";

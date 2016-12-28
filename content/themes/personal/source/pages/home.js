@@ -66,7 +66,7 @@ export default {
 
         /* --- PROJECTS -- */
         var projectColors = ['#1577E8', '#EA16F5', '#16F516', '#A200FF', '#FFFB00', '#FF0000', '#00FFB3'];
-        var projectData = [
+        var projects = [
             {
                 'name' : 'PROJECT 5K',
                 'image' : 'project5k.jpg',

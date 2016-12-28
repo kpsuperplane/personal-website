@@ -152,13 +152,13 @@ export default {
             var currentlyActive = null;
             if(currentIndex != -1){
                 currentlyActive = projectCards[currentIndex];
-                TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1}, {opacity: 0, ease: Expo.easeIn, onComplete: function(){
+                TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1, scale: 1}, {opacity: 0, scale: 0.75, ease: Power2.easeInOut, onComplete: function(){
                     currentlyActive.removeClass('active');
                     currentlyActive.first().style.display = "none";
                 }});
             }
             currentIndex = index;
-            TweenMax.fromTo(card, 0.35, {opacity: 0, scale: 1.5}, {opacity: 1, scale: 1, ease: Expo.easeOut, onComplete: (function(index, card){
+            TweenMax.fromTo(card, 0.35, {opacity: 0, scale: 1.25}, {opacity: 1, scale: 1, ease: Power2.easeInOut, onComplete: (function(index, card){
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
                 card.style.zIndex = null;

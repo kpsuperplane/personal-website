@@ -37,7 +37,7 @@ export default {
             u('#loader-old-message').remove()
             var nextMessage = u('<div />').text(messages[rand]).attr({class: 'loader-message', id: 'loader-next-message'});
             u('#loader').append(nextMessage);
-            ('u#loader-main-message').attr({id: 'loader-old-message'});
+            u('#loader-main-message').attr({id: 'loader-old-message'});
             
             //allow dom to update so animation can proceed
             setTimeout(() => {

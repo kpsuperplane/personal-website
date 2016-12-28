@@ -100,16 +100,20 @@ export default {
             currentIndex = index;
             var card = projectCards[index].first();
             card.style.position = "absolute";
+            card.style.display = "block";
             TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Power1.easeOut, onComplete: function(){
-                u('.projects-card-item.active').removeClass('active');
+                var currentlyActive = u('.projects-card-item.active');
+                currentlyActive.removeClass('active');
+                currentlyActive.first().style.display = "none";
                 projectCards[index].addClass('active');
+                card.style.position = "relative";
             }});
         }
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];
             var link = u('<a href="javascript:void(0);"></a>');
             var card = u('<div class="projects-card-item" style="background: linear-gradient('+projectColors[i]+', '+projectColors[i+1]+');"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
-            u('#projects-card-navigation').append(u);
+            u('#projects-card-navigation').append(link);
             u('#projects-card').prepend(card);
             projectCards.push(card);
             link.on('click', showItem.bind(this, i));

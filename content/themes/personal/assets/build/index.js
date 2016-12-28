@@ -92,7 +92,7 @@
 	var controller = new _scrollmagic2.default.Controller();
 
 	var pageTimeline = new TimelineMax();
-	pageTimeline.add([isHome ? TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)", background: "rgba(255,255,255,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", background: "rgba(255,255,255,1)", ease: Power0.easeNone }) : TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
+	pageTimeline.add([isHome ? TweenMax.fromTo("#nav", window.innerHeight + "px", { boxShadow: "0px 0px 20px rgba(0,0,0,0)", background: "rgba(255,255,255,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", background: "rgba(255,255,255,1)", ease: Power0.easeNone }) : TweenMax.fromTo("#nav", 1, { boxShadow: "0px 0px 20px rgba(0,0,0,0)" }, { boxShadow: "0px 0px 20px rgba(0,0,0,0.05)", ease: Power0.easeNone })]);
 	var pageScene = new _scrollmagic2.default.Scene({ duration: '50px', offset: 0, triggerHook: 0, triggerElement: (0, _umbrellajs.u)('body').first(), reverse: true });
 	pageScene.setTween(pageTimeline);
 	controller.addScene(pageScene);
@@ -141,7 +141,7 @@
 	    lastScrollTop = st;
 	};
 
-	if (!isHome) window.addEventListener('scroll', scroll);
+	window.addEventListener('scroll', scroll);
 
 /***/ },
 /* 2 */

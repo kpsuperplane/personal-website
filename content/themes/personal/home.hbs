@@ -73,6 +73,11 @@
             </div>
         </div>
         </div>
+        {{#get "posts" limit="all" filter="tags:[project-page]"}}
+            {{#foreach posts}}
+                <a href="{{slug}}">{title}}</a>
+            {{/foreach}}
+        {{/get}}
     </section>
     <section id="code">
         <div id="code-target"></div>

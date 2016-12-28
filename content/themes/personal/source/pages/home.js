@@ -105,6 +105,7 @@ export default {
             card.style.zIndex = 10;
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
+            TweenMax.to('#projects-card', 0.25, {background:'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')'});
             TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
                 var currentlyActive = u('.projects-card-item.active');
                 if(currentlyActive.length > 0){
@@ -119,7 +120,7 @@ export default {
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];
             var link = u('<a href="javascript:void(0);"></a>');
-            var card = u('<div class="projects-card-item" style="background: linear-gradient('+projectColors[i]+', '+projectColors[i+1]+');"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
+            var card = u('<div class="projects-card-item"><div id="projects-card-image" style="background-image:url(\'/assets/lib/img/sites/'+project.image+'\')"></div><img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/><div id="projects-card-content"><h1 class="card-title">'+project.name+'</h1><h2 class="card-caption">'+project.subtitle+'</h2><a href="'+project.url+'" class="button">SEE PROJECT</a></div></div>');
             u('#projects-card-navigation').append(link);
             u('#projects-card').prepend(card);
             projectCards.push(card);

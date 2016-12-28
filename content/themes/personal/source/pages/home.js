@@ -27,15 +27,15 @@ export default {
         var lastLoad = 0
 
         function doLoad(){ 
-            messages = ['Mixing awesomesauce', 'Generating experiences', 'Synchronizing passions', 'Revitalizing dreams', 'Building the unbuildable', 'Inspiring innovation', 'Flying to the moon', 'Spreading smiles', 'Filtering memes', 'Feeding puppies', 'Picking up Bobby Tables']
+            var messages = ['Mixing awesomesauce', 'Generating experiences', 'Synchronizing passions', 'Revitalizing dreams', 'Building the unbuildable', 'Inspiring innovation', 'Flying to the moon', 'Spreading smiles', 'Filtering memes', 'Feeding puppies', 'Picking up Bobby Tables']
             
-            rand = lastLoad
+            var rand = lastLoad;
             while(rand == lastLoad)
                 rand = getRandomInt(0, messages.length-1)
             lastLoad = rand
             
             u('#loader-old-message').remove()
-            nextMessage = u('<div />').text(messages[rand]).attr({class: 'loader-message', id: 'loader-next-message'});
+            var nextMessage = u('<div />').text(messages[rand]).attr({class: 'loader-message', id: 'loader-next-message'});
             u('#loader').append(nextMessage);
             ('u#loader-main-message').attr({id: 'loader-old-message'});
             

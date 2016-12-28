@@ -129,9 +129,43 @@
                         left:0px;
                         width:100%;
                         height:100%;
-                        background-image:url(asset('img/projects/project5k.jpg'));
                         background-size:cover;
                         opacity:0.2;
+                    }
+                    div#projects-card-navigation{
+                        position:absolute;
+                        line-height:normal;
+                        right:3em;
+                        bottom:3em;
+                        text-align:right;
+                        a{
+                            float:left;
+                            text-decoration:none;
+                            opacity:0.3;
+                            display:inline-block;
+                            height: 2em;
+                            text-align:center;
+                            width:1.5em;
+                            transition: opacity 200ms;
+                            vertical-align:bottom;
+                            &:after{
+                                content: '';
+                                display:inline-block;
+                                height:1em;
+                                width:1px;
+                                margin-top:1em;
+                                transition: transform 200ms;
+                                transform-origin: 0 100%;
+                                transform: scale(1, 1);
+                                background:$textGrey;
+                            }
+                            &:hover, &.active{
+                                opacity:1;
+                                &:after{
+                                    transform:scale(1, 2);
+                                }
+                            }
+                        }
                     }
                     div#projects-card-content{
                         line-height:normal;
@@ -154,41 +188,6 @@
                             margin:1em 0 1.5em 0;
                             padding:0;
                             font-size:1.3em;
-                        }
-                        div#projects-card-navigation{
-                            position:absolute;
-                            line-height:normal;
-                            right:3em;
-                            bottom:3em;
-                            text-align:right;
-                            a{
-                                float:left;
-                                text-decoration:none;
-                                opacity:0.3;
-                                display:inline-block;
-                                height: 2em;
-                                text-align:center;
-                                width:1.5em;
-                                transition: opacity 200ms;
-                                vertical-align:bottom;
-                                &:after{
-                                    content: '';
-                                    display:inline-block;
-                                    height:1em;
-                                    width:1px;
-                                    margin-top:1em;
-                                    transition: transform 200ms;
-                                    transform-origin: 0 100%;
-                                    transform: scale(1, 1);
-                                    background:$textGrey;
-                                }
-                                &:hover, &.active{
-                                    opacity:1;
-                                    &:after{
-                                        transform:scale(1, 2);
-                                    }
-                                }
-                            }
                         }
                     }
                 }

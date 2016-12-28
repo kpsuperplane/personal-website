@@ -55,8 +55,8 @@
             <div class="card" id="projects-card">
                 {{#get "posts" limit="all" filter="tags:[project-page]"}}
                     {{#foreach posts}}
-                        <div class="projects-card-item" style="background-image:url('{{image}}')">
-                            <div id="projects-card-image"></div>
+                        <div class="projects-card-item">
+                            <div id="projects-card-image" style="background-image:url('{{image}}')"></div>
                             <img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/>
                             <div id="projects-card-content">
                                 <h1 class="card-title">{{meta_title}}</h1>

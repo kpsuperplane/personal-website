@@ -108,18 +108,21 @@ export default {
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
             u('#projects-card').first().style.background = 'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')';
-            var currentlyActive = projectCards[currentIndex];
-            if(currentIndex != -1) TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1}, {opacity: 0, ease: Expo.easeIn, onComplete: function(){
-                currentlyActive.removeClass('active');
-                currentlyActive.first().style.display = "none";
-            }});
+            var currentlyActive = null;
+            if(currentIndex != -1){
+                currentlyActive = projectCards[currentIndex];
+                TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1}, {opacity: 0, ease: Expo.easeIn, onComplete: function(){
+                    currentlyActive.removeClass('active');
+                    currentlyActive.first().style.display = "none";
+                }});
+            }
             currentIndex = index;
-            TweenMax.fromTo(card, 0.35, {opacity: 0, scale: 1.5}, {opacity: 1, scale: 1, ease: Expo.easeOut, onComplete: (function(index){
+            TweenMax.fromTo(card, 0.35, {opacity: 0, scale: 1.5}, {opacity: 1, scale: 1, ease: Expo.easeOut, onComplete: (function(index, card){
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
-                currentlyActive.first().style.position = "absolute";
                 card.style.zIndex = null;
-            }).bind(this, index)});
+                if(currentlyActive != null) currentlyActive.first().style.position = "absolute";
+            }).bind(this, index, card)});
         }
         u('#projects-card-chevron-left').on('click', function(){
             showItem(currentIndex - 1);

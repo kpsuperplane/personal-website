@@ -217,7 +217,7 @@ export default {
         }
         u('.blog-toggle').on('click', openBlog);
         u('#nav a, .quickNav').on('click', function(e){
-            if(e.target.hash && e.target.hash != '#!/blog'){
+            if(this.hash && this.hash != '#!/blog'){
                 var blog = u('#blog').first();
                 if(blog.style.display == "block"){
                     blog.style.position = "absolute";

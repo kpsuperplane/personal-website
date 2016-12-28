@@ -19,6 +19,47 @@ function isMobile() { //credit to http://stackoverflow.com/questions/11381673/de
 
 export default {
     init: function(){
+        /* --- LOADING ANIMATION --- */
+        var loading = true
+
+        var getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+        
+        var lastLoad = 0
+
+        function doLoad(){ 
+            messages = ['Mixing awesomesauce', 'Generating experiences', 'Synchronizing passions', 'Revitalizing dreams', 'Building the unbuildable', 'Inspiring innovation', 'Flying to the moon', 'Spreading smiles', 'Filtering memes', 'Feeding puppies', 'Picking up Bobby Tables']
+            
+            rand = lastLoad
+            while(rand == lastLoad)
+                rand = getRandomInt(0, messages.length-1)
+            lastLoad = rand
+            
+            u('#loader-old-message').remove()
+            nextMessage = u('<div />').text(messages[rand]).attr({class: 'loader-message', id: 'loader-next-message'});
+            u('#loader').append(nextMessage);
+            ('u#loader-main-message').attr({id: 'loader-old-message'});
+            
+            //allow dom to update so animation can proceed
+            setTimeout(() => {
+                nextMessage.attr({id: 'loader-main-message'});
+            }, 10)
+            
+            //Rerun every 1.2s
+            setTimeout(() => {
+                if(loading) doLoad();
+            }, 1200)
+            return
+        }
+        setTimeout(() => {
+            if(loading) doLoad();
+        }, 400)
+        onloadServiceInstance.addListener(function(){
+            TweenMax.fromTo('#loader', 0.7, {opacity: 1}, {opacity:0, onComplete: function(){
+                u('#loader').remove();
+            }});
+        });
+
+
         var controller = new ScrollMagic.Controller();
 
         /* --- BANNER --- */

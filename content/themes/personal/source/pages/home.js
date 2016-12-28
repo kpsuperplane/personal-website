@@ -96,12 +96,16 @@ export default {
         ];
         var currentIndex = 0;
         var projectCards = [];
+        var projectLinks = [];
         function showItem(index){
             currentIndex = index;
             var card = projectCards[index].first();
             card.style.position = "absolute";
             card.style.display = "block";
-            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Power1.easeOut, onComplete: function(){
+            card.style.zIndex = 10;
+            u('#projects-card-navigation a.active').removeClass('active');
+            projectLinks[i].addClass('active');
+            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: function(){
                 var currentlyActive = u('.projects-card-item.active');
                 if(currentlyActive.length > 0){
                     currentlyActive.removeClass('active');
@@ -109,6 +113,7 @@ export default {
                 }
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
+                card.style.zIndex = null;
             }});
         }
         for(var i = 0; i < projects.length; i++){
@@ -118,6 +123,7 @@ export default {
             u('#projects-card-navigation').append(link);
             u('#projects-card').prepend(card);
             projectCards.push(card);
+            projectLinks.push(link);
             link.on('click', showItem.bind(this, i));
         }
         showItem(0);

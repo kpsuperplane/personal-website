@@ -114,7 +114,7 @@ export default {
                 currentlyActive.first().style.display = "none";
             }});
             currentIndex = index;
-            TweenMax.fromTo(card, 0.35, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
+            TweenMax.fromTo(card, 0.35, {opacity: 0, scale: 1.5}, {opacity: 1, scale: 1, ease: Expo.easeOut, onComplete: (function(index){
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
                 currentlyActive.first().style.position = "absolute";

@@ -99,7 +99,6 @@ export default {
         var projectLinks = [];
         function showItem(index){
             if(index == currentIndex) return;
-            currentIndex = index;
             var card = projectCards[index].first();
             card.style.position = "absolute";
             card.style.display = "block";
@@ -109,7 +108,9 @@ export default {
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
             u('#projects-card').first().style.background = 'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')';
-            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
+            if(currentIndex != -1) TweenMax.fromTo(projectCards[currentIndex].first(), 0.5, {opacity: 1}, {opacity: 0});
+            currentIndex = index;
+            TweenMax.fromTo(card, 0.5, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
                 var currentlyActive = u('.projects-card-item.active');
                 if(currentlyActive.length > 0){
                     currentlyActive.removeClass('active');

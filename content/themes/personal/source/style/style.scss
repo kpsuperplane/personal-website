@@ -412,6 +412,11 @@ h5{
         }
     }
 }
+@media(max-width: 800px){
+    #footer-nav{
+        display:none;
+    }
+}
 
 /* ------------
      Pages

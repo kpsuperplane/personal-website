@@ -152,7 +152,7 @@ export default {
             var currentlyActive = null;
             if(currentIndex != -1){
                 currentlyActive = projectCards[currentIndex];
-                TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1, scale: 1}, {opacity: 0, scale: 0.75, ease: Power2.easeInOut, onComplete: function(){
+                TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1, }, {opacity: 0, ease: Power2.easeInOut, onComplete: function(){
                     currentlyActive.removeClass('active');
                     currentlyActive.first().style.display = "none";
                 }});

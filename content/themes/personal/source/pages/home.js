@@ -104,8 +104,8 @@ export default {
             card.style.display = "block";
             card.style.zIndex = 10;
             u('#projects-card-navigation a.active').removeClass('active');
-            projectLinks[i].addClass('active');
-            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: function(){
+            projectLinks[index].addClass('active');
+            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
                 var currentlyActive = u('.projects-card-item.active');
                 if(currentlyActive.length > 0){
                     currentlyActive.removeClass('active');
@@ -114,7 +114,7 @@ export default {
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
                 card.style.zIndex = null;
-            }});
+            }).bind(this, index)});
         }
         for(var i = 0; i < projects.length; i++){
             var project = projects[i];

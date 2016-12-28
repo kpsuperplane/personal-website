@@ -26,13 +26,9 @@ body,html{
     margin:0;
 }
 body{
-    opacity:0;
     font-size:14px;
     @extend .standardFont;
     transition: opacity 500ms;
-    &.loaded{
-        opacity:1;
-    }
 }
 /* ------------
   Typography

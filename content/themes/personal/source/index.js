@@ -12,7 +12,6 @@ serviceManager.use(navigationService);
 const onloadServiceInstance = serviceManager.use(onloadService);
 
 onloadServiceInstance.addListener(function(){
-    u('body').addClass('loaded');
     u('#nav').addClass('loaded'); 
 });
 

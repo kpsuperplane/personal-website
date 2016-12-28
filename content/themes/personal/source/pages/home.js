@@ -108,16 +108,16 @@ export default {
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
             u('#projects-card').first().style.background = 'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')';
-            if(currentIndex != -1) TweenMax.fromTo(projectCards[currentIndex].first(), 0.25, {opacity: 1}, {opacity: 0, ease: Expo.easeIn});
+            var currentlyActive = projectCards[currentIndex];
+            if(currentIndex != -1) TweenMax.fromTo(currentlyActive.first(), 0.35, {opacity: 1}, {opacity: 0, ease: Expo.easeIn, onComplete: function(){
+                currentlyActive.removeClass('active');
+                currentlyActive.first().style.display = "none";
+            }});
             currentIndex = index;
-            TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
-                var currentlyActive = u('.projects-card-item.active');
-                if(currentlyActive.length > 0){
-                    currentlyActive.removeClass('active');
-                    currentlyActive.first().style.display = "none";
-                }
+            TweenMax.fromTo(card, 0.35, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
                 projectCards[index].addClass('active');
                 card.style.position = "relative";
+                currentlyActive.first().style.position = "absolute";
                 card.style.zIndex = null;
             }).bind(this, index)});
         }

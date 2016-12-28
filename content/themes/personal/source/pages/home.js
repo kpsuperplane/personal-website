@@ -105,7 +105,7 @@ export default {
             card.style.zIndex = 10;
             u('#projects-card-navigation a.active').removeClass('active');
             projectLinks[index].addClass('active');
-            TweenMax.to('#projects-card', 0.25, {background:'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')'});
+            u('#projects-card').first().style.background = 'linear-gradient('+projectColors[index]+', '+projectColors[index+1]+')';
             TweenMax.fromTo(card, 0.25, {opacity: 0, y: '100%'}, {opacity: 1, y: '0%', ease: Expo.easeOut, onComplete: (function(index){
                 var currentlyActive = u('.projects-card-item.active');
                 if(currentlyActive.length > 0){

@@ -53,12 +53,19 @@
         <div id="projects-container">
             <div id="projects-card-wrapper">
             <div class="card" id="projects-card">
-                <div id="projects-card-image"></div>
-                <img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/>
-                <div id="projects-card-content">
-                <h1 class="card-title">Project 5K</h1>
-                <h2 class="card-caption">Promoting greater volunteerism among youth</h2>
-                <a href="http://www.kevinpei.com" class="button">LEARN MORE</a>
+                {{#get "posts" limit="all" filter="tags:[project-page]"}}
+                    {{#foreach posts}}
+                        <div class="projects-card-item" style="background-image:url('{{image}}')">
+                            <div id="projects-card-image"></div>
+                            <img src="/assets/lib/img/whiteoverlay.png" id="projects-card-overlay"/>
+                            <div id="projects-card-content">
+                                <h1 class="card-title">{{meta_title}}</h1>
+                                <h2 class="card-caption">{{meta_description}}</h2>
+                                <a href="{{url}}" class="button">LEARN MORE</a>
+                            </div>
+                        </div>
+                    {{/foreach}}
+                {{/get}}
                 <div id="projects-card-navigation">
                     <a href="javascript:void(0);" class="active"></a>
                     <a href="javascript:void(0);"></a>
@@ -66,18 +73,12 @@
                     <a href="javascript:void(0);"></a>
                     <a href="javascript:void(0);"></a>
                 </div>
-                </div>
             </div>
             <a href="javascript:void(0);" class="projects-card-chevron el el-chevron-left" id="projects-card-chevron-left"></a>
             <a href="javascript:void(0);" class="projects-card-chevron el el-chevron-right" id="projects-card-chevron-right"></a>
             </div>
         </div>
         </div>
-        {{#get "posts" limit="all" filter="tags:[project-page]"}}
-            {{#foreach posts}}
-                <a href="{{slug}}">{title}}</a>
-            {{/foreach}}
-        {{/get}}
     </section>
     <section id="code">
         <div id="code-target"></div>

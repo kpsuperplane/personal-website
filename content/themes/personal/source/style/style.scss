@@ -1,6 +1,7 @@
 $theme: #2AC648;
 $darkGrey: #151515;
 $textGrey: rgba(33,33,33,0.8);
+#ie-overlay{position:relative;position:fixed;z-index:100;top:0;left:0;width:100%;height:100%;background:#fff;overflow-y:auto;padding-top:3em;text-align:center;display:block!important}#ie-overlay br{display:block!important}#ie-overlay h2{margin-left:3em;display:block!important;margin-right:3em}#ie-overlay p{display:block!important;margin-left:3em;margin-right:3em;text-align:center}#ie-overlay .btn{display:inline-block!important}
 
 @function asset($path){ 
   @return "./" + $path;

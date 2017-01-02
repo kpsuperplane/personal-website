@@ -5,10 +5,7 @@
     <article class="{{post_class}}">
         {{#post}}
         <div class="post-inner">
-            {{#if image}}
-                <img src="{{image}}" class="cover-image"/>
-            {{/if}}
-            <h1 class="title">{{{title}}}</h1>
+            <div class="page-cover" style="background-image:url('{{image}}')"><h1 class="title">{{{title}}}</h1></div>
             <span class="post-meta"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format='DD MMM YYYY'}}</time> {{tags prefix="in " separator=" | "}}</span>
             <div>
                 {{content}}

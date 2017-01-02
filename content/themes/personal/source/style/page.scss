@@ -2,17 +2,21 @@
     padding:0 0 2em 0;
     .post-inner{
         max-width:none;
-        img{
-            border-radius:0px;
-            margin:0 0;
+        div.page-cover{
+            background-size:cover;
+            background-position:center center;
+            background-color:$theme;
+            padding:0;
         }
         h1, h2, h3, h4, h5, h6, blockquote{
             @extend .container; 
         }
         h1.title{
-            margin-top:-1.5em;
-            padding:0.5em;
-            background:#FFF;
+            padding:3em 2em;
+            margin-top:0;
+            margin-bottom:0;
+            color:#FFF;
+            background:rgba($theme, 0.9);
         }
     }
 }

@@ -9,7 +9,7 @@
             padding:0;
         }
         div.page-cover-inner{
-            padding:10em 2em;
+            padding:15em 2em 12em 2em;
             margin-top:0;
             margin-bottom:0;
             background:rgba(0,0,0, 0.90);
@@ -19,9 +19,12 @@
         }
         h1.title{
             margin-top:0;
-            color:$theme;
+            color:#FFF;
             margin-bottom:0;
             padding:0;
+        }
+        .post-meta{
+            color:$theme;
         }
     }
 }

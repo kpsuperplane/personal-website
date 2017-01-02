@@ -7,14 +7,15 @@
             background-position:center center;
             background-color:$theme;
             padding:0;
+            margin-top:88px;
         }
         div.page-cover-inner{
-            padding:18em 2em 15em 2em;
+            padding:12em 2em 15em 2em;
             margin-top:0;
             margin-bottom:0;
             background-size:100% 100%;
             background-image:url(asset('img/banner/banner-overlay.png'));
-            background-color:rgba(255,255,255,0.7);
+            background-color:rgba(255,255,255,0.85);
         }
         h1, h2, h3, h4, h5, h6, blockquote{
             @extend .container; 

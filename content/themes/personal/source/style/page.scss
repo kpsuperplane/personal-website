@@ -8,15 +8,20 @@
             background-color:$theme;
             padding:0;
         }
+        div.page-cover-inner{
+            padding:3em 2em;
+            margin-top:0;
+            margin-bottom:0;
+            background:rgba(0,0,0, 0.95);
+        }
         h1, h2, h3, h4, h5, h6, blockquote{
             @extend .container; 
         }
         h1.title{
-            padding:3em 2em;
             margin-top:0;
+            color:$theme;
             margin-bottom:0;
-            color:#FFF;
-            background:rgba($theme, 0.9);
+            padding:0;
         }
     }
 }

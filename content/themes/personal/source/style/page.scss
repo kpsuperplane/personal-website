@@ -1,8 +1,11 @@
 .post.page{
-    img{
-        border-radius:0px;
-    }
-    p{
-        @extend .container; 
+    .post-inner{
+        max-width:none;
+        img{
+            border-radius:0px;
+        }
+        h1, h2, h3, h4, h5, h6, blockquote{
+            @extend .container; 
+        }
     }
 }

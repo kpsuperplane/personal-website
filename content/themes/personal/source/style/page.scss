@@ -18,7 +18,11 @@
             background-color:rgba(255,255,255,0.85);
         }
         h1, h2, h3, h4, h5, h6, blockquote{
-            @extend .container; 
+            @extend .container;
+            font-weight:300;
+            &, p{
+                line-height:2em;
+            } 
         }
         h1.title{
             margin-top:0;

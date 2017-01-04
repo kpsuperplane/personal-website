@@ -19,7 +19,8 @@
         }
         h1, h2, h3, h4, h5, h6, blockquote, p{
             @extend .container;
-            font-weight:300;
+            padding: 0 29px;
+	    font-weight:300;
             &, p{
                 line-height:2em;
             } 

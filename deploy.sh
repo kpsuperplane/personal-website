@@ -1,4 +1,5 @@
 #! /bin/bash
 echo "LogLevel=quiet" > ~/.ssh/config
 git remote add dokku dokku@$server_ip:personal
-yes | git push dokku production:master
+echo -e "Host ${server_ip}\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+git push dokku production:master

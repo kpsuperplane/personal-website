@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/deploy
     docker:
-      - image: splunk-forwarder:latest
+      - image: buildpack-deps:latest
     steps:
       - checkout
       - deploy:

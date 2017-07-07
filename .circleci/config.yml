@@ -5,9 +5,11 @@ jobs:
     docker:
       - image: node:4.8.0
     steps:
+      - checkout
       - deploy:
           name: Deploy Master to Heroku
           command: |
+            ls
             "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
             ./deploy.sh
 workflows:

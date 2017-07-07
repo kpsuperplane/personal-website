@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/deploy
     docker:
-      - image: node:4.8.0
+      - image: alpine:latest
     steps:
       - checkout
       - deploy:

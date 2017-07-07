@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/deploy
     docker:
-      - image: alpine:latest
+      - image: ubuntu:latest
     steps:
       - checkout
       - deploy:

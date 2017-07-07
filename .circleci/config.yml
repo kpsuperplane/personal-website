@@ -5,7 +5,6 @@ jobs:
     docker:
       - image: node:4.8.0
     steps:
-      - checkout
       - deploy:
           name: Deploy Master to Heroku
           command: |

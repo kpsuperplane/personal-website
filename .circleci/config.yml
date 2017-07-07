@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/deploy
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu-server:latest
     steps:
       - checkout
       - deploy:

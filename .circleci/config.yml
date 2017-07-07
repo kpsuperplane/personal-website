@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/
+    working_directory: ~/deploy
     docker:
       - image: node:4.8.0
     steps:
+      - checkout
       - deploy:
           name: Deploy Master to Heroku
           command: |

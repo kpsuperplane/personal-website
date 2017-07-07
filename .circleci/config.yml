@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/
+    docker:
+      - image: node:4.8.0
+    steps:
+      - checkout
+      - deploy:
+          name: Deploy Master to Heroku
+          command: |
+            "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+            ./deploy.sh
+workflows:
+  version: 2
+  production:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: production

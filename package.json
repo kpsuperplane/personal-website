@@ -1,0 +1,25 @@
+{
+  "name": "kpsuperplane-personal-website",
+  "version": "1.0.0",
+  "description": "Kevin Pei's Personal Website",
+  "author": "Kevin Pei",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kpsuperplane/personal-website.git"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "node current/index.js",
+    "init": "cd current && yarn install",
+    "postinstall": "knex-migrator init --mgpath=current"
+  },
+  "engines": {
+    "node": "^6.9.0"
+  },
+  "dependencies": {
+  },
+  "optionalDependencies": {
+  },
+  "devDependencies": {
+  }
+}

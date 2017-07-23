@@ -1,0 +1,31 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/deploy
+    docker:
+      - image: circleci/node:6.10.3
+    steps:
+      - checkout
+      - run:
+          command: | 
+            sudo npm install -g yarn
+            git config user.email "hello@kevinpei.com"
+            git config user.name "Kevin Pei"
+            yarn run init
+            git rm --cached core/client content/themes/casper
+            git rm .gitmodules
+            rm -rf core/client/.git content/themes/casper/.git
+            git add content/themes/casper/*
+            git commit -am "Inline submodules"
+      - deploy:
+          name: Deploy beta to Dokku
+          command: |
+            ./deploy.sh
+workflows:
+  version: 2
+  beta:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: "2017"

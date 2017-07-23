@@ -10,8 +10,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node current/index.js",
-    "init": "cd current && yarn install",
-    "postinstall": "./config.sh && knex-migrator init --mgpath=current"
+    "init": "cd current && npm install",
+    "postinstall": "./config.sh && npm install -g knex-migrator && knex-migrator init --mgpath=current"
   },
   "engines": {
     "node": "^6.9.0"

@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node current/index.js",
-    "preinstall": "npm install -g yarn knex-migrator && cd current && yarn install",
+    "preinstall": "export NODE_ENV=production && npm install -g yarn knex-migrator && cd current && yarn install",
     "postinstall": "./config.sh && knex-migrator init --mgpath=current"
   },
   "engines": {

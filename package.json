@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node current/index.js",
     "init": "cd current && yarn install",
-    "postinstall": "knex-migrator init --mgpath=current"
+    "postinstall": "./config.sh && knex-migrator init --mgpath=current"
   },
   "engines": {
     "node": "^6.9.0"

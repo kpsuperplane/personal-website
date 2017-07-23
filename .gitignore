@@ -4,3 +4,4 @@ content/logs
 versions/**/content/logs
 versions/**/content/data/*
 content/data/*
+config.production.json

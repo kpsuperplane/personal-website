@@ -23,6 +23,6 @@
     ]
   },
   "paths": {
-    "contentPath": "./content"
+    "contentPath": "../../content"
   }
 }

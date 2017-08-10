@@ -18,7 +18,14 @@ console.log(JSON.stringify({
     }
   },
   "mail": {
-    "transport": "Direct"
+    "transport": "SMTP",
+    "options": {
+        "service": "Mailgun",
+        "auth": {
+            "user": process.env.MAILUSER,
+            "pass": process.env.MAILPASS
+        }
+    }
   },
   "logging": {
     "transports": [

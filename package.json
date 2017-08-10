@@ -9,9 +9,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "start": "node current/index.js",
+    "start": "node versions/1.5.1/index.js",
     "preinstall": "export NODE_ENV=production && npm install -g yarn && yarn global add knex-migrator && cd current && yarn install --no-optional",
-    "postinstall": "./config.sh && NODE_ENV=production knex-migrator migrate --mgpath=current"
+    "postinstall": "./config.sh && cat versions/1.5.1/config.production.json && NODE_ENV=production knex-migrator migrate --mgpath=versions/1.5.1"
   },
   "engines": {
     "node": "^6.9.0"

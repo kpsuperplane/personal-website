@@ -3,5 +3,5 @@ node_modules
 content/logs
 versions/**/content/logs
 versions/**/content/data/*
-content/data/*
+content/data/ghost-local.db
 config.production.json

@@ -12,7 +12,16 @@ config = {
     // Configure your URL and mail settings here
     production: {
         url: 'http://kevinpei.com',
-        mail: {},
+        mail: {
+            transport: 'SMTP',
+             options: {
+                  service: 'Mailgun',
+                  auth: {
+                      user: process.env.MAILGUN_USER, // mailgun username
+                      pass: process.env.MAILGUN_PASS  // mailgun password
+                  }
+              }
+          },
         database: {
             client: 'pg',
             connection: process.env.DATABASE_URL/*{

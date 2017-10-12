@@ -1,0 +1,10 @@
+@import './common';
+html {
+    height: 100%;
+}
+body {
+    padding: 0;
+    margin: 0;
+    font-size: 16px;
+    @extend .body-font;
+}

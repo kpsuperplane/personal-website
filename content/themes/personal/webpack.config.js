@@ -6,7 +6,9 @@ module.exports = {
 	entry: "./src/index.tsx", // Point to main file
 	output: {
 		path: __dirname + "/assets/build",
-		filename: "bundle.js"
+		filename: "bundle.js",
+		publicPath: "/assets/build/",
+		chunkFilename: '[name].js',
 	},
 	resolve: {
 		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
@@ -24,6 +26,37 @@ module.exports = {
 				test: /\.jsx?$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
+			}, {
+				test: /\.js?$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/
+			}, {
+				test: /\.scss$/,
+				loaders: ["style-loader", "css-loader", "sass-loader"],
+				exclude: /node_modules/
+			}, {
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loaders: [
+					'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
+					{
+						loader: 'image-webpack-loader?bypassOnDebug&interlaced=false',
+						query: {
+							mozjpeg: {
+								progressive: true,
+							},
+							gifsicle: {
+								interlaced: false,
+							},
+							optipng: {
+								optimizationLevel: 4,
+							},
+							pngquant: {
+								quality: '75-90',
+								speed: 3,
+							},
+						}
+					}
+				],
 			}
 		]
 	},
@@ -36,12 +69,6 @@ module.exports = {
 			["dist"], {
 				verbose: true
 			}
-		),
-		// By default, webpack does `n=>n` compilation with entry files. This concatenates
-		// them into a single chunk.
-		new webpack.optimize.LimitChunkCountPlugin({
-			maxChunks: 1
-		}),
-		new webpack.HotModuleReplacementPlugin()
+		)
 	]
 };

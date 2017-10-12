@@ -1,0 +1,29 @@
+.home-component {
+    overflow-y: hidden;
+    position: relative;
+    background: #FFF;
+    background-size: cover;
+    .home-content {
+        height: 100%;
+        background-size: cover;
+        box-sizing: border-box;
+        overflow: hidden;
+        padding: 150px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+    .content-wrapper {
+        position: relative;
+        transform-origin: top center;
+        transform: translateY(85vh);
+        background: #FFF;
+        transition-timing-function: ease-out;
+        -webkit-transition-timing-function: ease-out;
+    }
+}
+img {
+    background: #EEE;
+}

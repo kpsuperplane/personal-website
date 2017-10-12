@@ -1,26 +1,34 @@
-import { render, version } from 'inferno';
-import Component from 'inferno-component';
-import { Incrementer } from './components/Incrementer';
+import { render } from 'inferno';
+import { Router, Route, IndexRoute, Redirect } from 'inferno-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 
-const container = document.getElementById('app');
+import App from './App';
 
-class MyComponent extends Component<any, any> {
-	private tsxVersion: number;
+declare var require: {
+    <T>(path: string): T;
+    (paths: string[], callback: (...modules: any[]) => void): void;
+    ensure: (paths: string[], callback: (require: <T>(path: string) => T) => void) => void;
+};
 
-	constructor(props, context) {
-		super(props, context);
+const Home = (props, cb) => 
+  require.ensure([], require => cb(null, (require('./views/Home') as any).default));
 
-		this.tsxVersion = 2.34; /* This is typed value */
-	}
 
-	public render() {
-		return (
-			<div>
-				<h1>{`Welcome to Inferno ${version} TSX ${this.tsxVersion}`}</h1>
-				<Incrementer name={'Crazy button'} />
-			</div>
-		);
-	}
+const browserHistory = createBrowserHistory();
+let lastPage = "";
+
+function handleNavigation({props}) {
+	if (lastPage != "") document.body.classList.remove(lastPage);
+	lastPage = props.getComponent.name.toLowerCase() + "-template";
+	document.body.classList.add(lastPage);
 }
 
-render(<MyComponent />, container);
+document.addEventListener("DOMContentLoaded", function(e) {
+	render(
+	<Router history={ browserHistory }>
+		<Route component={ App }>
+			<IndexRoute onEnter={handleNavigation} getComponent={Home} />
+			<Redirect from="*" to="/"/>
+		</Route>
+	</Router>, document.getElementById('app'));
+});

@@ -935,41 +935,43 @@ var createPath = exports.createPath = function createPath(location) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_history_createBrowserHistory__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_history_createBrowserHistory__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_router__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App__ = __webpack_require__(23);
 
 
 
 
 var Home = function Home(props, cb) {
-    return __webpack_require__.e/* require.ensure */(0).then((function (require) {
+    return __webpack_require__.e/* require.ensure */(0).then((function () {
         return cb(null, __webpack_require__(30).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
-var browserHistory = __WEBPACK_IMPORTED_MODULE_2_history_createBrowserHistory___default()();
-var lastPage = "";
+var browserHistory = __WEBPACK_IMPORTED_MODULE_0_history_createBrowserHistory___default()();
+var lastPage = '';
 function handleNavigation(_ref) {
     var props = _ref.props;
 
-    if (lastPage != "") document.body.classList.remove(lastPage);
-    lastPage = props.getComponent.name.toLowerCase() + "-template";
+    if (lastPage !== '') {
+        document.body.classList.remove(lastPage);
+    }
+    lastPage = props.getComponent.name.toLowerCase() + '-template';
     document.body.classList.add(lastPage);
 }
 
-document.addEventListener("DOMContentLoaded", function (e) {
-    Object(__WEBPACK_IMPORTED_MODULE_0_inferno__["render"])(Object(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Router"], null, null, {
+document.addEventListener('DOMContentLoaded', function (e) {
+    Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["render"])(Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Router"], null, null, {
         'history': browserHistory,
-        children: Object(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Route"], null, null, {
+        children: Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Route"], null, null, {
             'component': __WEBPACK_IMPORTED_MODULE_3__App__["a" /* default */],
-            children: [Object(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["IndexRoute"], null, null, {
+            children: [Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["IndexRoute"], null, null, {
                 'onEnter': handleNavigation,
                 'getComponent': Home
-            }), Object(__WEBPACK_IMPORTED_MODULE_0_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Redirect"], null, null, {
+            }), Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Redirect"], null, null, {
                 'from': '*',
                 'to': '/'
             })]

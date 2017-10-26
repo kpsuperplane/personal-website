@@ -1,140 +1,157 @@
+'use strict';
+
 import Component from 'inferno-component';
 
 import './Home.scss';
 
-let top = 0, touchStart = -1, velocityLast = 0, touchLast = -1, touchDelta = -1, touchLastBuffer = -1, scrollStart = -1, touchLastTime = -1, opened = false, winHeight = window.innerHeight, content:HTMLElement|null = null, wrapper:HTMLElement|null = null, hero:HTMLElement|null = null;
-
 export default class Home extends Component<any, {}> {
+    private top: number = 0;
+    private touchStart: number = -1;
+    private velocityLast: number = 0;
+    private touchLast: number = -1;
+    private touchDelta: number = -1;
+    private touchLastBuffer: number = -1;
+    private scrollStart: number = -1;
+    private touchLastTime: number = -1;
+    private opened: boolean = false;
+    private winHeight: number = window.innerHeight;
+    private content: HTMLElement|null = null;
+    private wrapper: HTMLElement|null = null;
+    private hero: HTMLElement|null = null;
     constructor(props) {
         super(props);
     }
-    updatePosition = () => {
-        top = content!!.getBoundingClientRect().top;
+    private updatePosition = () => {
+        this.top = this.content!!.getBoundingClientRect().top;
     }
-    updateHeight = () => {
-        wrapper!!.style.height = opened ? null : winHeight + 'px';
+    private updateHeight = () => {
+        this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
     }
-    dragRender = () => {
-        const delta = touchLast - touchStart;
-        let y = opened ? 0 : top + delta;
-        const percent = y/(winHeight * 0.85);
-        content!!.style.transform = `translate3d(0, ${y}px, 0)`;
-        hero!!.style.transform = `translate3d(0, ${-(1-percent) * winHeight / 2}px, 0)`;
-        hero!!.style.opacity = `${Math.max(0, (percent*1.3 - 0.3))}`;
+    private dragRender = () => {
+        const delta = this.touchLast - this.touchStart;
+        const y = this.opened ? 0 : this.top + delta;
+        const percent = y / (this.winHeight * 0.85);
+        this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
+        this.hero!!.style.transform = `translate3d(0, ${-(1 - percent) * this.winHeight / 2}px, 0)`;
+        this.hero!!.style.opacity = `${Math.max(0, (percent * 1.3 - 0.3))}`;
     }
-    dragStart = (e: TouchEvent) => {
+    private dragStart = (e: TouchEvent) => {
         this.updatePosition();
-        touchStart = e.touches[0].clientY;
-        touchLastTime = new Date().getTime();
-        touchLast = touchStart;
-        scrollStart = document.documentElement.scrollTop;
-        hero!!.style.transition = content!!.style.transition = "no";
+        this.touchStart = e.touches[0].clientY;
+        this.touchLastTime = new Date().getTime();
+        this.touchLast = this.touchStart;
+        this.scrollStart = document.documentElement.scrollTop;
+        this.hero!!.style.transition = this.content!!.style.transition = 'no';
         this.dragRender();
     }
-    calculateVelocity() {
+    private calculateVelocity() {
         const now = new Date().getTime();
-        if (now - touchLastTime > 10) {
-            const velocityNew = touchDelta/(now - touchLastTime);
-            velocityLast = velocityNew;
-            touchLastTime = now;
-            touchLastBuffer = touchLast;
+        if (now - this.touchLastTime > 10) {
+            const velocityNew = this.touchDelta / (now - this.touchLastTime);
+            this.velocityLast = velocityNew;
+            this.touchLastTime = now;
+            this.touchLastBuffer = this.touchLast;
         }
     }
-    dragEnd = (e: TouchEvent) => {
+    private dragEnd = (e: TouchEvent) => {
         this.calculateVelocity();
-        const delta = touchLast - touchStart;
-        let y = top + delta;
-        touchStart = -1;
-        touchLast = -1;
-        let percent = y / (winHeight * 0.85);
-        if (percent > 1) percent = 1 - (percent - 1);
-        if (percent <= 0 || (percent < 0.425 && !(velocityLast < -1)) || ((velocityLast > 1))) {
-            opened = true;
-            top = 0;
-        } else {
-            opened = false;
-            top = winHeight * 0.85;
+        const delta = this.touchLast - this.touchStart;
+        const y = this.top + delta;
+        this.touchStart = -1;
+        this.touchLast = -1;
+        let percent = y / (this.winHeight * 0.85);
+        if (percent > 1) {
+            percent = 1 - (percent - 1);
         }
-        const animTime = (opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
-        hero!!.style.transition = content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(velocityLast) * (0.1 * animTime))/Math.abs(y-top)},0.1,1)`;
+        if (percent <= 0 || (percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5))) {
+            this.opened = true;
+            this.top = 0;
+        } else {
+            this.opened = false;
+            this.top = this.winHeight * 0.85;
+        }
+        const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
+        this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
         this.updateHeight();
         this.dragRender();
     }
-    dragCancel = this.dragEnd;
-    dragMove = (e: TouchEvent) => {
-        touchLast = e.touches[0].clientY;
-        touchDelta = touchLastBuffer - e.touches[0].clientY;
+    private dragCancel = this.dragEnd;
+    private dragMove = (e: TouchEvent) => {
+        this.touchLast = e.touches[0].clientY;
+        this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         // we lazy-compute scrolltop since getting the actual value causes a DOM reflow
         let scrollTop = -1;
-        let y = top + touchLast - touchStart;
-        if (opened && y > 0) {
-            if (scrollTop == -1) scrollTop = document.documentElement.scrollTop;
-            if (scrollTop == 0) {
-                opened = false;
-                touchStart = touchLast - 1;
-                touchDelta = 0;
-                top = 0;
+        const y = this.top + this.touchLast - this.touchStart;
+        if (this.opened && y > 0) {
+            if (scrollTop === -1) {
+                scrollTop = document.documentElement.scrollTop;
+            }
+            if (scrollTop === 0) {
+                this.opened = false;
+                this.touchStart = this.touchLast - 1;
+                this.touchDelta = 0;
+                this.top = 0;
                 this.updateHeight();
             }
-        } else if (!opened && y <= 0) {
-            if (scrollTop == -1) scrollTop = document.documentElement.scrollTop;
+        } else if (!this.opened && y <= 0) {
+            if (scrollTop === -1) {
+                scrollTop = document.documentElement.scrollTop;
+            }
             if (scrollTop >= 0) {
-                opened = true;
-                touchStart = touchLast + 1;
-                touchDelta = 0;
-                top = 0;
+                this.opened = true;
+                this.touchStart = this.touchLast + 1;
+                this.touchDelta = 0;
+                this.top = 0;
                 this.updateHeight();
             }
         }
-        if(!opened) e.preventDefault();
+        if (!this.opened) {
+            e.preventDefault();
+        }
         this.calculateVelocity();
         requestAnimationFrame(this.dragRender);
     }
-    onResize = () => {
-        winHeight = window.innerHeight;
-        top = opened ? 0 : winHeight * 0.85;
+    private onResize = () => {
+        this.winHeight = window.innerHeight;
+        this.top = this.opened ? 0 : this.winHeight * 0.85;
         this.updateHeight();
         requestAnimationFrame(this.dragRender);
     }
-    attachWrapper = (el) => {
-        if (wrapper == null) {
-            wrapper = el;
-            el.addEventListener("touchstart", this.dragStart, {passive: false});
-            el.addEventListener("touchend", this.dragEnd, {passive: false});
-            el.addEventListener("touchcancel", this.dragCancel, {passive: false});
-            el.addEventListener("touchmove", this.dragMove, {passive: false});
-            window.addEventListener("resize", this.onResize);
+    private attachWrapper = (el) => {
+        if (this.wrapper == null) {
+            this.wrapper = el;
+            el.addEventListener('touchstart', this.dragStart, {passive: false});
+            el.addEventListener('touchend', this.dragEnd, {passive: false});
+            el.addEventListener('touchcancel', this.dragCancel, {passive: false});
+            el.addEventListener('touchmove', this.dragMove, {passive: false});
+            window.addEventListener('resize', this.onResize);
             this.updateHeight();
         }
     }
-    attachHero = (el) => {
-        hero = el;
+    private attachHero = (el) => {
+        this.hero = el;
     }
-    attachContent = (el) => {
-        if (content == null) {
-            content = el;
-            el.addEventListener("touchstart", this.dragStart, {passive: false});
-            el.addEventListener("touchend", this.dragEnd, {passive: false});
-            el.addEventListener("touchcancel", this.dragCancel, {passive: false});
-            el.addEventListener("touchmove", this.dragMove, {passive: false});
-            window.addEventListener("resize", this.onResize);
+    private attachContent = (el) => {
+        if (this.content == null) {
+            this.content = el;
         }
     }
-    componentWillUnmount() {
-        const el = wrapper!!;
-        el.removeEventListener("touchstart", this.dragStart);
-        el.removeEventListener("touchend", this.dragEnd);
-        el.removeEventListener("touchcancel", this.dragCancel);
-        el.removeEventListener("touchmove", this.dragMove);
-        window.removeEventListener("resize", this.onResize);
+    public componentWillUnmount() {
+        const el = this.wrapper!!;
+        el.removeEventListener('touchstart', this.dragStart);
+        el.removeEventListener('touchend', this.dragEnd);
+        el.removeEventListener('touchcancel', this.dragCancel);
+        el.removeEventListener('touchmove', this.dragMove);
+        window.removeEventListener('resize', this.onResize);
     }
-    componentDidMount() {
+    public componentDidMount() {
+        this.onResize();
         this.dragRender();
     }
-    render() {
+    public render() {
         return (<div className="home-component" ref={this.attachWrapper}>
             <div ref={this.attachContent} className="content-wrapper">
-                <img style={{width: '100%'}} src="http://lorempixel.com/400/200/food/3/" />
+                <img style={{width: '100%'}} src="http://via.placeholder.com/350x150" />
                 <h1>Test1</h1>
                 <h1>Test2</h1>
                 <h1>Test3</h1>

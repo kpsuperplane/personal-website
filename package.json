@@ -16,5 +16,9 @@
   "engines": {
     "node": "^6.9.0"
   },
-  "optionalDependencies": {}
+  "optionalDependencies": {},
+  "dependencies": {
+    "global": "^4.3.2",
+    "knex-migrator": "^2.1.8"
+  }
 }

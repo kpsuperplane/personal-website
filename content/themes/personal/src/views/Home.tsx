@@ -1,10 +1,8 @@
-'use strict';
-
-import Component from 'inferno-component';
+import View from './View';
 
 import './Home.scss';
 
-export default class Home extends Component<any, {}> {
+export default class Home extends View {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
@@ -63,7 +61,7 @@ export default class Home extends Component<any, {}> {
         if (percent > 1) {
             percent = 1 - (percent - 1);
         }
-        if (percent <= 0 || (percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5))) {
+        if (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5)))) {
             this.opened = true;
             this.top = 0;
         } else {

@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
 	entry: "./src/index.tsx", // Point to main file
@@ -35,7 +36,7 @@ module.exports = {
 				loaders: ["style-loader", "css-loader", "sass-loader"],
 				exclude: /node_modules/
 			}, {
-				test: /\.(jpe?g|png|gif|svg)$/i,
+				test: /\.(jpe?g|png|gif|svg|mp4)$/i,
 				loaders: [
 					'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
 					{
@@ -70,5 +71,6 @@ module.exports = {
 				verbose: true
 			}
 		)
+		//,new UglifyJSPlugin()
 	]
 };

@@ -1,6 +1,9 @@
+import './types';
+
 import createBrowserHistory from 'history/createBrowserHistory';
 import { render } from 'inferno';
 import { IndexRoute, Redirect, Route, Router } from 'inferno-router';
+import GlobalLoader from './components/GlobalLoader';
 
 import App from './App';
 
@@ -21,6 +24,7 @@ function handleNavigation({props}) {
     }
     lastPage = props.getComponent.name.toLowerCase() + '-template';
     document.body.classList.add(lastPage);
+    GlobalLoader.queue();
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
@@ -28,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
     <Router history={ browserHistory }>
         <Route component={ App }>
             <IndexRoute onEnter={handleNavigation} getComponent={Home} />
-            <Redirect from="*" to="/"/>
+            <Redirect from="*" to="/" />
         </Route>
     </Router>, document.getElementById('app'));
 });

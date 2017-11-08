@@ -6644,9 +6644,6 @@ var NavigationMobile = function (_Component) {
         _this.onResize = function () {
             _this.setState({ width: window.innerWidth });
         };
-        _this.toggle = function () {
-            _this.setState({ active: !_this.state.active });
-        };
         _this.calculateVelocity = function () {
             var now = new Date().getTime();
             if (now - _this.touchLastTime > 10) {
@@ -6669,6 +6666,9 @@ var NavigationMobile = function (_Component) {
         _this.dragMove = function (e) {
             _this.touchLast = e.touches[0].clientY;
             _this.touchDelta = _this.touchLastBuffer - e.touches[0].clientY;
+            if (_this.touchLast - _this.touchStart > 5) {
+                e.preventDefault();
+            }
             _this.calculateVelocity();
             window.requestAnimationFrame(_this.dragRender);
         };

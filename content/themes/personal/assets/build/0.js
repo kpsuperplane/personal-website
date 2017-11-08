@@ -74,12 +74,14 @@ var Home = function (_View) {
             if (percent > 1) {
                 percent = 1 - (percent - 1);
             }
-            if (percent >= 0 && (percent < 0.425 && !(_this.velocityLast < -0.5) || _this.velocityLast > 0.5)) {
-                _this.opened = true;
-                _this.top = 0;
-            } else {
-                _this.opened = false;
-                _this.top = _this.winHeight * 0.85;
+            if (_this.opened === false) {
+                if (percent >= 0 && (percent < 0.425 && !(_this.velocityLast < -0.5) || _this.velocityLast > 0.5)) {
+                    _this.opened = true;
+                    _this.top = 0;
+                } else {
+                    _this.opened = false;
+                    _this.top = _this.winHeight * 0.85;
+                }
             }
             var animTime = (_this.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
             _this.hero.style.transition = _this.content.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - _this.top) + ',0.1,1)';

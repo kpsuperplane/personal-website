@@ -25,9 +25,6 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean}> 
     private onResize = () => {
         this.setState({width: window.innerWidth});
     }
-    private toggle = () => {
-        this.setState({active: !this.state!!.active});
-    }
     private calculateVelocity = () => {
         const now = new Date().getTime();
         if (now - this.touchLastTime > 10) {
@@ -50,6 +47,9 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean}> 
     private dragMove = (e) => {
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
+        if (this.touchLast - this.touchStart > 5) {
+            e.preventDefault();
+        }
         this.calculateVelocity();
         window.requestAnimationFrame(this.dragRender);
     }

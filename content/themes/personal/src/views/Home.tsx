@@ -61,12 +61,14 @@ export default class Home extends View {
         if (percent > 1) {
             percent = 1 - (percent - 1);
         }
-        if (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5)))) {
-            this.opened = true;
-            this.top = 0;
-        } else {
-            this.opened = false;
-            this.top = this.winHeight * 0.85;
+        if (this.opened === false) {
+            if (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5)))) {
+                this.opened = true;
+                this.top = 0;
+            } else {
+                this.opened = false;
+                this.top = this.winHeight * 0.85;
+            }
         }
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
         this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;

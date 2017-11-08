@@ -826,6 +826,7 @@ var GlobalLoader = function (_Component) {
         var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
         _this.timeout = null;
+        _this.lastshown = 0;
         _this.hide = function () {
             _this.setState({ loading: false });
         };
@@ -849,7 +850,31 @@ var GlobalLoader = function (_Component) {
         if (this.timeout !== null) {
             clearTimeout(this.timeout);
         }
-        this.timeout = setTimeout(this.updateState, 200);
+        this.timeout = setTimeout(this.updateState, 250);
+    };
+
+    GlobalLoader.removeInitial = function removeInitial() {
+        document.getElementById('main-app-loader').remove();
+    };
+
+    GlobalLoader.queue = function queue() {
+        ++GlobalLoader.queueSize;
+        if (GlobalLoader.pageStage === -1) {
+            GlobalLoader.pageStage = setTimeout(function () {
+                GlobalLoader.pageStage = -2;
+                GlobalLoader.removeInitial();
+            }, 500);
+        }
+        GlobalLoader.queueState();
+    };
+
+    GlobalLoader.dequeue = function dequeue() {
+        --GlobalLoader.queueSize;
+        if (GlobalLoader.pageStage !== -2) {
+            clearTimeout(GlobalLoader.pageStage);
+            GlobalLoader.removeInitial();
+        }
+        GlobalLoader.queueState();
     };
 
     GlobalLoader.prototype.updateState = function updateState(loading) {
@@ -859,6 +884,7 @@ var GlobalLoader = function (_Component) {
             }
             // non-loading to loading
             if (loading === true) {
+                this.lastshown = new Date().getTime();
                 this.setState({ loading: true, visible: true });
             } else {
                 this.setState({ visible: false });
@@ -891,24 +917,6 @@ GlobalLoader.updateState = function () {
     GlobalLoader.instances.forEach(function (instance) {
         instance.updateState(GlobalLoader.queueSize > 0);
     });
-};
-GlobalLoader.queue = function () {
-    ++GlobalLoader.queueSize;
-    if (GlobalLoader.pageStage === -1) {
-        GlobalLoader.pageStage = setTimeout(function () {
-            GlobalLoader.pageStage = -2;
-            document.getElementById('main-app-loader').remove();
-        }, 500);
-    }
-    GlobalLoader.queueState();
-};
-GlobalLoader.dequeue = function () {
-    --GlobalLoader.queueSize;
-    if (GlobalLoader.pageStage !== -2) {
-        clearTimeout(GlobalLoader.pageStage);
-        document.getElementById('main-app-loader').remove();
-    }
-    GlobalLoader.queueState();
 };
 
 /***/ }),
@@ -1101,7 +1109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var Home = function Home(props, cb) {
     return __webpack_require__.e/* require.ensure */(0).then((function () {
-        return cb(null, __webpack_require__(37).default);
+        return cb(null, __webpack_require__(38).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var browserHistory = __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default()();
@@ -6397,7 +6405,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".navigation {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0; }\n", ""]);
+exports.push([module.i, ".navigation {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation.navigation-mobile {\n    transform: translate3d(0, -100%, 0); }\n    .navigation.navigation-mobile .navigation-bar {\n      background: #FFF;\n      position: relative; }\n      .navigation.navigation-mobile .navigation-bar h1 {\n        margin: 0; }\n      .navigation.navigation-mobile .navigation-bar svg {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n    .navigation.navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
 
 // exports
 
@@ -6557,7 +6565,7 @@ exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-h
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
@@ -6600,8 +6608,10 @@ var App = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Navigation_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -6612,32 +6622,190 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Home = function (_Component) {
-    _inherits(Home, _Component);
 
-    function Home() {
-        _classCallCheck(this, Home);
+var NavigationMobile = function (_Component) {
+    _inherits(NavigationMobile, _Component);
 
-        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    function NavigationMobile(props) {
+        _classCallCheck(this, NavigationMobile);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+        _this.wrapper = null;
+        _this.outerWrapper = null;
+        _this.touchStart = 0;
+        _this.touchLast = 0;
+        _this.touchLastTime = 0;
+        _this.touchDelta = 0;
+        _this.velocityLast = 0;
+        _this.touchLastBuffer = 0;
+        _this.top = 0;
+        _this.opened = false;
+        _this.onResize = function () {
+            _this.setState({ width: window.innerWidth });
+        };
+        _this.toggle = function () {
+            _this.setState({ active: !_this.state.active });
+        };
+        _this.calculateVelocity = function () {
+            var now = new Date().getTime();
+            if (now - _this.touchLastTime > 10) {
+                var velocityNew = _this.touchDelta / (now - _this.touchLastTime);
+                _this.velocityLast = -velocityNew;
+                _this.touchLastTime = now;
+                _this.touchLastBuffer = _this.touchLast;
+            }
+        };
+        _this.dragRender = function () {
+            var y = _this.opened ? 0 : _this.top + _this.touchLast - _this.touchStart;
+            _this.outerWrapper.style.transform = 'translate3d(0, ' + y + 'px, 0)';
+        };
+        _this.dragStart = function (e) {
+            _this.touchStart = e.touches[0].clientY;
+            _this.outerWrapper.style.transition = 'none';
+            _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height;
+            _this.opened = false;
+        };
+        _this.dragMove = function (e) {
+            _this.touchLast = e.touches[0].clientY;
+            _this.touchDelta = _this.touchLastBuffer - e.touches[0].clientY;
+            _this.calculateVelocity();
+            window.requestAnimationFrame(_this.dragRender);
+        };
+        _this.dragEnd = function (e) {
+            _this.calculateVelocity();
+            var delta = _this.touchLast - _this.touchStart;
+            var y = _this.top + delta;
+            var navHeight = _this.wrapper.getBoundingClientRect().height;
+            _this.touchStart = -1;
+            _this.touchLast = -1;
+            var percent = (y + navHeight) / navHeight;
+            if (_this.velocityLast < 0) {
+                _this.opened = false;
+                _this.top = -navHeight;
+            } else {
+                _this.opened = true;
+                _this.top = 0;
+            }
+            var animTime = (_this.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 100 + 50;
+            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
+            _this.dragRender();
+            window.requestAnimationFrame(_this.dragRender);
+        };
+        _this.dragCancel = _this.dragEnd;
+        _this.attachWrapper = function (el) {
+            if (_this.wrapper == null) {
+                _this.wrapper = el;
+                el.addEventListener('touchstart', _this.dragStart, { passive: false });
+                el.addEventListener('touchend', _this.dragEnd, { passive: false });
+                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
+                el.addEventListener('touchmove', _this.dragMove, { passive: false });
+            }
+        };
+        _this.attachOuterWrapper = function (el) {
+            if (_this.outerWrapper == null) {
+                _this.outerWrapper = el;
+            }
+        };
+        _this.state = {
+            active: false,
+            width: window.innerWidth
+        };
+        return _this;
     }
 
-    Home.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'navigation', 'My great navbar');
+    NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+        var el = this.wrapper;
+        el.removeEventListener('touchstart', this.dragStart);
+        el.removeEventListener('touchend', this.dragEnd);
+        el.removeEventListener('touchcancel', this.dragCancel);
+        el.removeEventListener('touchmove', this.dragMove);
     };
 
-    return Home;
+    NavigationMobile.prototype.componentDidMount = function componentDidMount() {
+        window.addEventListener('resize', this.onResize);
+    };
+
+    NavigationMobile.prototype.render = function render() {
+        var state = this.state;
+        var diameter = 75;
+        var radius_squared = Math.pow(diameter / 2, 2);
+        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(128, 'svg', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+            'in': 'SourceAlpha',
+            'stdDeviation': '5'
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feOffset', null, null, {
+            'dx': '0',
+            'dy': '4',
+            'result': 'offsetblur'
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+            'type': 'linear',
+            'slope': '0.05'
+        })), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+            'in': 'SourceGraphic'
+        })])], {
+            'xmlns': 'http://www.w3.org/2000/svg',
+            'id': 'dropshadow',
+            'height': '130%'
+        })), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'path', null, null, {
+            'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
+            'stroke-width': 0,
+            'fill': 'white'
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'circle', null, null, {
+            'cx': state.width / 2,
+            'cy': diameter * 0.33,
+            'r': diameter / 2,
+            'fill': 'white'
+        })], {
+            'filter': 'url(#dropshadow)'
+        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'image', null, null, {
+            'image-rendering': 'optimizeQuality',
+            'href': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
+            'x': state.width / 2 - diameter * 0.3,
+            'y': diameter * 0.1,
+            'height': diameter * 0.6,
+            'width': diameter * 0.7
+        })], {
+            'width': state.width,
+            'height': diameter * 1.5
+        })], null, null, this.attachWrapper), null, null, this.attachOuterWrapper);
+    };
+
+    return NavigationMobile;
 }(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
 
-/* harmony default export */ __webpack_exports__["a"] = (Home);
+var Navigation = function (_Component2) {
+    _inherits(Navigation, _Component2);
+
+    function Navigation() {
+        _classCallCheck(this, Navigation);
+
+        return _possibleConstructorReturn(this, _Component2.apply(this, arguments));
+    }
+
+    Navigation.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(16, NavigationMobile);
+    };
+
+    return Navigation;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (Navigation);
 
 /***/ }),
 /* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "logo-theme.png";
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(36);
+var content = __webpack_require__(37);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6662,7 +6830,7 @@ if(false) {
 }
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -6670,7 +6838,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\nhtml {\n  height: 100%; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n", ""]);
+exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\nhtml {\n  height: 100%;\n  touch-action: manipulation; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n", ""]);
 
 // exports
 

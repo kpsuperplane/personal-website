@@ -3,4 +3,23 @@
     top: 0;
     z-index: 101;
     left: 0;
+    width: 100%;
+    &.navigation-mobile {
+        transform: translate3d(0, -100%, 0);
+        .navigation-bar {
+            background: #FFF;
+            position: relative;
+            h1 {
+                margin: 0;
+            }
+            svg {
+                top: 100%;
+                left: 0;
+                position: absolute;
+            }
+        }
+        &.active {
+            transform: translate3d(0, 0, 0);
+        }
+    }
 }

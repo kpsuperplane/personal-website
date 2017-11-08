@@ -32,6 +32,10 @@
             transition: opacity 250ms;
             opacity: 0;
         }
+        .app-loader img {
+            transition: transform 250ms;
+            transform: scale(0.9);
+        }
         .app-loader-logo {
             height: 3rem;
             margin-bottom: 2rem;
@@ -45,6 +49,9 @@
             animation-name: app-loader-intro;
             animation-duration: 250ms;
         }
+        .app-loader.visible img {
+            transform: scale(1);
+        }
     </style>
 
     {{!-- This tag outputes SEO meta+structured data and other important settings --}}
@@ -54,9 +61,16 @@
 <body class="{{body_class}}">
     <div id="app">
     </div>
-    <div id="main-app-loader" class="app-loader visible"><img class="app-loader-logo" src="/assets/build/logo-black.png" /><div style="height:10.66px"></div></div>
+    <div id="main-app-loader" class="app-loader visible" style="animation-name: none;"><img style="opacity: 0;" id="main-app-loader-image" class="app-loader-logo" src="/assets/build/logo-black.png" /><div style="height:10.66px"></div></div>
 
     {{!-- Styles'n'Scripts --}}
+    <script type="text/javascript">
+        setTimeout(function() {
+            if (document.getElementById('main-app-loader') !== null) {
+                document.getElementById('main-app-loader-image').style.opacity = '1';
+            }
+        }, 500);
+    </script>
     <script src="https://use.typekit.net/upz7elf.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
     <script type="text/javascript" src="{{asset "build/bundle.js"}}"></script>

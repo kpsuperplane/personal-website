@@ -1109,7 +1109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var Home = function Home(props, cb) {
     return __webpack_require__.e/* require.ensure */(0).then((function () {
-        return cb(null, __webpack_require__(38).default);
+        return cb(null, __webpack_require__(39).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var browserHistory = __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default()();
@@ -6387,7 +6387,9 @@ var Loader = function (_Component) {
             'type': 'video/mp4'
         }), {
             'loop': 'loop',
-            'autoplay': 'autoplay'
+            'autoplay': 'autoplay',
+            'muted': 'muted',
+            'playsinline': 'playsinline'
         });
     };
 
@@ -6405,7 +6407,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".navigation {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation.navigation-mobile {\n    transform: translate3d(0, -100%, 0); }\n    .navigation.navigation-mobile .navigation-bar {\n      background: #FFF;\n      position: relative; }\n      .navigation.navigation-mobile .navigation-bar h1 {\n        margin: 0; }\n      .navigation.navigation-mobile .navigation-bar svg {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n    .navigation.navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
+exports.push([module.i, ".navigation {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation.navigation-mobile {\n    transform: translate3d(0, -100%, 0); }\n    .navigation.navigation-mobile .navigation-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative; }\n      .navigation.navigation-mobile .navigation-bar h1 {\n        margin: 0; }\n      .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation.navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
 
 // exports
 
@@ -6565,7 +6567,7 @@ exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-h
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
@@ -6610,13 +6612,16 @@ var App = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Navigation_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_navrender_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -6655,13 +6660,14 @@ var NavigationMobile = function (_Component) {
         };
         _this.dragRender = function () {
             var y = _this.opened ? 0 : _this.top + _this.touchLast - _this.touchStart;
-            _this.outerWrapper.style.transform = 'translate3d(0, ' + y + 'px, 0)';
+            _this.outerWrapper.style.transform = 'translate3d(0, ' + (y > 0 ? Math.log((y + 100) / 100) * 100 : y) + 'px, 0)';
         };
         _this.dragStart = function (e) {
             _this.touchStart = e.touches[0].clientY;
             _this.outerWrapper.style.transition = 'none';
-            _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height;
+            _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
             _this.opened = false;
+            e.preventDefault();
         };
         _this.dragMove = function (e) {
             _this.touchLast = e.touches[0].clientY;
@@ -6673,10 +6679,11 @@ var NavigationMobile = function (_Component) {
             window.requestAnimationFrame(_this.dragRender);
         };
         _this.dragEnd = function (e) {
+            e.preventDefault();
             _this.calculateVelocity();
             var delta = _this.touchLast - _this.touchStart;
             var y = _this.top + delta;
-            var navHeight = _this.wrapper.getBoundingClientRect().height;
+            var navHeight = _this.wrapper.getBoundingClientRect().height - 300;
             _this.touchStart = -1;
             _this.touchLast = -1;
             var percent = (y + navHeight) / navHeight;
@@ -6687,8 +6694,8 @@ var NavigationMobile = function (_Component) {
                 _this.opened = true;
                 _this.top = 0;
             }
-            var animTime = (_this.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 100 + 50;
-            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
+            var animTime = Math.abs(percent) * 100 + 100;
+            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.05 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
             _this.dragRender();
             window.requestAnimationFrame(_this.dragRender);
         };
@@ -6731,44 +6738,43 @@ var NavigationMobile = function (_Component) {
         var state = this.state;
         var diameter = 75;
         var radius_squared = Math.pow(diameter / 2, 2);
-        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'h1', null, 'Hello World'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(128, 'svg', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'img', null, null, {
+            'src': __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default.a,
+            'style': { width: '100%' }
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(128, 'svg', 'navigation-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
             'in': 'SourceAlpha',
             'stdDeviation': '5'
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feOffset', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feOffset', null, null, {
             'dx': '0',
             'dy': '4',
             'result': 'offsetblur'
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feFuncA', null, null, {
             'type': 'linear',
             'slope': '0.05'
-        })), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
             'in': 'SourceGraphic'
         })])], {
             'xmlns': 'http://www.w3.org/2000/svg',
             'id': 'dropshadow',
             'height': '130%'
-        })), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'path', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'path', null, null, {
             'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
             'stroke-width': 0,
             'fill': 'white'
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'circle', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'circle', null, null, {
             'cx': state.width / 2,
             'cy': diameter * 0.33,
             'r': diameter / 2,
             'fill': 'white'
         })], {
             'filter': 'url(#dropshadow)'
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'image', null, null, {
-            'image-rendering': 'optimizeQuality',
-            'href': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
-            'x': state.width / 2 - diameter * 0.3,
-            'y': diameter * 0.1,
-            'height': diameter * 0.6,
-            'width': diameter * 0.7
         })], {
             'width': state.width,
             'height': diameter * 1.5
-        })], null, null, this.attachWrapper), null, null, this.attachOuterWrapper);
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'img', 'navigation-bar-handle-logo', null, {
+            'src': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
+            'style': { height: diameter * 0.6 }
+        })])], null, null, this.attachWrapper), null, null, this.attachOuterWrapper);
     };
 
     return NavigationMobile;
@@ -6784,7 +6790,7 @@ var Navigation = function (_Component2) {
     }
 
     Navigation.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(16, NavigationMobile);
+        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, NavigationMobile);
     };
 
     return Navigation;
@@ -6802,10 +6808,16 @@ module.exports = __webpack_require__.p + "logo-theme.png";
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "navrender.png";
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(37);
+var content = __webpack_require__(38);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6830,7 +6842,7 @@ if(false) {
 }
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);

@@ -1,20 +1,23 @@
 webpackJsonp([0],{
 
-/***/ 38:
+/***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Home_scss__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Home_scss__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_render_png__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_render_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_render_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -37,6 +40,7 @@ var Home = function (_View) {
         _this.scrollStart = -1;
         _this.touchLastTime = -1;
         _this.opened = false;
+        _this.openedPreviously = false;
         _this.winHeight = window.innerHeight;
         _this.content = null;
         _this.wrapper = null;
@@ -49,7 +53,16 @@ var Home = function (_View) {
         };
         _this.dragRender = function () {
             var delta = _this.touchLast - _this.touchStart;
-            var y = _this.opened ? 0 : _this.top + delta;
+            var y = _this.top + delta;
+            if (_this.opened || y < 5) {
+                if (_this.openedPreviously) {
+                    return true;
+                } else {
+                    _this.openedPreviously = true;
+                }
+            } else {
+                _this.openedPreviously = false;
+            }
             var percent = y / (_this.winHeight * 0.85);
             _this.content.style.transform = 'translate3d(0, ' + y + 'px, 0)';
             _this.hero.style.transform = 'translate3d(0, ' + -(1 - percent) * _this.winHeight / 2 + 'px, 0)';
@@ -92,31 +105,13 @@ var Home = function (_View) {
         _this.dragMove = function (e) {
             _this.touchLast = e.touches[0].clientY;
             _this.touchDelta = _this.touchLastBuffer - e.touches[0].clientY;
-            // we lazy-compute scrolltop since getting the actual value causes a DOM reflow
-            var scrollTop = -1;
             var y = _this.top + _this.touchLast - _this.touchStart;
-            if (_this.opened && y > 0) {
-                if (scrollTop === -1) {
-                    scrollTop = document.documentElement.scrollTop;
-                }
-                if (scrollTop === 0) {
-                    _this.opened = false;
-                    _this.touchStart = _this.touchLast - 1;
-                    _this.touchDelta = 0;
-                    _this.top = 0;
-                    _this.updateHeight();
-                }
-            } else if (!_this.opened && y <= 0) {
-                if (scrollTop === -1) {
-                    scrollTop = document.documentElement.scrollTop;
-                }
-                if (scrollTop >= 0) {
-                    _this.opened = true;
-                    _this.touchStart = _this.touchLast + 1;
-                    _this.touchDelta = 0;
-                    _this.top = 0;
-                    _this.updateHeight();
-                }
+            if (_this.opened && document.documentElement.scrollTop === 0 && y > 20) {
+                _this.opened = false;
+                _this.touchStart = _this.touchLast - 1;
+                _this.touchDelta = 0;
+                _this.top = 0;
+                _this.updateHeight();
             }
             if (!_this.opened) {
                 e.preventDefault();
@@ -177,7 +172,10 @@ var Home = function (_View) {
     };
 
     Home.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test1'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test2'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test3'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test4'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test5'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test6'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test6'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test7'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test8'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test9'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test10'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test11'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test12'), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, 'Test13')], null, null, this.attachContent), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'home-content', 'Hey, I\'m Kevin \uD83D\uDE04', null, null, this.attachHero)], null, null, this.attachWrapper);
+        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'content-wrapper', Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'img', null, null, {
+            'src': __WEBPACK_IMPORTED_MODULE_2__img_render_png___default.a,
+            'style': { width: '100%' }
+        }), null, null, this.attachContent), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'home-content', 'Hey, I\'m Kevin \uD83D\uDE04', null, null, this.attachHero)], null, null, this.attachWrapper);
     };
 
     return Home;
@@ -187,7 +185,7 @@ var Home = function (_View) {
 
 /***/ }),
 
-/***/ 39:
+/***/ 40:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -211,7 +209,9 @@ var View = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
-        __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();
+        setTimeout(function () {
+            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();
+        }, 2000);
         return _this;
     }
 
@@ -222,13 +222,13 @@ var View = function (_Component) {
 
 /***/ }),
 
-/***/ 40:
+/***/ 41:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(41);
+var content = __webpack_require__(42);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -254,7 +254,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 41:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -266,6 +266,13 @@ exports.push([module.i, ".home-component {\n  overflow-y: hidden;\n  position: r
 
 // exports
 
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "render.png";
 
 /***/ })
 

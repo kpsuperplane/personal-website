@@ -2,6 +2,8 @@ import View from './View';
 
 import './Home.scss';
 
+import Render from '../img/render.png';
+
 export default class Home extends View {
     private top: number = 0;
     private touchStart: number = -1;
@@ -12,6 +14,7 @@ export default class Home extends View {
     private scrollStart: number = -1;
     private touchLastTime: number = -1;
     private opened: boolean = false;
+    private openedPreviously: boolean = false;
     private winHeight: number = window.innerHeight;
     private content: HTMLElement|null = null;
     private wrapper: HTMLElement|null = null;
@@ -27,7 +30,16 @@ export default class Home extends View {
     }
     private dragRender = () => {
         const delta = this.touchLast - this.touchStart;
-        const y = this.opened ? 0 : this.top + delta;
+        const y = this.top + delta;
+        if (this.opened || y < 5) {
+            if (this.openedPreviously) {
+                return true;
+            } else {
+                this.openedPreviously = true;
+            }
+        } else {
+            this.openedPreviously = false;
+        }
         const percent = y / (this.winHeight * 0.85);
         this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
         this.hero!!.style.transform = `translate3d(0, ${-(1 - percent) * this.winHeight / 2}px, 0)`;
@@ -79,31 +91,13 @@ export default class Home extends View {
     private dragMove = (e: TouchEvent) => {
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
-        // we lazy-compute scrolltop since getting the actual value causes a DOM reflow
-        let scrollTop = -1;
         const y = this.top + this.touchLast - this.touchStart;
-        if (this.opened && y > 0) {
-            if (scrollTop === -1) {
-                scrollTop = document.documentElement.scrollTop;
-            }
-            if (scrollTop === 0) {
-                this.opened = false;
-                this.touchStart = this.touchLast - 1;
-                this.touchDelta = 0;
-                this.top = 0;
-                this.updateHeight();
-            }
-        } else if (!this.opened && y <= 0) {
-            if (scrollTop === -1) {
-                scrollTop = document.documentElement.scrollTop;
-            }
-            if (scrollTop >= 0) {
-                this.opened = true;
-                this.touchStart = this.touchLast + 1;
-                this.touchDelta = 0;
-                this.top = 0;
-                this.updateHeight();
-            }
+        if (this.opened && document.documentElement.scrollTop === 0 && y > 20) {
+            this.opened = false;
+            this.touchStart = this.touchLast - 1;
+            this.touchDelta = 0;
+            this.top = 0;
+            this.updateHeight();
         }
         if (!this.opened) {
             e.preventDefault();
@@ -151,20 +145,7 @@ export default class Home extends View {
     public render() {
         return (<div className="home-component" ref={this.attachWrapper}>
             <div ref={this.attachContent} className="content-wrapper">
-                <h1>Test1</h1>
-                <h1>Test2</h1>
-                <h1>Test3</h1>
-                <h1>Test4</h1>
-                <h1>Test5</h1>
-                <h1>Test6</h1>
-                <h1>Test6</h1>
-                <h1>Test7</h1>
-                <h1>Test8</h1>
-                <h1>Test9</h1>
-                <h1>Test10</h1>
-                <h1>Test11</h1>
-                <h1>Test12</h1>
-                <h1>Test13</h1>
+                <img src={Render} style={{width: '100%'}} />
             </div>
             <div className="home-content" ref={this.attachHero}>
                 Hey, I'm Kevin 😄

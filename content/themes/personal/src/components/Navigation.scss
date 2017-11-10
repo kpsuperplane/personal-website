@@ -7,15 +7,23 @@
     &.navigation-mobile {
         transform: translate3d(0, -100%, 0);
         .navigation-bar {
+            padding-top: 300px;
+            margin-top: -300px;
             background: #FFF;
             position: relative;
             h1 {
                 margin: 0;
             }
-            svg {
+            .navigation-bar-handle {
                 top: 100%;
                 left: 0;
                 position: absolute;
+                .navigation-bar-handle-logo {
+                    position: absolute;
+                    left: 50%;
+                    top: 7px;
+                    transform: translateX(-40%);
+                }
             }
         }
         &.active {

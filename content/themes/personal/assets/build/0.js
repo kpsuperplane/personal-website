@@ -8,18 +8,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_create_element__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_superagent__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_LazyImage__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Loader__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_LazyImage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Loader__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__img_render_png__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_inferno__);
@@ -81,12 +81,12 @@ var LocationStory = function (_Story) {
             var show = function show() {
                 _this2.setState({ visible: false }, function () {
                     setTimeout(function () {
-                        _this2.prompt(prompts[idx]);
-                        ++idx;
                         if (idx === prompts.length) {
                             window.clearInterval(interval);
                             _this2.props.onComplete();
                         }
+                        _this2.prompt(prompts[idx]);
+                        ++idx;
                     }, 500);
                 });
             };
@@ -326,7 +326,8 @@ var Home = function (_View) {
 
     Home.prototype.render = function render() {
         return Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'content-wrapper', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'img', null, null, {
-            'src': __WEBPACK_IMPORTED_MODULE_9__img_render_png___default.a
+            'src': __WEBPACK_IMPORTED_MODULE_9__img_render_png___default.a,
+            'style': { width: '100%' }
         }), null, null, this.attachContent), Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero)], null, null, this.attachWrapper);
     };
 
@@ -2532,73 +2533,12 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 /***/ }),
 
 /***/ 51:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "thinking.jpg";
-
-/***/ }),
-
-/***/ 52:
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(53);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Home.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Home.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-
-/***/ 53:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 54:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "render.png";
-
-/***/ }),
-
-/***/ 55:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
@@ -2646,13 +2586,13 @@ var LazyImage = function (_Component) {
 
 /***/ }),
 
-/***/ 56:
+/***/ 52:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2678,7 +2618,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -2690,6 +2630,67 @@ exports.push([module.i, ".lazy-image {\n  opacity: 0;\n  transition: opacity 250
 
 // exports
 
+
+/***/ }),
+
+/***/ 54:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "thinking.jpg";
+
+/***/ }),
+
+/***/ 55:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(56);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Home.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Home.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 56:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 57:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "render.png";
 
 /***/ })
 

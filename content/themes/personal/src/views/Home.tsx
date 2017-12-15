@@ -54,12 +54,12 @@ class LocationStory extends Story<{message: string, emoji: string, visible: bool
         const show = () => {
             this.setState({visible: false}, () => {
                 setTimeout(() => {
-                    this.prompt(prompts[idx]);
-                    ++idx;
                     if (idx === prompts.length) {
                         window.clearInterval(interval);
                         this.props.onComplete();
                     }
+                    this.prompt(prompts[idx]);
+                    ++idx;
                 }, 500);
             });
         };
@@ -254,7 +254,7 @@ export default class Home extends View {
     public render() {
         return (<div className="home-component" ref={this.attachWrapper}>
             <div ref={this.attachContent} className="content-wrapper">
-                <img src={Render} />
+                <img src={Render} style={{width: '100%'}}/>
             </div>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">

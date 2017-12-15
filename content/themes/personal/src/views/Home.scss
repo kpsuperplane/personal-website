@@ -1,3 +1,4 @@
+@import '../common';
 .home-component {
     overflow-y: hidden;
     position: relative;
@@ -43,5 +44,7 @@
         background: #FFF;
         transition-timing-function: ease-out;
         -webkit-transition-timing-function: ease-out;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
     }
 }

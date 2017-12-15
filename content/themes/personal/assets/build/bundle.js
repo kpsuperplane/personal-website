@@ -6617,6 +6617,7 @@ var NavigationMobile = function (_Component) {
         _this.background = null;
         _this.touchStart = 0;
         _this.touchLast = 0;
+        _this.height = 0;
         _this.touchLastTime = 0;
         _this.touchDelta = 0;
         _this.velocityLast = 0;
@@ -6641,13 +6642,16 @@ var NavigationMobile = function (_Component) {
         _this.dragRender = function () {
             var y = _this.opened ? 0 : _this.top + _this.touchLast - _this.touchStart;
             _this.outerWrapper.style.transform = 'translate3d(0, ' + (y > 0 ? Math.log((y + 100) / 100) * 100 : y) + 'px, 0)';
+            _this.background.style.opacity = _this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (_this.height - 300)));
         };
         _this.dragStart = function (e) {
             _this.touchStart = e.touches[0].clientY;
             _this.outerWrapper.style.transition = 'none';
+            _this.height = _this.wrapper.getBoundingClientRect().height;
             _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
             _this.opened = false;
             _this.parent.style.height = '100%';
+            _this.background.style.display = 'block';
             _this.background.style.transition = 'no';
             e.preventDefault();
         };
@@ -6678,6 +6682,13 @@ var NavigationMobile = function (_Component) {
             }
             var animTime = Math.abs(percent) * 100 + 100;
             _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.05 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
+            _this.background.style.transition = 'opacity ' + animTime + 'ms';
+            if (!_this.opened) {
+                setTimeout(function () {
+                    _this.background.style.display = 'none';
+                    _this.parent.style.height = null;
+                }, animTime);
+            }
             _this.dragRender();
             window.requestAnimationFrame(_this.dragRender);
         };
@@ -6834,7 +6845,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".navigation-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-parent .navigation-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0; }\n  .navigation-parent .navigation {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .navigation-parent .navigation.navigation-mobile {\n      transform: translate3d(0, -100%, 0); }\n      .navigation-parent .navigation.navigation-mobile .navigation-bar {\n        padding-top: 300px;\n        margin-top: -300px;\n        background: #FFF;\n        position: relative;\n        transition: transform 500ms;\n        transform: translate3d(0, 0, 0); }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar h1 {\n          margin: 0; }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n          top: 100%;\n          left: 0;\n          position: absolute; }\n          .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n            position: absolute;\n            left: 50%;\n            top: 7px;\n            transform: translateX(-40%); }\n      .navigation-parent .navigation.navigation-mobile.loading .navigation-bar {\n        transform: translate3d(0, -130px, 0); }\n      .navigation-parent .navigation.navigation-mobile.active {\n        transform: translate3d(0, 0, 0); }\n", ""]);
+exports.push([module.i, ".navigation-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-parent .navigation-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-parent .navigation {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .navigation-parent .navigation.navigation-mobile {\n      transform: translate3d(0, -100%, 0); }\n      .navigation-parent .navigation.navigation-mobile .navigation-bar {\n        padding-top: 300px;\n        margin-top: -300px;\n        background: #FFF;\n        position: relative;\n        transition: transform 500ms;\n        transform: translate3d(0, 0, 0); }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar h1 {\n          margin: 0; }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n          top: 100%;\n          left: 0;\n          position: absolute; }\n          .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n            position: absolute;\n            left: 50%;\n            top: 7px;\n            transform: translateX(-40%); }\n      .navigation-parent .navigation.navigation-mobile.loading .navigation-bar {\n        transform: translate3d(0, -130px, 0); }\n      .navigation-parent .navigation.navigation-mobile.active {\n        transform: translate3d(0, 0, 0); }\n", ""]);
 
 // exports
 

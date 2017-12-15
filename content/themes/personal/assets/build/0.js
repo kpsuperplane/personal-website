@@ -166,7 +166,7 @@ var HomeContent = function (_Component2) {
                 'style': { width: '5rem', height: '5.1367rem' }
             }), Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'br'), Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__components_Button__["a" /* default */], null, null, {
                 'onClick': this.start,
-                children: 'Tell me a Story'
+                children: 'Tell me a story'
             })]);
         } else {
             return __WEBPACK_IMPORTED_MODULE_2_inferno_create_element___default()(story, { onComplete: this.end });
@@ -223,11 +223,13 @@ var Home = function (_View) {
         };
         _this4.dragStart = function (e) {
             _this4.updatePosition();
+            _this4.content.style.borderRadius = '1rem 1rem 0 0';
             _this4.touchStart = e.touches[0].clientY;
             _this4.touchLastTime = new Date().getTime();
             _this4.touchLast = _this4.touchStart;
             _this4.scrollStart = document.documentElement.scrollTop;
-            _this4.hero.style.transition = _this4.content.style.transition = 'no';
+            _this4.hero.style.transition = 'no';
+            _this4.content.style.transition = 'border-radius 500ms';
             _this4.dragRender();
         };
         _this4.dragEnd = function (e) {
@@ -251,6 +253,7 @@ var Home = function (_View) {
             }
             var animTime = (_this4.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
             _this4.hero.style.transition = _this4.content.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this4.velocityLast) * (0.1 * animTime) / Math.abs(y - _this4.top) + ',0.1,1)';
+            _this4.content.style.borderRadius = _this4.opened ? '0' : '1rem 1rem 0 0';
             _this4.updateHeight();
             _this4.dragRender();
         };
@@ -2525,7 +2528,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.button {\n  border-style: none;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  border-radius: 3px;\n  background: #2ac648;\n  touch-action: manipulation;\n  color: #FFF; }\n  .button:hover {\n    background: #219c39; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.button {\n  border-style: none;\n  padding: 0.5rem 1rem;\n  font-size: 1rem;\n  border-radius: 3px;\n  background: #2ac648;\n  transform: scale(1);\n  transition: all 250ms;\n  touch-action: manipulation;\n  box-shadow: none;\n  color: #FFF; }\n  .button:hover {\n    transform: scale(1.1);\n    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); }\n", ""]);
 
 // exports
 
@@ -2680,7 +2683,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    overflow: hidden; }\n", ""]);
 
 // exports
 

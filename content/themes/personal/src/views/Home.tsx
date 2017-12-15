@@ -105,7 +105,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
         if (story === null) {
             return <div className={'home-prompt home-message' + (visible ? ' visible' : '')}>
                 <LazyImage path={Thinking} style={{width: '5rem', height: '5.1367rem'}} /><br />
-                <Button onClick={this.start}>Tell me a Story</Button>
+                <Button onClick={this.start}>Tell me a story</Button>
             </div>;
         } else {
             return createElement(story, {onComplete: this.end});
@@ -156,11 +156,13 @@ export default class Home extends View {
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
+        this.content!!.style.borderRadius = '1rem 1rem 0 0';
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
         this.touchLast = this.touchStart;
         this.scrollStart = document.documentElement.scrollTop;
-        this.hero!!.style.transition = this.content!!.style.transition = 'no';
+        this.hero!!.style.transition = 'no';
+        this.content!!.style.transition = 'border-radius 500ms';
         this.dragRender();
     }
     private calculateVelocity() {
@@ -193,6 +195,7 @@ export default class Home extends View {
         }
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
         this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
+        this.content!!.style.borderRadius = this.opened ? '0' : '1rem 1rem 0 0';
         this.updateHeight();
         this.dragRender();
     }

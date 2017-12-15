@@ -1,8 +1,117 @@
 import View from './View';
 
+import Component from 'inferno-component';
+import createElement from 'inferno-create-element';
+import {get} from 'superagent';
+
+import Button from '../components/Button';
+import LazyImage from '../components/LazyImage';
+import Loader from '../components/Loader';
+import Thinking from '../img/thinking.jpg';
+
 import './Home.scss';
 
 import Render from '../img/render.png';
+
+class Story<T> extends Component<{onComplete: Function}, T> {}
+
+class LocationStory extends Story<{message: string, emoji: string, visible: boolean}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            emoji: '',
+            message: '',
+            visible: false
+        };
+        navigator.geolocation.getCurrentPosition((pos) => {
+            get('https://us-central1-personal-website-173519.cloudfunctions.net/getDistance?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude).end((err, res) => {
+                this.begin(Number(res.text));
+            });
+        }, console.error);
+    }
+    private prompt = (message: string[]) => {
+        this.setState({message: message[0], emoji: message[1], visible: true});
+    }
+    private begin = (distance: number) => {
+        const prompts = [
+            [`Woah, you\'re like ${distance} km away from me`, '😃'],
+            [`That's like ${Math.round(distance * 3280.84)} Subway footlong sandwiches`, '🥪'],
+            [`Or ${Math.round(distance * 666.66)} giant pandas`, '🐼'],
+            [`It'd take you ${(() => {
+                const hours = distance / 15.5;
+                if (hours > 24) {
+                    return `${Math.round(hours / 24)} day(s)`;
+                } else if (hours >= 1) {
+                    return `${Math.round(hours)} hour(s)`;
+                } else {
+                    return `${Math.round(hours * 60)} minute(s)`;
+                }
+            })()} to bike to me`, '🚴'],
+            [`Usain Bolt would piggyback you about 3 times faster`, '😲']
+        ];
+        this.setState({message: ' '});
+        let idx = 0;
+        const show = () => {
+            this.setState({visible: false}, () => {
+                setTimeout(() => {
+                    this.prompt(prompts[idx]);
+                    ++idx;
+                    if (idx === prompts.length) {
+                        window.clearInterval(interval);
+                        this.props.onComplete();
+                    }
+                }, 500);
+            });
+        };
+        show();
+        const interval = window.setInterval(show, 4000);
+    }
+    public render() {
+        const {message, emoji, visible} = this.state!!;
+        if (message === '') {
+            return <Loader />;
+        } else {
+            return <div className={'home-message' + (visible ? ' visible' : '')}><p style={{fontSize: '4rem', margin: 0}}>{emoji}</p><p>{message}</p></div>;
+        }
+    }
+}
+
+class HomeContent extends Component<{}, {story: any, visible: boolean}> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            story: null,
+            visible: false
+        };
+        setTimeout(() => {
+            this.setState({visible: true});
+        }, 10);
+    }
+    private start = () => {
+        this.setState({visible: false}, () => {
+            setTimeout(() => {
+                this.setState({story: LocationStory});
+            }, 500);
+        });
+    }
+    private end = () => {
+        this.setState({story: null, visible: false});
+        setTimeout(() => {
+            this.setState({visible: true});
+        }, 10);
+    }
+    public render() {
+        const {story, visible} = this.state!!;
+        if (story === null) {
+            return <div className={'home-prompt home-message' + (visible ? ' visible' : '')}>
+                <LazyImage path={Thinking} style={{width: '5rem', height: '5.1367rem'}} /><br />
+                <Button onClick={this.start}>Tell me a Story</Button>
+            </div>;
+        } else {
+            return createElement(story, {onComplete: this.end});
+        }
+    }
+}
 
 export default class Home extends View {
     private top: number = 0;
@@ -145,10 +254,12 @@ export default class Home extends View {
     public render() {
         return (<div className="home-component" ref={this.attachWrapper}>
             <div ref={this.attachContent} className="content-wrapper">
-                <img src={Render} style={{width: '100%'}} />
+                <img src={Render} />
             </div>
             <div className="home-content" ref={this.attachHero}>
-                Hey, I'm Kevin 😄
+                <div className="home-content-inner">
+                    <HomeContent />
+                </div>
             </div>
         </div>);
     }

@@ -5,8 +5,6 @@ import GlobalLoader from '../components/GlobalLoader';
 export default class View extends Component<any, {}> {
     constructor(props) {
         super(props);
-        setTimeout(function() {
-            GlobalLoader.dequeue();
-        }, 2000);
+        GlobalLoader.dequeue();
     }
 }

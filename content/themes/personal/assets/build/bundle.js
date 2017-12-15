@@ -482,7 +482,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(29);
+var	fixUrls = __webpack_require__(30);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -803,9 +803,11 @@ function updateLink (link, options, obj) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_logo_black_png__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_logo_black_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__img_logo_black_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -844,6 +846,14 @@ var GlobalLoader = function (_Component) {
 
     GlobalLoader.remove = function remove(instance) {
         this.instances.splice(this.instances.indexOf(instance), 1);
+    };
+
+    GlobalLoader.addUpdateListener = function addUpdateListener(cb) {
+        GlobalLoader.listeners.push(cb);
+    };
+
+    GlobalLoader.removeUpdateListener = function removeUpdateListener(cb) {
+        GlobalLoader.listeners.splice(GlobalLoader.listeners.indexOf(cb), 1);
     };
 
     GlobalLoader.queueState = function queueState() {
@@ -903,6 +913,13 @@ var GlobalLoader = function (_Component) {
         }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2__Loader__["a" /* default */])]) : null;
     };
 
+    _createClass(GlobalLoader, null, [{
+        key: 'isLoading',
+        get: function get() {
+            return GlobalLoader.queueSize > 0;
+        }
+    }]);
+
     return GlobalLoader;
 }(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
 
@@ -912,8 +929,12 @@ GlobalLoader.instances = [];
 GlobalLoader.queueSize = 0;
 GlobalLoader.pageStage = -1;
 GlobalLoader.timeout = null;
+GlobalLoader.listeners = [];
 GlobalLoader.updateState = function () {
     GlobalLoader.timeout = null;
+    GlobalLoader.listeners.forEach(function (listener) {
+        listener(GlobalLoader.isLoading);
+    });
     GlobalLoader.instances.forEach(function (instance) {
         instance.updateState(GlobalLoader.queueSize > 0);
     });
@@ -1056,34 +1077,53 @@ var createPath = exports.createPath = function createPath(location) {
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// style-loader: Adds some css to the DOM by adding a <style> tag
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Loader_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// load the styles
-var content = __webpack_require__(28);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var Loader = function (_Component) {
+    _inherits(Loader, _Component);
+
+    function Loader() {
+        _classCallCheck(this, Loader);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    Loader.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'video', 'loader', Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'source', null, null, {
+            'src': __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4___default.a,
+            'type': 'video/mp4'
+        }), {
+            'loop': 'loop',
+            'autoplay': 'autoplay',
+            'muted': 'muted',
+            'playsinline': 'playsinline'
+        });
+    };
+
+    return Loader;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (Loader);
 
 /***/ }),
 /* 9 */
@@ -1100,7 +1140,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__App__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__App__ = __webpack_require__(31);
 
 
 
@@ -6347,59 +6387,43 @@ module.exports = __webpack_require__.p + "logo-black.png";
 
 /***/ }),
 /* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Navigation_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_loader_mp4__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_loader_mp4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_loader_mp4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader_scss__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Loader_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Loader_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-var Loader = function (_Component) {
-    _inherits(Loader, _Component);
-
-    function Loader() {
-        _classCallCheck(this, Loader);
-
-        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    Loader.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'video', 'loader', Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'source', null, null, {
-            'src': __WEBPACK_IMPORTED_MODULE_2__img_loader_mp4___default.a,
-            'type': 'video/mp4'
-        }), {
-            'loop': 'loop',
-            'autoplay': 'autoplay',
-            'muted': 'muted',
-            'playsinline': 'playsinline'
-        });
-    };
-
-    return Loader;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-/* harmony default export */ __webpack_exports__["a"] = (Loader);
+module.exports = __webpack_require__.p + "loader.mp4";
 
 /***/ }),
 /* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(29);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Loader.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Loader.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -6407,13 +6431,13 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".navigation {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation.navigation-mobile {\n    transform: translate3d(0, -100%, 0); }\n    .navigation.navigation-mobile .navigation-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative; }\n      .navigation.navigation-mobile .navigation-bar h1 {\n        margin: 0; }\n      .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation.navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
+exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-height: 0.67rem; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 
@@ -6508,64 +6532,13 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "loader.mp4";
-
-/***/ }),
 /* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(32);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Loader.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Loader.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-height: 0.67rem; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
@@ -6602,25 +6575,27 @@ var App = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Navigation_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_navrender_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -6638,6 +6613,8 @@ var NavigationMobile = function (_Component) {
 
         _this.wrapper = null;
         _this.outerWrapper = null;
+        _this.parent = null;
+        _this.background = null;
         _this.touchStart = 0;
         _this.touchLast = 0;
         _this.touchLastTime = 0;
@@ -6646,6 +6623,9 @@ var NavigationMobile = function (_Component) {
         _this.touchLastBuffer = 0;
         _this.top = 0;
         _this.opened = false;
+        _this.onLoadingStateChange = function (isLoading) {
+            _this.setState({ loading: isLoading });
+        };
         _this.onResize = function () {
             _this.setState({ width: window.innerWidth });
         };
@@ -6667,6 +6647,8 @@ var NavigationMobile = function (_Component) {
             _this.outerWrapper.style.transition = 'none';
             _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
             _this.opened = false;
+            _this.parent.style.height = '100%';
+            _this.background.style.transition = 'no';
             e.preventDefault();
         };
         _this.dragMove = function (e) {
@@ -6714,14 +6696,26 @@ var NavigationMobile = function (_Component) {
                 _this.outerWrapper = el;
             }
         };
+        _this.attachParent = function (el) {
+            if (_this.parent == null) {
+                _this.parent = el;
+            }
+        };
+        _this.attachBackground = function (el) {
+            if (_this.background == null) {
+                _this.background = el;
+            }
+        };
         _this.state = {
             active: false,
+            loading: true,
             width: window.innerWidth
         };
         return _this;
     }
 
     NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
+        __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
         var el = this.wrapper;
         el.removeEventListener('touchstart', this.dragStart);
@@ -6731,6 +6725,8 @@ var NavigationMobile = function (_Component) {
     };
 
     NavigationMobile.prototype.componentDidMount = function componentDidMount() {
+        __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
+        this.setState({ loading: __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].isLoading });
         window.addEventListener('resize', this.onResize);
     };
 
@@ -6738,30 +6734,30 @@ var NavigationMobile = function (_Component) {
         var state = this.state;
         var diameter = 75;
         var radius_squared = Math.pow(diameter / 2, 2);
-        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'img', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-parent', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', null, null, {
             'src': __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default.a,
             'style': { width: '100%' }
-        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'navigation-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(128, 'svg', 'navigation-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(128, 'svg', 'navigation-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
             'in': 'SourceAlpha',
             'stdDeviation': '5'
-        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feOffset', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feOffset', null, null, {
             'dx': '0',
             'dy': '4',
             'result': 'offsetblur'
-        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feFuncA', null, null, {
             'type': 'linear',
             'slope': '0.05'
-        })), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
             'in': 'SourceGraphic'
         })])], {
             'xmlns': 'http://www.w3.org/2000/svg',
             'id': 'dropshadow',
             'height': '130%'
-        })), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'path', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'path', null, null, {
             'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
             'stroke-width': 0,
             'fill': 'white'
-        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'circle', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'circle', null, null, {
             'cx': state.width / 2,
             'cy': diameter * 0.33,
             'r': diameter / 2,
@@ -6771,10 +6767,10 @@ var NavigationMobile = function (_Component) {
         })], {
             'width': state.width,
             'height': diameter * 1.5
-        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'img', 'navigation-bar-handle-logo', null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', 'navigation-bar-handle-logo', null, {
             'src': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
             'style': { height: diameter * 0.6 }
-        })])], null, null, this.attachWrapper), null, null, this.attachOuterWrapper);
+        })])], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
     };
 
     return NavigationMobile;
@@ -6790,13 +6786,58 @@ var Navigation = function (_Component2) {
     }
 
     Navigation.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, NavigationMobile);
+        return Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(16, NavigationMobile);
     };
 
     return Navigation;
 }(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
 
 /* harmony default export */ __webpack_exports__["a"] = (Navigation);
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(34);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".navigation-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-parent .navigation-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0; }\n  .navigation-parent .navigation {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .navigation-parent .navigation.navigation-mobile {\n      transform: translate3d(0, -100%, 0); }\n      .navigation-parent .navigation.navigation-mobile .navigation-bar {\n        padding-top: 300px;\n        margin-top: -300px;\n        background: #FFF;\n        position: relative;\n        transition: transform 500ms;\n        transform: translate3d(0, 0, 0); }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar h1 {\n          margin: 0; }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n          top: 100%;\n          left: 0;\n          position: absolute; }\n          .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n            position: absolute;\n            left: 50%;\n            top: 7px;\n            transform: translateX(-40%); }\n      .navigation-parent .navigation.navigation-mobile.loading .navigation-bar {\n        transform: translate3d(0, -130px, 0); }\n      .navigation-parent .navigation.navigation-mobile.active {\n        transform: translate3d(0, 0, 0); }\n", ""]);
+
+// exports
+
 
 /***/ }),
 /* 35 */

@@ -1,33 +1,54 @@
-.navigation {
+.navigation-parent {
     position: fixed;
     top: 0;
     z-index: 101;
     left: 0;
     width: 100%;
-    &.navigation-mobile {
-        transform: translate3d(0, -100%, 0);
-        .navigation-bar {
-            padding-top: 300px;
-            margin-top: -300px;
-            background: #FFF;
-            position: relative;
-            h1 {
-                margin: 0;
-            }
-            .navigation-bar-handle {
-                top: 100%;
-                left: 0;
-                position: absolute;
-                .navigation-bar-handle-logo {
+    .navigation-background {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+    }
+    .navigation {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        &.navigation-mobile {
+            transform: translate3d(0, -100%, 0);
+            .navigation-bar {
+                padding-top: 300px;
+                margin-top: -300px;
+                background: #FFF;
+                position: relative;
+                transition: transform 500ms;
+                transform: translate3d(0, 0, 0);
+                h1 {
+                    margin: 0;
+                }
+                .navigation-bar-handle {
+                    top: 100%;
+                    left: 0;
                     position: absolute;
-                    left: 50%;
-                    top: 7px;
-                    transform: translateX(-40%);
+                    .navigation-bar-handle-logo {
+                        position: absolute;
+                        left: 50%;
+                        top: 7px;
+                        transform: translateX(-40%);
+                    }
                 }
             }
-        }
-        &.active {
-            transform: translate3d(0, 0, 0);
+            &.loading {
+                .navigation-bar {
+                    transform: translate3d(0, -130px, 0);
+                }
+            }
+            &.active {
+                transform: translate3d(0, 0, 0);
+            }
         }
     }
 }

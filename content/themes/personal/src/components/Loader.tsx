@@ -1,7 +1,5 @@
 import Component from 'inferno-component';
 
-import './Navigation.scss';
-
 import LoaderVideo from '../img/loader.mp4';
 import './Loader.scss';
 

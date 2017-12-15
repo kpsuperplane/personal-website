@@ -8,12 +8,33 @@
         background-size: cover;
         box-sizing: border-box;
         overflow: hidden;
-        padding: 150px 0;
+        padding: 90px 4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        text-align: center;
+        .home-content-inner {
+            flex: 0;
+            text-align: center;
+        }
+        .home-message {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 400ms;
+            &.visible {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        .home-prompt {
+            line-height: 0;
+            img {
+                width: 5rem;
+            }
+        }
     }
     .content-wrapper {
         position: relative;

@@ -9,6 +9,7 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     private static queueSize: number = 0;
     private static pageStage: number = -1;
     private static timeout: number | null = null;
+    private static listeners: Array<(isLoading: boolean) => void> = [];
     private static add(instance: GlobalLoader) {
         this.instances.push(instance);
     }
@@ -17,9 +18,21 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     }
     private static updateState = () => {
         GlobalLoader.timeout = null;
+        GlobalLoader.listeners.forEach((listener) => {
+            listener(GlobalLoader.isLoading);
+        });
         GlobalLoader.instances.forEach((instance) => {
             instance.updateState(GlobalLoader.queueSize > 0);
         });
+    }
+    public static addUpdateListener(cb: (number) => void) {
+        GlobalLoader.listeners.push(cb);
+    }
+    public static removeUpdateListener(cb: (number) => void) {
+        GlobalLoader.listeners.splice(GlobalLoader.listeners.indexOf(cb), 1);
+    }
+    public static get isLoading() {
+        return GlobalLoader.queueSize > 0;
     }
     private static queueState() {
         if (this.timeout !== null) {

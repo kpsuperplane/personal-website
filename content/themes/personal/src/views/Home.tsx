@@ -136,6 +136,7 @@ export default class Home extends View {
     }
     private updateHeight = () => {
         this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
+        this.content!!.style.height = this.winHeight + 'px';
     }
     private dragRender = () => {
         const delta = this.touchLast - this.touchStart;
@@ -151,12 +152,11 @@ export default class Home extends View {
         }
         const percent = y / (this.winHeight * 0.85);
         this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
-        this.hero!!.style.transform = `translate3d(0, ${-(1 - percent) * this.winHeight / 2}px, 0)`;
-        this.hero!!.style.opacity = `${Math.max(0, (percent * 1.3 - 0.3))}`;
+        this.hero!!.style.transform = `scale(${0.8 + percent * 0.2})`;
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
-        this.content!!.style.borderRadius = '1rem 1rem 0 0';
+        this.content!!.style.borderRadius = null;
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
         this.touchLast = this.touchStart;
@@ -195,7 +195,7 @@ export default class Home extends View {
         }
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
         this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
-        this.content!!.style.borderRadius = this.opened ? '0' : '1rem 1rem 0 0';
+        this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
         this.dragRender();
     }
@@ -256,13 +256,13 @@ export default class Home extends View {
     }
     public render() {
         return (<div className="home-component" ref={this.attachWrapper}>
-            <div ref={this.attachContent} className="content-wrapper">
-                <img src={Render} style={{width: '100%'}}/>
-            </div>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
                     <HomeContent />
                 </div>
+            </div>
+            <div ref={this.attachContent} className="content-wrapper">
+                <img src={Render} style={{width: '100%'}}/>
             </div>
         </div>);
     }

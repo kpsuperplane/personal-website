@@ -203,6 +203,7 @@ var Home = function (_View) {
         };
         _this4.updateHeight = function () {
             _this4.wrapper.style.height = _this4.opened ? null : _this4.winHeight + 'px';
+            _this4.content.style.height = _this4.winHeight + 'px';
         };
         _this4.dragRender = function () {
             var delta = _this4.touchLast - _this4.touchStart;
@@ -218,12 +219,11 @@ var Home = function (_View) {
             }
             var percent = y / (_this4.winHeight * 0.85);
             _this4.content.style.transform = 'translate3d(0, ' + y + 'px, 0)';
-            _this4.hero.style.transform = 'translate3d(0, ' + -(1 - percent) * _this4.winHeight / 2 + 'px, 0)';
-            _this4.hero.style.opacity = '' + Math.max(0, percent * 1.3 - 0.3);
+            _this4.hero.style.transform = 'scale(' + (0.8 + percent * 0.2) + ')';
         };
         _this4.dragStart = function (e) {
             _this4.updatePosition();
-            _this4.content.style.borderRadius = '1rem 1rem 0 0';
+            _this4.content.style.borderRadius = null;
             _this4.touchStart = e.touches[0].clientY;
             _this4.touchLastTime = new Date().getTime();
             _this4.touchLast = _this4.touchStart;
@@ -253,7 +253,7 @@ var Home = function (_View) {
             }
             var animTime = (_this4.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
             _this4.hero.style.transition = _this4.content.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this4.velocityLast) * (0.1 * animTime) / Math.abs(y - _this4.top) + ',0.1,1)';
-            _this4.content.style.borderRadius = _this4.opened ? '0' : '1rem 1rem 0 0';
+            _this4.content.style.borderRadius = _this4.opened ? '0' : null;
             _this4.updateHeight();
             _this4.dragRender();
         };
@@ -328,10 +328,10 @@ var Home = function (_View) {
     };
 
     Home.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'content-wrapper', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'img', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'content-wrapper', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'img', null, null, {
             'src': __WEBPACK_IMPORTED_MODULE_9__img_render_png___default.a,
             'style': { width: '100%' }
-        }), null, null, this.attachContent), Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_10_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero)], null, null, this.attachWrapper);
+        }), null, null, this.attachContent)], null, null, this.attachWrapper);
     };
 
     return Home;
@@ -2683,7 +2683,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    overflow: hidden; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n", ""]);
 
 // exports
 

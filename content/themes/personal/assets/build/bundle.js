@@ -6613,12 +6613,15 @@ var NavigationMobile = function (_Component) {
 
         _this.wrapper = null;
         _this.outerWrapper = null;
+        _this.handle = null;
         _this.parent = null;
         _this.background = null;
         _this.touchStart = 0;
         _this.touchLast = 0;
         _this.height = 0;
+        _this.wasOpened = false;
         _this.touchLastTime = 0;
+        _this.touchStartTime = 0;
         _this.touchDelta = 0;
         _this.velocityLast = 0;
         _this.touchLastBuffer = 0;
@@ -6649,7 +6652,9 @@ var NavigationMobile = function (_Component) {
             _this.outerWrapper.style.transition = 'none';
             _this.height = _this.wrapper.getBoundingClientRect().height;
             _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
+            _this.wasOpened = _this.opened;
             _this.opened = false;
+            _this.touchStartTime = new Date().getTime();
             _this.parent.style.height = '100%';
             _this.background.style.display = 'block';
             _this.background.style.transition = 'no';
@@ -6668,18 +6673,24 @@ var NavigationMobile = function (_Component) {
             e.preventDefault();
             _this.calculateVelocity();
             var delta = _this.touchLast - _this.touchStart;
-            var y = _this.top + delta;
-            var navHeight = _this.wrapper.getBoundingClientRect().height - 300;
             _this.touchStart = -1;
             _this.touchLast = -1;
+            var navHeight = _this.wrapper.getBoundingClientRect().height - 300;
+            var y = _this.top + delta;
             var percent = (y + navHeight) / navHeight;
-            if (_this.velocityLast < 0) {
-                _this.opened = false;
-                _this.top = -navHeight;
+            if (delta < 1 && new Date().getTime() - _this.touchStartTime < 3000) {
+                _this.opened = !_this.wasOpened;
+                _this.velocityLast = 0;
             } else {
-                _this.opened = true;
-                _this.top = 0;
+                if (_this.wasOpened && _this.velocityLast < 1) {
+                    _this.opened = false;
+                    _this.top = -navHeight;
+                } else if (!_this.wasOpened && _this.velocityLast > 1) {
+                    _this.opened = true;
+                    _this.top = 0;
+                }
             }
+            _this.top = _this.opened ? 0 : -navHeight;
             var animTime = Math.abs(percent) * 100 + 100;
             _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.05 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
             _this.background.style.transition = 'opacity ' + animTime + 'ms';
@@ -6693,13 +6704,18 @@ var NavigationMobile = function (_Component) {
             window.requestAnimationFrame(_this.dragRender);
         };
         _this.dragCancel = _this.dragEnd;
-        _this.attachWrapper = function (el) {
-            if (_this.wrapper == null) {
-                _this.wrapper = el;
+        _this.attachHandle = function (el) {
+            if (_this.handle == null) {
+                _this.handle = el;
                 el.addEventListener('touchstart', _this.dragStart, { passive: false });
                 el.addEventListener('touchend', _this.dragEnd, { passive: false });
                 el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
                 el.addEventListener('touchmove', _this.dragMove, { passive: false });
+            }
+        };
+        _this.attachWrapper = function (el) {
+            if (_this.wrapper == null) {
+                _this.wrapper = el;
             }
         };
         _this.attachOuterWrapper = function (el) {
@@ -6728,7 +6744,7 @@ var NavigationMobile = function (_Component) {
     NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
         __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
-        var el = this.wrapper;
+        var el = this.handle;
         el.removeEventListener('touchstart', this.dragStart);
         el.removeEventListener('touchend', this.dragEnd);
         el.removeEventListener('touchcancel', this.dragCancel);
@@ -6781,7 +6797,7 @@ var NavigationMobile = function (_Component) {
         }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', 'navigation-bar-handle-logo', null, {
             'src': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
             'style': { height: diameter * 0.6 }
-        })])], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
+        })], null, null, this.attachHandle)], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
     };
 
     return NavigationMobile;

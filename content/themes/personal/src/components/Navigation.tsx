@@ -10,12 +10,15 @@ import GlobalLoader from './GlobalLoader';
 class NavigationMobile extends Component <{}, {width: number, active: boolean, loading: boolean}> {
     private wrapper: HTMLElement|null = null;
     private outerWrapper: HTMLElement|null = null;
+    private handle: HTMLElement|null = null;
     private parent: HTMLElement|null = null;
     private background: HTMLElement|null = null;
     private touchStart: number = 0;
     private touchLast: number = 0;
     private height: number = 0;
+    private wasOpened: boolean = false;
     private touchLastTime: number = 0;
+    private touchStartTime: number = 0;
     private touchDelta: number = 0;
     private velocityLast: number = 0;
     private touchLastBuffer: number = 0;
@@ -54,7 +57,9 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         this.outerWrapper!!.style.transition = `none`;
         this.height = this.wrapper!!.getBoundingClientRect().height;
         this.top = this.opened ? 0 : -this.wrapper!!.getBoundingClientRect().height + 300;
+        this.wasOpened = this.opened;
         this.opened = false;
+        this.touchStartTime = new Date().getTime();
         this.parent!!.style.height = '100%';
         this.background!!.style.display = 'block';
         this.background!!.style.transition = 'no';
@@ -73,18 +78,24 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         e.preventDefault();
         this.calculateVelocity();
         const delta = this.touchLast - this.touchStart;
-        const y = this.top + delta;
-        const navHeight = this.wrapper!!.getBoundingClientRect().height - 300;
         this.touchStart = -1;
         this.touchLast = -1;
+        const navHeight = this.wrapper!!.getBoundingClientRect().height - 300;
+        const y = this.top + delta;
         const percent = (y + navHeight) / navHeight;
-        if ((this.velocityLast < 0)) {
-            this.opened = false;
-            this.top = -navHeight;
+        if (delta < 1 && new Date().getTime() - this.touchStartTime < 3000) {
+            this.opened = !this.wasOpened;
+            this.velocityLast = 0;
         } else {
-            this.opened = true;
-            this.top = 0;
+            if (this.wasOpened && this.velocityLast < 1) {
+                this.opened = false;
+                this.top = -navHeight;
+            } else if (!this.wasOpened && this.velocityLast > 1) {
+                this.opened = true;
+                this.top = 0;
+            }
         }
+        this.top = this.opened ? 0 : -navHeight;
         const animTime = Math.abs(percent) * 100 + 100;
         this.outerWrapper!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.05 * animTime)) / Math.abs(y - (this.top + navHeight))},0.1,1)`;
         this.background!!.style.transition = 'opacity ' + animTime + 'ms';
@@ -98,13 +109,18 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         window.requestAnimationFrame(this.dragRender);
     }
     private dragCancel = this.dragEnd;
-    private attachWrapper = (el) => {
-        if (this.wrapper == null) {
-            this.wrapper = el;
+    private attachHandle = (el) => {
+        if (this.handle == null) {
+            this.handle = el;
             el.addEventListener('touchstart', this.dragStart, {passive: false});
             el.addEventListener('touchend', this.dragEnd, {passive: false});
             el.addEventListener('touchcancel', this.dragCancel, {passive: false});
             el.addEventListener('touchmove', this.dragMove, {passive: false});
+        }
+    }
+    private attachWrapper = (el) => {
+        if (this.wrapper == null) {
+            this.wrapper = el;
         }
     }
     private attachOuterWrapper = (el) => {
@@ -125,7 +141,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
     public componentWillUnmount() {
         GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
-        const el = this.wrapper!!;
+        const el = this.handle!!;
         el.removeEventListener('touchstart', this.dragStart);
         el.removeEventListener('touchend', this.dragEnd);
         el.removeEventListener('touchcancel', this.dragCancel);
@@ -145,7 +161,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
             <div className={'navigation navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
                 <div className="navigation-bar" ref={this.attachWrapper}>
                     <img src={NavRender} style={{width: '100%'}} />
-                    <div className="navigation-bar-handle">
+                    <div className="navigation-bar-handle" ref={this.attachHandle}>
                         <svg className="navigation-bar-handle-background" width={state.width} height={diameter * 1.5}>
                             <defs>
                                 <filter xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%">

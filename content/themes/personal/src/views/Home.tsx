@@ -136,7 +136,7 @@ export default class Home extends View {
     }
     private updateHeight = () => {
         this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
-        this.content!!.style.height = this.winHeight + 'px';
+        this.hero!!.style.height = this.winHeight + 'px';
     }
     private dragRender = () => {
         const delta = this.touchLast - this.touchStart;
@@ -156,11 +156,14 @@ export default class Home extends View {
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
+        if (this.opened && window.scrollY < 1) {
+            window.scrollTo(0, 1);
+        }
         this.content!!.style.borderRadius = null;
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
         this.touchLast = this.touchStart;
-        this.scrollStart = document.documentElement.scrollTop;
+        this.scrollStart = window.scrollY;
         this.hero!!.style.transition = 'no';
         this.content!!.style.transition = 'border-radius 500ms';
         this.dragRender();
@@ -204,12 +207,13 @@ export default class Home extends View {
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         const y = this.top + this.touchLast - this.touchStart;
-        if (this.opened && document.documentElement.scrollTop === 0 && y > 20) {
+        if (this.opened && window.scrollY - y < 1) {
             this.opened = false;
             this.touchStart = this.touchLast - 1;
             this.touchDelta = 0;
             this.top = 0;
             this.updateHeight();
+            e.preventDefault();
         }
         if (!this.opened) {
             e.preventDefault();

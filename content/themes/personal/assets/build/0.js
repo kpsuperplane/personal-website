@@ -203,7 +203,7 @@ var Home = function (_View) {
         };
         _this4.updateHeight = function () {
             _this4.wrapper.style.height = _this4.opened ? null : _this4.winHeight + 'px';
-            _this4.content.style.height = _this4.winHeight + 'px';
+            _this4.hero.style.height = _this4.winHeight + 'px';
         };
         _this4.dragRender = function () {
             var delta = _this4.touchLast - _this4.touchStart;
@@ -223,11 +223,14 @@ var Home = function (_View) {
         };
         _this4.dragStart = function (e) {
             _this4.updatePosition();
+            if (_this4.opened && window.scrollY < 1) {
+                window.scrollTo(0, 1);
+            }
             _this4.content.style.borderRadius = null;
             _this4.touchStart = e.touches[0].clientY;
             _this4.touchLastTime = new Date().getTime();
             _this4.touchLast = _this4.touchStart;
-            _this4.scrollStart = document.documentElement.scrollTop;
+            _this4.scrollStart = window.scrollY;
             _this4.hero.style.transition = 'no';
             _this4.content.style.transition = 'border-radius 500ms';
             _this4.dragRender();
@@ -262,12 +265,13 @@ var Home = function (_View) {
             _this4.touchLast = e.touches[0].clientY;
             _this4.touchDelta = _this4.touchLastBuffer - e.touches[0].clientY;
             var y = _this4.top + _this4.touchLast - _this4.touchStart;
-            if (_this4.opened && document.documentElement.scrollTop === 0 && y > 20) {
+            if (_this4.opened && window.scrollY - y < 1) {
                 _this4.opened = false;
                 _this4.touchStart = _this4.touchLast - 1;
                 _this4.touchDelta = 0;
                 _this4.top = 0;
                 _this4.updateHeight();
+                e.preventDefault();
             }
             if (!_this4.opened) {
                 e.preventDefault();

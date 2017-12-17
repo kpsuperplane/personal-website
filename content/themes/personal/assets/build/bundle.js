@@ -6643,7 +6643,7 @@ var NavigationMobile = function (_Component) {
             }
         };
         _this.dragRender = function () {
-            var y = _this.opened ? 0 : _this.top + _this.touchLast - _this.touchStart;
+            var y = _this.top + _this.touchLast - _this.touchStart;
             _this.outerWrapper.style.transform = 'translate3d(0, ' + (y > 0 ? Math.log((y + 100) / 100) * 100 : y) + 'px, 0)';
             _this.background.style.opacity = _this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (_this.height - 300)));
         };
@@ -6652,8 +6652,6 @@ var NavigationMobile = function (_Component) {
             _this.outerWrapper.style.transition = 'none';
             _this.height = _this.wrapper.getBoundingClientRect().height;
             _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
-            _this.wasOpened = _this.opened;
-            _this.opened = false;
             _this.touchStartTime = new Date().getTime();
             _this.parent.style.height = '100%';
             _this.background.style.display = 'block';
@@ -6679,20 +6677,20 @@ var NavigationMobile = function (_Component) {
             var y = _this.top + delta;
             var percent = (y + navHeight) / navHeight;
             if (delta < 1 && new Date().getTime() - _this.touchStartTime < 3000) {
-                _this.opened = !_this.wasOpened;
+                _this.opened = !_this.opened;
                 _this.velocityLast = 0;
             } else {
-                if (_this.wasOpened && _this.velocityLast < 1) {
+                if (_this.opened && _this.velocityLast < -0.5) {
                     _this.opened = false;
                     _this.top = -navHeight;
-                } else if (!_this.wasOpened && _this.velocityLast > 1) {
+                } else if (!_this.opened && _this.velocityLast > 0.5) {
                     _this.opened = true;
                     _this.top = 0;
                 }
             }
             _this.top = _this.opened ? 0 : -navHeight;
-            var animTime = Math.abs(percent) * 100 + 100;
-            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.05 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
+            var animTime = Math.abs(percent) * 100 + 200;
+            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
             _this.background.style.transition = 'opacity ' + animTime + 'ms';
             if (!_this.opened) {
                 setTimeout(function () {
@@ -6731,6 +6729,10 @@ var NavigationMobile = function (_Component) {
         _this.attachBackground = function (el) {
             if (_this.background == null) {
                 _this.background = el;
+                el.addEventListener('touchstart', _this.dragStart, { passive: false });
+                el.addEventListener('touchend', _this.dragEnd, { passive: false });
+                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
+                el.addEventListener('touchmove', _this.dragMove, { passive: false });
             }
         };
         _this.state = {
@@ -6745,6 +6747,11 @@ var NavigationMobile = function (_Component) {
         __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
         var el = this.handle;
+        el.removeEventListener('touchstart', this.dragStart);
+        el.removeEventListener('touchend', this.dragEnd);
+        el.removeEventListener('touchcancel', this.dragCancel);
+        el.removeEventListener('touchmove', this.dragMove);
+        el = this.background;
         el.removeEventListener('touchstart', this.dragStart);
         el.removeEventListener('touchend', this.dragEnd);
         el.removeEventListener('touchcancel', this.dragCancel);

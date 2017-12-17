@@ -48,7 +48,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         }
     }
     private dragRender = () => {
-        const y = this.opened ? 0 : this.top + this.touchLast - this.touchStart;
+        const y = this.top + this.touchLast - this.touchStart;
         this.outerWrapper!!.style.transform = `translate3d(0, ${y > 0 ? Math.log((y + 100) / 100) * 100 : y}px, 0)`;
         this.background!!.style.opacity = this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (this.height - 300)));
     }
@@ -57,8 +57,6 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         this.outerWrapper!!.style.transition = `none`;
         this.height = this.wrapper!!.getBoundingClientRect().height;
         this.top = this.opened ? 0 : -this.wrapper!!.getBoundingClientRect().height + 300;
-        this.wasOpened = this.opened;
-        this.opened = false;
         this.touchStartTime = new Date().getTime();
         this.parent!!.style.height = '100%';
         this.background!!.style.display = 'block';
@@ -84,20 +82,20 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         const y = this.top + delta;
         const percent = (y + navHeight) / navHeight;
         if (delta < 1 && new Date().getTime() - this.touchStartTime < 3000) {
-            this.opened = !this.wasOpened;
+            this.opened = !this.opened;
             this.velocityLast = 0;
         } else {
-            if (this.wasOpened && this.velocityLast < 1) {
+            if (this.opened && this.velocityLast < -0.5) {
                 this.opened = false;
                 this.top = -navHeight;
-            } else if (!this.wasOpened && this.velocityLast > 1) {
+            } else if (!this.opened && this.velocityLast > 0.5) {
                 this.opened = true;
                 this.top = 0;
             }
         }
         this.top = this.opened ? 0 : -navHeight;
-        const animTime = Math.abs(percent) * 100 + 100;
-        this.outerWrapper!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.05 * animTime)) / Math.abs(y - (this.top + navHeight))},0.1,1)`;
+        const animTime = Math.abs(percent) * 100 + 200;
+        this.outerWrapper!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - (this.top + navHeight))},0.1,1)`;
         this.background!!.style.transition = 'opacity ' + animTime + 'ms';
         if (!this.opened) {
             setTimeout(() => {
@@ -136,12 +134,21 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
     private attachBackground = (el) => {
         if (this.background == null) {
             this.background = el;
+            el.addEventListener('touchstart', this.dragStart, {passive: false});
+            el.addEventListener('touchend', this.dragEnd, {passive: false});
+            el.addEventListener('touchcancel', this.dragCancel, {passive: false});
+            el.addEventListener('touchmove', this.dragMove, {passive: false});
         }
     }
     public componentWillUnmount() {
         GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
-        const el = this.handle!!;
+        let el = this.handle!!;
+        el.removeEventListener('touchstart', this.dragStart);
+        el.removeEventListener('touchend', this.dragEnd);
+        el.removeEventListener('touchcancel', this.dragCancel);
+        el.removeEventListener('touchmove', this.dragMove);
+        el = this.background!!;
         el.removeEventListener('touchstart', this.dragStart);
         el.removeEventListener('touchend', this.dragEnd);
         el.removeEventListener('touchcancel', this.dragCancel);

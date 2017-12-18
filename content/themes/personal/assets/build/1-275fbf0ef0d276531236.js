@@ -38,6 +38,7 @@ var Post = function (_View) {
                 var body = _ref.body;
 
                 __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue(function () {
+                    window.scrollTo(0, 0);
                     if (body && body.posts && body.posts.length > 0) {
                         var post = body.posts[0];
                         _this.setState({ content: { __html: post.html } });

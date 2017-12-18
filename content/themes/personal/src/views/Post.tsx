@@ -16,6 +16,7 @@ export default class Post extends View<{content: any | null}> {
         GlobalLoader.queue(true);
         get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, '')})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
+                window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
                     this.setState({content: {__html: post.html}});

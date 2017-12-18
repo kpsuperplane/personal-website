@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
 module.exports = {
 	entry: "./src/index.tsx", // Point to main file
@@ -9,7 +10,7 @@ module.exports = {
 		path: __dirname + "/assets/build",
 		filename: "bundle.js",
 		publicPath: "/assets/build/",
-		chunkFilename: '[name].js',
+		chunkFilename: '[name]-[hash].js',
 	},
 	resolve: {
 		extensions: [ '.js', '.jsx', '.ts', '.tsx' ]
@@ -66,6 +67,7 @@ module.exports = {
 		historyApiFallback: true
 	},
 	plugins: [
+        new CleanObsoleteChunks(),
 		new CleanWebpackPlugin(
 			["dist"], {
 				verbose: true

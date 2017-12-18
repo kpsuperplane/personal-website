@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "275fbf0ef0d276531236" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "d1b0cef94daf5ba5eae3" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -6770,6 +6770,7 @@ var NavigationMobile = function (_Component) {
         _this.top = 0;
         _this.opened = false;
         _this.onLoadingStateChange = function (isLoading) {
+            __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].removeUpdateListener(_this.onLoadingStateChange);
             _this.setState({ loading: isLoading });
         };
         _this.onResize = function () {
@@ -6895,7 +6896,6 @@ var NavigationMobile = function (_Component) {
     }
 
     NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
-        __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
         var el = this.handle;
         el.removeEventListener('touchstart', this.dragStart);

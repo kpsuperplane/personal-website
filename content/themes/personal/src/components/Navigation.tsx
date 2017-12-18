@@ -34,6 +34,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         };
     }
     private onLoadingStateChange = (isLoading: boolean) => {
+        GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
         this.setState({loading: isLoading});
     }
     private onResize = () => {
@@ -151,7 +152,6 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         }
     }
     public componentWillUnmount() {
-        GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
         let el = this.handle!!;
         el.removeEventListener('touchstart', this.dragStart);

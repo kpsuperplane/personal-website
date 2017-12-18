@@ -8,6 +8,7 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     private static instances: GlobalLoader[] = [];
     private static queueSize: number = 0;
     private static pageStage: number = -1;
+    private static callbacks: Array<() => void> = [];
     private static timeout: number | null = null;
     private static listeners: Array<(isLoading: boolean) => void> = [];
     private static add(instance: GlobalLoader) {
@@ -18,6 +19,12 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     }
     private static updateState = () => {
         GlobalLoader.timeout = null;
+        if (GlobalLoader.queueSize === 0) {
+            for (const callback of GlobalLoader.callbacks) {
+                callback();
+            }
+            GlobalLoader.callbacks = [];
+        }
         GlobalLoader.listeners.forEach((listener) => {
             listener(GlobalLoader.isLoading);
         });
@@ -34,16 +41,16 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     public static get isLoading() {
         return GlobalLoader.queueSize > 0;
     }
-    private static queueState() {
+    private static queueState(forceAnim: boolean = false) {
         if (this.timeout !== null) {
             clearTimeout(this.timeout);
         }
-        this.timeout = setTimeout(this.updateState, 250);
+        this.timeout = setTimeout(this.updateState, forceAnim ? 0 : 250);
     }
     private static removeInitial() {
             document.getElementById('main-app-loader')!!.remove();
     }
-    public static queue() {
+    public static queue(forceAnim: boolean = false) {
         ++GlobalLoader.queueSize;
         if (GlobalLoader.pageStage === -1) {
             GlobalLoader.pageStage = setTimeout(() => {
@@ -51,19 +58,22 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
                 GlobalLoader.removeInitial();
             }, 500);
         }
-        GlobalLoader.queueState();
+        GlobalLoader.queueState(forceAnim);
     }
-    public static dequeue() {
+    public static dequeue(callback: (() => void) | null = null) {
         --GlobalLoader.queueSize;
         if (GlobalLoader.pageStage !== -2) {
             clearTimeout(GlobalLoader.pageStage);
             GlobalLoader.removeInitial();
+            GlobalLoader.pageStage = -2;
+        }
+        if (callback) {
+            GlobalLoader.callbacks.push(callback);
         }
         GlobalLoader.queueState();
     }
 
     private timeout: number | null = null;
-    private lastshown: number = 0;
 
     constructor(props) {
         super(props);
@@ -83,7 +93,6 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
             }
             // non-loading to loading
             if (loading === true) {
-                this.lastshown = new Date().getTime();
                 this.setState({loading: true, visible: true});
             } else { // transition and hide
                 this.setState({visible: false});

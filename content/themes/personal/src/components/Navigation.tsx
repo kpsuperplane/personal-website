@@ -1,9 +1,11 @@
 import Component from 'inferno-component';
+import { Link } from 'inferno-router';
 
 import './Navigation.scss';
 
 import LogoTheme from '../img/logo-theme.png';
-import NavRender from '../img/navrender.png';
+import Icon, { Icons } from './icon';
+import LazyImage from './LazyImage';
 
 import GlobalLoader from './GlobalLoader';
 
@@ -16,7 +18,6 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
     private touchStart: number = 0;
     private touchLast: number = 0;
     private height: number = 0;
-    private wasOpened: boolean = false;
     private touchLastTime: number = 0;
     private touchStartTime: number = 0;
     private touchDelta: number = 0;
@@ -72,9 +73,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         this.calculateVelocity();
         window.requestAnimationFrame(this.dragRender);
     }
-    private dragEnd = (e) => {
-        e.preventDefault();
-        this.calculateVelocity();
+    private dragComplete = () => {
         const delta = this.touchLast - this.touchStart;
         this.touchStart = -1;
         this.touchLast = -1;
@@ -103,8 +102,19 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
                     this.parent!!.style.height = null;
             }, animTime);
         }
-        this.dragRender();
         window.requestAnimationFrame(this.dragRender);
+    }
+    private onClick = (e) => {
+        this.touchStart = 0;
+        this.touchLast = 0;
+        this.velocityLast = 0;
+        this.touchStartTime = new Date().getTime();
+        this.dragComplete();
+    }
+    private dragEnd = (e) => {
+        e.preventDefault();
+        this.calculateVelocity();
+        this.dragComplete();
     }
     private dragCancel = this.dragEnd;
     private attachHandle = (el) => {
@@ -163,13 +173,18 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         const state = this.state!!;
         const diameter = 75;
         const radius_squared = Math.pow(diameter / 2, 2);
-        return <div className="navigation-parent" ref={this.attachParent}>
-            <div className="navigation-background" ref={this.attachBackground}></div>
-            <div className={'navigation navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
-                <div className="navigation-bar" ref={this.attachWrapper}>
-                    <img src={NavRender} style={{width: '100%'}} />
-                    <div className="navigation-bar-handle" ref={this.attachHandle}>
-                        <svg className="navigation-bar-handle-background" width={state.width} height={diameter * 1.5}>
+        return <div className="navigation-mobile-parent" ref={this.attachParent}>
+            <div className="navigation-mobile-background" ref={this.attachBackground}></div>
+            <div className={'navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
+                <div className="navigation-mobile-bar" ref={this.attachWrapper}>
+                    <div className="navigation-mobile-bar-main">
+                        <Link onClick={this.onClick} to="/" className="br"><Icon icon={Icons.HOME} />Home</Link>
+                        <Link onClick={this.onClick} to="/about" className=""><Icon icon={Icons.ABOUT} />About</Link>
+                        <Link onClick={this.onClick} to="/projects" className="br"><Icon icon={Icons.PALETTE} />Projects</Link>
+                        <Link onClick={this.onClick} to="/blog"><Icon icon={Icons.OPEN_BOOK} />Blog</Link>
+                    </div>
+                    <div className="navigation-mobile-bar-handle" onClick={this.onClick} ref={this.attachHandle}>
+                        <svg className="navigation-mobile-bar-handle-background" width={state.width} height={diameter * 0.9}>
                             <defs>
                                 <filter xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%">
                                     <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
@@ -188,7 +203,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
                                 <circle cx={state.width / 2} cy={diameter * 0.33} r={diameter / 2} fill="white"/>
                             </g>
                         </svg>
-                        <img src={LogoTheme} style={{height: diameter * 0.6}} class="navigation-bar-handle-logo" />
+                        <LazyImage path={LogoTheme} style={{height: diameter * 0.6}} className="navigation-mobile-bar-handle-logo" />
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import './types';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import { render } from 'inferno';
-import { IndexRoute, Redirect, Route, Router } from 'inferno-router';
+import { doAllAsyncBefore, IndexRoute, match, Route, Router } from 'inferno-router';
 import GlobalLoader from './components/GlobalLoader';
 
 import App from './App';
@@ -14,25 +14,33 @@ declare var require: {
 };
 
 const Home = (props, cb) => require.ensure([], () => cb(null, (require('./views/Home') as any).default));
+const Post = (props, cb) => require.ensure([], () => cb(null, (require('./views/Post') as any).default));
 
 const browserHistory = createBrowserHistory();
 let lastPage = '';
 
-function handleNavigation({props}) {
-    if (lastPage !== '') {
-        document.body.classList.remove(lastPage);
+function handleNavigation(route) {
+    const matched = match(routes, route);
+    const newPage = matched.matched.props.children.props.children.props.getComponent.name.toLowerCase() + '-template';
+    if (newPage !== lastPage) {
+        if (lastPage !== '') {
+            document.body.classList.remove(lastPage);
+        }
+        lastPage = newPage;
+        document.body.classList.add(lastPage);
+        GlobalLoader.queue();
     }
-    lastPage = props.getComponent.name.toLowerCase() + '-template';
-    document.body.classList.add(lastPage);
-    GlobalLoader.queue();
+    return doAllAsyncBefore(matched);
 }
 
+const routes = (<Router history={ browserHistory } asyncBefore={handleNavigation} >
+    <Route component={ App }>
+        <IndexRoute getComponent={Home} />
+        <Route path="*" getComponent={Post} />
+    </Route>
+</Router>);
+
 document.addEventListener('DOMContentLoaded', function(e) {
-    render(
-    <Router history={ browserHistory }>
-        <Route component={ App }>
-            <IndexRoute onEnter={handleNavigation} getComponent={Home} />
-            <Redirect from="*" to="/" />
-        </Route>
-    </Router>, document.getElementById('app'));
+    handleNavigation(window.location.pathname);
+    render(routes, document.getElementById('app'));
 });

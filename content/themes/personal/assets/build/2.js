@@ -1,25 +1,25 @@
-webpackJsonp([0],{
+webpackJsonp([2],{
 
-/***/ 42:
+/***/ 39:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_create_element___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_create_element__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_superagent__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_superagent__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_LazyImage__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Loader__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_Button__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_LazyImage__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Loader__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__img_thinking_jpg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__img_render_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__img_render_png__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_inferno__);
@@ -190,6 +190,7 @@ var Home = function (_View) {
         _this4.touchLast = -1;
         _this4.touchDelta = -1;
         _this4.touchLastBuffer = -1;
+        _this4.scrollStart = -1;
         _this4.touchLastTime = -1;
         _this4.opened = false;
         _this4.openedPreviously = false;
@@ -229,6 +230,7 @@ var Home = function (_View) {
             _this4.touchStart = e.touches[0].clientY;
             _this4.touchLastTime = new Date().getTime();
             _this4.touchLast = _this4.touchStart;
+            _this4.scrollStart = window.scrollY;
             _this4.hero.style.transition = 'no';
             _this4.content.style.transition = 'border-radius 500ms';
             _this4.dragRender();
@@ -343,7 +345,7 @@ var Home = function (_View) {
 
 /***/ }),
 
-/***/ 44:
+/***/ 40:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -366,7 +368,7 @@ module.exports = isObject;
 
 /***/ }),
 
-/***/ 45:
+/***/ 41:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -401,7 +403,7 @@ var View = function (_Component) {
 
 /***/ }),
 
-/***/ 46:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -418,11 +420,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(47);
-var RequestBase = __webpack_require__(48);
-var isObject = __webpack_require__(44);
-var ResponseBase = __webpack_require__(49);
-var Agent = __webpack_require__(51);
+var Emitter = __webpack_require__(43);
+var RequestBase = __webpack_require__(44);
+var isObject = __webpack_require__(40);
+var ResponseBase = __webpack_require__(45);
+var Agent = __webpack_require__(47);
 
 /**
  * Noop.
@@ -1328,7 +1330,7 @@ request.put = function(url, data, fn) {
 
 /***/ }),
 
-/***/ 47:
+/***/ 43:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1498,7 +1500,7 @@ Emitter.prototype.hasListeners = function(event){
 
 /***/ }),
 
-/***/ 48:
+/***/ 44:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1507,7 +1509,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(44);
+var isObject = __webpack_require__(40);
 
 /**
  * Expose `RequestBase`.
@@ -2200,7 +2202,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 /***/ }),
 
-/***/ 49:
+/***/ 45:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2210,7 +2212,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(50);
+var utils = __webpack_require__(46);
 
 /**
  * Expose `ResponseBase`.
@@ -2342,7 +2344,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 /***/ }),
 
-/***/ 50:
+/***/ 46:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2421,7 +2423,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 /***/ }),
 
-/***/ 51:
+/***/ 47:
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -2448,13 +2450,13 @@ module.exports = Agent;
 
 /***/ }),
 
-/***/ 52:
+/***/ 48:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Button_scss__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Button_scss__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Button_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Button_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
@@ -2490,13 +2492,13 @@ var Button = function (_Component) {
 
 /***/ }),
 
-/***/ 53:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(54);
+var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2522,7 +2524,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 50:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -2537,20 +2539,121 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 
 /***/ }),
 
-/***/ 55:
+/***/ 51:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var LazyImage = function (_Component) {
+    _inherits(LazyImage, _Component);
+
+    function LazyImage(props) {
+        _classCallCheck(this, LazyImage);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+        _this.state = {
+            loaded: false
+        };
+        var img = new Image();
+        img.addEventListener('load', function () {
+            _this.setState({ loaded: true });
+        });
+        img.src = props.path;
+        return _this;
+    }
+
+    LazyImage.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'img', 'lazy-image' + (this.state.loaded ? ' loaded' : ''), null, _extends({
+            'src': this.props.path
+        }, this.props));
+    };
+
+    return LazyImage;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (LazyImage);
+
+/***/ }),
+
+/***/ 52:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(53);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 53:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".lazy-image {\n  opacity: 0;\n  transition: opacity 250ms; }\n  .lazy-image.loaded {\n    opacity: 1; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "thinking.jpg";
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2576,7 +2679,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 57:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -2591,7 +2694,7 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 
 /***/ }),
 
-/***/ 58:
+/***/ 57:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "render.png";

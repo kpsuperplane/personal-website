@@ -1,4 +1,5 @@
 @import './common';
+@import './normalize';
 html {
     height: 100%;
     touch-action: manipulation;
@@ -8,4 +9,7 @@ body {
     margin: 0;
     font-size: 16px;
     @extend .body-font;
+}
+.nav-spacer {
+    height: 52px;
 }

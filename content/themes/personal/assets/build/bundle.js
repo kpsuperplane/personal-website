@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		1: 0
+/******/ 		2: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -142,14 +142,14 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(19).default;
+module.exports = __webpack_require__(21).default;
 module.exports.default = module.exports;
 
 
@@ -158,7 +158,7 @@ module.exports.default = module.exports;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(23).default;
+module.exports = __webpack_require__(24).default;
 module.exports.default = module.exports;
 
 
@@ -482,7 +482,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(30);
+var	fixUrls = __webpack_require__(31);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -801,9 +801,9 @@ function updateLink (link, options, obj) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_logo_black_png__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_logo_black_png__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_logo_black_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__img_logo_black_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -828,7 +828,6 @@ var GlobalLoader = function (_Component) {
         var _this = _possibleConstructorReturn(this, _Component.call(this, props));
 
         _this.timeout = null;
-        _this.lastshown = 0;
         _this.hide = function () {
             _this.setState({ loading: false });
         };
@@ -857,10 +856,12 @@ var GlobalLoader = function (_Component) {
     };
 
     GlobalLoader.queueState = function queueState() {
+        var forceAnim = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
         if (this.timeout !== null) {
             clearTimeout(this.timeout);
         }
-        this.timeout = setTimeout(this.updateState, 250);
+        this.timeout = setTimeout(this.updateState, forceAnim ? 0 : 250);
     };
 
     GlobalLoader.removeInitial = function removeInitial() {
@@ -868,6 +869,8 @@ var GlobalLoader = function (_Component) {
     };
 
     GlobalLoader.queue = function queue() {
+        var forceAnim = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
         ++GlobalLoader.queueSize;
         if (GlobalLoader.pageStage === -1) {
             GlobalLoader.pageStage = setTimeout(function () {
@@ -875,14 +878,20 @@ var GlobalLoader = function (_Component) {
                 GlobalLoader.removeInitial();
             }, 500);
         }
-        GlobalLoader.queueState();
+        GlobalLoader.queueState(forceAnim);
     };
 
     GlobalLoader.dequeue = function dequeue() {
+        var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+
         --GlobalLoader.queueSize;
         if (GlobalLoader.pageStage !== -2) {
             clearTimeout(GlobalLoader.pageStage);
             GlobalLoader.removeInitial();
+            GlobalLoader.pageStage = -2;
+        }
+        if (callback) {
+            GlobalLoader.callbacks.push(callback);
         }
         GlobalLoader.queueState();
     };
@@ -894,7 +903,6 @@ var GlobalLoader = function (_Component) {
             }
             // non-loading to loading
             if (loading === true) {
-                this.lastshown = new Date().getTime();
                 this.setState({ loading: true, visible: true });
             } else {
                 this.setState({ visible: false });
@@ -928,10 +936,30 @@ var GlobalLoader = function (_Component) {
 GlobalLoader.instances = [];
 GlobalLoader.queueSize = 0;
 GlobalLoader.pageStage = -1;
+GlobalLoader.callbacks = [];
 GlobalLoader.timeout = null;
 GlobalLoader.listeners = [];
 GlobalLoader.updateState = function () {
     GlobalLoader.timeout = null;
+    if (GlobalLoader.queueSize === 0) {
+        for (var _iterator = GlobalLoader.callbacks, _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
+            var _ref;
+
+            if (_isArray) {
+                if (_i >= _iterator.length) break;
+                _ref = _iterator[_i++];
+            } else {
+                _i = _iterator.next();
+                if (_i.done) break;
+                _ref = _i.value;
+            }
+
+            var callback = _ref;
+
+            callback();
+        }
+        GlobalLoader.callbacks = [];
+    }
     GlobalLoader.listeners.forEach(function (listener) {
         listener(GlobalLoader.isLoading);
     });
@@ -1086,14 +1114,23 @@ module.exports.default = module.exports;
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(23).default;
+module.exports.default = module.exports;
+
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Loader_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -1135,21 +1172,74 @@ var Loader = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Loader);
 
 /***/ }),
-/* 10 */
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__LazyImage_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var LazyImage = function (_Component) {
+    _inherits(LazyImage, _Component);
+
+    function LazyImage(props) {
+        _classCallCheck(this, LazyImage);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+        _this.state = {
+            loaded: false
+        };
+        var img = new Image();
+        img.addEventListener('load', function () {
+            _this.setState({ loaded: true });
+        });
+        img.src = props.path;
+        return _this;
+    }
+
+    LazyImage.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'img', 'lazy-image' + (this.state.loaded ? ' loaded' : '') + (this.props.className ? ' ' + this.props.className : ''), null, _extends({
+            'src': this.props.path
+        }, this.props));
+    };
+
+    return LazyImage;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (LazyImage);
+
+/***/ }),
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__App__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__App__ = __webpack_require__(32);
 
 
 
@@ -1158,46 +1248,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var Home = function Home(props, cb) {
     return __webpack_require__.e/* require.ensure */(0).then((function () {
-        return cb(null, __webpack_require__(39).default);
+        return cb(null, __webpack_require__(42).default);
+    }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+};
+var Post = function Post(props, cb) {
+    return __webpack_require__.e/* require.ensure */(1).then((function () {
+        return cb(null, __webpack_require__(43).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var browserHistory = __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default()();
 var lastPage = '';
-function handleNavigation(_ref) {
-    var props = _ref.props;
-
-    if (lastPage !== '') {
-        document.body.classList.remove(lastPage);
+function handleNavigation(route) {
+    var matched = Object(__WEBPACK_IMPORTED_MODULE_3_inferno_router__["match"])(routes, route);
+    var newPage = matched.matched.props.children.props.children.props.getComponent.name.toLowerCase() + '-template';
+    if (newPage !== lastPage) {
+        if (lastPage !== '') {
+            document.body.classList.remove(lastPage);
+        }
+        lastPage = newPage;
+        document.body.classList.add(lastPage);
+        __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__["a" /* default */].queue();
     }
-    lastPage = props.getComponent.name.toLowerCase() + '-template';
-    document.body.classList.add(lastPage);
-    __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__["a" /* default */].queue();
+    return Object(__WEBPACK_IMPORTED_MODULE_3_inferno_router__["doAllAsyncBefore"])(matched);
 }
 
+var routes = Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Router"], null, null, {
+    'history': browserHistory,
+    'asyncBefore': handleNavigation,
+    children: Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Route"], null, null, {
+        'component': __WEBPACK_IMPORTED_MODULE_5__App__["a" /* default */],
+        children: [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["IndexRoute"], null, null, {
+            'getComponent': Home
+        }), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Route"], null, null, {
+            'path': '*',
+            'getComponent': Post
+        })]
+    })
+});
 document.addEventListener('DOMContentLoaded', function (e) {
-    Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["render"])(Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Router"], null, null, {
-        'history': browserHistory,
-        children: Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Route"], null, null, {
-            'component': __WEBPACK_IMPORTED_MODULE_5__App__["a" /* default */],
-            children: [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["IndexRoute"], null, null, {
-                'onEnter': handleNavigation,
-                'getComponent': Home
-            }), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Redirect"], null, null, {
-                'from': '*',
-                'to': '/'
-            })]
-        })
-    }), document.getElementById('app'));
+    handleNavigation(window.location.pathname);
+    Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["render"])(routes, document.getElementById('app'));
 });
 
 /***/ }),
-/* 11 */
+/* 13 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1213,19 +1313,19 @@ var _warning = __webpack_require__(6);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(13);
+var _invariant = __webpack_require__(15);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(14);
+var _LocationUtils = __webpack_require__(16);
 
 var _PathUtils = __webpack_require__(7);
 
-var _createTransitionManager = __webpack_require__(17);
+var _createTransitionManager = __webpack_require__(19);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(18);
+var _DOMUtils = __webpack_require__(20);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1510,7 +1610,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1569,7 +1669,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1580,11 +1680,11 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(15);
+var _resolvePathname = __webpack_require__(17);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(16);
+var _valueEqual = __webpack_require__(18);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
@@ -1653,7 +1753,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1730,7 +1830,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1775,7 +1875,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1866,7 +1966,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1927,7 +2027,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2164,6 +2264,9 @@ function handleEvent(name, lastEvent, nextEvent, dom) {
 function dispatchEvents(event, target, items, count, isClick, eventData) {
     var dom = target;
     while (count > 0) {
+        if (isClick && dom.disabled) {
+            return;
+        }
         var eventsToTrigger = items.get(dom);
         if (eventsToTrigger) {
             count--;
@@ -2183,7 +2286,7 @@ function dispatchEvents(event, target, items, count, isClick, eventData) {
         // Html Nodes can be nested fe: span inside button in that scenario browser does not handle disabled attribute on parent,
         // because the event listener is on document.body
         // Don't process clicks on disabled elements
-        if (dom === null || (isClick && dom.disabled)) {
+        if (dom === null) {
             return;
         }
     }
@@ -2538,13 +2641,13 @@ function applyValue$2(nextPropsOrEmpty, dom, mounting) {
  * Currently user must choose either controlled or non-controlled and stick with that
  */
 function processElement(flags, vNode, dom, nextPropsOrEmpty, mounting, isControlled) {
-    if (flags & 512 /* InputElement */) {
+    if ((flags & 512 /* InputElement */) > 0) {
         processInput(vNode, dom, nextPropsOrEmpty, mounting, isControlled);
     }
-    if (flags & 2048 /* SelectElement */) {
+    else if ((flags & 2048 /* SelectElement */) > 0) {
         processSelect(vNode, dom, nextPropsOrEmpty, mounting, isControlled);
     }
-    if (flags & 1024 /* TextareaElement */) {
+    else if ((flags & 1024 /* TextareaElement */) > 0) {
         processTextarea(vNode, dom, nextPropsOrEmpty, mounting, isControlled);
     }
 }
@@ -4203,7 +4306,14 @@ function setTextContent(dom, text) {
     }
 }
 function updateTextContent(dom, text) {
-    dom.firstChild.nodeValue = text;
+    var textNode = dom.firstChild;
+    // Guard against external change on DOM node.
+    if (isNull(textNode)) {
+        setTextContent(dom, text);
+    }
+    else {
+        textNode.nodeValue = text;
+    }
 }
 function appendChild(parentDom, dom) {
     parentDom.appendChild(dom);
@@ -4710,7 +4820,7 @@ if (process.env.NODE_ENV !== "production") {
             "See http://infernojs.org for more details.");
     }
 }
-var version = "3.9.0";
+var version = "3.10.1";
 // we duplicate it so it plays nicely with different module loading systems
 var index = {
     EMPTY_OBJ: EMPTY_OBJ,
@@ -4750,16 +4860,7 @@ exports.version = version;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(21).default;
-module.exports.default = module.exports;
-
-
-
-/***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4769,11 +4870,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var createElement = _interopDefault(__webpack_require__(8));
+var createElement = _interopDefault(__webpack_require__(9));
 var Component = _interopDefault(__webpack_require__(1));
 var Inferno = __webpack_require__(0);
 var Inferno__default = _interopDefault(Inferno);
-var pathToRegexp = _interopDefault(__webpack_require__(24));
+var pathToRegexp = _interopDefault(__webpack_require__(25));
 
 /**
  * @module Inferno-Shared
@@ -4807,6 +4908,20 @@ function combineFrom(first, second) {
     }
     return out;
 }
+function Lifecycle() {
+    this.listeners = [];
+}
+Lifecycle.prototype.addListener = function addListener(callback) {
+    this.listeners.push(callback);
+};
+Lifecycle.prototype.trigger = function trigger() {
+    var listeners = this.listeners;
+    var listener;
+    // We need to remove current listener from array when calling it, because more listeners might be added
+    while ((listener = listeners.shift())) {
+        listener();
+    }
+};
 
 /**
  * @module Inferno-Router
@@ -4841,7 +4956,10 @@ function mapSearchParams(search) {
     var fragments = search.split("&");
     for (var i = 0, len = fragments.length; i < len; i++) {
         var fragment = fragments[i];
-        var ref = fragment.split("=").map(mapFragment).map(decodeURIComponent);
+        var ref = fragment
+            .split("=")
+            .map(mapFragment)
+            .map(decodeURIComponent);
         var k = ref[0];
         var v = ref[1];
         if (map[k]) {
@@ -5491,7 +5609,7 @@ exports['default'] = index;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5525,6 +5643,20 @@ function isUndefined(o) {
 function isObject(o) {
     return typeof o === "object";
 }
+function Lifecycle() {
+    this.listeners = [];
+}
+Lifecycle.prototype.addListener = function addListener(callback) {
+    this.listeners.push(callback);
+};
+Lifecycle.prototype.trigger = function trigger() {
+    var listeners = this.listeners;
+    var listener;
+    // We need to remove current listener from array when calling it, because more listeners might be added
+    while ((listener = listeners.shift())) {
+        listener();
+    }
+};
 
 /**
  * @module Inferno-Create-Element
@@ -5621,7 +5753,7 @@ exports['default'] = createElement;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5681,6 +5813,20 @@ function combineFrom(first, second) {
     }
     return out;
 }
+function Lifecycle() {
+    this.listeners = [];
+}
+Lifecycle.prototype.addListener = function addListener(callback) {
+    this.listeners.push(callback);
+};
+Lifecycle.prototype.trigger = function trigger() {
+    var listeners = this.listeners;
+    var listener;
+    // We need to remove current listener from array when calling it, because more listeners might be added
+    while ((listener = listeners.shift())) {
+        listener();
+    }
+};
 
 /**
  * @module Inferno-Component
@@ -5692,17 +5838,6 @@ if (process.env.NODE_ENV !== "production") {
         "Inferno Error: Can only update a mounted or mounting component. This usually means you called setState() or forceUpdate() on an unmounted component. This is a no-op.";
 }
 var componentCallbackQueue = new Map();
-// when a components root VNode is also a component, we can run into issues
-// this will recursively look for vNode.parentNode if the VNode is a component
-function updateParentComponentVNodes(vNode, dom) {
-    if (vNode.flags & 28 /* Component */) {
-        var parentVNode = vNode.parentVNode;
-        if (parentVNode) {
-            parentVNode.dom = dom;
-            updateParentComponentVNodes(parentVNode, dom);
-        }
-    }
-}
 var resolvedPromise = Promise.resolve();
 function addToQueue(component, force, callback) {
     var queue = componentCallbackQueue.get(component);
@@ -5750,7 +5885,7 @@ function queueStateChanges(component, newState, callback) {
     }
     else {
         component._pendingSetState = true;
-        if (!isNullOrUndef(callback) && component._blockRender) {
+        if (isFunction(callback) && component._blockRender) {
             component._lifecycle.addListener(callback.bind(component));
         }
     }
@@ -5826,13 +5961,17 @@ function applyState(component, force, callback) {
         if (inferno.options.findDOMNodeEnabled) {
             inferno.internal_DOMNodeMap.set(component, nextInput.dom);
         }
-        updateParentComponentVNodes(vNode, dom);
+        while (!isNullOrUndef((vNode = vNode.parentVNode))) {
+            if ((vNode.flags & 28 /* Component */) > 0) {
+                vNode.dom = dom;
+            }
+        }
     }
     else {
         component.state = component._pendingState;
         component._pendingState = null;
     }
-    if (!isNullOrUndef(callback)) {
+    if (isFunction(callback)) {
         callback.call(component);
     }
 }
@@ -5939,10 +6078,10 @@ exports['default'] = Component;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(25)
+var isarray = __webpack_require__(26)
 
 /**
  * Expose `pathToRegexp`.
@@ -6371,7 +6510,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -6380,25 +6519,25 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "logo-black.png";
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "loader.mp4";
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(29);
+var content = __webpack_require__(30);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6423,7 +6562,7 @@ if(false) {
 }
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -6437,7 +6576,7 @@ exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-h
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 
@@ -6532,15 +6671,15 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
@@ -6575,26 +6714,30 @@ var App = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (App);
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Navigation_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_navrender_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Navigation_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__icon__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__LazyImage__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -6619,7 +6762,6 @@ var NavigationMobile = function (_Component) {
         _this.touchStart = 0;
         _this.touchLast = 0;
         _this.height = 0;
-        _this.wasOpened = false;
         _this.touchLastTime = 0;
         _this.touchStartTime = 0;
         _this.touchDelta = 0;
@@ -6667,9 +6809,7 @@ var NavigationMobile = function (_Component) {
             _this.calculateVelocity();
             window.requestAnimationFrame(_this.dragRender);
         };
-        _this.dragEnd = function (e) {
-            e.preventDefault();
-            _this.calculateVelocity();
+        _this.dragComplete = function () {
             var delta = _this.touchLast - _this.touchStart;
             _this.touchStart = -1;
             _this.touchLast = -1;
@@ -6698,8 +6838,19 @@ var NavigationMobile = function (_Component) {
                     _this.parent.style.height = null;
                 }, animTime);
             }
-            _this.dragRender();
             window.requestAnimationFrame(_this.dragRender);
+        };
+        _this.onClick = function (e) {
+            _this.touchStart = 0;
+            _this.touchLast = 0;
+            _this.velocityLast = 0;
+            _this.touchStartTime = new Date().getTime();
+            _this.dragComplete();
+        };
+        _this.dragEnd = function (e) {
+            e.preventDefault();
+            _this.calculateVelocity();
+            _this.dragComplete();
         };
         _this.dragCancel = _this.dragEnd;
         _this.attachHandle = function (el) {
@@ -6744,7 +6895,7 @@ var NavigationMobile = function (_Component) {
     }
 
     NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
-        __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
+        __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].removeUpdateListener(this.onLoadingStateChange);
         window.removeEventListener('resize', this.onResize);
         var el = this.handle;
         el.removeEventListener('touchstart', this.dragStart);
@@ -6759,8 +6910,8 @@ var NavigationMobile = function (_Component) {
     };
 
     NavigationMobile.prototype.componentDidMount = function componentDidMount() {
-        __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
-        this.setState({ loading: __WEBPACK_IMPORTED_MODULE_4__GlobalLoader__["a" /* default */].isLoading });
+        __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
+        this.setState({ loading: __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].isLoading });
         window.addEventListener('resize', this.onResize);
     };
 
@@ -6768,30 +6919,54 @@ var NavigationMobile = function (_Component) {
         var state = this.state;
         var diameter = 75;
         var radius_squared = Math.pow(diameter / 2, 2);
-        return Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-parent', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-bar', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', null, null, {
-            'src': __WEBPACK_IMPORTED_MODULE_3__img_navrender_png___default.a,
-            'style': { width: '100%' }
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'navigation-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(128, 'svg', 'navigation-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile-parent', [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar', [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-main', [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/',
+            'className': 'br',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_4__icon__["a" /* Icons */].HOME
+            }), 'Home']
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/about',
+            'className': '',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_4__icon__["a" /* Icons */].ABOUT
+            }), 'About']
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/projects',
+            'className': 'br',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_4__icon__["a" /* Icons */].PALETTE
+            }), 'Projects']
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/blog',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_4__icon__["a" /* Icons */].OPEN_BOOK
+            }), 'Blog']
+        })]), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(128, 'svg', 'navigation-mobile-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
             'in': 'SourceAlpha',
             'stdDeviation': '5'
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feOffset', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feOffset', null, null, {
             'dx': '0',
             'dy': '4',
             'result': 'offsetblur'
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feFuncA', null, null, {
             'type': 'linear',
             'slope': '0.05'
-        })), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
             'in': 'SourceGraphic'
         })])], {
             'xmlns': 'http://www.w3.org/2000/svg',
             'id': 'dropshadow',
             'height': '130%'
-        })), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'path', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'path', null, null, {
             'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
             'stroke-width': 0,
             'fill': 'white'
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'circle', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(2, 'circle', null, null, {
             'cx': state.width / 2,
             'cy': diameter * 0.33,
             'r': diameter / 2,
@@ -6800,11 +6975,14 @@ var NavigationMobile = function (_Component) {
             'filter': 'url(#dropshadow)'
         })], {
             'width': state.width,
-            'height': diameter * 1.5
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', 'navigation-bar-handle-logo', null, {
-            'src': __WEBPACK_IMPORTED_MODULE_2__img_logo_theme_png___default.a,
-            'style': { height: diameter * 0.6 }
-        })], null, null, this.attachHandle)], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
+            'height': diameter * 0.9
+        }), Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__LazyImage__["a" /* default */], null, null, {
+            'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a,
+            'style': { height: diameter * 0.6 },
+            'className': 'navigation-mobile-bar-handle-logo'
+        })], {
+            'onClick': this.onClick
+        }, null, this.attachHandle)], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
     };
 
     return NavigationMobile;
@@ -6820,7 +6998,7 @@ var Navigation = function (_Component2) {
     }
 
     Navigation.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(16, NavigationMobile);
+        return Object(__WEBPACK_IMPORTED_MODULE_7_inferno__["createVNode"])(16, NavigationMobile);
     };
 
     return Navigation;
@@ -6829,13 +7007,13 @@ var Navigation = function (_Component2) {
 /* harmony default export */ __webpack_exports__["a"] = (Navigation);
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(34);
+var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6860,7 +7038,7 @@ if(false) {
 }
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -6868,31 +7046,116 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".navigation-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-parent .navigation-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-parent .navigation {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .navigation-parent .navigation.navigation-mobile {\n      transform: translate3d(0, -100%, 0); }\n      .navigation-parent .navigation.navigation-mobile .navigation-bar {\n        padding-top: 300px;\n        margin-top: -300px;\n        background: #FFF;\n        position: relative;\n        transition: transform 500ms;\n        transform: translate3d(0, 0, 0); }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar h1 {\n          margin: 0; }\n        .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle {\n          top: 100%;\n          left: 0;\n          position: absolute; }\n          .navigation-parent .navigation.navigation-mobile .navigation-bar .navigation-bar-handle .navigation-bar-handle-logo {\n            position: absolute;\n            left: 50%;\n            top: 7px;\n            transform: translateX(-40%); }\n      .navigation-parent .navigation.navigation-mobile.loading .navigation-bar {\n        transform: translate3d(0, -130px, 0); }\n      .navigation-parent .navigation.navigation-mobile.active {\n        transform: translate3d(0, 0, 0); }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.navigation-mobile-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-mobile-parent > .navigation-mobile-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-mobile-parent > .navigation-mobile {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    transform: translate3d(0, -100%, 0); }\n    .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative;\n      transition: transform 500ms;\n      transform: translate3d(0, 0, 0); }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar h1 {\n        margin: 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main {\n        display: flex;\n        flex-flow: row wrap; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n          text-align: center;\n          text-decoration: none;\n          color: #666;\n          font-weight: 300;\n          font-size: 0.6rem;\n          display: block;\n          padding: 0.75rem;\n          box-sizing: border-box;\n          width: 50%;\n          border-bottom: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a.br {\n            border-right: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a > i {\n            font-size: 1.75rem;\n            display: block;\n            margin: 0 0 0.25rem 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle > .navigation-mobile-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation-mobile-parent > .navigation-mobile.loading > .navigation-mobile-bar {\n      transform: translate3d(0, -130px, 0); }\n    .navigation-mobile-parent > .navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "logo-theme.png";
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "navrender.png";
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Icons; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+var Icons;
+(function (Icons) {
+    Icons["HOME"] = "home";
+    Icons["ABOUT"] = "info";
+    Icons["PALETTE"] = "palette";
+    Icons["OPEN_BOOK"] = "import_contacts";
+})(Icons || (Icons = {}));
+
+
+var Icon = function (_Component) {
+    _inherits(Icon, _Component);
+
+    function Icon() {
+        _classCallCheck(this, Icon);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    Icon.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(2, "i", 'material-icons' + (this.props.className ? ' ' + this.props.className : ''), this.props.icon, _extends({}, this.props));
+    };
+
+    return Icon;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["b"] = (Icon);
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(38);
+var content = __webpack_require__(39);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".lazy-image {\n  opacity: 0;\n  transition: opacity 250ms; }\n  .lazy-image.loaded {\n    opacity: 1; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -6917,7 +7180,7 @@ if(false) {
 }
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(3)(undefined);
@@ -6925,7 +7188,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\nhtml {\n  height: 100%;\n  touch-action: manipulation; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n", ""]);
+exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n     ========================================================================== */\n/**\n   * Remove the margin in all browsers (opinionated).\n   */\nbody {\n  margin: 0; }\n\n/**\n   * Add the correct display in IE 9-.\n   */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n   * Correct the font size and margin on `h1` elements within `section` and\n   * `article` contexts in Chrome, Firefox, and Safari.\n   */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in IE.\n   */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n   * Add the correct margin in IE 8.\n   */\nfigure {\n  margin: 1em 40px; }\n\n/**\n   * 1. Add the correct box sizing in Firefox.\n   * 2. Show the overflow in Edge and IE.\n   */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n     ========================================================================== */\n/**\n   * 1. Remove the gray background on active links in IE 10.\n   * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n   */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n   * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n   */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n   * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n   */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n   * Add the correct font weight in Chrome, Edge, and Safari.\n   */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n   * Add the correct font style in Android 4.3-.\n   */\ndfn {\n  font-style: italic; }\n\n/**\n   * Add the correct background and color in IE 9-.\n   */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n   * Add the correct font size in all browsers.\n   */\nsmall {\n  font-size: 80%; }\n\n/**\n   * Prevent `sub` and `sup` elements from affecting the line height in\n   * all browsers.\n   */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n   * Add the correct display in iOS 4-7.\n   */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n   * Remove the border on images inside links in IE 10-.\n   */\nimg {\n  border-style: none; }\n\n/**\n   * Hide the overflow in IE.\n   */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n     ========================================================================== */\n/**\n   * 1. Change the font styles in all browsers (opinionated).\n   * 2. Remove the margin in Firefox and Safari.\n   */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n   * Show the overflow in IE.\n   * 1. Show the overflow in Edge.\n   */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n   * Remove the inheritance of text transform in Edge, Firefox, and IE.\n   * 1. Remove the inheritance of text transform in Firefox.\n   */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n   * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n   *    controls in Android 4.\n   * 2. Correct the inability to style clickable types in iOS and Safari.\n   */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n   * Remove the inner border and padding in Firefox.\n   */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n   * Restore the focus styles unset by the previous rule.\n   */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n   * Correct the padding in Firefox.\n   */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n   * 1. Correct the text wrapping in Edge and IE.\n   * 2. Correct the color inheritance from `fieldset` elements in IE.\n   * 3. Remove the padding so developers are not caught out when they zero out\n   *    `fieldset` elements in all browsers.\n   */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n   * 1. Add the correct display in IE 9-.\n   * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n   */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n   * Remove the default vertical scrollbar in IE.\n   */\ntextarea {\n  overflow: auto; }\n\n/**\n   * 1. Add the correct box sizing in IE 10-.\n   * 2. Remove the padding in IE 10-.\n   */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n   * Correct the cursor style of increment and decrement buttons in Chrome.\n   */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n   * 1. Correct the odd appearance in Chrome and Safari.\n   * 2. Correct the outline style in Safari.\n   */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n   * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n   */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n   * 1. Correct the inability to style clickable types in iOS and Safari.\n   * 2. Change font properties to `inherit` in Safari.\n   */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n     ========================================================================== */\n/*\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in Edge, IE, and Firefox.\n   */\ndetails,\nmenu {\n  display: block; }\n\n/*\n   * Add the correct display in all browsers.\n   */\nsummary {\n  display: list-item; }\n\n/* Scripting\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\ncanvas {\n  display: inline-block; }\n\n/**\n   * Add the correct display in IE.\n   */\ntemplate {\n  display: none; }\n\n/* Hidden\n     ========================================================================== */\n/**\n   * Add the correct display in IE 10-.\n   */\n[hidden] {\n  display: none; }\n\nhtml {\n  height: 100%;\n  touch-action: manipulation; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n\n.nav-spacer {\n  height: 52px; }\n", ""]);
 
 // exports
 

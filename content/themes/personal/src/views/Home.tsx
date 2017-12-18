@@ -113,14 +113,13 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     }
 }
 
-export default class Home extends View {
+export default class Home extends View<{}> {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
     private touchLast: number = -1;
     private touchDelta: number = -1;
     private touchLastBuffer: number = -1;
-    private scrollStart: number = -1;
     private touchLastTime: number = -1;
     private opened: boolean = false;
     private openedPreviously: boolean = false;
@@ -163,7 +162,6 @@ export default class Home extends View {
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
         this.touchLast = this.touchStart;
-        this.scrollStart = window.scrollY;
         this.hero!!.style.transition = 'no';
         this.content!!.style.transition = 'border-radius 500ms';
         this.dragRender();

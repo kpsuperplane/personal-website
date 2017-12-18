@@ -14,6 +14,6 @@ export default class LazyImage extends Component<{path: string}, {loaded: boolea
         img.src = props.path;
     }
     public render() {
-        return  <img src={this.props.path} className={'lazy-image' + (this.state!!.loaded ? ' loaded' : '')} {...this.props} />;
+        return  <img src={this.props.path} {...this.props} className={'lazy-image' + (this.state!!.loaded ? ' loaded' : '') + (this.props.className ? (' ' + this.props.className) : '')} />;
     }
 }

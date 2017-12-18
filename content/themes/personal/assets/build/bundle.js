@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "73cc8d642d8c38db3807" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "e2650a5f1fad6e4915a1" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -6770,7 +6770,9 @@ var NavigationMobile = function (_Component) {
         _this.top = 0;
         _this.opened = false;
         _this.onLoadingStateChange = function (isLoading) {
-            __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].removeUpdateListener(_this.onLoadingStateChange);
+            if (isLoading === false) {
+                __WEBPACK_IMPORTED_MODULE_6__GlobalLoader__["a" /* default */].removeUpdateListener(_this.onLoadingStateChange);
+            }
             _this.setState({ loading: isLoading });
         };
         _this.onResize = function () {

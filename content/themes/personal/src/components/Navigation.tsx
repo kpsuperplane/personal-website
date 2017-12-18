@@ -34,7 +34,9 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         };
     }
     private onLoadingStateChange = (isLoading: boolean) => {
-        GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
+        if (isLoading === false) {
+            GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
+        }
         this.setState({loading: isLoading});
     }
     private onResize = () => {

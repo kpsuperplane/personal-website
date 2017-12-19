@@ -16,7 +16,7 @@
 4 verbose stack     at tryToString (fs.js:425:3)
 4 verbose stack     at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:412:12)
 5 verbose cwd /Users/kevin/Documents/Projects/personal-website/content/themes/personal
-6 error Darwin 17.0.0
+6 error Darwin 17.2.0
 7 error argv "/Users/kevin/.nvm/versions/node/v7.3.0/bin/node" "/Users/kevin/.nvm/versions/node/v7.3.0/bin/npm" "start"
 8 error node v7.3.0
 9 error npm  v3.10.10

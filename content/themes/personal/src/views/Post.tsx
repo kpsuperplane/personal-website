@@ -2,12 +2,16 @@ import { get } from 'superagent';
 import GlobalLoader from '../components/GlobalLoader';
 import View from './View';
 
-export default class Post extends View<{content: any | null}> {
+import './Post.scss';
+
+export default class Post extends View<{content: any | null,  image: string | null, title: string}> {
     private lastPath: string = '';
     constructor(props) {
         super(props);
         this.state = {
-            content: null
+            content: null,
+            image: null,
+            title: ''
         };
         this.load();
     }
@@ -19,7 +23,15 @@ export default class Post extends View<{content: any | null}> {
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
-                    this.setState({content: {__html: post.html}});
+                    if (post.feature_image) {
+                        GlobalLoader.queue();
+                        const img = new Image();
+                        img.addEventListener('load', () => {
+                            GlobalLoader.dequeue();
+                        });
+                        img.src = post.feature_image;
+                    }
+                    this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null});
                 } else {
                     this.context.router.push('/', null);
                 }
@@ -41,10 +53,19 @@ export default class Post extends View<{content: any | null}> {
         }
     }
     public render() {
-        const { content } = this.state!!;
-        return <div>
-            <div class="nav-spacer"></div>
-            <div onClick={this.handleClick} dangerouslySetInnerHTML={content} />
-        </div>;
+        const { content, title, image } = this.state!!;
+        return <article className="post">
+            <header className={'post-header' + (image ? ' has-feature-image' : '')}>
+                {image ? [
+                    <img src={image} />,
+                    <svg className="post-header-curve" viewBox="0 0 400 60" height="2%" preserveAspectRatio="none">
+                    <path d="M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60" strokeWidth={0} fill="white" />
+                </svg>] : <div class="nav-spacer"></div>}
+                <div className="post-header-inner">
+                    <h1>{title}</h1>
+                </div>
+            </header>
+            <section className="post-content" onClick={this.handleClick} dangerouslySetInnerHTML={content} />
+        </article>;
     }
 }

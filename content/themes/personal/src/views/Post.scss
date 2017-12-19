@@ -1,0 +1,95 @@
+@import '../common';
+.post-template {
+    .post {
+        padding: 0 2rem 2rem 2rem;
+        header.post-header {
+            text-align: center;
+            margin: 0 -2rem 3rem -2rem;
+            &.has-feature-image {
+                img {
+                    padding: 0;
+                    margin: 0;
+                    border-radius: 0;
+                    box-shadow: none;
+                    max-width: none;
+                }
+                .post-header-curve {
+                    display: block;
+                    margin-top: -5rem;
+                    height: 5rem;
+                    width: 100%;
+                }
+                .post-header-inner {
+                    padding: 0 2rem;
+                    margin-top: -3px;
+                    background: #FFF;
+                    position: relative;
+                    h1 {
+                        padding-top: 0;
+                    }
+                }
+            }
+            .post-header-inner {
+                padding: 2rem;
+                h1 {
+                    font-weight: 300;
+                    margin: 0 auto;
+                    text-align: center;
+                }
+            }
+        }
+
+        h1, h2, h3, h4, p, ol, li, img {
+            @extend .body-font;
+            max-width: 700px;
+            padding: 0;
+            box-sizing: border-box;
+            color: #444;
+            margin: 0 auto 2rem auto;
+        }
+
+        img {
+            width: 100%;
+            box-shadow: 0 2px 50px rgba(0,0,0,.1);
+            border-radius: 0.5rem;
+            &.large {
+                max-width: 0;
+            }
+        }
+
+        p {
+            line-height: 1.9em;
+            font-size: 1.1rem;
+        }
+
+        h1 {
+            @extend .head-font;
+            font-size: 3.998rem;
+        }
+
+        h2 {font-size: 2.827rem; font-weight: 300;}
+
+        h3 {font-size: 1.999rem;}
+
+        h4 {font-size: 1.414rem;}
+
+        small, .font_small {font-size: 0.707rem;}
+
+    }
+}
+@media(max-width: 750px) {
+    .post-template {
+        .post {
+            header.post-header.has-feature-image {
+                .post-header-curve {
+                    height: 2rem;
+                    margin-top: -2rem;
+                }
+            }
+            h1 { font-size: 2.1rem; }
+            h2 { font-size: 1.8rem; }
+            h3 { font-size: 1.5rem; }
+            h4 { font-size: 1.2rem; }
+        }
+    }
+}

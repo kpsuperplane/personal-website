@@ -9,13 +9,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__View__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Post_scss__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Post_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Post_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -41,7 +44,15 @@ var Post = function (_View) {
                     window.scrollTo(0, 0);
                     if (body && body.posts && body.posts.length > 0) {
                         var post = body.posts[0];
-                        _this.setState({ content: { __html: post.html } });
+                        if (post.feature_image) {
+                            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].queue();
+                            var img = new Image();
+                            img.addEventListener('load', function () {
+                                __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();
+                            });
+                            img.src = post.feature_image;
+                        }
+                        _this.setState({ content: { __html: post.html }, title: post.title, image: post.feature_image || null });
                     } else {
                         _this.context.router.push('/', null);
                     }
@@ -58,7 +69,9 @@ var Post = function (_View) {
             }
         };
         _this.state = {
-            content: null
+            content: null,
+            image: null,
+            title: ''
         };
         _this.load();
         return _this;
@@ -71,9 +84,22 @@ var Post = function (_View) {
     };
 
     Post.prototype.render = function render() {
-        var content = this.state.content;
+        var _state = this.state,
+            content = _state.content,
+            title = _state.title,
+            image = _state.image;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'nav-spacer'), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'article', 'post', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'header', 'post-header' + (image ? ' has-feature-image' : ''), [image ? [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'img', null, null, {
+            'src': image
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(128, 'svg', 'post-header-curve', Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'path', null, null, {
+            'd': 'M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60',
+            'stroke-width': 0,
+            'fill': 'white'
+        }), {
+            'viewBox': '0 0 400 60',
+            'height': '2%',
+            'preserveAspectRatio': 'none'
+        })] : Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'nav-spacer'), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'post-header-inner', Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'h1', null, title))]), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'section', 'post-content', null, {
             'onClick': this.handleClick,
             'dangerouslySetInnerHTML': content
         })]);
@@ -2187,6 +2213,53 @@ Agent.prototype._setDefaults = function(req) {
 };
 
 module.exports = Agent;
+
+
+/***/ }),
+
+/***/ 59:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(60);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(4)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Post.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Post.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 60:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font, .post-template .post h1, .post-template .post h2, .post-template .post h3, .post-template .post h4, .post-template .post p, .post-template .post ol, .post-template .post li, .post-template .post img {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .post-template .post h1 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.post-template .post {\n  padding: 0 2rem 2rem 2rem; }\n  .post-template .post header.post-header {\n    text-align: center;\n    margin: 0 -2rem 3rem -2rem; }\n    .post-template .post header.post-header.has-feature-image img {\n      padding: 0;\n      margin: 0;\n      border-radius: 0;\n      box-shadow: none;\n      max-width: none; }\n    .post-template .post header.post-header.has-feature-image .post-header-curve {\n      display: block;\n      margin-top: -5rem;\n      height: 5rem;\n      width: 100%; }\n    .post-template .post header.post-header.has-feature-image .post-header-inner {\n      padding: 0 2rem;\n      margin-top: -3px;\n      background: #FFF;\n      position: relative; }\n      .post-template .post header.post-header.has-feature-image .post-header-inner h1 {\n        padding-top: 0; }\n    .post-template .post header.post-header .post-header-inner {\n      padding: 2rem; }\n      .post-template .post header.post-header .post-header-inner h1 {\n        font-weight: 300;\n        margin: 0 auto;\n        text-align: center; }\n  .post-template .post h1, .post-template .post h2, .post-template .post h3, .post-template .post h4, .post-template .post p, .post-template .post ol, .post-template .post li, .post-template .post img {\n    max-width: 700px;\n    padding: 0;\n    box-sizing: border-box;\n    color: #444;\n    margin: 0 auto 2rem auto; }\n  .post-template .post img {\n    width: 100%;\n    box-shadow: 0 2px 50px rgba(0, 0, 0, 0.1);\n    border-radius: 0.5rem; }\n    .post-template .post img.large {\n      max-width: 0; }\n  .post-template .post p {\n    line-height: 1.9em;\n    font-size: 1.1rem; }\n  .post-template .post h1 {\n    font-size: 3.998rem; }\n  .post-template .post h2 {\n    font-size: 2.827rem;\n    font-weight: 300; }\n  .post-template .post h3 {\n    font-size: 1.999rem; }\n  .post-template .post h4 {\n    font-size: 1.414rem; }\n  .post-template .post small, .post-template .post .font_small {\n    font-size: 0.707rem; }\n\n@media (max-width: 750px) {\n  .post-template .post header.post-header.has-feature-image .post-header-curve {\n    height: 2rem;\n    margin-top: -2rem; }\n  .post-template .post h1 {\n    font-size: 2.1rem; }\n  .post-template .post h2 {\n    font-size: 1.8rem; }\n  .post-template .post h3 {\n    font-size: 1.5rem; }\n  .post-template .post h4 {\n    font-size: 1.2rem; } }\n", ""]);
+
+// exports
 
 
 /***/ })

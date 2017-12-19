@@ -1,4 +1,5 @@
 import { get } from 'superagent';
+import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
 import View from './View';
 
@@ -54,7 +55,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
     }
     public render() {
         const { content, title, image } = this.state!!;
-        return <article className="post">
+        return <div><article className="post">
             <header className={'post-header' + (image ? ' has-feature-image' : '')}>
                 {image ? [
                     <img src={image} />,
@@ -66,6 +67,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 </div>
             </header>
             <section className="post-content" onClick={this.handleClick} dangerouslySetInnerHTML={content} />
-        </article>;
+        </article>
+        <Footer /></div>;
     }
 }

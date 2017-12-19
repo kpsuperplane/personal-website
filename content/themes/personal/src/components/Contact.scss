@@ -1,0 +1,42 @@
+@import '../common';
+.contact {
+    text-align: center;
+    >.contact-social {
+        >a {
+            padding: 0.8rem;
+            font-size: 1.4rem;
+            text-decoration: none;
+            opacity: 0.6;
+            color: rgba(33,33,33,.8);
+            display: inline-block;
+            vertical-align: top;
+            &.contact-resume {
+                border-radius: 5px;
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+                font-size: 0.7rem;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+                padding: 0.55rem 0.8rem;
+                margin: 0.6rem;
+                background: transparent;
+                border: 1px solid rgba(33,33,33,.8);
+                font-weight: 700;
+            }
+            transition: opacity .5s;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    >.contact-email {
+        display: block;
+        padding: 0.8rem;
+        font-size: 1rem;
+        color: $theme;
+        text-decoration: none;
+        transition: opacity 500ms;
+        &:hover {
+            opacity: 0.5;
+        }
+    }
+}

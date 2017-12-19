@@ -5,6 +5,7 @@ import createElement from 'inferno-create-element';
 import {get} from 'superagent';
 
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 import LazyImage from '../components/LazyImage';
 import Loader from '../components/Loader';
 import Thinking from '../img/thinking.jpg';
@@ -265,6 +266,7 @@ export default class Home extends View<{}> {
             </div>
             <div ref={this.attachContent} className="content-wrapper">
                 <img src={Render} style={{width: '100%'}}/>
+                <Footer />
             </div>
         </div>);
     }

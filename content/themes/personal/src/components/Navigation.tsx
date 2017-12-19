@@ -4,12 +4,13 @@ import { Link } from 'inferno-router';
 import './Navigation.scss';
 
 import LogoTheme from '../img/logo-theme.png';
-import Icon, { Icons } from './icon';
+import Contact from './Contact';
+import Icon, { Icons } from './Icon';
 import LazyImage from './LazyImage';
 
 import GlobalLoader from './GlobalLoader';
 
-class NavigationMobile extends Component <{}, {width: number, active: boolean, loading: boolean}> {
+class NavigationMobile extends Component <{}, {width: number, maxHeight: number, active: boolean, loading: boolean}> {
     private wrapper: HTMLElement|null = null;
     private outerWrapper: HTMLElement|null = null;
     private handle: HTMLElement|null = null;
@@ -25,11 +26,13 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
     private touchLastBuffer: number = 0;
     private top: number = 0;
     private opened: boolean = false;
+    private diameter: number = 75;
     constructor(props) {
         super(props);
         this.state = {
             active: false,
             loading: true,
+            maxHeight: 10000,
             width: window.innerWidth
         };
     }
@@ -40,7 +43,7 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         this.setState({loading: isLoading});
     }
     private onResize = () => {
-        this.setState({width: window.innerWidth});
+        this.setState({width: window.innerWidth, maxHeight: window.innerHeight - this.diameter - 20});
     }
     private calculateVelocity = () => {
         const now = new Date().getTime();
@@ -170,20 +173,25 @@ class NavigationMobile extends Component <{}, {width: number, active: boolean, l
         GlobalLoader.addUpdateListener(this.onLoadingStateChange);
         this.setState({loading: GlobalLoader.isLoading});
         window.addEventListener('resize', this.onResize);
+        this.onResize();
     }
     public render() {
         const state = this.state!!;
-        const diameter = 75;
+        const diameter = this.diameter;
         const radius_squared = Math.pow(diameter / 2, 2);
         return <div className="navigation-mobile-parent" ref={this.attachParent}>
             <div className="navigation-mobile-background" ref={this.attachBackground}></div>
             <div className={'navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
                 <div className="navigation-mobile-bar" ref={this.attachWrapper}>
-                    <div className="navigation-mobile-bar-main">
+                    <div className="navigation-mobile-bar-main" style={{maxHeight: state.maxHeight}}>
                         <Link onClick={this.onClick} to="/" className="br"><Icon icon={Icons.HOME} />Home</Link>
                         <Link onClick={this.onClick} to="/about" className=""><Icon icon={Icons.ABOUT} />About</Link>
                         <Link onClick={this.onClick} to="/projects" className="br"><Icon icon={Icons.PALETTE} />Projects</Link>
                         <Link onClick={this.onClick} to="/blog"><Icon icon={Icons.OPEN_BOOK} />Blog</Link>
+                        <div className="navigation-mobile-bar-contact">
+                            <h3>Get in Touch</h3>
+                            <Contact />
+                        </div>
                     </div>
                     <div className="navigation-mobile-bar-handle" onClick={this.onClick} ref={this.attachHandle}>
                         <svg className="navigation-mobile-bar-handle-background" width={state.width} height={diameter * 0.9}>

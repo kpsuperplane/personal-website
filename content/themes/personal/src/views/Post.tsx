@@ -24,7 +24,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
                     if (post.feature_image) {
-                        GlobalLoader.queue();
+                        GlobalLoader.queue(true);
                         const img = new Image();
                         img.addEventListener('load', () => {
                             GlobalLoader.dequeue();

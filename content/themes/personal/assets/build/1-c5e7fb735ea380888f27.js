@@ -45,7 +45,7 @@ var Post = function (_View) {
                     if (body && body.posts && body.posts.length > 0) {
                         var post = body.posts[0];
                         if (post.feature_image) {
-                            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].queue();
+                            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].queue(true);
                             var img = new Image();
                             img.addEventListener('load', function () {
                                 __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();

@@ -14,11 +14,10 @@
     "postinstall": "./config.sh && NODE_ENV=production knex-migrator migrate --mgpath=versions/1.19.0/"
   },
   "engines": {
-    "node": "^6.9.0"
+    "node": "^8.9.0"
   },
   "optionalDependencies": {},
   "dependencies": {
-    "global": "^4.3.2",
-    "knex-migrator": "^2.1.8"
+    "knex-migrator": "^3.1.2"
   }
 }

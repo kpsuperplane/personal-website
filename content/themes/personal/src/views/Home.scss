@@ -54,6 +54,8 @@
     overflow-x: auto;
     flex-direction: row;
     flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
     >* {
         width: 100%;
         flex: 0 0 auto;

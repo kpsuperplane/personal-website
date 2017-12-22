@@ -40,7 +40,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         });
     }
     public componentDidUpdate(props) {
-        if (window.location.pathname !== this.lastPath) {
+        if (window.location.pathname !== this.lastPath && window.location.pathname !== 'blog') {
             this.load();
         }
     }

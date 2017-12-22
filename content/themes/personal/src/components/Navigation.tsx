@@ -61,7 +61,10 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         this.background!!.style.opacity = this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (this.height - 300)));
     }
     private dragStart = (e) => {
-        this.touchStart = e.touches[0].clientY;
+        if (e.touches) {
+            this.touchStart = e.touches[0].clientY;
+            e.preventDefault();
+        }
         this.outerWrapper!!.style.transition = `none`;
         this.height = this.wrapper!!.getBoundingClientRect().height;
         this.top = this.opened ? 0 : -this.wrapper!!.getBoundingClientRect().height + 300;
@@ -69,7 +72,6 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         this.parent!!.style.height = '100%';
         this.background!!.style.display = 'block';
         this.background!!.style.transition = 'no';
-        e.preventDefault();
     }
     private dragMove = (e) => {
         this.touchLast = e.touches[0].clientY;
@@ -101,12 +103,13 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         }
         this.top = this.opened ? 0 : -navHeight;
         const animTime = Math.abs(percent) * 100 + 200;
-        this.outerWrapper!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - (this.top + navHeight))},0.1,1)`;
+        const slope = (Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - (this.top + navHeight));
+        this.outerWrapper!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${isNaN(slope) ? 0 : slope},0.1,1)`;
         this.background!!.style.transition = 'opacity ' + animTime + 'ms';
         if (!this.opened) {
             setTimeout(() => {
-                    this.background!!.style.display = 'none';
-                    this.parent!!.style.height = null;
+                this.background!!.style.display = 'none';
+                this.parent!!.style.height = null;
             }, animTime);
         }
         window.requestAnimationFrame(this.dragRender);
@@ -116,6 +119,7 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         this.touchLast = 0;
         this.velocityLast = 0;
         this.touchStartTime = new Date().getTime();
+        this.dragStart(e);
         this.dragComplete();
     }
     private dragEnd = (e) => {

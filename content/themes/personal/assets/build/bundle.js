@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "9fedbd5b220cbd4ae2a6" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "2c46c1d6cfaeb5a75e3e" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -979,6 +979,57 @@ module.exports.default = module.exports;
 
 /***/ }),
 /* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Icons; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+var Icons;
+(function (Icons) {
+    Icons["ABOUT"] = "fas fa-info-circle";
+    Icons["CHEVRON_LEFT"] = "fas fa-chevron-left";
+    Icons["CHEVRON_RIGHT"] = "fas fa-chevron-right";
+    Icons["GITHUB"] = "fab fa-github";
+    Icons["HOME"] = "fas fa-home";
+    Icons["LINKEDIN"] = "fab fa-linkedin";
+    Icons["OPEN_BOOK"] = "fas fa-book";
+    Icons["PALETTE"] = "fas fa-coffee";
+    Icons["STACKOVERFLOW"] = "fab fa-stack-overflow";
+})(Icons || (Icons = {}));
+
+
+var Icon = function (_Component) {
+    _inherits(Icon, _Component);
+
+    function Icon() {
+        _classCallCheck(this, Icon);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    Icon.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(2, "i", this.props.icon + (this.props.className ? ' ' + this.props.className : ''), null, _extends({}, this.props));
+    };
+
+    return Icon;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["b"] = (Icon);
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1046,7 +1097,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1111,57 +1162,6 @@ var createPath = exports.createPath = function createPath(location) {
 
   return path;
 };
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Icons; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-var Icons;
-(function (Icons) {
-    Icons["ABOUT"] = "fas fa-info-circle";
-    Icons["CHEVRON_LEFT"] = "fas fa-chevron-left";
-    Icons["CHEVRON_RIGHT"] = "fas fa-chevron-right";
-    Icons["GITHUB"] = "fab fa-github";
-    Icons["HOME"] = "fas fa-home";
-    Icons["LINKEDIN"] = "fab fa-linkedin";
-    Icons["OPEN_BOOK"] = "fas fa-book";
-    Icons["PALETTE"] = "fas fa-coffee";
-    Icons["STACKOVERFLOW"] = "fab fa-stack-overflow";
-})(Icons || (Icons = {}));
-
-
-var Icon = function (_Component) {
-    _inherits(Icon, _Component);
-
-    function Icon() {
-        _classCallCheck(this, Icon);
-
-        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    Icon.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_1_inferno__["createVNode"])(2, "i", this.props.icon + (this.props.className ? ' ' + this.props.className : ''), null, _extends({}, this.props));
-    };
-
-    return Icon;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-/* harmony default export */ __webpack_exports__["b"] = (Icon);
 
 /***/ }),
 /* 10 */
@@ -1235,7 +1235,7 @@ var LazyImage = function (_Component) {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Contact_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
@@ -1367,7 +1367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 var Home = function Home(props, cb) {
-    return __webpack_require__.e/* require.ensure */(0).then((function () {
+    return __webpack_require__.e/* require.ensure */(1).then((function () {
         return cb(null, __webpack_require__(45).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
@@ -1377,7 +1377,7 @@ var Post = function Post(props, cb) {
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Blog = function Blog(props, cb) {
-    return __webpack_require__.e/* require.ensure */(1).then((function () {
+    return __webpack_require__.e/* require.ensure */(0).then((function () {
         return cb(null, __webpack_require__(47).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
@@ -1437,7 +1437,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _warning = __webpack_require__(7);
+var _warning = __webpack_require__(8);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -1447,7 +1447,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(18);
 
-var _PathUtils = __webpack_require__(8);
+var _PathUtils = __webpack_require__(9);
 
 var _createTransitionManager = __webpack_require__(21);
 
@@ -1816,7 +1816,7 @@ var _valueEqual = __webpack_require__(20);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(8);
+var _PathUtils = __webpack_require__(9);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2011,7 +2011,7 @@ function valueEqual(a, b) {
 
 exports.__esModule = true;
 
-var _warning = __webpack_require__(7);
+var _warning = __webpack_require__(8);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -6855,7 +6855,7 @@ var App = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icon__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icon__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LazyImage__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno__ = __webpack_require__(0);
@@ -6924,7 +6924,10 @@ var NavigationMobile = function (_Component) {
             _this.background.style.opacity = _this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (_this.height - 300)));
         };
         _this.dragStart = function (e) {
-            _this.touchStart = e.touches[0].clientY;
+            if (e.touches) {
+                _this.touchStart = e.touches[0].clientY;
+                e.preventDefault();
+            }
             _this.outerWrapper.style.transition = 'none';
             _this.height = _this.wrapper.getBoundingClientRect().height;
             _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
@@ -6932,7 +6935,6 @@ var NavigationMobile = function (_Component) {
             _this.parent.style.height = '100%';
             _this.background.style.display = 'block';
             _this.background.style.transition = 'no';
-            e.preventDefault();
         };
         _this.dragMove = function (e) {
             _this.touchLast = e.touches[0].clientY;
@@ -6964,7 +6966,8 @@ var NavigationMobile = function (_Component) {
             }
             _this.top = _this.opened ? 0 : -navHeight;
             var animTime = Math.abs(percent) * 100 + 200;
-            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight)) + ',0.1,1)';
+            var slope = Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight));
+            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + (isNaN(slope) ? 0 : slope) + ',0.1,1)';
             _this.background.style.transition = 'opacity ' + animTime + 'ms';
             if (!_this.opened) {
                 setTimeout(function () {
@@ -6979,6 +6982,7 @@ var NavigationMobile = function (_Component) {
             _this.touchLast = 0;
             _this.velocityLast = 0;
             _this.touchStartTime = new Date().getTime();
+            _this.dragStart(e);
             _this.dragComplete();
         };
         _this.dragEnd = function (e) {

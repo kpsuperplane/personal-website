@@ -1,6 +1,7 @@
 .pagination {
     display: flex;
     background: #FAFAFA;
+    position: relative;
     >a, >span, >.pagination-element{
         flex: 0;
         font-weight: 700;

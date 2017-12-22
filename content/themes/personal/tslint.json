@@ -5,6 +5,7 @@
 			"indent": [ true, "spaces" ],
 			"interface-name": false,
 			"ban-types": true,
+			"lib": ["dom", "es6", "eo7", "dom.iterable"],
 			"max-classes-per-file": true,
 			"max-line-length": false,
 			"member-access": true,

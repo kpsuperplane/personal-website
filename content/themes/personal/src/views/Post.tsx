@@ -32,7 +32,17 @@ export default class Post extends View<{content: any | null,  image: string | nu
                         });
                         img.src = post.feature_image;
                     }
-                    this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null});
+                    this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null}, () => {
+                        for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
+                            const wrapper = document.createElement('div');
+                            wrapper.classList.add('iframe-wrapper');
+                            const innerWrapper = document.createElement('div');
+                            innerWrapper.classList.add('iframe-inner-wrapper');
+                            wrapper.appendChild(innerWrapper);
+                            el.parentNode!!.insertBefore(wrapper, el);
+                            innerWrapper.appendChild(el);
+                        }
+                    });
                 } else {
                     this.context.router.push('/', null);
                 }

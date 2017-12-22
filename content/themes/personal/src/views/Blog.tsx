@@ -14,7 +14,7 @@ import View from './View';
 
 import './Blog.scss';
 
-interface PostInterface {
+export interface PostInterface {
     feature_image: string | null;
     url: string;
     published_at: Date;
@@ -32,7 +32,7 @@ interface PaginationInterface {
     total: number;
 }
 
-const Post = (post: PostInterface) => <Link to={post.url} className={'post-preview' + (!post.feature_image ? ' no-image' : '')}>
+export const Post = (post: PostInterface) => <Link to={post.url} className={'post-preview' + (!post.feature_image ? ' no-image' : '')}>
     {post.feature_image ? <LazyImage path={post.feature_image} forceWaitSize={true} loader={true}/> : null}
     <span className="post-preview-body">
         <h3>{post.title}</h3>
@@ -69,7 +69,7 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
         }
         this.lastPath = window.location.href;
         GlobalLoader.queue(true);
-        get(ghost.url.api('posts', {page, filter: 'page:false', fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
+        get(ghost.url.api('posts', {page, filter: 'page:false', limit: 10, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
                 if (body.posts.length === 0) {
                     this.context.router.push('/blog/', null);

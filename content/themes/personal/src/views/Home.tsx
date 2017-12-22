@@ -1,18 +1,21 @@
 import View from './View';
 
+import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import createElement from 'inferno-create-element';
+import { DateTime } from 'luxon';
 import {get} from 'superagent';
 
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import GlobalLoader from '../components/GlobalLoader';
 import LazyImage from '../components/LazyImage';
 import Loader from '../components/Loader';
 import Thinking from '../img/thinking.jpg';
 
-import './Home.scss';
+import { Post , PostInterface } from '../views/Blog';
 
-import Render from '../img/render.png';
+import './Home.scss';
 
 class Story<T> extends Component<{onComplete: Function}, T> {}
 
@@ -114,7 +117,13 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     }
 }
 
-export default class Home extends View<{}> {
+class HorizontalScroll extends Component<{}, {}> {
+    public render() {
+        return <div className="h-scroll">{this.props.children}</div>;
+    }
+}
+
+export default class Home extends View<{posts: PostInterface[] | null}> {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
@@ -130,6 +139,29 @@ export default class Home extends View<{}> {
     private hero: HTMLElement|null = null;
     constructor(props) {
         super(props);
+        this.state = {
+            posts: null
+        };
+        GlobalLoader.queue(true);
+        get(ghost.url.api('posts', {page: 1, filter: 'page:false', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
+            GlobalLoader.dequeue(() => {
+                if (body.posts.length === 0) {
+                    this.context.router.push('/blog/', null);
+                } else {
+                    window.scrollTo(0, 0);
+                    this.setState({
+                        posts: body.posts.map((post) => ({
+                            excerpt: post.custom_excerpt || ellipsize(post.html.replace(/<[^>]*>/g, ''), 128),
+                            feature_image: post.feature_image,
+                            featured: post.featured,
+                            published_at: DateTime.fromISO(post.published_at),
+                            title: post.title,
+                            url: post.url
+                        }))
+                    });
+                }
+            });
+        });
     }
     private updatePosition = () => {
         this.top = this.content!!.getBoundingClientRect().top;
@@ -258,6 +290,7 @@ export default class Home extends View<{}> {
         this.dragRender();
     }
     public render() {
+        const { posts } = this.state!!;
         return (<div className="home-component" ref={this.attachWrapper}>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
@@ -265,7 +298,7 @@ export default class Home extends View<{}> {
                 </div>
             </div>
             <div ref={this.attachContent} className="content-wrapper">
-                <img src={Render} style={{width: '100%'}}/>
+                <HorizontalScroll>{posts ? posts.map((post) => <Post {...post} key={post.url} />) : null}</HorizontalScroll>
                 <Footer />
             </div>
         </div>);

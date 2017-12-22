@@ -49,3 +49,13 @@
         overflow: hidden;
     }
 }
+.h-scroll {
+    display: flex;
+    overflow-x: auto;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    >* {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+}

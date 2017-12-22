@@ -5,6 +5,9 @@ import { render } from 'inferno';
 import { doAllAsyncBefore, IndexRoute, match, Route, Router } from 'inferno-router';
 import GlobalLoader from './components/GlobalLoader';
 
+import 'ellipsize';
+import 'luxon';
+
 import App from './App';
 
 declare var require: {

@@ -1,6 +1,7 @@
 import { get } from 'superagent';
 import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
+import LazyImage from '../components/LazyImage';
 import View from './View';
 
 import './Post.scss';
@@ -24,14 +25,6 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
-                    if (post.feature_image) {
-                        GlobalLoader.queue(true);
-                        const img = new Image();
-                        img.addEventListener('load', () => {
-                            GlobalLoader.dequeue();
-                        });
-                        img.src = post.feature_image;
-                    }
                     this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null}, () => {
                         for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
                             const wrapper = document.createElement('div');
@@ -68,7 +61,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         return <div><article className="post">
             <header className={'post-header' + (image ? ' has-feature-image' : '')}>
                 {image ? [
-                    <img src={image} />,
+                    <LazyImage path={image} forceWaitSize={true} />,
                     <svg className="post-header-curve" viewBox="0 0 400 60" height="2%" preserveAspectRatio="none">
                     <path d="M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60" strokeWidth={0} fill="white" />
                 </svg>] : <div class="nav-spacer"></div>}

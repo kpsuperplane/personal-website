@@ -9,16 +9,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Footer__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__View__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Post_scss__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Post_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__Post_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LazyImage__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__View__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Post_scss__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Post_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Post_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -46,14 +48,6 @@ var Post = function (_View) {
                     window.scrollTo(0, 0);
                     if (body && body.posts && body.posts.length > 0) {
                         var post = body.posts[0];
-                        if (post.feature_image) {
-                            __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */].queue(true);
-                            var img = new Image();
-                            img.addEventListener('load', function () {
-                                __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */].dequeue();
-                            });
-                            img.src = post.feature_image;
-                        }
                         _this.setState({ content: { __html: post.html }, title: post.title, image: post.feature_image || null }, function () {
                             for (var _iterator = document.getElementsByClassName('post')[0].getElementsByTagName('iframe'), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                                 var _ref2;
@@ -114,9 +108,10 @@ var Post = function (_View) {
             title = _state.title,
             image = _state.image;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'article', 'post', [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'header', 'post-header' + (image ? ' has-feature-image' : ''), [image ? [Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'img', null, null, {
-            'src': image
-        }), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(128, 'svg', 'post-header-curve', Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'path', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'article', 'post', [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'header', 'post-header' + (image ? ' has-feature-image' : ''), [image ? [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3__components_LazyImage__["a" /* default */], null, null, {
+            'path': image,
+            'forceWaitSize': true
+        }), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(128, 'svg', 'post-header-curve', Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'path', null, null, {
             'd': 'M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60',
             'stroke-width': 0,
             'fill': 'white'
@@ -124,14 +119,14 @@ var Post = function (_View) {
             'viewBox': '0 0 400 60',
             'height': '2%',
             'preserveAspectRatio': 'none'
-        })] : Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'nav-spacer'), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'div', 'post-header-inner', Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'h1', null, title))]), Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(2, 'section', 'post-content', null, {
+        })] : Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', 'nav-spacer'), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', 'post-header-inner', Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'h1', null, title))]), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'section', 'post-content', null, {
             'onClick': this.handleClick,
             'dangerouslySetInnerHTML': content
-        })]), content ? Object(__WEBPACK_IMPORTED_MODULE_5_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components_Footer__["a" /* default */]) : null]);
+        })]), content ? Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components_Footer__["a" /* default */]) : null]);
     };
 
     return Post;
-}(__WEBPACK_IMPORTED_MODULE_3__View__["a" /* default */]);
+}(__WEBPACK_IMPORTED_MODULE_4__View__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Post);
 

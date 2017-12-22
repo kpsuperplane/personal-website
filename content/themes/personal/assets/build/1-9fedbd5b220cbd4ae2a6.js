@@ -20,11 +20,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Icon__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Pagination__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__View__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Blog_scss__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__Blog_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__Blog_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Title__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__img_blog_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__View__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Blog_scss__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Blog_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__Blog_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_inferno__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46,15 +49,17 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
 var Post = function Post(post) {
-    return Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Link"], null, null, {
+    return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Link"], null, null, {
         'to': post.url,
         'className': 'post-preview' + (!post.feature_image ? ' no-image' : ''),
-        children: [post.feature_image ? Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__["a" /* default */], null, null, {
+        children: [post.feature_image ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__["a" /* default */], null, null, {
             'path': post.feature_image,
             'forceWaitSize': true,
             'loader': true
-        }) : null, Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'span', 'post-preview-body', [Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'h3', null, post.title), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'p', null, [Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'strong', null, post.published_at.toLocaleString(__WEBPACK_IMPORTED_MODULE_3_luxon__["DateTime"].DATE_FULL)), post.excerpt])])]
+        }) : null, Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'post-preview-body', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'h3', null, post.title), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'strong', null, post.published_at.toLocaleString(__WEBPACK_IMPORTED_MODULE_3_luxon__["DateTime"].DATE_FULL)), post.excerpt])])]
     });
 };
 
@@ -64,14 +69,7 @@ var PaginationEl = function (_Component) {
     function PaginationEl() {
         _classCallCheck(this, PaginationEl);
 
-        var _this = _possibleConstructorReturn(this, _Component.apply(this, arguments));
-
-        _this.navigate = function (_ref) {
-            var value = _ref.target.value;
-
-            _this.context.router.push('/blog/?page=' + value, null);
-        };
-        return _this;
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
     }
 
     PaginationEl.prototype.render = function render() {
@@ -79,27 +77,17 @@ var PaginationEl = function (_Component) {
             page = _props.page,
             pages = _props.pages;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["b" /* default */], null, null, {
-            children: [Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["b" /* default */], null, null, {
+            children: [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
                 'to': '/blog/?page=' + (page - 1),
                 'disabled': page === 1,
-                children: Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
+                children: Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
                     'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_LEFT
                 })
-            }), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2048, 'select', 'pagination-element', Array.from(new Array(pages), function (val, index) {
-                return Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'option', null, ['Page ', index + 1], {
-                    'value': index + 1
-                }, index);
-            }), {
-                'onChange': this.navigate,
-                'style': { paddingRight: 0 },
-                'selected': pages
-            }), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'div', 'pagination-element', ['/', pages], {
-                'style': { paddingLeft: 0 }
-            }), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
+            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', null, ['Page ', page, ' of ', pages]), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
                 'to': '/blog/?page=' + (page + 1),
                 'disabled': page === pages,
-                children: Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
+                children: Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
                     'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_RIGHT
                 })
             })]
@@ -125,8 +113,8 @@ var Blog = function (_View) {
             }
             _this2.lastPath = window.location.href;
             __WEBPACK_IMPORTED_MODULE_6__components_GlobalLoader__["a" /* default */].queue(true);
-            Object(__WEBPACK_IMPORTED_MODULE_4_superagent__["get"])(ghost.url.api('posts', { page: page, filter: 'page:false', fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref2) {
-                var body = _ref2.body;
+            Object(__WEBPACK_IMPORTED_MODULE_4_superagent__["get"])(ghost.url.api('posts', { page: page, filter: 'page:false', fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
+                var body = _ref.body;
 
                 __WEBPACK_IMPORTED_MODULE_6__components_GlobalLoader__["a" /* default */].dequeue(function () {
                     if (body.posts.length === 0) {
@@ -172,13 +160,16 @@ var Blog = function (_View) {
             posts = _state.posts,
             pagination = _state.pagination;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'div', null, [posts && posts[0] && !posts[0].feature_image ? Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(2, 'div', 'nav-spacer') : null, posts ? posts.map(function (post) {
-            return Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, Post, null, null, _extends({}, post), post.url);
-        }) : null, Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, PaginationEl, null, null, _extends({}, pagination)), posts ? Object(__WEBPACK_IMPORTED_MODULE_12_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__components_Footer__["a" /* default */]) : null]);
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Title__["a" /* default */], null, null, {
+            'title': 'My Blog',
+            'image': __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg___default.a
+        }), posts ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'blog-entries', posts.map(function (post) {
+            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, Post, null, null, _extends({}, post), post.url);
+        })) : null, Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, PaginationEl, null, null, _extends({}, pagination)), posts ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__components_Footer__["a" /* default */]) : null]);
     };
 
     return Blog;
-}(__WEBPACK_IMPORTED_MODULE_10__View__["a" /* default */]);
+}(__WEBPACK_IMPORTED_MODULE_12__View__["a" /* default */]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Blog);
 
@@ -9704,7 +9695,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .post-preview > .post-preview-body > h3 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #e3e6e8 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.post-preview {\n  display: block;\n  text-decoration: none; }\n  .post-preview.no-image {\n    border-top: 1px solid #EEE; }\n  .post-preview > .lazy-image-loader {\n    width: 100%;\n    overflow: hidden; }\n    .post-preview > .lazy-image-loader > img {\n      width: 100%;\n      transform: scale(1);\n      transition: all 250ms; }\n  .post-preview > .post-preview-body {\n    padding: 2rem;\n    display: block; }\n    .post-preview > .post-preview-body > h3 {\n      color: #2ac648;\n      font-size: 1.5rem;\n      line-height: 1.5rem;\n      margin: 0;\n      padding: 0 0 0.5rem 0; }\n    .post-preview > .post-preview-body > p {\n      font-size: 1rem;\n      line-height: 1.5rem;\n      color: #444;\n      margin: 0;\n      padding: 0; }\n      .post-preview > .post-preview-body > p > strong {\n        display: block; }\n  .post-preview:hover {\n    text-decoration: none; }\n    .post-preview:hover > .lazy-image-loader > img {\n      transform: scale(1.05); }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .post-preview > .post-preview-body > h3 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #e3e6e8 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n@media (min-width: 750px) {\n  .blog-template .blog-entries {\n    position: relative;\n    background: #FFF;\n    max-width: 700px;\n    margin: -8rem auto 3rem auto;\n    border-radius: 0.75rem;\n    overflow: hidden;\n    box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); } }\n\n.post-preview {\n  display: block;\n  text-decoration: none; }\n  .post-preview.no-image {\n    border-top: 1px solid #EEE; }\n  .post-preview > .lazy-image-loader {\n    width: 100%;\n    overflow: hidden; }\n    .post-preview > .lazy-image-loader > img {\n      width: 100%;\n      transform: scale(1);\n      transition: all 250ms; }\n  .post-preview > .post-preview-body {\n    padding: 2rem;\n    display: block; }\n    .post-preview > .post-preview-body > h3 {\n      color: #2ac648;\n      font-size: 1.25rem;\n      line-height: 1.25rem;\n      margin: 0;\n      padding: 0 0 0.5rem 0; }\n    .post-preview > .post-preview-body > p {\n      font-size: 1rem;\n      line-height: 1.5rem;\n      color: #444;\n      margin: 0;\n      padding: 0; }\n      .post-preview > .post-preview-body > p > strong {\n        display: block; }\n  .post-preview:hover {\n    text-decoration: none; }\n    .post-preview:hover > .lazy-image-loader > img {\n      transform: scale(1.05); }\n", ""]);
 
 // exports
 
@@ -9780,10 +9771,93 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".pagination {\n  display: flex;\n  background: #FAFAFA; }\n  .pagination > a, .pagination > span, .pagination > .pagination-element {\n    flex: 0;\n    display: block;\n    font-size: 1rem;\n    padding: 1rem;\n    text-align: center;\n    color: #444; }\n    .pagination > a.expand, .pagination > span.expand, .pagination > .pagination-element.expand {\n      flex: 1; }\n  .pagination > span {\n    cursor: default;\n    opacity: 0.25; }\n  .pagination > select {\n    background: transparent;\n    border-style: none;\n    display: block;\n    -webkit-appearance: none; }\n  .pagination > a {\n    text-decoration: none; }\n    .pagination > a:hover {\n      text-decoration: none; }\n", ""]);
+exports.push([module.i, ".pagination {\n  display: flex;\n  background: #FAFAFA; }\n  .pagination > a, .pagination > span, .pagination > .pagination-element {\n    flex: 0;\n    font-weight: 700;\n    display: block;\n    font-size: 1rem;\n    padding: 1rem;\n    text-align: center;\n    color: #444;\n    white-space: nowrap; }\n    .pagination > a.expand, .pagination > span.expand, .pagination > .pagination-element.expand {\n      flex: 1; }\n  .pagination > span {\n    cursor: default;\n    opacity: 0.25; }\n  .pagination > select {\n    background: transparent;\n    border-style: none;\n    display: block;\n    -webkit-appearance: none; }\n  .pagination > a {\n    text-decoration: none; }\n    .pagination > a:hover {\n      text-decoration: none; }\n\n@media (min-width: 750px) {\n  .pagination {\n    background: transparent;\n    justify-content: center; }\n    .pagination > .expand {\n      flex: 0 !important; } }\n", ""]);
 
 // exports
 
+
+/***/ }),
+
+/***/ 76:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Title_scss__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Title_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Title_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+    return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'title-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'header', 'title', Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, props.title), {
+        'style': { backgroundImage: 'url(' + props.image + ')' }
+    }), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(128, 'svg', 'title-curve', Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'path', null, null, {
+        'd': 'M 0,80 L 0,50 C 100,0 300,0 400,50 L 400,80',
+        'stroke-width': 0,
+        'fill': 'white'
+    }), {
+        'viewBox': '0 0 400 80',
+        'height': '2%',
+        'preserveAspectRatio': 'none'
+    })]);
+});
+
+/***/ }),
+
+/***/ 77:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(78);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Title.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Title.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 78:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .title-wrapper .title h1 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #e3e6e8 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.title-wrapper .title {\n  padding: 5rem 2rem 4rem 2rem;\n  background-size: cover;\n  background-position: center center;\n  text-align: center; }\n  .title-wrapper .title h1 {\n    font-size: 2rem;\n    text-align: center;\n    padding: 1rem;\n    margin: 0;\n    color: #FFF;\n    font-weight: 300; }\n\n.title-wrapper .title-curve {\n  display: none; }\n\n@media (min-width: 750px) {\n  .title-wrapper .title {\n    padding: 6rem 2rem 18rem 2rem; }\n    .title-wrapper .title h1 {\n      font-size: 3.5rem; }\n  .title-wrapper .title-curve {\n    margin-top: -80px;\n    height: 80px;\n    width: 100%;\n    display: block; } }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 79:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "blog.jpg";
 
 /***/ })
 

@@ -1,0 +1,37 @@
+@import '../common';
+.title-wrapper {
+    .title {
+        padding: 5rem 2rem 4rem 2rem;
+        background-size: cover;
+        background-position: center center;
+        text-align: center;
+        h1 {
+            font-size: 2rem;
+            text-align: center;
+            padding: 1rem;
+            margin: 0;
+            color: #FFF;
+            @extend .head-font;
+            font-weight: 300;
+        }
+    }
+    .title-curve {
+        display: none;
+    }
+}
+@media (min-width: 750px){ 
+    .title-wrapper {
+        .title {
+            padding: 6rem 2rem 18rem 2rem;
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+        .title-curve {
+            margin-top: -80px;
+            height: 80px;
+            width: 100%;
+            display: block;
+        }
+    }
+}

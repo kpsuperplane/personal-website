@@ -3,11 +3,13 @@
     background: #FAFAFA;
     >a, >span, >.pagination-element{
         flex: 0;
+        font-weight: 700;
         display: block;
         font-size: 1rem;
         padding: 1rem;
         text-align: center;
         color: #444;
+        white-space: nowrap;
         &.expand {
             flex: 1;
         }
@@ -26,6 +28,15 @@
         text-decoration: none;
         &:hover {
             text-decoration: none;
+        }
+    }
+}
+@media (min-width: 750px) {
+    .pagination {
+        background: transparent;
+        justify-content: center;
+        >.expand {
+            flex: 0 !important;
         }
     }
 }

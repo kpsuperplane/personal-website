@@ -8,6 +8,8 @@ import GlobalLoader from '../components/GlobalLoader';
 import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
 import Pagination, {PaginationLink} from '../components/Pagination';
+import Title from '../components/Title';
+import BlogImage from '../img/blog.jpg';
 import View from './View';
 
 import './Blog.scss';
@@ -39,19 +41,12 @@ const Post = (post: PostInterface) => <Link to={post.url} className={'post-previ
 </Link>;
 
 class PaginationEl extends Component<PaginationInterface, {}> {
-    private navigate = ({target: {value}}) => {
-        this.context.router.push('/blog/?page=' + value, null);
-    }
     public render() {
         const { page, pages } = this.props;
         return <Pagination>
             <PaginationLink to={'/blog/?page=' + (page - 1)} disabled={page === 1}><Icon icon={Icons.CHEVRON_LEFT}/></PaginationLink>
             <span className="expand" />
-            <select onChange={this.navigate} style={{paddingRight: 0}} className="pagination-element" selected={pages}>
-                {Array.from(new Array(pages), (val, index) =>
-                    <option key={index} value={index + 1}>Page {index + 1}</option>)}
-            </select>
-            <div className="pagination-element" style={{paddingLeft: 0}}>/{pages}</div>
+            <span>Page {page} of {pages}</span>
             <span className="expand" />
             <PaginationLink to={'/blog/?page=' + (page + 1)} disabled={page === pages}><Icon icon={Icons.CHEVRON_RIGHT}/></PaginationLink>
         </Pagination>;
@@ -106,8 +101,8 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
     public render() {
         const { posts, pagination } = this.state!!;
         return <div>
-            {(posts && posts[0] && !posts[0].feature_image) ? <div className="nav-spacer"></div> : null}
-            {posts ? posts.map((post) => <Post {...post} key={post.url}/>) : null}
+            <Title title="My Blog" image={BlogImage} />
+            {posts ? <div className="blog-entries">{posts.map((post) => <Post {...post} key={post.url}/>)}</div> : null}
             <PaginationEl {...pagination} />
             {posts ? <Footer /> : null}
         </div>;

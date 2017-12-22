@@ -10,7 +10,7 @@ import LazyImage from './LazyImage';
 
 import GlobalLoader from './GlobalLoader';
 
-class NavigationMobile extends Component <{}, {width: number, maxHeight: number, active: boolean, loading: boolean}> {
+class NavigationMobile extends Component <{}, {width: number, maxHeight: number, active: boolean, loading: boolean, scrolledTop: boolean}> {
     private wrapper: HTMLElement|null = null;
     private outerWrapper: HTMLElement|null = null;
     private handle: HTMLElement|null = null;
@@ -33,6 +33,7 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
             active: false,
             loading: true,
             maxHeight: 10000,
+            scrolledTop: true,
             width: window.innerWidth
         };
     }
@@ -156,23 +157,26 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
             el.addEventListener('touchmove', this.dragMove, {passive: false});
         }
     }
+    private onScroll = (e) => {
+        if (window.scrollY <= 0) {
+            if (this.state!!.scrolledTop === false) {
+                this.setState({scrolledTop: true});
+            }
+        } else {
+            if (this.state!!.scrolledTop) {
+                this.setState({scrolledTop: false});
+            }
+        }
+    }
     public componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll);
         window.removeEventListener('resize', this.onResize);
-        let el = this.handle!!;
-        el.removeEventListener('touchstart', this.dragStart);
-        el.removeEventListener('touchend', this.dragEnd);
-        el.removeEventListener('touchcancel', this.dragCancel);
-        el.removeEventListener('touchmove', this.dragMove);
-        el = this.background!!;
-        el.removeEventListener('touchstart', this.dragStart);
-        el.removeEventListener('touchend', this.dragEnd);
-        el.removeEventListener('touchcancel', this.dragCancel);
-        el.removeEventListener('touchmove', this.dragMove);
     }
     public componentDidMount() {
         GlobalLoader.addUpdateListener(this.onLoadingStateChange);
         this.setState({loading: GlobalLoader.isLoading});
         window.addEventListener('resize', this.onResize);
+        window.addEventListener('scroll', this.onScroll);
         this.onResize();
     }
     public render() {

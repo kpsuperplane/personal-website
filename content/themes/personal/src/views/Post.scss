@@ -60,7 +60,7 @@
 
         p {
             line-height: 1.9em;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         h1 {
@@ -155,8 +155,7 @@
         .post {
             header.post-header.has-feature-image {
                 .post-header-curve {
-                    height: 2rem;
-                    margin-top: -2rem;
+                    display: none;
                 }
                 .post-header-inner {
                     padding-top: 2rem;

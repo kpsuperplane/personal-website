@@ -1,0 +1,31 @@
+.pagination {
+    display: flex;
+    background: #FAFAFA;
+    >a, >span, >.pagination-element{
+        flex: 0;
+        display: block;
+        font-size: 1rem;
+        padding: 1rem;
+        text-align: center;
+        color: #444;
+        &.expand {
+            flex: 1;
+        }
+    }
+    >span {
+        cursor: default;
+        opacity: 0.25;
+    }
+    >select {
+        background: transparent;
+        border-style: none;
+        display: block;
+        -webkit-appearance:none;
+    }
+    >a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

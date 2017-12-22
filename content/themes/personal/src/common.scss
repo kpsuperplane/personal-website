@@ -9,3 +9,20 @@ $theme-active: darken($theme, 10%);
 .code-font {
     font-family: "source-code-pro", sans-serif;
 }
+@keyframes loadingBackgroundAnimation{
+    0%{
+        background-position: bottom left;
+    }
+    100%{
+        background-position: top right;
+    }
+}
+.loading-background {
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-name: loadingBackgroundAnimation;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(45deg, #f6f7f8 25%, #e3e6e8 50%, #f6f7f8 75%);
+    background-size: 400% 400%;
+}

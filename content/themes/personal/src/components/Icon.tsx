@@ -2,6 +2,8 @@ import Component from 'inferno-component';
 
 export enum Icons {
     ABOUT = 'fas fa-info-circle',
+    CHEVRON_LEFT = 'fas fa-chevron-left',
+    CHEVRON_RIGHT = 'fas fa-chevron-right',
     GITHUB = 'fab fa-github',
     HOME = 'fas fa-home',
     LINKEDIN = 'fab fa-linkedin',

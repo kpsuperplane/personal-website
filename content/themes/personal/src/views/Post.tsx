@@ -47,7 +47,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
     private handleClick = (e) => {
         if (e.target && e.target.tagName === 'A' && e.target.attributes && e.target.attributes.href && !(e.target.attributes.target && e.target.attributes.target !== '_self')) {
             const target = e.target.attributes.href.value;
-            if (target.indexOf('http') !== 0 || target.indexOf(window.location.host) != -1) {
+            if (target.indexOf('http') !== 0 || target.indexOf(window.location.host) !== -1) {
                 e.preventDefault();
                 this.context.router.push(target, e.target.textContent);
             }
@@ -68,6 +68,6 @@ export default class Post extends View<{content: any | null,  image: string | nu
             </header>
             <section className="post-content" onClick={this.handleClick} dangerouslySetInnerHTML={content} />
         </article>
-        <Footer /></div>;
+        {content ? <Footer /> : null}</div>;
     }
 }

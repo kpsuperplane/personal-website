@@ -15,6 +15,7 @@ declare var require: {
 
 const Home = (props, cb) => require.ensure([], () => cb(null, (require('./views/Home') as any).default));
 const Post = (props, cb) => require.ensure([], () => cb(null, (require('./views/Post') as any).default));
+const Blog = (props, cb) => require.ensure([], () => cb(null, (require('./views/Blog') as any).default));
 
 const browserHistory = createBrowserHistory();
 let lastPage = '';
@@ -36,6 +37,7 @@ function handleNavigation(route) {
 const routes = (<Router history={ browserHistory } asyncBefore={handleNavigation} >
     <Route component={ App }>
         <IndexRoute getComponent={Home} />
+        <Route path="blog" getComponent={Blog} />
         <Route path="*" getComponent={Post} />
     </Route>
 </Router>);

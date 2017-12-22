@@ -185,22 +185,22 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
                 <div className="navigation-mobile-bar" ref={this.attachWrapper}>
                     <div className="navigation-mobile-bar-main" style={{maxHeight: state.maxHeight}}>
                         <Link onClick={this.onClick} to="/" className="br"><Icon icon={Icons.HOME} />Home</Link>
-                        <Link onClick={this.onClick} to="/about" className=""><Icon icon={Icons.ABOUT} />About</Link>
-                        <Link onClick={this.onClick} to="/projects" className="br"><Icon icon={Icons.PALETTE} />Projects</Link>
-                        <Link onClick={this.onClick} to="/blog"><Icon icon={Icons.OPEN_BOOK} />Blog</Link>
+                        <Link onClick={this.onClick} to="/about/" className=""><Icon icon={Icons.ABOUT} />About</Link>
+                        <Link onClick={this.onClick} to="/projects/" className="br"><Icon icon={Icons.PALETTE} />Projects</Link>
+                        <Link onClick={this.onClick} to="/blog/"><Icon icon={Icons.OPEN_BOOK} />Blog</Link>
                         <div className="navigation-mobile-bar-contact">
                             <h3>Get in Touch</h3>
                             <Contact />
                         </div>
                     </div>
                     <div className="navigation-mobile-bar-handle" onClick={this.onClick} ref={this.attachHandle}>
-                        <svg className="navigation-mobile-bar-handle-background" width={state.width} height={diameter * 0.9}>
+                        <svg className="navigation-mobile-bar-handle-background" width={state.width} height={diameter * 0.95}>
                             <defs>
                                 <filter xmlns="http://www.w3.org/2000/svg" id="dropshadow" height="130%">
                                     <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
                                     <feOffset dx="0" dy="4" result="offsetblur"/>
                                     <feComponentTransfer>
-                                        <feFuncA type="linear" slope="0.05"/>
+                                        <feFuncA type="linear" slope="0.075"/>
                                     </feComponentTransfer>
                                     <feMerge>
                                         <feMergeNode/>

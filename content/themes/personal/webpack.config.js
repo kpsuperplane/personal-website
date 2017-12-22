@@ -69,10 +69,9 @@ module.exports = {
 	plugins: [
         new CleanObsoleteChunks(),
 		new CleanWebpackPlugin(
-			["dist"], {
+			["assets/build"], {
 				verbose: true
 			}
 		)
-		//,new UglifyJSPlugin()
 	]
 };

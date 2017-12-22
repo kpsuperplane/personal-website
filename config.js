@@ -6,6 +6,7 @@ console.log(JSON.stringify({
     host: '0.0.0.0',
     port: 5000
   },
+  "preloadHeaders": 100,
   "database": {
     "client": "mysql",
     "connection": {

@@ -1,5 +1,7 @@
 import View from './View';
 
+import bezier from 'cubic-bezier';
+
 import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import createElement from 'inferno-create-element';
@@ -118,8 +120,69 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
 }
 
 class HorizontalScroll extends Component<{}, {}> {
+    private container: HTMLElement | null = null;
+    private lastVelocity: number = 0;
+    private lastEvent: {scrollLeft: number, timeStamp: number} | null = null;
+    private scrolling: boolean = false;
+    private animating: boolean = false;
+    private handleScroll = (e) => {
+        if (this.animating) {
+            return;
+        }
+        this.scrolling = true;
+        const scrollLeft = this.container!!.scrollLeft;
+        if (this.lastEvent) {
+            this.lastVelocity = (scrollLeft - this.lastEvent.scrollLeft) / (e.timeStamp - this.lastEvent.timeStamp);
+        }
+        this.lastEvent = {scrollLeft, timeStamp: e.timeStamp};
+    }
+    private touchMove = (e) => {
+        if (this.scrolling) {
+            e.stopPropagation();
+        }
+    }
+    private touchEnd = (e) => {
+        this.scrolling = false;
+        this.lastEvent = null;
+        const containerWidth = this.container!!.getBoundingClientRect().width;
+        const scrollLeft = this.container!!.scrollLeft;
+        const leftCoord = Math.floor(scrollLeft / containerWidth) * containerWidth;
+        const rightCoord = Math.ceil(scrollLeft / containerWidth) * containerWidth;
+        const percent = (scrollLeft - leftCoord) / containerWidth;
+        const scrollTo = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
+        const dist = scrollTo - scrollLeft;
+        const animTime = ((scrollTo === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
+        const anim = bezier(0.1, (Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(scrollTo - scrollLeft), 0.1, 1, (1000 / 60 / animTime) / 4);
+        const step = 16.667 / animTime;
+        this.container!!.style.overflow = 'hidden';
+        let inc = 0;
+        this.animating = true;
+        const scrollAnim = () => {
+            if (inc > 1) {
+                this.container!!.scrollTo(scrollTo, 0);
+                this.container!!.style.overflow = 'scroll';
+                this.animating = false;
+            } else {
+                this.container!!.scrollTo(scrollLeft + dist * anim(inc), 0);
+                inc += step;
+                setTimeout(() => {
+                    requestAnimationFrame(scrollAnim);
+                }, 16.667);
+            }
+        };
+        requestAnimationFrame(scrollAnim);
+        this.lastVelocity = 0;
+    }
+    private attachContainer = (el) => {
+        if (this.container == null) {
+            this.container = el;
+            el.addEventListener('touchmove', this.touchMove);
+            el.addEventListener('touchend', this.touchEnd);
+            el.addEventListener('scroll', this.handleScroll);
+        }
+    }
     public render() {
-        return <div className="h-scroll">{this.props.children}</div>;
+        return <div className="h-scroll" ref={this.attachContainer}>{this.props.children}</div>;
     }
 }
 
@@ -131,6 +194,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
     private touchDelta: number = -1;
     private touchLastBuffer: number = -1;
     private touchLastTime: number = -1;
+    private touchStartTime: number = -1;
     private opened: boolean = false;
     private openedPreviously: boolean = false;
     private winHeight: number = window.innerHeight;
@@ -143,7 +207,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
             posts: null
         };
         GlobalLoader.queue(true);
-        get(ghost.url.api('posts', {page: 1, filter: 'page:false', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
+        get(ghost.url.api('posts', {page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
                 if (body.posts.length === 0) {
                     this.context.router.push('/blog/', null);
@@ -194,6 +258,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
         this.content!!.style.borderRadius = null;
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
+        this.touchStartTime = this.touchLastTime;
         this.touchLast = this.touchStart;
         this.hero!!.style.transition = 'no';
         this.content!!.style.transition = 'border-radius 500ms';
@@ -212,14 +277,17 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
         this.calculateVelocity();
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
-        this.touchStart = -1;
-        this.touchLast = -1;
         let percent = y / (this.winHeight * 0.85);
         if (percent > 1) {
             percent = 1 - (percent - 1);
         }
         if (this.opened === false) {
-            if (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5)))) {
+            if (delta < 1 && this.touchLast > this.top && new Date().getTime() - this.touchStartTime < 3000) {
+                e.preventDefault();
+                this.opened = true;
+                this.velocityLast = 0;
+                this.top = 0;
+            } else if (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5)))) {
                 this.opened = true;
                 this.top = 0;
             } else {
@@ -227,6 +295,8 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
                 this.top = this.winHeight * 0.85;
             }
         }
+        this.touchStart = -1;
+        this.touchLast = -1;
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
         this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
         this.content!!.style.borderRadius = this.opened ? '0' : null;

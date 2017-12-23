@@ -48,6 +48,16 @@
         border-radius: 1rem 1rem 0 0;
         overflow: hidden;
     }
+    .lazy-image-loader {
+        height: 12rem;
+        position: relative;
+        >img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+        }
+    }
 }
 .h-scroll {
     display: flex;

@@ -153,7 +153,7 @@ class HorizontalScroll extends Component<{}, {}> {
         const dist = scrollTo - scrollLeft;
         const animTime = ((scrollTo === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
         const anim = bezier(0.1, (Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(scrollTo - scrollLeft), 0.1, 1, (1000 / 60 / animTime) / 4);
-        const step = 16.667 / animTime;
+        const step = 8.33 / animTime;
         this.container!!.style.overflow = 'hidden';
         let inc = 0;
         this.animating = true;
@@ -166,8 +166,8 @@ class HorizontalScroll extends Component<{}, {}> {
                 this.container!!.scrollTo(scrollLeft + dist * anim(inc), 0);
                 inc += step;
                 setTimeout(() => {
-                    requestAnimationFrame(scrollAnim);
-                }, 16.667);
+                    scrollAnim();
+                }, 8.33);
             }
         };
         requestAnimationFrame(scrollAnim);

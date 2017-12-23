@@ -122,6 +122,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
 class HorizontalScroll extends Component<{}, {}> {
     private container: HTMLElement | null = null;
     private lastVelocity: number = 0;
+    private scrollStart: number = -1;
     private lastEvent: {scrollLeft: number, timeStamp: number} | null = null;
     private scrolling: boolean = false;
     private animating: boolean = false;
@@ -131,6 +132,11 @@ class HorizontalScroll extends Component<{}, {}> {
         }
         this.scrolling = true;
         const scrollLeft = this.container!!.scrollLeft;
+        if (this.scrollStart === -1) {
+            this.scrollStart = scrollLeft;
+        } else if (Math.abs(scrollLeft - this.scrollStart) > 5) {
+            this.scrolling = true;
+        }
         if (this.lastEvent) {
             this.lastVelocity = (scrollLeft - this.lastEvent.scrollLeft) / (e.timeStamp - this.lastEvent.timeStamp);
         }
@@ -170,6 +176,7 @@ class HorizontalScroll extends Component<{}, {}> {
         };
         requestAnimationFrame(scrollAnim);
         this.lastVelocity = 0;
+        this.scrollStart = -1;
     }
     private attachContainer = (el) => {
         if (this.container == null) {

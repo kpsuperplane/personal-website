@@ -374,6 +374,7 @@ var HorizontalScroll = function (_Component3) {
 
         _this4.container = null;
         _this4.lastVelocity = 0;
+        _this4.scrollStart = -1;
         _this4.lastEvent = null;
         _this4.scrolling = false;
         _this4.animating = false;
@@ -383,6 +384,11 @@ var HorizontalScroll = function (_Component3) {
             }
             _this4.scrolling = true;
             var scrollLeft = _this4.container.scrollLeft;
+            if (_this4.scrollStart === -1) {
+                _this4.scrollStart = scrollLeft;
+            } else if (Math.abs(scrollLeft - _this4.scrollStart) > 5) {
+                _this4.scrolling = true;
+            }
             if (_this4.lastEvent) {
                 _this4.lastVelocity = (scrollLeft - _this4.lastEvent.scrollLeft) / (e.timeStamp - _this4.lastEvent.timeStamp);
             }
@@ -422,6 +428,7 @@ var HorizontalScroll = function (_Component3) {
             };
             requestAnimationFrame(scrollAnim);
             _this4.lastVelocity = 0;
+            _this4.scrollStart = -1;
         };
         _this4.attachContainer = function (el) {
             if (_this4.container == null) {

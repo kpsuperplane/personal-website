@@ -165,9 +165,7 @@ class HorizontalScroll extends Component<{}, {}> {
             } else {
                 this.container!!.scrollTo(scrollLeft + dist * anim(inc), 0);
                 inc += step;
-                setTimeout(() => {
-                    scrollAnim();
-                }, 8.33);
+                setTimeout(scrollAnim, 8.33);
             }
         };
         requestAnimationFrame(scrollAnim);

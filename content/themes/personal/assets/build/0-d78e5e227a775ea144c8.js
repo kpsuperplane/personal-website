@@ -382,7 +382,6 @@ var HorizontalScroll = function (_Component3) {
             if (_this4.animating) {
                 return;
             }
-            _this4.scrolling = true;
             var scrollLeft = _this4.container.scrollLeft;
             if (_this4.scrollStart === -1) {
                 _this4.scrollStart = scrollLeft;
@@ -412,7 +411,6 @@ var HorizontalScroll = function (_Component3) {
             var animTime = (scrollTo === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
             var anim = __WEBPACK_IMPORTED_MODULE_1_cubic_bezier___default()(0.1, Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(scrollTo - scrollLeft), 0.1, 1, 1000 / 60 / animTime / 4);
             var step = 8.33 / animTime;
-            _this4.container.style.overflow = 'hidden';
             var inc = 0;
             _this4.animating = true;
             var scrollAnim = function scrollAnim() {
@@ -421,6 +419,9 @@ var HorizontalScroll = function (_Component3) {
                     _this4.container.style.overflow = 'scroll';
                     _this4.animating = false;
                 } else {
+                    if (inc === 0) {
+                        _this4.container.style.overflow = 'hidden';
+                    }
                     _this4.container.scrollTo(scrollLeft + dist * anim(inc), 0);
                     inc += step;
                     setTimeout(scrollAnim, 8.33);

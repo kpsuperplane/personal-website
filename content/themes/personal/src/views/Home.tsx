@@ -1,7 +1,5 @@
 import View from './View';
 
-import bezier from 'cubic-bezier';
-
 import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import createElement from 'inferno-create-element';
@@ -122,69 +120,70 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
 class HorizontalScroll extends Component<{}, {}> {
     private container: HTMLElement | null = null;
     private lastVelocity: number = 0;
-    private scrollStart: number = -1;
-    private lastEvent: {scrollLeft: number, timeStamp: number} | null = null;
-    private scrolling: boolean = false;
-    private animating: boolean = false;
-    private handleScroll = (e) => {
-        if (this.animating) {
-            return;
+    private firstTouch: number[] = [-1, -1];
+    private lastTouch: number = 0;
+    private dragging: boolean = false;
+    private maxPos: number = 0;
+    private dragLeft: number = 0;
+    private lastTouchTime: number = 0;
+    private lastTouchBuffer: number = 0;
+    private dragRender = () => {
+        const pos = Math.max(Math.min(0, this.dragLeft + (this.lastTouch - this.firstTouch[0])), -this.maxPos);
+        this.container!!.style.transform = `translate3d(${pos}px, 0, 0)`;
+    }
+    private calculateVelocity() {
+        const now = new Date().getTime();
+        if (now - this.lastTouchTime > 10) {
+            const newVelocity = (this.lastTouchBuffer - this.lastTouch) / (now - this.lastTouchTime);
+            this.lastVelocity = newVelocity;
+            this.lastTouchTime = now;
+            this.lastTouchBuffer = this.lastTouch;
         }
-        const scrollLeft = this.container!!.scrollLeft;
-        if (this.scrollStart === -1) {
-            this.scrollStart = scrollLeft;
-        } else if (Math.abs(scrollLeft - this.scrollStart) > 5) {
-            this.scrolling = true;
-        }
-        if (this.lastEvent) {
-            this.lastVelocity = (scrollLeft - this.lastEvent.scrollLeft) / (e.timeStamp - this.lastEvent.timeStamp);
-        }
-        this.lastEvent = {scrollLeft, timeStamp: e.timeStamp};
     }
     private touchMove = (e) => {
-        if (this.scrolling) {
+        this.calculateVelocity();
+        if (!this.dragging && Math.abs(e.touches[0].clientX - this.firstTouch[0]) >= 5 && Math.abs(e.touches[0].clientY - this.firstTouch[1]) < 5) {
+            this.dragging = true;
+        }
+        this.lastTouch = e.touches[0].clientX;
+        if (this.dragging) {
+            e.preventDefault();
             e.stopPropagation();
+            requestAnimationFrame(this.dragRender);
         }
     }
     private touchEnd = (e) => {
-        this.scrolling = false;
-        this.lastEvent = null;
-        const containerWidth = this.container!!.getBoundingClientRect().width;
-        const scrollLeft = this.container!!.scrollLeft;
-        const leftCoord = Math.floor(scrollLeft / containerWidth) * containerWidth;
-        const rightCoord = Math.ceil(scrollLeft / containerWidth) * containerWidth;
-        const percent = (scrollLeft - leftCoord) / containerWidth;
-        const scrollTo = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
-        const dist = scrollTo - scrollLeft;
-        const animTime = ((scrollTo === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
-        const anim = bezier(0.1, (Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(scrollTo - scrollLeft), 0.1, 1, (1000 / 60 / animTime) / 4);
-        const step = 8.33 / animTime;
-        let inc = 0;
-        this.animating = true;
-        const scrollAnim = () => {
-            if (inc > 1) {
-                this.container!!.scrollTo(scrollTo, 0);
-                this.container!!.style.overflow = 'scroll';
-                this.animating = false;
-            } else {
-                if (inc === 0) {
-                    this.container!!.style.overflow = 'hidden';
-                }
-                this.container!!.scrollTo(scrollLeft + dist * anim(inc), 0);
-                inc += step;
-                setTimeout(scrollAnim, 8.33);
-            }
-        };
-        requestAnimationFrame(scrollAnim);
+        e.preventDefault();
+        const containerWidth = window.innerWidth;
+        const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);
+        const leftCoord = Math.floor(pos / containerWidth) * containerWidth;
+        const rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
+        const percent = (pos - leftCoord) / containerWidth;
+        const newLeft = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
+        const animTime = ((newLeft === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
+        console.log(`transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`);
+        this.container!!.style.transition = `transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`;
         this.lastVelocity = 0;
-        this.scrollStart = -1;
+        this.lastTouch = 0;
+        this.firstTouch = [0, 0];
+        this.dragLeft = -newLeft;
+        console.log(pos, newLeft);
+        this.dragRender();
+    }
+    private touchStart = (e) => {
+        this.maxPos = this.container!!.scrollWidth - window.innerWidth;
+        this.dragging = false;
+        this.container!!.style.transition = 'none';
+        this.dragLeft = this.container!!.getBoundingClientRect().left;
+        this.firstTouch = [e.touches[0].clientX, e.touches[0].clientY];
+        this.lastTouchBuffer = this.firstTouch[0];
     }
     private attachContainer = (el) => {
         if (this.container == null) {
             this.container = el;
+            el.addEventListener('touchstart', this.touchStart);
             el.addEventListener('touchmove', this.touchMove);
             el.addEventListener('touchend', this.touchEnd);
-            el.addEventListener('scroll', this.handleScroll);
         }
     }
     public render() {

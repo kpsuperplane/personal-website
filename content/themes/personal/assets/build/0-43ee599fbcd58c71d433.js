@@ -180,30 +180,28 @@ var Blog = function (_View) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__View__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cubic_bezier__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_cubic_bezier___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_cubic_bezier__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ellipsize__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ellipsize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ellipsize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno_create_element__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno_create_element___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno_create_element__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_luxon__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_luxon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Button__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Footer__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_LazyImage__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_Loader__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__img_thinking_jpg__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__img_thinking_jpg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_Blog__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Home_scss__ = __webpack_require__(76);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ellipsize__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ellipsize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_ellipsize__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_create_element__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_create_element___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_create_element__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_luxon__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_luxon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_superagent__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_superagent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Button__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Footer__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_LazyImage__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Loader__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_Blog__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__Home_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_inferno__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -211,7 +209,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -238,7 +235,7 @@ var Story = function (_Component) {
     }
 
     return Story;
-}(__WEBPACK_IMPORTED_MODULE_3_inferno_component___default.a);
+}(__WEBPACK_IMPORTED_MODULE_2_inferno_component___default.a);
 
 
 
@@ -287,7 +284,7 @@ var LocationStory = function (_Story) {
             visible: false
         };
         navigator.geolocation.getCurrentPosition(function (pos) {
-            Object(__WEBPACK_IMPORTED_MODULE_6_superagent__["get"])('https://us-central1-personal-website-173519.cloudfunctions.net/getDistance?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude).end(function (err, res) {
+            Object(__WEBPACK_IMPORTED_MODULE_5_superagent__["get"])('https://us-central1-personal-website-173519.cloudfunctions.net/getDistance?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude).end(function (err, res) {
                 _this2.begin(Number(res.text));
             });
         }, console.error);
@@ -301,11 +298,11 @@ var LocationStory = function (_Story) {
             visible = _state.visible;
 
         if (message === '') {
-            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_11__components_Loader__["a" /* default */]);
+            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Loader__["a" /* default */]);
         } else {
-            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'p', null, emoji, {
+            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, emoji, {
                 'style': { fontSize: '4rem', margin: 0 }
-            }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'p', null, message)]);
+            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, message)]);
         }
     };
 
@@ -349,20 +346,20 @@ var HomeContent = function (_Component2) {
             visible = _state2.visible;
 
         if (story === null) {
-            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_LazyImage__["a" /* default */], null, null, {
-                'path': __WEBPACK_IMPORTED_MODULE_12__img_thinking_jpg___default.a,
+            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_LazyImage__["a" /* default */], null, null, {
+                'path': __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg___default.a,
                 'style': { width: '5rem', height: '5.1367rem' }
-            }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'br'), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Button__["a" /* default */], null, null, {
+            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'br'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__components_Button__["a" /* default */], null, null, {
                 'onClick': this.start,
                 children: 'Tell me a story'
             })]);
         } else {
-            return __WEBPACK_IMPORTED_MODULE_4_inferno_create_element___default()(story, { onComplete: this.end });
+            return __WEBPACK_IMPORTED_MODULE_3_inferno_create_element___default()(story, { onComplete: this.end });
         }
     };
 
     return HomeContent;
-}(__WEBPACK_IMPORTED_MODULE_3_inferno_component___default.a);
+}(__WEBPACK_IMPORTED_MODULE_2_inferno_component___default.a);
 
 var HorizontalScroll = function (_Component3) {
     _inherits(HorizontalScroll, _Component3);
@@ -374,80 +371,82 @@ var HorizontalScroll = function (_Component3) {
 
         _this4.container = null;
         _this4.lastVelocity = 0;
-        _this4.scrollStart = -1;
-        _this4.lastEvent = null;
-        _this4.scrolling = false;
-        _this4.animating = false;
-        _this4.handleScroll = function (e) {
-            if (_this4.animating) {
-                return;
-            }
-            var scrollLeft = _this4.container.scrollLeft;
-            if (_this4.scrollStart === -1) {
-                _this4.scrollStart = scrollLeft;
-            } else if (Math.abs(scrollLeft - _this4.scrollStart) > 5) {
-                _this4.scrolling = true;
-            }
-            if (_this4.lastEvent) {
-                _this4.lastVelocity = (scrollLeft - _this4.lastEvent.scrollLeft) / (e.timeStamp - _this4.lastEvent.timeStamp);
-            }
-            _this4.lastEvent = { scrollLeft: scrollLeft, timeStamp: e.timeStamp };
+        _this4.firstTouch = [-1, -1];
+        _this4.lastTouch = 0;
+        _this4.dragging = false;
+        _this4.maxPos = 0;
+        _this4.dragLeft = 0;
+        _this4.lastTouchTime = 0;
+        _this4.lastTouchBuffer = 0;
+        _this4.dragRender = function () {
+            var pos = Math.max(Math.min(0, _this4.dragLeft + (_this4.lastTouch - _this4.firstTouch[0])), -_this4.maxPos);
+            _this4.container.style.transform = 'translate3d(' + pos + 'px, 0, 0)';
         };
         _this4.touchMove = function (e) {
-            if (_this4.scrolling) {
+            _this4.calculateVelocity();
+            if (!_this4.dragging && Math.abs(e.touches[0].clientX - _this4.firstTouch[0]) >= 5 && Math.abs(e.touches[0].clientY - _this4.firstTouch[1]) < 5) {
+                _this4.dragging = true;
+            }
+            _this4.lastTouch = e.touches[0].clientX;
+            if (_this4.dragging) {
+                e.preventDefault();
                 e.stopPropagation();
+                requestAnimationFrame(_this4.dragRender);
             }
         };
         _this4.touchEnd = function (e) {
-            _this4.scrolling = false;
-            _this4.lastEvent = null;
-            var containerWidth = _this4.container.getBoundingClientRect().width;
-            var scrollLeft = _this4.container.scrollLeft;
-            var leftCoord = Math.floor(scrollLeft / containerWidth) * containerWidth;
-            var rightCoord = Math.ceil(scrollLeft / containerWidth) * containerWidth;
-            var percent = (scrollLeft - leftCoord) / containerWidth;
-            var scrollTo = percent >= 0.5 && _this4.lastVelocity >= -0.5 || _this4.lastVelocity >= 0.5 ? rightCoord : leftCoord;
-            var dist = scrollTo - scrollLeft;
-            var animTime = (scrollTo === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
-            var anim = __WEBPACK_IMPORTED_MODULE_1_cubic_bezier___default()(0.1, Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(scrollTo - scrollLeft), 0.1, 1, 1000 / 60 / animTime / 4);
-            var step = 8.33 / animTime;
-            var inc = 0;
-            _this4.animating = true;
-            var scrollAnim = function scrollAnim() {
-                if (inc > 1) {
-                    _this4.container.scrollTo(scrollTo, 0);
-                    _this4.container.style.overflow = 'scroll';
-                    _this4.animating = false;
-                } else {
-                    if (inc === 0) {
-                        _this4.container.style.overflow = 'hidden';
-                    }
-                    _this4.container.scrollTo(scrollLeft + dist * anim(inc), 0);
-                    inc += step;
-                    setTimeout(scrollAnim, 8.33);
-                }
-            };
-            requestAnimationFrame(scrollAnim);
+            e.preventDefault();
+            var containerWidth = window.innerWidth;
+            var pos = Math.min(Math.max(0, -(_this4.dragLeft + (_this4.lastTouch - _this4.firstTouch[0]))), _this4.maxPos);
+            var leftCoord = Math.floor(pos / containerWidth) * containerWidth;
+            var rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
+            var percent = (pos - leftCoord) / containerWidth;
+            var newLeft = percent >= 0.5 && _this4.lastVelocity >= -0.5 || _this4.lastVelocity >= 0.5 ? rightCoord : leftCoord;
+            var animTime = (newLeft === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
+            console.log('transform ' + animTime + 'ms cubic-bezier(0.1, ' + Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(newLeft - pos) + ', 0.1, 1)');
+            _this4.container.style.transition = 'transform ' + animTime + 'ms cubic-bezier(0.1, ' + Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(newLeft - pos) + ', 0.1, 1)';
             _this4.lastVelocity = 0;
-            _this4.scrollStart = -1;
+            _this4.lastTouch = 0;
+            _this4.firstTouch = [0, 0];
+            _this4.dragLeft = -newLeft;
+            console.log(pos, newLeft);
+            _this4.dragRender();
+        };
+        _this4.touchStart = function (e) {
+            _this4.maxPos = _this4.container.scrollWidth - window.innerWidth;
+            _this4.dragging = false;
+            _this4.container.style.transition = 'none';
+            _this4.dragLeft = _this4.container.getBoundingClientRect().left;
+            _this4.firstTouch = [e.touches[0].clientX, e.touches[0].clientY];
+            _this4.lastTouchBuffer = _this4.firstTouch[0];
         };
         _this4.attachContainer = function (el) {
             if (_this4.container == null) {
                 _this4.container = el;
+                el.addEventListener('touchstart', _this4.touchStart);
                 el.addEventListener('touchmove', _this4.touchMove);
                 el.addEventListener('touchend', _this4.touchEnd);
-                el.addEventListener('scroll', _this4.handleScroll);
             }
         };
         return _this4;
     }
 
+    HorizontalScroll.prototype.calculateVelocity = function calculateVelocity() {
+        var now = new Date().getTime();
+        if (now - this.lastTouchTime > 10) {
+            var newVelocity = (this.lastTouchBuffer - this.lastTouch) / (now - this.lastTouchTime);
+            this.lastVelocity = newVelocity;
+            this.lastTouchTime = now;
+            this.lastTouchBuffer = this.lastTouch;
+        }
+    };
+
     HorizontalScroll.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll', this.props.children, null, null, this.attachContainer);
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll', this.props.children, null, null, this.attachContainer);
     };
 
     return HorizontalScroll;
-}(__WEBPACK_IMPORTED_MODULE_3_inferno_component___default.a);
+}(__WEBPACK_IMPORTED_MODULE_2_inferno_component___default.a);
 
 var Home = function (_View) {
     _inherits(Home, _View);
@@ -585,11 +584,11 @@ var Home = function (_View) {
         _this5.state = {
             posts: null
         };
-        __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__["a" /* default */].queue(true);
-        Object(__WEBPACK_IMPORTED_MODULE_6_superagent__["get"])(ghost.url.api('posts', { page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
+        __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__["a" /* default */].queue(true);
+        Object(__WEBPACK_IMPORTED_MODULE_5_superagent__["get"])(ghost.url.api('posts', { page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
             var body = _ref.body;
 
-            __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__["a" /* default */].dequeue(function () {
+            __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__["a" /* default */].dequeue(function () {
                 if (body.posts.length === 0) {
                     _this5.context.router.push('/blog/', null);
                 } else {
@@ -597,10 +596,10 @@ var Home = function (_View) {
                     _this5.setState({
                         posts: body.posts.map(function (post) {
                             return {
-                                excerpt: post.custom_excerpt || __WEBPACK_IMPORTED_MODULE_2_ellipsize___default()(post.html.replace(/<[^>]*>/g, ''), 128),
+                                excerpt: post.custom_excerpt || __WEBPACK_IMPORTED_MODULE_1_ellipsize___default()(post.html.replace(/<[^>]*>/g, ''), 128),
                                 feature_image: post.feature_image,
                                 featured: post.featured,
-                                published_at: __WEBPACK_IMPORTED_MODULE_5_luxon__["DateTime"].fromISO(post.published_at),
+                                published_at: __WEBPACK_IMPORTED_MODULE_4_luxon__["DateTime"].fromISO(post.published_at),
                                 title: post.title,
                                 url: post.url
                             };
@@ -639,11 +638,11 @@ var Home = function (_View) {
     Home.prototype.render = function render() {
         var posts = this.state.posts;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
             children: posts ? posts.map(function (post) {
-                return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_13__views_Blog__["Post"], null, null, _extends({}, post), post.url);
+                return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_12__views_Blog__["Post"], null, null, _extends({}, post), post.url);
             }) : null
-        }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Footer__["a" /* default */])], null, null, this.attachContent)], null, null, this.attachWrapper);
+        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Footer__["a" /* default */])], null, null, this.attachContent)], null, null, this.attachWrapper);
     };
 
     return Home;
@@ -3069,63 +3068,7 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 
 
 /***/ }),
-/* 71 */
-/***/ (function(module, exports) {
-
-
-module.exports = function(x1, y1, x2, y2, epsilon){
-
-	var curveX = function(t){
-		var v = 1 - t;
-		return 3 * v * v * t * x1 + 3 * v * t * t * x2 + t * t * t;
-	};
-
-	var curveY = function(t){
-		var v = 1 - t;
-		return 3 * v * v * t * y1 + 3 * v * t * t * y2 + t * t * t;
-	};
-
-	var derivativeCurveX = function(t){
-		var v = 1 - t;
-		return 3 * (2 * (t - 1) * t + v * v) * x1 + 3 * (- t * t * t + 2 * v * t) * x2;
-	};
-
-	return function(t){
-
-		var x = t, t0, t1, t2, x2, d2, i;
-
-		// First try a few iterations of Newton's method -- normally very fast.
-		for (t2 = x, i = 0; i < 8; i++){
-			x2 = curveX(t2) - x;
-			if (Math.abs(x2) < epsilon) return curveY(t2);
-			d2 = derivativeCurveX(t2);
-			if (Math.abs(d2) < 1e-6) break;
-			t2 = t2 - x2 / d2;
-		}
-
-		t0 = 0, t1 = 1, t2 = x;
-
-		if (t2 < t0) return curveY(t0);
-		if (t2 > t1) return curveY(t1);
-
-		// Fallback to the bisection method for reliability.
-		while (t0 < t1){
-			x2 = curveX(t2);
-			if (Math.abs(x2 - x) < epsilon) return curveY(t2);
-			if (x > x2) t0 = t2;
-			else t1 = t2;
-			t2 = (t1 - t0) * .5 + t0;
-		}
-
-		// Failure
-		return curveY(t2);
-
-	};
-
-};
-
-
-/***/ }),
+/* 71 */,
 /* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -3257,7 +3200,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n\n.h-scroll {\n  display: flex;\n  overflow-x: auto;\n  flex-direction: row;\n  flex-wrap: nowrap;\n  -webkit-overflow-scrolling: touch;\n  -ms-overflow-style: -ms-autohiding-scrollbar; }\n  .h-scroll > * {\n    width: 100%;\n    flex: 0 0 auto; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n\n.h-scroll {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap; }\n  .h-scroll > * {\n    width: 100%;\n    flex: 0 0 auto; }\n", ""]);
 
 // exports
 

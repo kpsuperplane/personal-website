@@ -153,6 +153,9 @@ class HorizontalScroll extends Component<{}, {}> {
         }
     }
     private touchEnd = (e) => {
+        if (Math.abs(this.lastTouch - this.firstTouch[0]) < 5) {
+            return;
+        }
         e.preventDefault();
         const containerWidth = window.innerWidth;
         const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);
@@ -161,13 +164,11 @@ class HorizontalScroll extends Component<{}, {}> {
         const percent = (pos - leftCoord) / containerWidth;
         const newLeft = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
         const animTime = ((newLeft === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
-        console.log(`transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`);
         this.container!!.style.transition = `transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`;
         this.lastVelocity = 0;
         this.lastTouch = 0;
         this.firstTouch = [0, 0];
         this.dragLeft = -newLeft;
-        console.log(pos, newLeft);
         this.dragRender();
     }
     private touchStart = (e) => {

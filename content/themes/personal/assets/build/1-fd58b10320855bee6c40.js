@@ -1,20 +1,36 @@
-webpackJsonp([2],{
+webpackJsonp([1],{
 
-/***/ 49:
+/***/ 46:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Footer__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_LazyImage__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__View__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Post_scss__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Post_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Post_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_inferno__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Post", function() { return Post; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ellipsize__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ellipsize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ellipsize__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_luxon__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_luxon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_superagent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Footer__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Icon__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Pagination__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Title__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__img_blog_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__View__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Blog_scss__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Blog_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__Blog_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -29,110 +45,138 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Post = function (_View) {
-    _inherits(Post, _View);
 
-    function Post(props) {
-        _classCallCheck(this, Post);
 
-        var _this = _possibleConstructorReturn(this, _View.call(this, props));
 
-        _this.lastPath = '';
-        _this.load = function () {
-            _this.lastPath = window.location.pathname;
-            __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */].queue(true);
-            Object(__WEBPACK_IMPORTED_MODULE_0_superagent__["get"])(ghost.url.api('posts', { filter: 'page:[false,true]+slug:' + _this.lastPath.replace(/\//g, '') })).end(function (err, _ref) {
+
+
+
+
+var Post = function Post(post) {
+    return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2_inferno_router__["Link"], null, null, {
+        'to': post.url,
+        'className': 'post-preview' + (!post.feature_image ? ' no-image' : ''),
+        children: [post.feature_image ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__["a" /* default */], null, null, {
+            'path': post.feature_image,
+            'forceWaitSize': true,
+            'loader': true
+        }) : null, Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'post-preview-body', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'h3', null, post.title), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'strong', null, post.published_at.toLocaleString(__WEBPACK_IMPORTED_MODULE_3_luxon__["DateTime"].DATE_FULL)), post.excerpt])])]
+    });
+};
+
+var PaginationEl = function (_Component) {
+    _inherits(PaginationEl, _Component);
+
+    function PaginationEl() {
+        _classCallCheck(this, PaginationEl);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    PaginationEl.prototype.render = function render() {
+        var _props = this.props,
+            page = _props.page,
+            pages = _props.pages;
+
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["b" /* default */], null, null, {
+            children: [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
+                'to': '/blog/?page=' + (page - 1),
+                'disabled': page === 1,
+                children: Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
+                    'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_LEFT
+                })
+            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', null, ['Page ', page, ' of ', pages]), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', 'expand'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Pagination__["a" /* PaginationLink */], null, null, {
+                'to': '/blog/?page=' + (page + 1),
+                'disabled': page === pages,
+                children: Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
+                    'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_RIGHT
+                })
+            })]
+        });
+    };
+
+    return PaginationEl;
+}(__WEBPACK_IMPORTED_MODULE_1_inferno_component___default.a);
+
+var Blog = function (_View) {
+    _inherits(Blog, _View);
+
+    function Blog(props) {
+        _classCallCheck(this, Blog);
+
+        var _this2 = _possibleConstructorReturn(this, _View.call(this, props));
+
+        _this2.lastPath = '';
+        _this2.load = function () {
+            var page = Number(_this2.props.params.page || '1');
+            if (!Number.isInteger(page) || page < 1) {
+                _this2.context.router.push('/blog/', null);
+            }
+            _this2.lastPath = window.location.href;
+            __WEBPACK_IMPORTED_MODULE_6__components_GlobalLoader__["a" /* default */].queue(true);
+            Object(__WEBPACK_IMPORTED_MODULE_4_superagent__["get"])(ghost.url.api('posts', { page: page, filter: 'page:false', limit: 10, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
                 var body = _ref.body;
 
-                __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */].dequeue(function () {
-                    window.scrollTo(0, 0);
-                    if (body && body.posts && body.posts.length > 0) {
-                        var post = body.posts[0];
-                        _this.setState({ content: { __html: post.html }, title: post.title, image: post.feature_image || null }, function () {
-                            for (var _iterator = document.getElementsByClassName('post')[0].getElementsByTagName('iframe'), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
-                                var _ref2;
-
-                                if (_isArray) {
-                                    if (_i >= _iterator.length) break;
-                                    _ref2 = _iterator[_i++];
-                                } else {
-                                    _i = _iterator.next();
-                                    if (_i.done) break;
-                                    _ref2 = _i.value;
-                                }
-
-                                var el = _ref2;
-
-                                var wrapper = document.createElement('div');
-                                wrapper.classList.add('iframe-wrapper');
-                                var innerWrapper = document.createElement('div');
-                                innerWrapper.classList.add('iframe-inner-wrapper');
-                                wrapper.appendChild(innerWrapper);
-                                el.parentNode.insertBefore(wrapper, el);
-                                innerWrapper.appendChild(el);
-                            }
-                        });
+                __WEBPACK_IMPORTED_MODULE_6__components_GlobalLoader__["a" /* default */].dequeue(function () {
+                    if (body.posts.length === 0) {
+                        _this2.context.router.push('/blog/', null);
                     } else {
-                        _this.context.router.push('/', null);
+                        window.scrollTo(0, 0);
+                        _this2.setState({
+                            pagination: body.meta.pagination,
+                            posts: body.posts.map(function (post) {
+                                return {
+                                    excerpt: post.custom_excerpt || __WEBPACK_IMPORTED_MODULE_0_ellipsize___default()(post.html.replace(/<[^>]*>/g, ''), 128),
+                                    feature_image: post.feature_image,
+                                    featured: post.featured,
+                                    published_at: __WEBPACK_IMPORTED_MODULE_3_luxon__["DateTime"].fromISO(post.published_at),
+                                    title: post.title,
+                                    url: post.url
+                                };
+                            })
+                        });
                     }
                 });
             });
         };
-        _this.handleClick = function (e) {
-            if (e.target && e.target.tagName === 'A' && e.target.attributes && e.target.attributes.href && !(e.target.attributes.target && e.target.attributes.target !== '_self')) {
-                var target = e.target.attributes.href.value;
-                if (target.indexOf('http') !== 0 || target.indexOf(window.location.host) !== -1) {
-                    e.preventDefault();
-                    _this.context.router.push(target, e.target.textContent);
-                }
-            }
+        _this2.state = {
+            pagination: null,
+            posts: null
         };
-        _this.state = {
-            content: null,
-            image: null,
-            title: ''
-        };
-        _this.load();
-        return _this;
+        return _this2;
     }
 
-    Post.prototype.componentDidUpdate = function componentDidUpdate(props) {
-        if (window.location.pathname !== this.lastPath && window.location.pathname !== 'blog') {
+    Blog.prototype.componentDidMount = function componentDidMount() {
+        this.load();
+    };
+
+    Blog.prototype.componentDidUpdate = function componentDidUpdate(props) {
+        if (window.location.href !== this.lastPath) {
             this.load();
         }
     };
 
-    Post.prototype.render = function render() {
+    Blog.prototype.render = function render() {
         var _state = this.state,
-            content = _state.content,
-            title = _state.title,
-            image = _state.image;
+            posts = _state.posts,
+            pagination = _state.pagination;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'article', 'post', [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'header', 'post-header' + (image ? ' has-feature-image' : ''), [image ? [Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3__components_LazyImage__["a" /* default */], null, null, {
-            'path': image,
-            'forceWaitSize': true
-        }), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(128, 'svg', 'post-header-curve', Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'path', null, null, {
-            'd': 'M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60',
-            'stroke-width': 0,
-            'fill': 'white'
-        }), {
-            'viewBox': '0 0 400 60',
-            'height': '2%',
-            'preserveAspectRatio': 'none'
-        })] : Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', 'nav-spacer'), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'div', 'post-header-inner', Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'h1', null, title))]), Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(2, 'section', 'post-content', null, {
-            'onClick': this.handleClick,
-            'dangerouslySetInnerHTML': content
-        })]), content ? Object(__WEBPACK_IMPORTED_MODULE_6_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components_Footer__["a" /* default */]) : null]);
+        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Title__["a" /* default */], null, null, {
+            'title': 'My Blog',
+            'image': __WEBPACK_IMPORTED_MODULE_11__img_blog_jpg___default.a
+        }), posts ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'blog-entries', posts.map(function (post) {
+            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, Post, null, null, _extends({}, post), post.url);
+        })) : null, Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, PaginationEl, null, null, _extends({}, pagination)), posts ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__components_Footer__["a" /* default */]) : null]);
     };
 
-    return Post;
-}(__WEBPACK_IMPORTED_MODULE_4__View__["a" /* default */]);
+    return Blog;
+}(__WEBPACK_IMPORTED_MODULE_12__View__["a" /* default */]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Post);
+/* harmony default export */ __webpack_exports__["default"] = (Blog);
 
 /***/ }),
 
-/***/ 50:
+/***/ 49:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -155,7 +199,7 @@ module.exports = isObject;
 
 /***/ }),
 
-/***/ 51:
+/***/ 50:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -190,7 +234,7 @@ var View = function (_Component) {
 
 /***/ }),
 
-/***/ 52:
+/***/ 51:
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -207,11 +251,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = __webpack_require__(54);
-var RequestBase = __webpack_require__(55);
-var isObject = __webpack_require__(50);
-var ResponseBase = __webpack_require__(56);
-var Agent = __webpack_require__(58);
+var Emitter = __webpack_require__(53);
+var RequestBase = __webpack_require__(54);
+var isObject = __webpack_require__(49);
+var ResponseBase = __webpack_require__(55);
+var Agent = __webpack_require__(57);
 
 /**
  * Noop.
@@ -1117,7 +1161,7 @@ request.put = function(url, data, fn) {
 
 /***/ }),
 
-/***/ 53:
+/***/ 52:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1127,9 +1171,9 @@ request.put = function(url, data, fn) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LazyImage__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_profile_footer_png__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_profile_footer_png__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_profile_footer_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__img_profile_footer_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Footer_scss__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Footer_scss__ = __webpack_require__(59);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Footer_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__Footer_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_inferno__);
@@ -1189,7 +1233,7 @@ var Footer = function (_Component) {
 
 /***/ }),
 
-/***/ 54:
+/***/ 53:
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1359,7 +1403,7 @@ Emitter.prototype.hasListeners = function(event){
 
 /***/ }),
 
-/***/ 55:
+/***/ 54:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1368,7 +1412,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(50);
+var isObject = __webpack_require__(49);
 
 /**
  * Expose `RequestBase`.
@@ -2061,7 +2105,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 /***/ }),
 
-/***/ 56:
+/***/ 55:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2071,7 +2115,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(57);
+var utils = __webpack_require__(56);
 
 /**
  * Expose `ResponseBase`.
@@ -2203,7 +2247,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 /***/ }),
 
-/***/ 57:
+/***/ 56:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2282,7 +2326,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 /***/ }),
 
-/***/ 58:
+/***/ 57:
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -2309,20 +2353,20 @@ module.exports = Agent;
 
 /***/ }),
 
-/***/ 59:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "profile-footer.png";
 
 /***/ }),
 
-/***/ 60:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(60);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2348,7 +2392,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 61:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -2363,13 +2407,42 @@ exports.push([module.i, ".body-font, footer.footer > p {\n  font-family: \"proxi
 
 /***/ }),
 
-/***/ 78:
+/***/ 61:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaginationLink; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pagination_scss__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Pagination_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Pagination_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+
+
+
+
+var PaginationLink = function PaginationLink(props) {
+  return props.disabled ? Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'span', null, props.children) : Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+    'to': props.to,
+    children: props.children
+  });
+};
+/* harmony default export */ __webpack_exports__["b"] = (function (props) {
+  return Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'div', 'pagination', props.children);
+});
+
+/***/ }),
+
+/***/ 62:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(79);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2383,8 +2456,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Post.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Post.scss");
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Pagination.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Pagination.scss");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -2395,7 +2468,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 79:
+/***/ 63:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -2403,7 +2476,137 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font, .post-template .post h1, .post-template .post h2, .post-template .post h3, .post-template .post h4, .post-template .post h5, .post-template .post p, .post-template .post ol, .post-template .post li, .post-template .post img, .post-template .post pre, .post-template .post .iframe-wrapper {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .post-template .post h1, .post-template .post h2, .post-template .post blockquote {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font, .post-template .post code {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.post-template .post {\n  padding: 0 2rem 2rem 2rem; }\n  .post-template .post header.post-header {\n    text-align: center;\n    margin: 0 -2rem 3rem -2rem; }\n    .post-template .post header.post-header.has-feature-image img {\n      padding: 0;\n      margin: 0;\n      border-radius: 0;\n      box-shadow: none;\n      max-width: none; }\n    .post-template .post header.post-header.has-feature-image .post-header-curve {\n      display: block;\n      margin-top: -5rem;\n      height: 5rem;\n      width: 100%; }\n    .post-template .post header.post-header.has-feature-image .post-header-inner {\n      padding: 0 2rem;\n      margin-top: -3px;\n      background: #FFF;\n      position: relative; }\n      .post-template .post header.post-header.has-feature-image .post-header-inner h1 {\n        padding-top: 0; }\n    .post-template .post header.post-header .post-header-inner {\n      padding: 2rem; }\n      .post-template .post header.post-header .post-header-inner h1 {\n        font-weight: 300;\n        margin: 0 auto;\n        text-align: center; }\n  .post-template .post h1, .post-template .post h2, .post-template .post h3, .post-template .post h4, .post-template .post h5, .post-template .post p, .post-template .post ol, .post-template .post li, .post-template .post img, .post-template .post pre, .post-template .post .iframe-wrapper {\n    display: block;\n    max-width: 700px;\n    padding: 0;\n    box-sizing: border-box;\n    color: #444;\n    margin: 0 auto 2rem auto; }\n  .post-template .post .iframe-wrapper > .iframe-inner-wrapper {\n    position: relative;\n    padding-bottom: 56.25%;\n    padding-top: 25px;\n    height: 0; }\n    .post-template .post .iframe-wrapper > .iframe-inner-wrapper > iframe {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%; }\n  .post-template .post img, .post-template .post .iframe-wrapper {\n    width: 100%;\n    overflow: hidden;\n    box-shadow: 0 2px 50px rgba(0, 0, 0, 0.1);\n    border-radius: 0.5rem; }\n    .post-template .post img.large, .post-template .post .iframe-wrapper.large {\n      max-width: 0; }\n  .post-template .post p {\n    line-height: 1.9em;\n    font-size: 1.1rem; }\n  .post-template .post h1 {\n    text-align: center;\n    font-size: 3.998rem; }\n  .post-template .post h2 {\n    font-size: 2.827rem;\n    font-weight: 300; }\n  .post-template .post h3 {\n    font-size: 1.999rem; }\n  .post-template .post h4 {\n    font-size: 1.414rem; }\n  .post-template .post h5 {\n    font-size: 1.212rem; }\n  .post-template .post small, .post-template .post .font_small {\n    font-size: 0.707rem; }\n  .post-template .post blockquote {\n    font-weight: 700;\n    font-size: 1.5rem;\n    line-height: 2rem;\n    color: #2ac648; }\n    .post-template .post blockquote p {\n      font-size: inherit;\n      font-weight: inherit;\n      font-family: inherit;\n      line-height: inherit;\n      color: inherit; }\n  .post-template .post hr {\n    border-style: none;\n    height: 1px;\n    background: #EEE; }\n  .post-template .post code {\n    background: #232323;\n    display: inline-block;\n    padding: 0px 5px;\n    font-weight: 400;\n    color: #FFF;\n    font-size: 0.8rem;\n    border-radius: 3px;\n    margin-top: -9px; }\n  .post-template .post pre[class*=\"language-\"] {\n    border-radius: 5px; }\n  .post-template .post pre code {\n    padding: 1rem;\n    margin: 0px;\n    display: block;\n    color: #FFF;\n    border-radius: 5px;\n    font-weight: inherit;\n    background: #232323; }\n  .post-template .post a {\n    color: #151515;\n    border-bottom: 2px solid #AAA;\n    text-decoration: none; }\n    .post-template .post a:hover {\n      text-decoration: none;\n      border-bottom-color: #2ac648; }\n  .post-template .post .caption {\n    display: block;\n    margin-top: -2rem;\n    color: #AAA; }\n  .post-template .post .video-wrapper {\n    position: relative;\n    padding-bottom: 56.25%;\n    /* 16:9 */\n    padding-top: 25px;\n    height: 0; }\n  .post-template .post .video-wrapper iframe {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%; }\n\n@media (max-width: 750px) {\n  .post-template .post header.post-header.has-feature-image .post-header-curve {\n    display: none; }\n  .post-template .post header.post-header.has-feature-image .post-header-inner {\n    padding-top: 2rem; }\n  .post-template .post p > img {\n    border-radius: 0;\n    margin-left: -2rem;\n    margin-right: -2rem;\n    width: calc(100% + 4rem); }\n  .post-template .post h1 {\n    font-size: 2.1rem; }\n  .post-template .post h2 {\n    font-size: 1.8rem; }\n  .post-template .post h3 {\n    font-size: 1.5rem; }\n  .post-template .post h4 {\n    font-size: 1.2rem; }\n  .post-template .post h5 {\n    font-size: 1.1rem; } }\n", ""]);
+exports.push([module.i, ".pagination {\n  display: flex;\n  background: #FAFAFA;\n  position: relative; }\n  .pagination > a, .pagination > span, .pagination > .pagination-element {\n    flex: 0;\n    font-weight: 700;\n    display: block;\n    font-size: 1rem;\n    padding: 1rem;\n    text-align: center;\n    color: #444;\n    white-space: nowrap; }\n    .pagination > a.expand, .pagination > span.expand, .pagination > .pagination-element.expand {\n      flex: 1; }\n  .pagination > span {\n    cursor: default;\n    opacity: 0.25; }\n  .pagination > select {\n    background: transparent;\n    border-style: none;\n    display: block;\n    -webkit-appearance: none; }\n  .pagination > a {\n    text-decoration: none; }\n    .pagination > a:hover {\n      text-decoration: none; }\n\n@media (min-width: 750px) {\n  .pagination {\n    background: transparent;\n    justify-content: center; }\n    .pagination > .expand {\n      flex: 0 !important; } }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 64:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Title_scss__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Title_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Title_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
+
+
+
+/* harmony default export */ __webpack_exports__["a"] = (function (props) {
+    return Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'div', 'title-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'header', 'title', Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'h1', null, props.title), {
+        'style': { backgroundImage: 'url(' + props.image + ')' }
+    }), Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(128, 'svg', 'title-curve', Object(__WEBPACK_IMPORTED_MODULE_2_inferno__["createVNode"])(2, 'path', null, null, {
+        'd': 'M 0,80 L 0,50 C 100,0 300,0 400,50 L 400,80',
+        'stroke-width': 0,
+        'fill': 'white'
+    }), {
+        'viewBox': '0 0 400 80',
+        'height': '2%',
+        'preserveAspectRatio': 'none'
+    })]);
+});
+
+/***/ }),
+
+/***/ 65:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(66);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Title.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Title.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 66:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .title-wrapper .title h1 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.title-wrapper .title {\n  padding: 5rem 2rem 4rem 2rem;\n  background-size: cover;\n  background-position: center center;\n  text-align: center; }\n  .title-wrapper .title h1 {\n    font-size: 2rem;\n    text-align: center;\n    padding: 1rem;\n    margin: 0;\n    color: #FFF;\n    font-weight: 300; }\n\n.title-wrapper .title-curve {\n  display: none; }\n\n@media (min-width: 750px) {\n  .title-wrapper .title {\n    padding: 9rem 2rem 13rem 2rem; }\n    .title-wrapper .title h1 {\n      font-size: 3.5rem; }\n  .title-wrapper .title-curve {\n    margin-top: -80px;\n    height: 80px;\n    width: 100%;\n    display: block; } }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 67:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "blog.jpg";
+
+/***/ }),
+
+/***/ 68:
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(69);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Blog.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Blog.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ 69:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .post-preview > .post-preview-body > h3 {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.blog-template .blog-entries {\n  border-radius: 1rem 1rem 0 0;\n  margin: -1rem 0 0 0;\n  overflow: hidden;\n  position: relative;\n  background: #FFF;\n  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1); }\n\n@media (min-width: 750px) {\n  .blog-template .blog-entries {\n    max-width: 700px;\n    margin: -8rem auto 3rem auto;\n    border-radius: 0.75rem; } }\n\n.post-preview {\n  display: block;\n  text-decoration: none; }\n  .post-preview.no-image {\n    border-top: 1px solid #EEE; }\n  .post-preview > .lazy-image-loader {\n    width: 100%;\n    overflow: hidden; }\n    .post-preview > .lazy-image-loader > img {\n      width: 100%;\n      transform: scale(1);\n      transition: all 250ms; }\n  .post-preview > .post-preview-body {\n    padding: 1.5rem 2rem;\n    display: block; }\n    .post-preview > .post-preview-body > h3 {\n      color: #2ac648;\n      font-size: 1.25rem;\n      line-height: 1.25rem;\n      margin: 0;\n      padding: 0 0 0.5rem 0; }\n    .post-preview > .post-preview-body > p {\n      font-size: 1rem;\n      line-height: 1.5rem;\n      color: #444;\n      margin: 0;\n      padding: 0; }\n      .post-preview > .post-preview-body > p > strong {\n        display: block; }\n  .post-preview:hover {\n    text-decoration: none; }\n    .post-preview:hover > .lazy-image-loader > img {\n      transform: scale(1.05); }\n", ""]);
 
 // exports
 

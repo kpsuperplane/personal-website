@@ -1,7 +1,6 @@
 
 import Component from 'inferno-component';
 
-import LogoBlack from '../img/logo-black.png';
 import Loader from './Loader';
 export default class GlobalLoader extends Component<{}, {loading: boolean, visible: boolean}> {
 
@@ -105,7 +104,7 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
     }
     public render() {
         return this.state!!.loading ? <div className={'app-loader' + (this.state!!.visible ? ' visible' : '')}>
-            <img src={LogoBlack} class="app-loader-logo" />
+            <img src="/assets/logo-black.png" class="app-loader-logo" />
             <Loader />
         </div> : null;
     }

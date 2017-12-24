@@ -156,6 +156,7 @@ class HorizontalScroll extends Component<{}, {}> {
         if (!this.dragging) {
             return;
         }
+        e.stopPropagation();
         e.preventDefault();
         const containerWidth = window.innerWidth;
         const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);

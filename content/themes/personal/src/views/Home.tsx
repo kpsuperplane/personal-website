@@ -166,7 +166,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
         e.stopPropagation();
         e.preventDefault();
-        const containerWidth = window.innerWidth;
+        const containerWidth = this.container!!.getBoundingClientRect().width;
         const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);
         const leftCoord = Math.floor(pos / containerWidth) * containerWidth;
         const rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
@@ -179,15 +179,26 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.firstTouch = [0, 0];
         this.dragLeft = -newLeft;
         this.setState({selected: Math.floor(newLeft / containerWidth)});
-        this.dragRender();
+        requestAnimationFrame(this.dragRender);
     }
     private touchStart = (e) => {
-        this.maxPos = this.container!!.scrollWidth - window.innerWidth;
         this.dragging = false;
         this.container!!.style.transition = 'none';
         this.dragLeft = this.container!!.getBoundingClientRect().left;
         this.firstTouch = [e.touches[0].clientX, e.touches[0].clientY];
         this.lastTouchBuffer = this.firstTouch[0];
+    }
+    private prev = (e) => {
+        this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
+        this.dragLeft = -this.container!!.getBoundingClientRect().width * (this.state!!.selected - 1);
+        requestAnimationFrame(this.dragRender);
+        this.setState({selected: this.state!!.selected - 1});
+    }
+    private next = (e) => {
+        this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
+        this.dragLeft = -this.container!!.getBoundingClientRect().width * (this.state!!.selected + 1);
+        requestAnimationFrame(this.dragRender);
+        this.setState({selected: this.state!!.selected + 1});
     }
     private attachContainer = (el) => {
         if (this.container == null) {
@@ -197,9 +208,17 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
             el.addEventListener('touchend', this.touchEnd);
         }
     }
+    public componentDidMount() {
+        this.maxPos = this.container!!.scrollWidth - this.container!!.getBoundingClientRect().width;
+    }
+    public componentDidUpdate() {
+        this.maxPos = this.container!!.scrollWidth - this.container!!.getBoundingClientRect().width;
+    }
     public render() {
         return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')}>
             <div className="h-scroll-contents" ref={this.attachContainer}>{this.props.children}</div>
+            {this.state!!.selected !== 0 ? <div className="h-scroll-nav left" onClick={this.prev}><Icon icon={Icons.CHEVRON_LEFT} /></div> : null}
+            {(this.props.children && this.state!!.selected !== (this.props.children as any).length - 1) ? <div className="h-scroll-nav right" onClick={this.next}><Icon icon={Icons.CHEVRON_RIGHT} /></div> : null}
             {this.props.children ? <div className="h-scroll-indicator">
                 {Array.from(new Array((this.props.children as any).length), (val, index) => <div className={'h-scroll-indicator-item' + (index === this.state!!.selected ? ' active' : '')}></div>)}
                 <Link to={this.props.linkTo} className="h-scroll-link">{this.props.linkText}</Link>

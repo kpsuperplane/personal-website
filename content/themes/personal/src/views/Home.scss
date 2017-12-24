@@ -59,6 +59,17 @@
         }
     }
     .home-blog {
+        >.h-scroll-nav {
+            top: 11rem;
+            background: #FFF;
+            border-radius: 100%;
+            width: 1rem;
+            height: 1rem;
+            box-sizing: content-box;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            color: $theme;
+        }
         >.h-scroll-indicator {
             margin-top: -1rem;
             >.h-scroll-link {
@@ -68,6 +79,7 @@
     }
 }
 .h-scroll {
+    position: relative;
     >.h-scroll-contents {
         display: flex;
         flex-direction: row;
@@ -75,6 +87,18 @@
         >* {
             width: 100%;
             flex: 0 0 auto;
+        }
+    }
+    >.h-scroll-nav {
+        position: absolute;
+        top: 50%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        &.right {
+            right: 1rem;
+        }
+        &.left {
+            left: 1rem;
         }
     }
     >.h-scroll-indicator {

@@ -384,6 +384,11 @@ var HorizontalScroll = function (_Component3) {
         _this4.dragLeft = 0;
         _this4.lastTouchTime = 0;
         _this4.lastTouchBuffer = 0;
+        _this4.reset = function () {
+            _this4.firstTouch = [0, 0];
+            _this4.lastTouch = 0;
+            _this4.lastVelocity = 0;
+        };
         _this4.dragRender = function () {
             var pos = Math.max(Math.min(0, _this4.dragLeft + (_this4.lastTouch - _this4.firstTouch[0])), -_this4.maxPos);
             _this4.container.style.transform = 'translate3d(' + pos + 'px, 0, 0)';
@@ -406,7 +411,7 @@ var HorizontalScroll = function (_Component3) {
             }
             e.stopPropagation();
             e.preventDefault();
-            var containerWidth = _this4.container.getBoundingClientRect().width;
+            var containerWidth = _this4.wrapper.getBoundingClientRect().width;
             var pos = Math.min(Math.max(0, -(_this4.dragLeft + (_this4.lastTouch - _this4.firstTouch[0]))), _this4.maxPos);
             var leftCoord = Math.floor(pos / containerWidth) * containerWidth;
             var rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
@@ -414,9 +419,7 @@ var HorizontalScroll = function (_Component3) {
             var newLeft = percent >= 0.5 && _this4.lastVelocity >= -0.5 || _this4.lastVelocity >= 0.5 ? rightCoord : leftCoord;
             var animTime = (newLeft === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 300 + 100;
             _this4.container.style.transition = 'transform ' + animTime + 'ms cubic-bezier(0.1, ' + Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(newLeft - pos) + ', 0.1, 1)';
-            _this4.lastVelocity = 0;
-            _this4.lastTouch = 0;
-            _this4.firstTouch = [0, 0];
+            _this4.reset();
             _this4.dragLeft = -newLeft;
             _this4.setState({ selected: Math.floor(newLeft / containerWidth) });
             requestAnimationFrame(_this4.dragRender);
@@ -429,14 +432,16 @@ var HorizontalScroll = function (_Component3) {
             _this4.lastTouchBuffer = _this4.firstTouch[0];
         };
         _this4.prev = function (e) {
+            _this4.reset();
             _this4.container.style.transition = 'transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)';
-            _this4.dragLeft = -_this4.container.getBoundingClientRect().width * (_this4.state.selected - 1);
+            _this4.dragLeft = -_this4.wrapper.getBoundingClientRect().width * (_this4.state.selected - 1);
             requestAnimationFrame(_this4.dragRender);
             _this4.setState({ selected: _this4.state.selected - 1 });
         };
         _this4.next = function (e) {
+            _this4.reset();
             _this4.container.style.transition = 'transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)';
-            _this4.dragLeft = -_this4.container.getBoundingClientRect().width * (_this4.state.selected + 1);
+            _this4.dragLeft = -_this4.wrapper.getBoundingClientRect().width * (_this4.state.selected + 1);
             requestAnimationFrame(_this4.dragRender);
             _this4.setState({ selected: _this4.state.selected + 1 });
         };
@@ -451,6 +456,7 @@ var HorizontalScroll = function (_Component3) {
                 el.addEventListener('touchstart', _this4.touchStart);
                 el.addEventListener('touchmove', _this4.touchMove);
                 el.addEventListener('touchend', _this4.touchEnd);
+                _this4.maxPos = _this4.container.scrollWidth - _this4.wrapper.getBoundingClientRect().width;
             }
         };
         _this4.state = {
@@ -469,12 +475,8 @@ var HorizontalScroll = function (_Component3) {
         }
     };
 
-    HorizontalScroll.prototype.componentDidMount = function componentDidMount() {
-        this.maxPos = this.container.scrollWidth - this.container.getBoundingClientRect().width;
-    };
-
     HorizontalScroll.prototype.componentDidUpdate = function componentDidUpdate() {
-        this.maxPos = this.container.scrollWidth - this.container.getBoundingClientRect().width;
+        this.maxPos = this.container.scrollWidth - this.wrapper.getBoundingClientRect().width;
     };
 
     HorizontalScroll.prototype.render = function render() {

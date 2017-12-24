@@ -136,6 +136,11 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
             selected: 0
         };
     }
+    private reset = () => {
+        this.firstTouch = [0, 0];
+        this.lastTouch = 0;
+        this.lastVelocity = 0;
+    }
     private dragRender = () => {
         const pos = Math.max(Math.min(0, this.dragLeft + (this.lastTouch - this.firstTouch[0])), -this.maxPos);
         this.container!!.style.transform = `translate3d(${pos}px, 0, 0)`;
@@ -167,7 +172,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
         e.stopPropagation();
         e.preventDefault();
-        const containerWidth = this.container!!.getBoundingClientRect().width;
+        const containerWidth = this.wrapper!!.getBoundingClientRect().width;
         const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);
         const leftCoord = Math.floor(pos / containerWidth) * containerWidth;
         const rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
@@ -175,9 +180,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         const newLeft = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
         const animTime = ((newLeft === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 300 + 100;
         this.container!!.style.transition = `transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`;
-        this.lastVelocity = 0;
-        this.lastTouch = 0;
-        this.firstTouch = [0, 0];
+        this.reset();
         this.dragLeft = -newLeft;
         this.setState({selected: Math.floor(newLeft / containerWidth)});
         requestAnimationFrame(this.dragRender);
@@ -190,14 +193,16 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.lastTouchBuffer = this.firstTouch[0];
     }
     private prev = (e) => {
+        this.reset();
         this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
-        this.dragLeft = -this.container!!.getBoundingClientRect().width * (this.state!!.selected - 1);
+        this.dragLeft = -this.wrapper!!.getBoundingClientRect().width * (this.state!!.selected - 1);
         requestAnimationFrame(this.dragRender);
         this.setState({selected: this.state!!.selected - 1});
     }
     private next = (e) => {
+        this.reset();
         this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
-        this.dragLeft = -this.container!!.getBoundingClientRect().width * (this.state!!.selected + 1);
+        this.dragLeft = -this.wrapper!!.getBoundingClientRect().width * (this.state!!.selected + 1);
         requestAnimationFrame(this.dragRender);
         this.setState({selected: this.state!!.selected + 1});
     }
@@ -212,13 +217,11 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
             el.addEventListener('touchstart', this.touchStart);
             el.addEventListener('touchmove', this.touchMove);
             el.addEventListener('touchend', this.touchEnd);
+            this.maxPos = this.container!!.scrollWidth - this.wrapper!!.getBoundingClientRect().width;
         }
     }
-    public componentDidMount() {
-        this.maxPos = this.container!!.scrollWidth - this.container!!.getBoundingClientRect().width;
-    }
     public componentDidUpdate() {
-        this.maxPos = this.container!!.scrollWidth - this.container!!.getBoundingClientRect().width;
+        this.maxPos = this.container!!.scrollWidth - this.wrapper!!.getBoundingClientRect().width;
     }
     public render() {
         return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')} ref={this.attachWrapper}>

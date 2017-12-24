@@ -395,7 +395,7 @@ var HorizontalScroll = function (_Component3) {
         };
         _this4.touchMove = function (e) {
             _this4.calculateVelocity();
-            if (!_this4.dragging && Math.abs(e.touches[0].clientX - _this4.firstTouch[0]) >= 5 && Math.abs(e.touches[0].clientY - _this4.firstTouch[1]) < 5) {
+            if (!_this4.dragging && Math.abs(e.touches[0].clientX - _this4.firstTouch[0]) >= 5 && Math.abs((e.touches[0].clientY - _this4.firstTouch[1]) / (e.touches[0].clientX - _this4.firstTouch[0])) < 0.5) {
                 _this4.dragging = true;
             }
             _this4.lastTouch = e.touches[0].clientX;

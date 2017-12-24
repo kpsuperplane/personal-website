@@ -156,7 +156,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     }
     private touchMove = (e) => {
         this.calculateVelocity();
-        if (!this.dragging && Math.abs(e.touches[0].clientX - this.firstTouch[0]) >= 5 && Math.abs(e.touches[0].clientY - this.firstTouch[1]) < 5) {
+        if (!this.dragging && Math.abs(e.touches[0].clientX - this.firstTouch[0]) >= 5 && Math.abs((e.touches[0].clientY - this.firstTouch[1]) / (e.touches[0].clientX - this.firstTouch[0])) < 0.5) {
             this.dragging = true;
         }
         this.lastTouch = e.touches[0].clientX;

@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "fa6a6faf6e137693ba79" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "5a1039d79c627ba2705d" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -8578,6 +8578,7 @@ var Loader = function (_Component) {
             'type': 'video/mp4'
         }), {
             'loop': 'loop',
+            'controls': 'false',
             'autoplay': 'autoplay',
             'muted': 'muted',
             'playsinline': 'playsinline'

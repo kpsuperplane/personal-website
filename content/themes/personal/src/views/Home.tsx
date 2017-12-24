@@ -121,6 +121,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
 
 class HorizontalScroll extends Component<{}, {selected: number}> {
     private container: HTMLElement | null = null;
+    private wrapper: HTMLElement | null = null;
     private lastVelocity: number = 0;
     private firstTouch: number[] = [-1, -1];
     private lastTouch: number = 0;
@@ -203,6 +204,11 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     private attachContainer = (el) => {
         if (this.container == null) {
             this.container = el;
+        }
+    }
+    private attachWrapper = (el) => {
+        if (this.wrapper == null) {
+            this.wrapper = el;
             el.addEventListener('touchstart', this.touchStart);
             el.addEventListener('touchmove', this.touchMove);
             el.addEventListener('touchend', this.touchEnd);
@@ -215,7 +221,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.maxPos = this.container!!.scrollWidth - this.container!!.getBoundingClientRect().width;
     }
     public render() {
-        return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')}>
+        return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')} ref={this.attachWrapper}>
             <div className="h-scroll-contents" ref={this.attachContainer}>{this.props.children}</div>
             {this.state!!.selected !== 0 ? <div className="h-scroll-nav left" onClick={this.prev}><Icon icon={Icons.CHEVRON_LEFT} /></div> : null}
             {(this.props.children && this.state!!.selected !== (this.props.children as any).length - 1) ? <div className="h-scroll-nav right" onClick={this.next}><Icon icon={Icons.CHEVRON_RIGHT} /></div> : null}

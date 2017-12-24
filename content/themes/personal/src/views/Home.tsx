@@ -3,12 +3,14 @@ import View from './View';
 import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import createElement from 'inferno-create-element';
+import { Link } from 'inferno-router';
 import { DateTime } from 'luxon';
 import {get} from 'superagent';
 
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
+import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
 import Loader from '../components/Loader';
 import Thinking from '../img/thinking.jpg';
@@ -117,7 +119,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     }
 }
 
-class HorizontalScroll extends Component<{}, {}> {
+class HorizontalScroll extends Component<{}, {selected: number}> {
     private container: HTMLElement | null = null;
     private lastVelocity: number = 0;
     private firstTouch: number[] = [-1, -1];
@@ -127,6 +129,12 @@ class HorizontalScroll extends Component<{}, {}> {
     private dragLeft: number = 0;
     private lastTouchTime: number = 0;
     private lastTouchBuffer: number = 0;
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: 0
+        };
+    }
     private dragRender = () => {
         const pos = Math.max(Math.min(0, this.dragLeft + (this.lastTouch - this.firstTouch[0])), -this.maxPos);
         this.container!!.style.transform = `translate3d(${pos}px, 0, 0)`;
@@ -164,12 +172,13 @@ class HorizontalScroll extends Component<{}, {}> {
         const rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
         const percent = (pos - leftCoord) / containerWidth;
         const newLeft = ((percent >= 0.5 && this.lastVelocity >= -0.5) || this.lastVelocity >= 0.5) ? rightCoord : leftCoord;
-        const animTime = ((newLeft === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
+        const animTime = ((newLeft === rightCoord) ? Math.abs(percent) : (1 - Math.abs(percent))) * 300 + 100;
         this.container!!.style.transition = `transform ${animTime}ms cubic-bezier(0.1, ${(Math.abs(this.lastVelocity) * (0.1 * animTime)) / Math.abs(newLeft - pos)}, 0.1, 1)`;
         this.lastVelocity = 0;
         this.lastTouch = 0;
         this.firstTouch = [0, 0];
         this.dragLeft = -newLeft;
+        this.setState({selected: Math.floor(newLeft / containerWidth)});
         this.dragRender();
     }
     private touchStart = (e) => {
@@ -189,7 +198,13 @@ class HorizontalScroll extends Component<{}, {}> {
         }
     }
     public render() {
-        return <div className="h-scroll" ref={this.attachContainer}>{this.props.children}</div>;
+        return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')}>
+            <div className="h-scroll-contents" ref={this.attachContainer}>{this.props.children}</div>
+            {this.props.children ? <div className="h-scroll-indicator">
+                {Array.from(new Array((this.props.children as any).length), (val, index) => <div className={'h-scroll-indicator-item' + (index === this.state!!.selected ? ' active' : '')}></div>)}
+                <Link to={this.props.linkTo} className="h-scroll-link">{this.props.linkText}</Link>
+            </div> : null}
+        </div>;
     }
 }
 
@@ -375,7 +390,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
                 </div>
             </div>
             <div ref={this.attachContent} className="content-wrapper">
-                <HorizontalScroll>{posts ? posts.map((post) => <Post {...post} key={post.url} />) : null}</HorizontalScroll>
+                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} />) : null}</HorizontalScroll>
                 <Footer />
             </div>
         </div>);

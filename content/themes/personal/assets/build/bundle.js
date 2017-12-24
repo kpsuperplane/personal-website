@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "fd58b10320855bee6c40" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "f3e5e60394c9c7bb5a2a" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -1001,6 +1001,7 @@ var Icons;
     Icons["GITHUB"] = "fab fa-github";
     Icons["HOME"] = "fas fa-home";
     Icons["LINKEDIN"] = "fab fa-linkedin";
+    Icons["NEWSPAPER"] = "fas fa-newspaper";
     Icons["OPEN_BOOK"] = "fas fa-book";
     Icons["PALETTE"] = "fas fa-coffee";
     Icons["STACKOVERFLOW"] = "fab fa-stack-overflow";

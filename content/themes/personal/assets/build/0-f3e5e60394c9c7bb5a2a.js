@@ -186,22 +186,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_create_element__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_create_element___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_create_element__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_luxon__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_luxon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_superagent__ = __webpack_require__(51);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Button__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Footer__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_LazyImage__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Loader__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_Blog__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss__ = __webpack_require__(74);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno_router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_luxon__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_luxon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_superagent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Button__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Footer__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Icon__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_LazyImage__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_Loader__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__img_thinking_jpg__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__img_thinking_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__views_Blog__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Home_scss__ = __webpack_require__(74);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__Home_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_inferno__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -209,6 +212,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -284,7 +289,7 @@ var LocationStory = function (_Story) {
             visible: false
         };
         navigator.geolocation.getCurrentPosition(function (pos) {
-            Object(__WEBPACK_IMPORTED_MODULE_5_superagent__["get"])('https://us-central1-personal-website-173519.cloudfunctions.net/getDistance?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude).end(function (err, res) {
+            Object(__WEBPACK_IMPORTED_MODULE_6_superagent__["get"])('https://us-central1-personal-website-173519.cloudfunctions.net/getDistance?lat=' + pos.coords.latitude + '&lon=' + pos.coords.longitude).end(function (err, res) {
                 _this2.begin(Number(res.text));
             });
         }, console.error);
@@ -298,11 +303,11 @@ var LocationStory = function (_Story) {
             visible = _state.visible;
 
         if (message === '') {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Loader__["a" /* default */]);
+            return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_12__components_Loader__["a" /* default */]);
         } else {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, emoji, {
+            return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'p', null, emoji, {
                 'style': { fontSize: '4rem', margin: 0 }
-            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, message)]);
+            }), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'p', null, message)]);
         }
     };
 
@@ -346,10 +351,10 @@ var HomeContent = function (_Component2) {
             visible = _state2.visible;
 
         if (story === null) {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_LazyImage__["a" /* default */], null, null, {
-                'path': __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg___default.a,
+            return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_11__components_LazyImage__["a" /* default */], null, null, {
+                'path': __WEBPACK_IMPORTED_MODULE_13__img_thinking_jpg___default.a,
                 'style': { width: '5rem', height: '5.1367rem' }
-            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'br'), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__components_Button__["a" /* default */], null, null, {
+            }), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'br'), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Button__["a" /* default */], null, null, {
                 'onClick': this.start,
                 children: 'Tell me a story'
             })]);
@@ -364,10 +369,10 @@ var HomeContent = function (_Component2) {
 var HorizontalScroll = function (_Component3) {
     _inherits(HorizontalScroll, _Component3);
 
-    function HorizontalScroll() {
+    function HorizontalScroll(props) {
         _classCallCheck(this, HorizontalScroll);
 
-        var _this4 = _possibleConstructorReturn(this, _Component3.apply(this, arguments));
+        var _this4 = _possibleConstructorReturn(this, _Component3.call(this, props));
 
         _this4.container = null;
         _this4.lastVelocity = 0;
@@ -406,12 +411,13 @@ var HorizontalScroll = function (_Component3) {
             var rightCoord = Math.ceil(pos / containerWidth) * containerWidth;
             var percent = (pos - leftCoord) / containerWidth;
             var newLeft = percent >= 0.5 && _this4.lastVelocity >= -0.5 || _this4.lastVelocity >= 0.5 ? rightCoord : leftCoord;
-            var animTime = (newLeft === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
+            var animTime = (newLeft === rightCoord ? Math.abs(percent) : 1 - Math.abs(percent)) * 300 + 100;
             _this4.container.style.transition = 'transform ' + animTime + 'ms cubic-bezier(0.1, ' + Math.abs(_this4.lastVelocity) * (0.1 * animTime) / Math.abs(newLeft - pos) + ', 0.1, 1)';
             _this4.lastVelocity = 0;
             _this4.lastTouch = 0;
             _this4.firstTouch = [0, 0];
             _this4.dragLeft = -newLeft;
+            _this4.setState({ selected: Math.floor(newLeft / containerWidth) });
             _this4.dragRender();
         };
         _this4.touchStart = function (e) {
@@ -430,6 +436,9 @@ var HorizontalScroll = function (_Component3) {
                 el.addEventListener('touchend', _this4.touchEnd);
             }
         };
+        _this4.state = {
+            selected: 0
+        };
         return _this4;
     }
 
@@ -444,7 +453,15 @@ var HorizontalScroll = function (_Component3) {
     };
 
     HorizontalScroll.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll', this.props.children, null, null, this.attachContainer);
+        var _this5 = this;
+
+        return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'h-scroll' + (this.props.className ? ' ' + this.props.className : ''), [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'h-scroll-contents', this.props.children, null, null, this.attachContainer), this.props.children ? Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator', [Array.from(new Array(this.props.children.length), function (val, index) {
+            return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator-item' + (index === _this5.state.selected ? ' active' : ''));
+        }), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4_inferno_router__["Link"], null, null, {
+            'to': this.props.linkTo,
+            'className': 'h-scroll-link',
+            children: this.props.linkText
+        })]) : null]);
     };
 
     return HorizontalScroll;
@@ -456,152 +473,152 @@ var Home = function (_View) {
     function Home(props) {
         _classCallCheck(this, Home);
 
-        var _this5 = _possibleConstructorReturn(this, _View.call(this, props));
+        var _this6 = _possibleConstructorReturn(this, _View.call(this, props));
 
-        _this5.top = 0;
-        _this5.touchStart = -1;
-        _this5.velocityLast = 0;
-        _this5.touchLast = -1;
-        _this5.touchDelta = -1;
-        _this5.touchLastBuffer = -1;
-        _this5.touchLastTime = -1;
-        _this5.touchStartTime = -1;
-        _this5.opened = false;
-        _this5.openedPreviously = false;
-        _this5.winHeight = window.innerHeight;
-        _this5.content = null;
-        _this5.wrapper = null;
-        _this5.hero = null;
-        _this5.updatePosition = function () {
-            _this5.top = _this5.content.getBoundingClientRect().top;
+        _this6.top = 0;
+        _this6.touchStart = -1;
+        _this6.velocityLast = 0;
+        _this6.touchLast = -1;
+        _this6.touchDelta = -1;
+        _this6.touchLastBuffer = -1;
+        _this6.touchLastTime = -1;
+        _this6.touchStartTime = -1;
+        _this6.opened = false;
+        _this6.openedPreviously = false;
+        _this6.winHeight = window.innerHeight;
+        _this6.content = null;
+        _this6.wrapper = null;
+        _this6.hero = null;
+        _this6.updatePosition = function () {
+            _this6.top = _this6.content.getBoundingClientRect().top;
         };
-        _this5.updateHeight = function () {
-            _this5.wrapper.style.height = _this5.opened ? null : _this5.winHeight + 'px';
-            _this5.hero.style.height = _this5.winHeight + 'px';
+        _this6.updateHeight = function () {
+            _this6.wrapper.style.height = _this6.opened ? null : _this6.winHeight + 'px';
+            _this6.hero.style.height = _this6.winHeight + 'px';
         };
-        _this5.dragRender = function () {
-            var delta = _this5.touchLast - _this5.touchStart;
-            var y = _this5.top + delta;
-            if (_this5.opened || y < 5) {
-                if (_this5.openedPreviously) {
+        _this6.dragRender = function () {
+            var delta = _this6.touchLast - _this6.touchStart;
+            var y = _this6.top + delta;
+            if (_this6.opened || y < 5) {
+                if (_this6.openedPreviously) {
                     return true;
                 } else {
-                    _this5.openedPreviously = true;
+                    _this6.openedPreviously = true;
                 }
             } else {
-                _this5.openedPreviously = false;
+                _this6.openedPreviously = false;
             }
-            var percent = y / (_this5.winHeight * 0.85);
-            _this5.content.style.transform = 'translate3d(0, ' + y + 'px, 0)';
-            _this5.hero.style.transform = 'scale(' + (0.8 + percent * 0.2) + ')';
+            var percent = y / (_this6.winHeight * 0.85);
+            _this6.content.style.transform = 'translate3d(0, ' + y + 'px, 0)';
+            _this6.hero.style.transform = 'scale(' + (0.8 + percent * 0.2) + ')';
         };
-        _this5.dragStart = function (e) {
-            _this5.updatePosition();
-            if (_this5.opened && window.scrollY < 1) {
+        _this6.dragStart = function (e) {
+            _this6.updatePosition();
+            if (_this6.opened && window.scrollY < 1) {
                 window.scrollTo(0, 1);
             }
-            _this5.content.style.borderRadius = null;
-            _this5.touchStart = e.touches[0].clientY;
-            _this5.touchLastTime = new Date().getTime();
-            _this5.touchStartTime = _this5.touchLastTime;
-            _this5.touchLast = _this5.touchStart;
-            _this5.hero.style.transition = 'no';
-            _this5.content.style.transition = 'border-radius 500ms';
-            _this5.dragRender();
+            _this6.content.style.borderRadius = null;
+            _this6.touchStart = e.touches[0].clientY;
+            _this6.touchLastTime = new Date().getTime();
+            _this6.touchStartTime = _this6.touchLastTime;
+            _this6.touchLast = _this6.touchStart;
+            _this6.hero.style.transition = 'no';
+            _this6.content.style.transition = 'border-radius 500ms';
+            _this6.dragRender();
         };
-        _this5.dragEnd = function (e) {
-            _this5.calculateVelocity();
-            var delta = _this5.touchLast - _this5.touchStart;
-            var y = _this5.top + delta;
-            var percent = y / (_this5.winHeight * 0.85);
+        _this6.dragEnd = function (e) {
+            _this6.calculateVelocity();
+            var delta = _this6.touchLast - _this6.touchStart;
+            var y = _this6.top + delta;
+            var percent = y / (_this6.winHeight * 0.85);
             if (percent > 1) {
                 percent = 1 - (percent - 1);
             }
-            if (_this5.opened === false) {
-                if (delta < 1 && _this5.touchLast > _this5.top && new Date().getTime() - _this5.touchStartTime < 3000) {
+            if (_this6.opened === false) {
+                if (delta < 1 && _this6.touchLast > _this6.top && new Date().getTime() - _this6.touchStartTime < 3000) {
                     e.preventDefault();
-                    _this5.opened = true;
-                    _this5.velocityLast = 0;
-                    _this5.top = 0;
-                } else if (percent >= 0 && (percent < 0.425 && !(_this5.velocityLast < -0.5) || _this5.velocityLast > 0.5)) {
-                    _this5.opened = true;
-                    _this5.top = 0;
+                    _this6.opened = true;
+                    _this6.velocityLast = 0;
+                    _this6.top = 0;
+                } else if (percent >= 0 && (percent < 0.425 && !(_this6.velocityLast < -0.5) || _this6.velocityLast > 0.5)) {
+                    _this6.opened = true;
+                    _this6.top = 0;
                 } else {
-                    _this5.opened = false;
-                    _this5.top = _this5.winHeight * 0.85;
+                    _this6.opened = false;
+                    _this6.top = _this6.winHeight * 0.85;
                 }
             }
-            _this5.touchStart = -1;
-            _this5.touchLast = -1;
-            var animTime = (_this5.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
-            _this5.hero.style.transition = _this5.content.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this5.velocityLast) * (0.1 * animTime) / Math.abs(y - _this5.top) + ',0.1,1)';
-            _this5.content.style.borderRadius = _this5.opened ? '0' : null;
-            _this5.updateHeight();
-            _this5.dragRender();
+            _this6.touchStart = -1;
+            _this6.touchLast = -1;
+            var animTime = (_this6.opened ? Math.abs(percent) : 1 - Math.abs(percent)) * 200 + 100;
+            _this6.hero.style.transition = _this6.content.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + Math.abs(_this6.velocityLast) * (0.1 * animTime) / Math.abs(y - _this6.top) + ',0.1,1)';
+            _this6.content.style.borderRadius = _this6.opened ? '0' : null;
+            _this6.updateHeight();
+            _this6.dragRender();
         };
-        _this5.dragCancel = _this5.dragEnd;
-        _this5.dragMove = function (e) {
-            _this5.touchLast = e.touches[0].clientY;
-            _this5.touchDelta = _this5.touchLastBuffer - e.touches[0].clientY;
-            var y = _this5.top + _this5.touchLast - _this5.touchStart;
-            if (_this5.opened && window.scrollY - y < 1) {
-                _this5.opened = false;
-                _this5.touchStart = _this5.touchLast - 1;
-                _this5.touchDelta = 0;
-                _this5.top = 0;
-                _this5.updateHeight();
+        _this6.dragCancel = _this6.dragEnd;
+        _this6.dragMove = function (e) {
+            _this6.touchLast = e.touches[0].clientY;
+            _this6.touchDelta = _this6.touchLastBuffer - e.touches[0].clientY;
+            var y = _this6.top + _this6.touchLast - _this6.touchStart;
+            if (_this6.opened && window.scrollY - y < 1) {
+                _this6.opened = false;
+                _this6.touchStart = _this6.touchLast - 1;
+                _this6.touchDelta = 0;
+                _this6.top = 0;
+                _this6.updateHeight();
                 e.preventDefault();
             }
-            if (!_this5.opened) {
+            if (!_this6.opened) {
                 e.preventDefault();
             }
-            _this5.calculateVelocity();
-            requestAnimationFrame(_this5.dragRender);
+            _this6.calculateVelocity();
+            requestAnimationFrame(_this6.dragRender);
         };
-        _this5.onResize = function () {
-            _this5.winHeight = window.innerHeight;
-            _this5.top = _this5.opened ? 0 : _this5.winHeight * 0.85;
-            _this5.updateHeight();
-            requestAnimationFrame(_this5.dragRender);
+        _this6.onResize = function () {
+            _this6.winHeight = window.innerHeight;
+            _this6.top = _this6.opened ? 0 : _this6.winHeight * 0.85;
+            _this6.updateHeight();
+            requestAnimationFrame(_this6.dragRender);
         };
-        _this5.attachWrapper = function (el) {
-            if (_this5.wrapper == null) {
-                _this5.wrapper = el;
-                el.addEventListener('touchstart', _this5.dragStart, { passive: false });
-                el.addEventListener('touchend', _this5.dragEnd, { passive: false });
-                el.addEventListener('touchcancel', _this5.dragCancel, { passive: false });
-                el.addEventListener('touchmove', _this5.dragMove, { passive: false });
-                window.addEventListener('resize', _this5.onResize);
-                _this5.updateHeight();
+        _this6.attachWrapper = function (el) {
+            if (_this6.wrapper == null) {
+                _this6.wrapper = el;
+                el.addEventListener('touchstart', _this6.dragStart, { passive: false });
+                el.addEventListener('touchend', _this6.dragEnd, { passive: false });
+                el.addEventListener('touchcancel', _this6.dragCancel, { passive: false });
+                el.addEventListener('touchmove', _this6.dragMove, { passive: false });
+                window.addEventListener('resize', _this6.onResize);
+                _this6.updateHeight();
             }
         };
-        _this5.attachHero = function (el) {
-            _this5.hero = el;
+        _this6.attachHero = function (el) {
+            _this6.hero = el;
         };
-        _this5.attachContent = function (el) {
-            if (_this5.content == null) {
-                _this5.content = el;
+        _this6.attachContent = function (el) {
+            if (_this6.content == null) {
+                _this6.content = el;
             }
         };
-        _this5.state = {
+        _this6.state = {
             posts: null
         };
-        __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__["a" /* default */].queue(true);
-        Object(__WEBPACK_IMPORTED_MODULE_5_superagent__["get"])(ghost.url.api('posts', { page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
+        __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__["a" /* default */].queue(true);
+        Object(__WEBPACK_IMPORTED_MODULE_6_superagent__["get"])(ghost.url.api('posts', { page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html' })).end(function (err, _ref) {
             var body = _ref.body;
 
-            __WEBPACK_IMPORTED_MODULE_8__components_GlobalLoader__["a" /* default */].dequeue(function () {
+            __WEBPACK_IMPORTED_MODULE_9__components_GlobalLoader__["a" /* default */].dequeue(function () {
                 if (body.posts.length === 0) {
-                    _this5.context.router.push('/blog/', null);
+                    _this6.context.router.push('/blog/', null);
                 } else {
                     window.scrollTo(0, 0);
-                    _this5.setState({
+                    _this6.setState({
                         posts: body.posts.map(function (post) {
                             return {
                                 excerpt: post.custom_excerpt || __WEBPACK_IMPORTED_MODULE_1_ellipsize___default()(post.html.replace(/<[^>]*>/g, ''), 128),
                                 feature_image: post.feature_image,
                                 featured: post.featured,
-                                published_at: __WEBPACK_IMPORTED_MODULE_4_luxon__["DateTime"].fromISO(post.published_at),
+                                published_at: __WEBPACK_IMPORTED_MODULE_5_luxon__["DateTime"].fromISO(post.published_at),
                                 title: post.title,
                                 url: post.url
                             };
@@ -610,7 +627,7 @@ var Home = function (_View) {
                 }
             });
         });
-        return _this5;
+        return _this6;
     }
 
     Home.prototype.calculateVelocity = function calculateVelocity() {
@@ -640,11 +657,16 @@ var Home = function (_View) {
     Home.prototype.render = function render() {
         var posts = this.state.posts;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
+            'linkText': Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(2, 'span', null, [Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_10__components_Icon__["a" /* Icons */].NEWSPAPER
+            }), 'All Posts']),
+            'linkTo': '/blog/',
+            'className': 'home-blog',
             children: posts ? posts.map(function (post) {
-                return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_12__views_Blog__["Post"], null, null, _extends({}, post), post.url);
+                return Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_14__views_Blog__["Post"], null, null, _extends({}, post), post.url);
             }) : null
-        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Footer__["a" /* default */])], null, null, this.attachContent)], null, null, this.attachWrapper);
+        }), Object(__WEBPACK_IMPORTED_MODULE_16_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Footer__["a" /* default */])], null, null, this.attachContent)], null, null, this.attachWrapper);
     };
 
     return Home;
@@ -3201,7 +3223,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n\n.h-scroll {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap; }\n  .h-scroll > * {\n    width: 100%;\n    flex: 0 0 auto; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: relative;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n  .home-component .home-blog > .h-scroll-indicator {\n    margin-top: -1rem; }\n    .home-component .home-blog > .h-scroll-indicator > .h-scroll-link {\n      color: #2ac648; }\n\n.h-scroll > .h-scroll-contents {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: nowrap; }\n  .h-scroll > .h-scroll-contents > * {\n    width: 100%;\n    flex: 0 0 auto; }\n\n.h-scroll > .h-scroll-indicator {\n  position: relative;\n  padding: 0.5rem 2rem 0.5rem 1.75rem; }\n  .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item {\n    border-radius: 100%;\n    height: 0.5rem;\n    width: 0.5rem;\n    margin: 0.25rem;\n    background: #DDD;\n    transition: background 250ms;\n    display: inline-block; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item.active {\n      background: #2ac648; }\n  .h-scroll > .h-scroll-indicator > .h-scroll-link {\n    position: absolute;\n    top: 0;\n    right: 1.5rem;\n    text-decoration: none;\n    font-size: 1rem;\n    border-radius: 0.5rem;\n    padding: 0.5rem;\n    margin: 0;\n    opacity: 1;\n    transition: opacity 250ms; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-link i {\n      margin-right: 0.5rem;\n      margin-top: 0.1rem;\n      vertical-align: text-top; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-link:hover {\n      opacity: 0.5; }\n", ""]);
 
 // exports
 

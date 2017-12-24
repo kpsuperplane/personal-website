@@ -7,6 +7,7 @@ export enum Icons {
     GITHUB = 'fab fa-github',
     HOME = 'fas fa-home',
     LINKEDIN = 'fab fa-linkedin',
+    NEWSPAPER = 'fas fa-newspaper',
     OPEN_BOOK = 'fas fa-book',
     PALETTE = 'fas fa-coffee',
     STACKOVERFLOW = 'fab fa-stack-overflow'

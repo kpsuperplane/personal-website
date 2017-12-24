@@ -153,7 +153,7 @@ class HorizontalScroll extends Component<{}, {}> {
         }
     }
     private touchEnd = (e) => {
-        if (Math.abs(this.lastTouch - this.firstTouch[0]) < 5) {
+        if (!this.dragging) {
             return;
         }
         e.preventDefault();

@@ -172,6 +172,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
         e.stopPropagation();
         e.preventDefault();
+        this.calculateVelocity();
         const containerWidth = this.wrapper!!.getBoundingClientRect().width;
         const pos = Math.min(Math.max(0, -(this.dragLeft + (this.lastTouch - this.firstTouch[0]))), this.maxPos);
         const leftCoord = Math.floor(pos / containerWidth) * containerWidth;
@@ -190,7 +191,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.container!!.style.transition = 'none';
         this.dragLeft = this.container!!.getBoundingClientRect().left;
         this.firstTouch = [e.touches[0].clientX, e.touches[0].clientY];
-        this.lastTouchBuffer = this.firstTouch[0];
+        this.lastTouchBuffer = this.lastTouch = this.firstTouch[0];
     }
     private prev = (e) => {
         this.reset();

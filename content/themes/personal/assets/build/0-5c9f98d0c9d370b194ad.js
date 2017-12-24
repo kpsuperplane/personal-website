@@ -411,6 +411,7 @@ var HorizontalScroll = function (_Component3) {
             }
             e.stopPropagation();
             e.preventDefault();
+            _this4.calculateVelocity();
             var containerWidth = _this4.wrapper.getBoundingClientRect().width;
             var pos = Math.min(Math.max(0, -(_this4.dragLeft + (_this4.lastTouch - _this4.firstTouch[0]))), _this4.maxPos);
             var leftCoord = Math.floor(pos / containerWidth) * containerWidth;
@@ -429,7 +430,7 @@ var HorizontalScroll = function (_Component3) {
             _this4.container.style.transition = 'none';
             _this4.dragLeft = _this4.container.getBoundingClientRect().left;
             _this4.firstTouch = [e.touches[0].clientX, e.touches[0].clientY];
-            _this4.lastTouchBuffer = _this4.firstTouch[0];
+            _this4.lastTouchBuffer = _this4.lastTouch = _this4.firstTouch[0];
         };
         _this4.prev = function (e) {
             _this4.reset();

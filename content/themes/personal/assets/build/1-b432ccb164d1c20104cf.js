@@ -313,13 +313,6 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 
 /***/ }),
 
-/***/ 67:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "blog.jpg";
-
-/***/ }),
-
 /***/ 78:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -341,8 +334,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_LazyImage__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Pagination__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Title__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_blog_jpg__ = __webpack_require__(67);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_blog_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__img_blog_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_projects_jpg__ = __webpack_require__(81);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_projects_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__img_projects_jpg__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__View__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Projects_scss__ = __webpack_require__(79);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__Projects_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__Projects_scss__);
@@ -497,7 +490,7 @@ var Projects = function (_View) {
 
         return Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(2, 'div', null, [Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Title__["a" /* default */], null, null, {
             'title': 'Projects',
-            'image': __WEBPACK_IMPORTED_MODULE_10__img_blog_jpg___default.a
+            'image': __WEBPACK_IMPORTED_MODULE_10__img_projects_jpg___default.a
         }), projects ? Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(2, 'div', 'project-entries', projects.map(function (post) {
             return Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(16, Project, null, null, _extends({}, post), post.url);
         })) : null, Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(16, PaginationEl, null, null, _extends({}, pagination)), projects ? Object(__WEBPACK_IMPORTED_MODULE_13_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__components_Footer__["a" /* default */]) : null]);
@@ -554,6 +547,13 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-sy
 
 // exports
 
+
+/***/ }),
+
+/***/ 81:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "projects.jpg";
 
 /***/ })
 

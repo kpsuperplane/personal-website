@@ -8,7 +8,7 @@ import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
 import Pagination, {PaginationLink} from '../components/Pagination';
 import Title from '../components/Title';
-import BlogImage from '../img/blog.jpg';
+import ProjectImage from '../img/projects.jpg';
 import View from './View';
 
 import './Projects.scss';
@@ -112,7 +112,7 @@ export default class Projects extends View<{pagination: PaginationInterface | nu
     public render() {
         const { projects, pagination } = this.state!!;
         return <div>
-            <Title title="Projects" image={BlogImage} />
+            <Title title="Projects" image={ProjectImage} />
             {projects ? <div className="project-entries">{projects.map((post) => <Project {...post} key={post.url}/>)}</div> : null}
             <PaginationEl {...pagination} />
             {projects ? <Footer /> : null}

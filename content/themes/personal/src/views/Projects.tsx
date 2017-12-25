@@ -16,7 +16,7 @@ import './Projects.scss';
 export interface ProjectInterface {
     feature_image: string | null;
     url: string;
-    published_at: Date;
+    published_at: DateTime;
     title: string;
     theme: string;
     featured: boolean;
@@ -37,7 +37,7 @@ export const Project = (project: ProjectInterface) => <Link to={project.url} cla
     <div className="project-preview-gradient" />
     <span className="project-preview-body">
         <h3>{project.title}</h3>
-        <p>{project.published_at.toLocaleString(DateTime.DATE_FULL)}</p>
+        <p>{project.published_at.toFormat('MMMM kkkk')}</p>
     </span>
 </Link>;
 

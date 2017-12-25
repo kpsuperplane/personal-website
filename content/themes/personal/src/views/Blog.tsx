@@ -17,7 +17,7 @@ import './Blog.scss';
 export interface PostInterface {
     feature_image: string | null;
     url: string;
-    published_at: Date;
+    published_at: DateTime;
     title: string;
     excerpt: string;
     featured: boolean;

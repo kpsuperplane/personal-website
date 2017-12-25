@@ -251,6 +251,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private touchLastTime: number = -1;
     private touchStartTime: number = -1;
     private opened: boolean = false;
+    private startTop: boolean = false;
     private openedPreviously: boolean = false;
     private winHeight: number = window.innerHeight;
     private content: HTMLElement|null = null;
@@ -294,6 +295,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
+        this.startTop = window.scrollY === 0;
         if (this.opened && window.scrollY < 1) {
             window.scrollTo(0, 1);
         }
@@ -350,7 +352,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         const y = this.top + this.touchLast - this.touchStart;
-        if (this.opened && window.scrollY - y < 1) {
+        if (this.opened && window.scrollY - y < 1 && this.startTop) {
             this.opened = false;
             this.touchStart = this.touchLast - 1;
             this.touchDelta = 0;

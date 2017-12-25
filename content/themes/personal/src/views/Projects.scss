@@ -1,0 +1,82 @@
+@import '../common';
+.projects-template {
+    .project-entries {
+        border-radius: 1rem 1rem 0 0;
+        margin: -1rem 0 0 0;
+        overflow: hidden;
+        position: relative;
+        background: #FFF;
+        box-shadow: 0 0 50px rgba(0,0,0,.1);
+    }
+}
+@media (min-width: 750px) {
+    .projects-template {
+        .project-entries {
+            max-width: 700px;
+            margin: -8rem auto 3rem auto;
+            border-radius: 0.75rem;
+        }
+    }
+}
+.project-preview {
+    display: block;
+    position: relative;
+    >.lazy-image-loader {
+        -webkit-filter: grayscale(90%);
+        -moz-filter:    grayscale(90%);
+        -ms-filter:     grayscale(90%);
+        -o-filter:      grayscale(90%);
+        height: 12rem;
+        overflow: hidden;
+        position: relative;
+        >img {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) !important;
+            width: 100%;
+        }
+    }
+    >.project-preview-theme, >.project-preview-gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        &.project-preview-theme {
+            opacity: 0.9;
+        }
+        &.project-preview-gradient {
+            opacity: 0.5;
+        }
+    }
+    &:nth-child(odd) >.project-preview-gradient {
+        background: linear-gradient(to top right, rgba(255, 255, 255, 0) 50%, white);
+    }
+    &:nth-child(even) >.project-preview-gradient {
+        background: linear-gradient(to top left, rgba(255, 255, 255, 0) 50%, white);
+    }
+    >.project-preview-body {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2rem;
+        >h3 {
+            @extend .head-font;
+            color: #FFF;
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+            margin: 0;
+            padding: 0 0 0.5rem 0;
+        }
+        >p {
+            opacity: 0.7;
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: #FFF;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}

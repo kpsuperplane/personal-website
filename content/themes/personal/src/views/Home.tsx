@@ -1,21 +1,19 @@
 import View from './View';
 
-import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import createElement from 'inferno-create-element';
 import { Link } from 'inferno-router';
-import { DateTime } from 'luxon';
 import {get} from 'superagent';
 
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import GlobalLoader from '../components/GlobalLoader';
 import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
 import Loader from '../components/Loader';
 import Thinking from '../img/thinking.jpg';
 
-import { Post , PostInterface } from '../views/Blog';
+import { getPosts, Post, PostInterface } from '../views/Blog';
+import { getProjects, Project, ProjectInterface } from '../views/Projects';
 
 import './Home.scss';
 
@@ -194,6 +192,9 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.lastTouchBuffer = this.lastTouch = this.firstTouch[0];
     }
     private prev = (e) => {
+        if (this.state!!.selected === 0) {
+            return;
+        }
         this.reset();
         this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
         this.dragLeft = -this.wrapper!!.getBoundingClientRect().width * (this.state!!.selected - 1);
@@ -201,6 +202,9 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         this.setState({selected: this.state!!.selected - 1});
     }
     private next = (e) => {
+        if (this.state!!.selected === (this.props.children as any).length - 1) {
+            return;
+        }
         this.reset();
         this.container!!.style.transition = `transform 300ms cubic-bezier(0.215, 0.61, 0.355, 1)`;
         this.dragLeft = -this.wrapper!!.getBoundingClientRect().width * (this.state!!.selected + 1);
@@ -227,8 +231,8 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     public render() {
         return <div className={'h-scroll' + (this.props.className ? ' ' + this.props.className : '')} ref={this.attachWrapper}>
             <div className="h-scroll-contents" ref={this.attachContainer}>{this.props.children}</div>
-            {this.state!!.selected !== 0 ? <div className="h-scroll-nav left" onClick={this.prev}><Icon icon={Icons.CHEVRON_LEFT} /></div> : null}
-            {(this.props.children && this.state!!.selected !== (this.props.children as any).length - 1) ? <div className="h-scroll-nav right" onClick={this.next}><Icon icon={Icons.CHEVRON_RIGHT} /></div> : null}
+            <div className={'h-scroll-nav left' + (this.state!!.selected !== 0 ? ' active' : '')} onClick={this.prev}><Icon icon={Icons.CHEVRON_LEFT} /></div>
+            <div className={'h-scroll-nav right' + ((this.props.children && this.state!!.selected !== (this.props.children as any).length - 1) ? ' active' : '')} onClick={this.next}><Icon icon={Icons.CHEVRON_RIGHT} /></div>
             {this.props.children ? <div className="h-scroll-indicator">
                 {Array.from(new Array((this.props.children as any).length), (val, index) => <div className={'h-scroll-indicator-item' + (index === this.state!!.selected ? ' active' : '')}></div>)}
                 <Link to={this.props.linkTo} className="h-scroll-link">{this.props.linkText}</Link>
@@ -237,7 +241,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     }
 }
 
-export default class Home extends View<{posts: PostInterface[] | null}> {
+export default class Home extends View<{posts: PostInterface[] | null, projects: ProjectInterface[] | null}> {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
@@ -255,28 +259,15 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
     constructor(props) {
         super(props);
         this.state = {
-            posts: null
+            posts: null,
+            projects: null
         };
-        GlobalLoader.queue(true);
-        get(ghost.url.api('posts', {page: 1, filter: 'page:false+feature_image:-null', limit: 4, fields: 'feature_image, url, published_at, title, custom_excerpt, featured, html'})).end((err, {body}) => {
-            GlobalLoader.dequeue(() => {
-                if (body.posts.length === 0) {
-                    this.context.router.push('/blog/', null);
-                } else {
-                    window.scrollTo(0, 0);
-                    this.setState({
-                        posts: body.posts.map((post) => ({
-                            excerpt: post.custom_excerpt || ellipsize(post.html.replace(/<[^>]*>/g, ''), 128),
-                            feature_image: post.feature_image,
-                            featured: post.featured,
-                            published_at: DateTime.fromISO(post.published_at),
-                            title: post.title,
-                            url: post.url
-                        }))
-                    });
-                }
-            });
-        });
+        getPosts('1', (posts) => {
+            this.setState({posts: posts.posts});
+        }, true, 5);
+        getProjects('1', (projects) => {
+            this.setState({projects: projects.projects});
+        }, 5);
     }
     private updatePosition = () => {
         this.top = this.content!!.getBoundingClientRect().top;
@@ -411,7 +402,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
         this.dragRender();
     }
     public render() {
-        const { posts } = this.state!!;
+        const { posts, projects } = this.state!!;
         return (<div className="home-component" ref={this.attachWrapper}>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
@@ -420,6 +411,7 @@ export default class Home extends View<{posts: PostInterface[] | null}> {
             </div>
             <div ref={this.attachContent} className="content-wrapper">
                 <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} />) : null}</HorizontalScroll>
+                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} />) : null}</HorizontalScroll>
                 <Footer />
             </div>
         </div>);

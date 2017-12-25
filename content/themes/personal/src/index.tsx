@@ -7,6 +7,7 @@ import GlobalLoader from './components/GlobalLoader';
 
 import 'ellipsize';
 import 'luxon';
+import 'superagent';
 
 import App from './App';
 
@@ -18,6 +19,7 @@ declare var require: {
 
 const Home = (props, cb) => require.ensure([], () => cb(null, (require('./views/Home') as any).default));
 const Post = (props, cb) => require.ensure([], () => cb(null, (require('./views/Post') as any).default));
+const Projects = (props, cb) => require.ensure([], () => cb(null, (require('./views/Projects') as any).default));
 const Blog = (props, cb) => require.ensure([], () => cb(null, (require('./views/Blog') as any).default));
 
 const browserHistory = createBrowserHistory();
@@ -40,6 +42,7 @@ function handleNavigation(route) {
 const routes = (<Router history={ browserHistory } asyncBefore={handleNavigation} >
     <Route component={ App }>
         <IndexRoute getComponent={Home} />
+        <Route path="projects" getComponent={Projects} />
         <Route path="blog" getComponent={Blog} />
         <Route path="*" getComponent={Post} />
     </Route>

@@ -43,7 +43,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         });
     }
     public componentDidUpdate(props) {
-        if (window.location.pathname !== this.lastPath && window.location.pathname !== 'blog') {
+        if (window.location.pathname !== this.lastPath && !(window.location.pathname in ['blog', 'projects'])) {
             this.load();
         }
     }

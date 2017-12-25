@@ -1,4 +1,3 @@
-import ellipsize from 'ellipsize';
 import Component from 'inferno-component';
 import { Link } from 'inferno-router';
 import { DateTime } from 'luxon';
@@ -12,14 +11,14 @@ import Title from '../components/Title';
 import BlogImage from '../img/blog.jpg';
 import View from './View';
 
-import './Blog.scss';
+import './Projects.scss';
 
-export interface PostInterface {
+export interface ProjectInterface {
     feature_image: string | null;
     url: string;
     published_at: Date;
     title: string;
-    excerpt: string;
+    theme: string;
     featured: boolean;
 }
 
@@ -32,11 +31,13 @@ interface PaginationInterface {
     total: number;
 }
 
-export const Post = (post: PostInterface) => <Link to={post.url} className={'post-preview' + (!post.feature_image ? ' no-image' : '')}>
-    {post.feature_image ? <LazyImage path={post.feature_image} forceWaitSize={true} loader={true}/> : null}
-    <span className="post-preview-body">
-        <h3>{post.title}</h3>
-        <p><strong>{post.published_at.toLocaleString(DateTime.DATE_FULL)}</strong>{post.excerpt}</p>
+export const Project = (project: ProjectInterface) => <Link to={project.url} className="project-preview">
+    <LazyImage path={project.feature_image} forceWaitSize={true} loader={true}/>
+    <div className="project-preview-theme" style={{backgroundColor: project.theme}} />
+    <div className="project-preview-gradient" />
+    <span className="project-preview-body">
+        <h3>{project.title}</h3>
+        <p>{project.published_at.toLocaleString(DateTime.DATE_FULL)}</p>
     </span>
 </Link>;
 
@@ -44,31 +45,31 @@ class PaginationEl extends Component<PaginationInterface, {}> {
     public render() {
         const { page, pages } = this.props;
         return <Pagination>
-            <PaginationLink to={'/blog/?page=' + (page - 1)} disabled={page === 1}><Icon icon={Icons.CHEVRON_LEFT}/></PaginationLink>
+            <PaginationLink to={'/projects/?page=' + (page - 1)} disabled={page === 1}><Icon icon={Icons.CHEVRON_LEFT}/></PaginationLink>
             <span className="expand" />
             <span>Page {page} of {pages}</span>
             <span className="expand" />
-            <PaginationLink to={'/blog/?page=' + (page + 1)} disabled={page === pages}><Icon icon={Icons.CHEVRON_RIGHT}/></PaginationLink>
+            <PaginationLink to={'/projects/?page=' + (page + 1)} disabled={page === pages}><Icon icon={Icons.CHEVRON_RIGHT}/></PaginationLink>
         </Pagination>;
     }
 }
 
-export const getPosts = (page, callback: (posts) => any, withImages = false, limit = 10) => {
+export const getProjects = (page, callback: (projects) => any, limit = 10) => {
     GlobalLoader.queue(true);
-    get(ghost.url.api('posts', {page, filter: withImages ? 'feature_image:-null' : '', limit, fields: 'feature_image, url, published_at, title, custom_excerpt, html'})).end((err, {body}) => {
+    get(ghost.url.api('posts', {page, filter: 'page:true+tag:[project-page]', limit, include: 'tags'})).end((err, {body}) => {
         GlobalLoader.dequeue(() => {
             if (body.posts.length === 0) {
                 callback(null);
             } else {
                 callback({
                     pagination: body.meta.pagination,
-                    posts: body.posts.map((post) => ({
-                        excerpt: post.custom_excerpt || ellipsize(post.html.replace(/<[^>]*>/g, ''), 128),
-                        feature_image: post.feature_image,
-                        featured: post.featured,
-                        published_at: DateTime.fromISO(post.published_at),
-                        title: post.title,
-                        url: post.url
+                    projects: body.posts.map((project) => ({
+                        feature_image: project.feature_image,
+                        featured: project.featured,
+                        published_at: DateTime.fromISO(project.published_at),
+                        theme: project.tags.find((tag) => tag.name[0] === '#').name,
+                        title: project.title,
+                        url: project.url
                     }))
                 });
             }
@@ -76,27 +77,27 @@ export const getPosts = (page, callback: (posts) => any, withImages = false, lim
     });
 };
 
-export default class Blog extends View<{pagination: PaginationInterface | null, posts: PostInterface[] | null}> {
+export default class Projects extends View<{pagination: PaginationInterface | null, projects: ProjectInterface[] | null}> {
     private lastPath: string = '';
     constructor(props) {
         super(props);
         this.state = {
             pagination: null,
-            posts: null
+            projects: null
         };
     }
     private load = () => {
         const page = Number(this.props.params.page || '1');
         if (!Number.isInteger(page) || page < 1) {
-            this.context.router.push('/blog/', null);
+            this.context.router.push('/projects/', null);
         }
         this.lastPath = window.location.href;
-        getPosts(page, (posts) => {
-            if (posts) {
+        getProjects(page, (projects) => {
+            if (projects) {
                 window.scrollTo(0, 0);
-                this.setState(posts);
+                this.setState(projects);
             } else {
-                this.context.router.push('/blog/', null);
+                this.context.router.push('/projects/', null);
             }
         });
     }
@@ -109,12 +110,12 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
         }
     }
     public render() {
-        const { posts, pagination } = this.state!!;
+        const { projects, pagination } = this.state!!;
         return <div>
-            <Title title="My Blog" image={BlogImage} />
-            {posts ? <div className="blog-entries">{posts.map((post) => <Post {...post} key={post.url}/>)}</div> : null}
+            <Title title="Projects" image={BlogImage} />
+            {projects ? <div className="project-entries">{projects.map((post) => <Project {...post} key={post.url}/>)}</div> : null}
             <PaginationEl {...pagination} />
-            {posts ? <Footer /> : null}
+            {projects ? <Footer /> : null}
         </div>;
     }
 }

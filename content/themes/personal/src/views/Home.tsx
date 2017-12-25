@@ -295,7 +295,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
-        this.startTop = window.scrollY === 0;
+        this.startTop = window.scrollY <= 0;
         if (this.opened && window.scrollY < 1) {
             window.scrollTo(0, 1);
         }

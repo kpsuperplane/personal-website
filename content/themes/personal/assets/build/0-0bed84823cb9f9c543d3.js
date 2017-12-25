@@ -565,7 +565,7 @@ var Home = function (_View) {
         };
         _this6.dragStart = function (e) {
             _this6.updatePosition();
-            _this6.startTop = window.scrollY === 0;
+            _this6.startTop = window.scrollY <= 0;
             if (_this6.opened && window.scrollY < 1) {
                 window.scrollTo(0, 1);
             }

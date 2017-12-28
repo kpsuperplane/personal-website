@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "cd7a918e1c94a8b91b5b" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "dd6333f4dfc3726171c1" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -9412,9 +9412,9 @@ var Contact = function (_Component) {
             'href': 'https://linkedin.com/in/kpsuperplane'
         }), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'a', 'contact-resume', 'RESUM\xC9', {
             'href': 'https://kevinpei.com/assets/documents/kevin-pei-resume-public.pdf'
-        })]), Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'a', 'contact-email', 'hello@kevinpei.com', {
+        })]), !this.props.hideEmail ? Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'a', 'contact-email', 'hello@kevinpei.com', {
             'href': 'mailto:hello@kevinpei.com'
-        })]);
+        }) : null]);
     };
 
     return Contact;

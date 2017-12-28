@@ -6,6 +6,7 @@ import { Link } from 'inferno-router';
 import {get} from 'superagent';
 
 import Button from '../components/Button';
+import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
@@ -107,7 +108,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     public render() {
         const {story, visible} = this.state!!;
         if (1 === 1) {
-            return null;
+            return <h1>Hi, I'm Kevin</h1>;
         } else if (story === null) {
             return <div className={'home-prompt home-message' + (visible ? ' visible' : '')}>
                 <LazyImage path={Thinking} style={{width: '5rem', height: '5.1367rem'}} /><br />
@@ -299,6 +300,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
     }
     private dragStart = (e: TouchEvent) => {
+        if (window.innerWidth > 750) {
+            return;
+        }
         this.updatePosition();
         this.startTop = window.scrollY <= 0;
         if (this.opened && window.scrollY < 1) {
@@ -324,6 +328,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         }
     }
     private dragEnd = (e: TouchEvent) => {
+        if (window.innerWidth > 750) {
+            return;
+        }
         this.calculateVelocity();
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
@@ -359,6 +366,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private dragCancel = this.dragEnd;
     private dragMove = (e: TouchEvent) => {
+        if (window.innerWidth > 750) {
+            return;
+        }
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         const y = this.top + this.touchLast - this.touchStart;
@@ -404,6 +414,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private attachVideo = (el) => {
         if (this.video == null) {
             this.video = el;
+            this.video!!.play();
         }
     }
     public componentWillUnmount() {
@@ -421,13 +432,16 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     public render() {
         const { posts, projects } = this.state!!;
         return (<div className="home-component" ref={this.attachWrapper}>
-            <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline="playsinline" ref={this.attachVideo}>
+            <video loop="loop" muted="muted" className="home-video" playsinline="playsinline" ref={this.attachVideo}>
                 <source src="/assets/home-video.webm" type="video/webm" />
                 <source src="/assets/home-video.mp4" type="video/mp4" />
             </video>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
                     <HomeContent />
+                </div>
+                <div className="home-contact">
+                    <Contact hideEmail={true} />
                 </div>
             </div>
             <div ref={this.attachContent} className="content-wrapper">

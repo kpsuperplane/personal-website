@@ -3,7 +3,7 @@ import Icon, {Icons} from './Icon';
 
 import './Contact.scss';
 
-export default class Contact extends Component<{}, {}> {
+export default class Contact extends Component<{hideEmail: boolean | null}, {}> {
     public render() {
         return (<div className="contact">
             <div className="contact-social">
@@ -12,7 +12,7 @@ export default class Contact extends Component<{}, {}> {
                 <a href="https://linkedin.com/in/kpsuperplane"><Icon icon={Icons.LINKEDIN}/></a>
                 <a href="https://kevinpei.com/assets/documents/kevin-pei-resume-public.pdf" className="contact-resume">RESUMÉ</a>
             </div>
-            <a href="mailto:hello@kevinpei.com" className="contact-email">hello@kevinpei.com</a>
+            {!this.props.hideEmail ? <a href="mailto:hello@kevinpei.com" className="contact-email">hello@kevinpei.com</a> : null}
         </div>);
     }
 }

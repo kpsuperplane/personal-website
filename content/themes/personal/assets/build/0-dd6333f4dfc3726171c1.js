@@ -396,18 +396,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_Button__ = __webpack_require__(75);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Footer__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_LazyImage__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_Loader__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_thinking_jpg__ = __webpack_require__(78);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__img_thinking_jpg__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__views_Blog__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_Projects__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__Home_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Contact__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Footer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Icon__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_LazyImage__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_Loader__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__img_thinking_jpg__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__views_Blog__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__views_Projects__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Home_scss__ = __webpack_require__(79);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__Home_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__Home_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_inferno__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -415,6 +416,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -504,11 +506,11 @@ var LocationStory = function (_Story) {
             visible = _state.visible;
 
         if (message === '') {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_9__components_Loader__["a" /* default */]);
+            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_10__components_Loader__["a" /* default */]);
         } else {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, emoji, {
+            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-message' + (visible ? ' visible' : ''), [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'p', null, emoji, {
                 'style': { fontSize: '4rem', margin: 0 }
-            }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'p', null, message)]);
+            }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'p', null, message)]);
         }
     };
 
@@ -552,7 +554,7 @@ var HomeContent = function (_Component2) {
             visible = _state2.visible;
 
         if (true) {
-            return null;
+            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'h1', null, 'Hi, I\'m Kevin');
         } else if (story === null) {
             return createVNode(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [createVNode(16, LazyImage, null, null, {
                 'path': Thinking,
@@ -695,17 +697,17 @@ var HorizontalScroll = function (_Component3) {
     HorizontalScroll.prototype.render = function render() {
         var _this5 = this;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll' + (this.props.className ? ' ' + this.props.className : ''), [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll-contents', this.props.children, null, null, this.attachContainer), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll-nav left' + (this.state.selected !== 0 ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
-            'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_LEFT
+        return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll' + (this.props.className ? ' ' + this.props.className : ''), [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll-contents', this.props.children, null, null, this.attachContainer), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll-nav left' + (this.state.selected !== 0 ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Icon__["b" /* default */], null, null, {
+            'icon': __WEBPACK_IMPORTED_MODULE_8__components_Icon__["a" /* Icons */].CHEVRON_LEFT
         }), {
             'onClick': this.prev
-        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll-nav right' + (this.props.children && this.state.selected !== this.props.children.length - 1 ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
-            'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].CHEVRON_RIGHT
+        }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll-nav right' + (this.props.children && this.state.selected !== this.props.children.length - 1 ? ' active' : ''), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Icon__["b" /* default */], null, null, {
+            'icon': __WEBPACK_IMPORTED_MODULE_8__components_Icon__["a" /* Icons */].CHEVRON_RIGHT
         }), {
             'onClick': this.next
-        }), this.props.children ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator', [Array.from(new Array(this.props.children.length), function (val, index) {
-            return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator-item' + (index === _this5.state.selected ? ' active' : ''));
-        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Link"], null, null, {
+        }), this.props.children ? Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator', [Array.from(new Array(this.props.children.length), function (val, index) {
+            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'h-scroll-indicator-item' + (index === _this5.state.selected ? ' active' : ''));
+        }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_3_inferno_router__["Link"], null, null, {
             'to': this.props.linkTo,
             'className': 'h-scroll-link',
             children: this.props.linkText
@@ -761,6 +763,9 @@ var Home = function (_View) {
             _this6.content.style.transform = 'translate3d(0, ' + y + 'px, 0)';
         };
         _this6.dragStart = function (e) {
+            if (window.innerWidth > 750) {
+                return;
+            }
             _this6.updatePosition();
             _this6.startTop = window.scrollY <= 0;
             if (_this6.opened && window.scrollY < 1) {
@@ -777,6 +782,9 @@ var Home = function (_View) {
             _this6.dragRender();
         };
         _this6.dragEnd = function (e) {
+            if (window.innerWidth > 750) {
+                return;
+            }
             _this6.calculateVelocity();
             var delta = _this6.touchLast - _this6.touchStart;
             var y = _this6.top + delta;
@@ -812,6 +820,9 @@ var Home = function (_View) {
         };
         _this6.dragCancel = _this6.dragEnd;
         _this6.dragMove = function (e) {
+            if (window.innerWidth > 750) {
+                return;
+            }
             _this6.touchLast = e.touches[0].clientY;
             _this6.touchDelta = _this6.touchLastBuffer - e.touches[0].clientY;
             var y = _this6.top + _this6.touchLast - _this6.touchStart;
@@ -857,6 +868,7 @@ var Home = function (_View) {
         _this6.attachVideo = function (el) {
             if (_this6.video == null) {
                 _this6.video = el;
+                _this6.video.play();
             }
         };
         _this6.state = {
@@ -864,10 +876,10 @@ var Home = function (_View) {
             projects: null
         };
         __WEBPACK_IMPORTED_MODULE_0__View__["a" /* default */].setDark(false);
-        Object(__WEBPACK_IMPORTED_MODULE_11__views_Blog__["getPosts"])('1', function (posts) {
+        Object(__WEBPACK_IMPORTED_MODULE_12__views_Blog__["getPosts"])('1', function (posts) {
             _this6.setState({ posts: posts.posts });
         }, true, 5);
-        Object(__WEBPACK_IMPORTED_MODULE_12__views_Projects__["getProjects"])('1', function (projects) {
+        Object(__WEBPACK_IMPORTED_MODULE_13__views_Projects__["getProjects"])('1', function (projects) {
             _this6.setState({ projects: projects.projects });
         }, 5);
         return _this6;
@@ -902,40 +914,41 @@ var Home = function (_View) {
             posts = _state3.posts,
             projects = _state3.projects;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'video', 'home-video', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'source', null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'video', 'home-video', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'source', null, null, {
             'src': '/assets/home-video.webm',
             'type': 'video/webm'
-        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'source', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'source', null, null, {
             'src': '/assets/home-video.mp4',
             'type': 'video/mp4'
         })], {
             'loop': 'loop',
-            'autoplay': 'autoplay',
             'muted': 'muted',
             'playsinline': 'playsinline'
-        }, null, this.attachVideo), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HomeContent)), null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
-            'linkText': Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].NEWSPAPER
+        }, null, this.attachVideo), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-content', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-content-inner', Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, HomeContent)), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-contact', Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__components_Contact__["a" /* default */], null, null, {
+            'hideEmail': true
+        }))], null, null, this.attachHero), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'content-wrapper', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
+            'linkText': Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'span', null, [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_8__components_Icon__["a" /* Icons */].NEWSPAPER
             }), 'All Posts']),
             'linkTo': '/blog/',
             'className': 'home-blog',
             children: posts ? posts.map(function (post) {
-                return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_11__views_Blog__["Post"], null, null, _extends({}, post, {
+                return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_12__views_Blog__["Post"], null, null, _extends({}, post, {
                     'forceWait': false
                 }), post.url);
             }) : null
-        }), Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
-            'linkText': Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(2, 'span', null, [Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_7__components_Icon__["a" /* Icons */].NEWSPAPER
+        }), Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, HorizontalScroll, null, null, {
+            'linkText': Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'span', null, [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_8__components_Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_8__components_Icon__["a" /* Icons */].NEWSPAPER
             }), 'All Projects']),
             'linkTo': '/projects/',
             'className': 'home-projects',
             children: projects ? projects.map(function (project) {
-                return Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_12__views_Projects__["Project"], null, null, _extends({}, project, {
+                return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_13__views_Projects__["Project"], null, null, _extends({}, project, {
                     'forceWait': false
                 }), project.url);
             }) : null
-        }), posts || projects ? Object(__WEBPACK_IMPORTED_MODULE_14_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__components_Footer__["a" /* default */]) : null], null, null, this.attachContent)], null, null, this.attachWrapper);
+        }), posts || projects ? Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__components_Footer__["a" /* default */]) : null], null, null, this.attachContent)], null, null, this.attachWrapper);
     };
 
     return Home;
@@ -1484,7 +1497,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font, .home-component .home-content {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: static;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-video {\n    min-width: 100%;\n    min-height: 100%;\n    /* Setting width & height to auto prevents the browser from stretching or squishing the video */\n    width: auto;\n    height: auto;\n    /* Center the video */\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, transparent 50%);\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 0;\n      position: relative;\n      text-align: center; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n  .home-component .home-blog > .h-scroll-nav {\n    top: 10.85rem;\n    background: #FFF;\n    border-radius: 100%;\n    width: 1rem;\n    height: 1rem;\n    padding: 0.65rem;\n    box-sizing: content-box;\n    text-align: center;\n    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);\n    color: #2ac648; }\n  .home-component .home-blog > .h-scroll-indicator {\n    margin-top: -1rem;\n    padding-bottom: 1rem; }\n    .home-component .home-blog > .h-scroll-indicator > .h-scroll-link {\n      color: #2ac648; }\n  .home-component .home-projects > .h-scroll-contents > .project-preview > .project-preview-body {\n    padding: 2rem 5rem 2.5rem 2rem; }\n  .home-component .home-projects > .h-scroll-nav {\n    top: 4.85rem;\n    border-radius: 100%;\n    width: 1rem;\n    height: 1rem;\n    padding: 0.65rem;\n    box-sizing: content-box;\n    text-align: center;\n    color: #FFF;\n    transition: opacity 250ms;\n    opacity: 0.5;\n    display: block; }\n    .home-component .home-projects > .h-scroll-nav.active {\n      opacity: 1; }\n    .home-component .home-projects > .h-scroll-nav.left {\n      right: 3.5rem;\n      left: auto; }\n  .home-component .home-projects > .h-scroll-indicator {\n    margin-top: -2.5rem; }\n    .home-component .home-projects > .h-scroll-indicator > .h-scroll-indicator-item {\n      background: #FFF;\n      opacity: 0.5;\n      transition: opacity 250ms; }\n      .home-component .home-projects > .h-scroll-indicator > .h-scroll-indicator-item.active {\n        opacity: 1;\n        background: #FFF; }\n    .home-component .home-projects > .h-scroll-indicator > .h-scroll-link {\n      color: #FFF;\n      opacity: 0.75; }\n\n.h-scroll {\n  position: relative; }\n  .h-scroll > .h-scroll-contents {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: nowrap; }\n    .h-scroll > .h-scroll-contents > * {\n      width: 100%;\n      flex: 0 0 auto; }\n  .h-scroll > .h-scroll-nav {\n    position: absolute;\n    top: 50%;\n    padding: 0.5rem;\n    font-size: 1rem;\n    display: none; }\n    .h-scroll > .h-scroll-nav.active {\n      display: block; }\n    .h-scroll > .h-scroll-nav.right {\n      right: 1rem; }\n    .h-scroll > .h-scroll-nav.left {\n      left: 1rem; }\n  .h-scroll > .h-scroll-indicator {\n    position: relative;\n    padding: 0.5rem 2rem 0.5rem 1.75rem; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item {\n      border-radius: 100%;\n      height: 0.5rem;\n      width: 0.5rem;\n      margin: 0.25rem 0.25rem;\n      background: #DDD;\n      transition: background 250ms;\n      display: inline-block; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item.active {\n        background: #2ac648; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-link {\n      position: absolute;\n      top: 0rem;\n      right: 1.75rem;\n      text-decoration: none;\n      font-size: 1rem;\n      border-radius: 0.5rem;\n      padding: 0.25rem;\n      margin: 0;\n      opacity: 1;\n      transition: opacity 250ms; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-link i {\n        margin-right: 0.5rem;\n        margin-top: 0.1rem;\n        vertical-align: text-top; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-link:hover {\n        opacity: 0.5; }\n\n.home-template .navigation-desktop.top {\n  background: transparent; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner img.theme {\n    display: none !important; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner img.white {\n    display: block !important; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner a {\n    color: #FFF; }\n    .home-template .navigation-desktop.top > .navigation-desktop-inner a:hover {\n      color: rgba(255, 255, 255, 0.5); }\n", ""]);
+exports.push([module.i, ".body-font, .home-component .home-content .home-content-inner h1 {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.home-component {\n  overflow-y: hidden;\n  position: static;\n  background: #FFF;\n  background-size: cover; }\n  .home-component .home-video {\n    min-width: 100%;\n    min-height: 100%;\n    /* Setting width & height to auto prevents the browser from stretching or squishing the video */\n    width: auto;\n    height: auto;\n    /* Center the video */\n    position: fixed;\n    top: 50%;\n    left: 50%;\n    transform: translate(-50%, -50%); }\n  .home-component .home-content {\n    height: 100%;\n    background-size: cover;\n    box-sizing: border-box;\n    overflow: hidden;\n    padding: 90px 4rem;\n    display: flex;\n    flex-direction: column;\n    justify-content: center;\n    position: absolute;\n    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, transparent 40%, transparent, 80%, rgba(0, 0, 0, 0.15) 100%);\n    top: 0;\n    left: 0;\n    width: 100%; }\n    .home-component .home-content .home-content-inner {\n      flex: 1;\n      display: flex;\n      position: relative;\n      justify-content: center;\n      flex-direction: column;\n      text-align: center; }\n      .home-component .home-content .home-content-inner h1 {\n        font-weight: 300;\n        color: #FFF;\n        padding-bottom: 15rem; }\n    .home-component .home-content .home-contact {\n      flex: 0;\n      padding-bottom: 4rem; }\n      .home-component .home-content .home-contact a {\n        color: #FFF !important;\n        border-color: #FFF !important; }\n    .home-component .home-content .home-message {\n      opacity: 0;\n      transform: scale(0.9);\n      transition: all 400ms; }\n      .home-component .home-content .home-message.visible {\n        opacity: 1;\n        transform: scale(1); }\n    .home-component .home-content .home-prompt {\n      line-height: 0; }\n      .home-component .home-content .home-prompt img {\n        width: 5rem; }\n  .home-component .content-wrapper {\n    position: relative;\n    transform-origin: top center;\n    transform: translateY(85vh);\n    background: #FFF;\n    transition-timing-function: ease-out;\n    -webkit-transition-timing-function: ease-out;\n    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);\n    border-radius: 1rem 1rem 0 0;\n    overflow: hidden; }\n  .home-component .lazy-image-loader {\n    height: 12rem;\n    position: relative; }\n    .home-component .lazy-image-loader > img {\n      position: absolute;\n      top: 50%;\n      transform: translateY(-50%) !important;\n      width: 100%; }\n  .home-component .home-blog > .h-scroll-nav {\n    top: 10.85rem;\n    background: #FFF;\n    border-radius: 100%;\n    width: 1rem;\n    height: 1rem;\n    padding: 0.65rem;\n    box-sizing: content-box;\n    text-align: center;\n    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);\n    color: #2ac648; }\n  .home-component .home-blog > .h-scroll-indicator {\n    margin-top: -1rem;\n    padding-bottom: 1rem; }\n    .home-component .home-blog > .h-scroll-indicator > .h-scroll-link {\n      color: #2ac648; }\n  .home-component .home-projects > .h-scroll-contents > .project-preview > .project-preview-body {\n    padding: 2rem 5rem 2.5rem 2rem; }\n  .home-component .home-projects > .h-scroll-nav {\n    top: 4.85rem;\n    border-radius: 100%;\n    width: 1rem;\n    height: 1rem;\n    padding: 0.65rem;\n    box-sizing: content-box;\n    text-align: center;\n    color: #FFF;\n    transition: opacity 250ms;\n    opacity: 0.5;\n    display: block; }\n    .home-component .home-projects > .h-scroll-nav.active {\n      opacity: 1; }\n    .home-component .home-projects > .h-scroll-nav.left {\n      right: 3.5rem;\n      left: auto; }\n  .home-component .home-projects > .h-scroll-indicator {\n    margin-top: -2.5rem; }\n    .home-component .home-projects > .h-scroll-indicator > .h-scroll-indicator-item {\n      background: #FFF;\n      opacity: 0.5;\n      transition: opacity 250ms; }\n      .home-component .home-projects > .h-scroll-indicator > .h-scroll-indicator-item.active {\n        opacity: 1;\n        background: #FFF; }\n    .home-component .home-projects > .h-scroll-indicator > .h-scroll-link {\n      color: #FFF;\n      opacity: 0.75; }\n\n.h-scroll {\n  position: relative; }\n  .h-scroll > .h-scroll-contents {\n    display: flex;\n    flex-direction: row;\n    flex-wrap: nowrap; }\n    .h-scroll > .h-scroll-contents > * {\n      width: 100%;\n      flex: 0 0 auto; }\n  .h-scroll > .h-scroll-nav {\n    position: absolute;\n    top: 50%;\n    padding: 0.5rem;\n    font-size: 1rem;\n    display: none; }\n    .h-scroll > .h-scroll-nav.active {\n      display: block; }\n    .h-scroll > .h-scroll-nav.right {\n      right: 1rem; }\n    .h-scroll > .h-scroll-nav.left {\n      left: 1rem; }\n  .h-scroll > .h-scroll-indicator {\n    position: relative;\n    padding: 0.5rem 2rem 0.5rem 1.75rem; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item {\n      border-radius: 100%;\n      height: 0.5rem;\n      width: 0.5rem;\n      margin: 0.25rem 0.25rem;\n      background: #DDD;\n      transition: background 250ms;\n      display: inline-block; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-indicator-item.active {\n        background: #2ac648; }\n    .h-scroll > .h-scroll-indicator > .h-scroll-link {\n      position: absolute;\n      top: 0rem;\n      right: 1.75rem;\n      text-decoration: none;\n      font-size: 1rem;\n      border-radius: 0.5rem;\n      padding: 0.25rem;\n      margin: 0;\n      opacity: 1;\n      transition: opacity 250ms; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-link i {\n        margin-right: 0.5rem;\n        margin-top: 0.1rem;\n        vertical-align: text-top; }\n      .h-scroll > .h-scroll-indicator > .h-scroll-link:hover {\n        opacity: 0.5; }\n\n@media (min-width: 750px) {\n  .home-template .home-content h1 {\n    font-size: 3.5rem;\n    font-weight: 100 !important; }\n  .home-template .home-contact {\n    padding-bottom: 2rem !important; }\n  .home-template .content-wrapper {\n    display: none; } }\n\n.home-template .navigation-desktop.top {\n  background: transparent; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner img.theme {\n    display: none !important; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner img.white {\n    display: block !important; }\n  .home-template .navigation-desktop.top > .navigation-desktop-inner a {\n    color: #FFF; }\n    .home-template .navigation-desktop.top > .navigation-desktop-inner a:hover {\n      color: rgba(255, 255, 255, 0.5); }\n", ""]);
 
 // exports
 

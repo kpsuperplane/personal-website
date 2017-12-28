@@ -290,9 +290,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         } else {
             this.openedPreviously = false;
         }
-        const percent = y / (this.winHeight * 0.85);
         this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
-        this.hero!!.style.transform = `scale(${0.8 + percent * 0.2})`;
     }
     private dragStart = (e: TouchEvent) => {
         this.updatePosition();
@@ -305,7 +303,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchLastTime = new Date().getTime();
         this.touchStartTime = this.touchLastTime;
         this.touchLast = this.touchStart;
-        this.hero!!.style.transition = 'no';
         this.content!!.style.transition = 'border-radius 500ms';
         this.dragRender();
     }
@@ -343,7 +340,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchStart = -1;
         this.touchLast = -1;
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
-        this.hero!!.style.transition = this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
+        this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
         this.dragRender();

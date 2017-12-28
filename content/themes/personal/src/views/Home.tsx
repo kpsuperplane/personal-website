@@ -338,17 +338,19 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         if (percent > 1) {
             percent = 1 - (percent - 1);
         }
-        if (this.opened === false && delta < 1 && this.touchLast > this.top && new Date().getTime() - this.touchStartTime < 3000) {
-            e.preventDefault();
-            this.opened = true;
-            this.velocityLast = 0;
-            this.top = 0;
-        } else if (this.opened === false && (percent >= 0 && ((percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5))))) {
-            this.opened = true;
-            this.top = 0;
-        } else {
-            this.opened = false;
-            this.top = this.winHeight * 0.85;
+        if (this.opened === false) {
+            if (delta < 1 && this.touchLast > this.top && new Date().getTime() - this.touchStartTime < 3000) {
+                e.preventDefault();
+                this.opened = true;
+                this.velocityLast = 0;
+                this.top = 0;
+            } else if (percent >= 0 && (percent < 0.425 && !(this.velocityLast < -0.5)) || ((this.velocityLast > 0.5))) {
+                this.opened = true;
+                this.top = 0;
+            } else {
+                this.opened = false;
+                this.top = this.winHeight * 0.85;
+            }
         }
         if (this.opened === false) {
             this.content!!.style.boxShadow = null;

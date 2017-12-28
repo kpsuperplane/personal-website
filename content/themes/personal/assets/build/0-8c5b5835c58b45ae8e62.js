@@ -792,17 +792,19 @@ var Home = function (_View) {
             if (percent > 1) {
                 percent = 1 - (percent - 1);
             }
-            if (_this6.opened === false && delta < 1 && _this6.touchLast > _this6.top && new Date().getTime() - _this6.touchStartTime < 3000) {
-                e.preventDefault();
-                _this6.opened = true;
-                _this6.velocityLast = 0;
-                _this6.top = 0;
-            } else if (_this6.opened === false && percent >= 0 && (percent < 0.425 && !(_this6.velocityLast < -0.5) || _this6.velocityLast > 0.5)) {
-                _this6.opened = true;
-                _this6.top = 0;
-            } else {
-                _this6.opened = false;
-                _this6.top = _this6.winHeight * 0.85;
+            if (_this6.opened === false) {
+                if (delta < 1 && _this6.touchLast > _this6.top && new Date().getTime() - _this6.touchStartTime < 3000) {
+                    e.preventDefault();
+                    _this6.opened = true;
+                    _this6.velocityLast = 0;
+                    _this6.top = 0;
+                } else if (percent >= 0 && percent < 0.425 && !(_this6.velocityLast < -0.5) || _this6.velocityLast > 0.5) {
+                    _this6.opened = true;
+                    _this6.top = 0;
+                } else {
+                    _this6.opened = false;
+                    _this6.top = _this6.winHeight * 0.85;
+                }
             }
             if (_this6.opened === false) {
                 _this6.content.style.boxShadow = null;

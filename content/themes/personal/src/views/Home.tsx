@@ -304,6 +304,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchStartTime = this.touchLastTime;
         this.touchLast = this.touchStart;
         this.content!!.style.transition = 'border-radius 500ms';
+        this.content!!.style.boxShadow = 'none';
         this.dragRender();
     }
     private calculateVelocity() {
@@ -336,6 +337,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
                 this.opened = false;
                 this.top = this.winHeight * 0.85;
             }
+        }
+        if (this.opened === false) {
+            this.content!!.style.boxShadow = null;
         }
         this.touchStart = -1;
         this.touchLast = -1;

@@ -765,6 +765,7 @@ var Home = function (_View) {
             _this6.touchStartTime = _this6.touchLastTime;
             _this6.touchLast = _this6.touchStart;
             _this6.content.style.transition = 'border-radius 500ms';
+            _this6.content.style.boxShadow = 'none';
             _this6.dragRender();
         };
         _this6.dragEnd = function (e) {
@@ -788,6 +789,9 @@ var Home = function (_View) {
                     _this6.opened = false;
                     _this6.top = _this6.winHeight * 0.85;
                 }
+            }
+            if (_this6.opened === false) {
+                _this6.content.style.boxShadow = null;
             }
             _this6.touchStart = -1;
             _this6.touchLast = -1;

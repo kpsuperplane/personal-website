@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "2eb9f1281da6fcd949e6" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "76c4bed4103c7290bad0" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -16225,6 +16225,8 @@ var NavigationMobile = function (_Component) {
         _this.diameter = 75;
         _this.onResize = function () {
             _this.setState({ width: window.innerWidth, maxHeight: window.innerHeight - _this.diameter - 20 });
+            _this.top = _this.opened ? 0 : -(_this.wrapper.getBoundingClientRect().height - 300);
+            _this.dragRender();
         };
         _this.calculateVelocity = function () {
             var now = new Date().getTime();

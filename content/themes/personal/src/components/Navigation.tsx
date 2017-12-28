@@ -39,6 +39,8 @@ class NavigationMobile extends Component <{loading: boolean}, {width: number, ma
     }
     private onResize = () => {
         this.setState({width: window.innerWidth, maxHeight: window.innerHeight - this.diameter - 20});
+        this.top = this.opened ? 0 : -(this.wrapper!!.getBoundingClientRect().height - 300);
+        this.dragRender();
     }
     private calculateVelocity = () => {
         const now = new Date().getTime();

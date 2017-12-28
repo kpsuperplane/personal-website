@@ -42,13 +42,13 @@
             h1 {
                 font-weight: 300;
                 color: #FFF;
-                padding-bottom: 15rem;
+                padding-bottom: 17rem;
                 @extend .body-font;
             }
         }
         .home-contact {
             flex: 0;
-            padding-bottom: 4rem;
+            padding-bottom: 2rem;
             a {
                 color: #FFF !important;
                 border-color: #FFF !important;
@@ -223,9 +223,6 @@
         .home-content h1 {
             font-size: 3.5rem;
             font-weight: 100 !important;
-        }
-        .home-contact {
-            padding-bottom: 2rem !important;
         }
         .content-wrapper {
             display: none;

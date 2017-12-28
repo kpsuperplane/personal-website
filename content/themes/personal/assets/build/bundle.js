@@ -29,7 +29,7 @@
 /******/
 /******/ 	// objects to store loaded and loading chunks
 /******/ 	var installedChunks = {
-/******/ 		3: 0
+/******/ 		4: 0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "b432ccb164d1c20104cf" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "f118066ba651c52610af" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -142,14 +142,14 @@
 /******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 18);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(25).default;
+module.exports = __webpack_require__(27).default;
 module.exports.default = module.exports;
 
 
@@ -158,7 +158,7 @@ module.exports.default = module.exports;
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(28).default;
+module.exports = __webpack_require__(30).default;
 module.exports.default = module.exports;
 
 
@@ -292,7 +292,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(34);
+var	fixUrls = __webpack_require__(36);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -801,7 +801,7 @@ process.umask = function() { return 0; };
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Loader__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Loader__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -969,7 +969,7 @@ GlobalLoader.updateState = function () {
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(26).default;
+module.exports = __webpack_require__(28).default;
 module.exports.default = module.exports;
 
 
@@ -1163,13 +1163,35 @@ var createPath = exports.createPath = function createPath(location) {
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Check if `obj` is an object.
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isObject(obj) {
+  return null !== obj && 'object' === typeof obj;
+}
+
+module.exports = isObject;
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -1227,63 +1249,933 @@ var LazyImage = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (LazyImage);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+/**
+ * Root reference for iframes.
+ */
 
-
-var defaults = {
-    ellipse: '…',
-    chars: [' ', '-'],
-    max: 140,
-    truncate: true
-};
-
-function ellipsize(str, max, ellipse, chars, truncate) {
-    var last = 0,
-        c = '';
-
-    if (str.length < max) return str;
-
-    for (var i = 0, len = str.length; i < len; i++) {
-        c = str.charAt(i);
-
-        if (chars.indexOf(c) !== -1) {
-            last = i;
-        }
-
-        if (i < max) continue;
-        if (last === 0) {
-            return !truncate ? '' : str.substring(0, max - 1) + ellipse;
-        }
-
-        return str.substring(0, last) + ellipse;
-    }
-
-    return str;
+var root;
+if (typeof window !== 'undefined') { // Browser window
+  root = window;
+} else if (typeof self !== 'undefined') { // Web Worker
+  root = self;
+} else { // Other environments
+  console.warn("Using browser-only version of superagent in non-browser environment");
+  root = this;
 }
 
-module.exports = function(str, max, opts) {
-    if (typeof str !== 'string' || str.length === 0) return '';
-    if (max === 0) return '';
+var Emitter = __webpack_require__(37);
+var RequestBase = __webpack_require__(38);
+var isObject = __webpack_require__(10);
+var ResponseBase = __webpack_require__(39);
+var Agent = __webpack_require__(41);
 
-    opts = opts || {};
+/**
+ * Noop.
+ */
 
-    for (var key in defaults) {
-        if (opts[key] === null || typeof opts[key] === 'undefined') {
-            opts[key] = defaults[key];
-        }
+function noop(){};
+
+/**
+ * Expose `request`.
+ */
+
+var request = exports = module.exports = function(method, url) {
+  // callback
+  if ('function' == typeof url) {
+    return new exports.Request('GET', method).end(url);
+  }
+
+  // url first
+  if (1 == arguments.length) {
+    return new exports.Request('GET', method);
+  }
+
+  return new exports.Request(method, url);
+}
+
+exports.Request = Request;
+
+/**
+ * Determine XHR.
+ */
+
+request.getXHR = function () {
+  if (root.XMLHttpRequest
+      && (!root.location || 'file:' != root.location.protocol
+          || !root.ActiveXObject)) {
+    return new XMLHttpRequest;
+  } else {
+    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
+    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
+    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
+    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
+  }
+  throw Error("Browser-only version of superagent could not find XHR");
+};
+
+/**
+ * Removes leading and trailing whitespace, added to support IE.
+ *
+ * @param {String} s
+ * @return {String}
+ * @api private
+ */
+
+var trim = ''.trim
+  ? function(s) { return s.trim(); }
+  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
+
+/**
+ * Serialize the given `obj`.
+ *
+ * @param {Object} obj
+ * @return {String}
+ * @api private
+ */
+
+function serialize(obj) {
+  if (!isObject(obj)) return obj;
+  var pairs = [];
+  for (var key in obj) {
+    pushEncodedKeyValuePair(pairs, key, obj[key]);
+  }
+  return pairs.join('&');
+}
+
+/**
+ * Helps 'serialize' with serializing arrays.
+ * Mutates the pairs array.
+ *
+ * @param {Array} pairs
+ * @param {String} key
+ * @param {Mixed} val
+ */
+
+function pushEncodedKeyValuePair(pairs, key, val) {
+  if (val != null) {
+    if (Array.isArray(val)) {
+      val.forEach(function(v) {
+        pushEncodedKeyValuePair(pairs, key, v);
+      });
+    } else if (isObject(val)) {
+      for(var subkey in val) {
+        pushEncodedKeyValuePair(pairs, key + '[' + subkey + ']', val[subkey]);
+      }
+    } else {
+      pairs.push(encodeURIComponent(key)
+        + '=' + encodeURIComponent(val));
+    }
+  } else if (val === null) {
+    pairs.push(encodeURIComponent(key));
+  }
+}
+
+/**
+ * Expose serialization method.
+ */
+
+request.serializeObject = serialize;
+
+/**
+  * Parse the given x-www-form-urlencoded `str`.
+  *
+  * @param {String} str
+  * @return {Object}
+  * @api private
+  */
+
+function parseString(str) {
+  var obj = {};
+  var pairs = str.split('&');
+  var pair;
+  var pos;
+
+  for (var i = 0, len = pairs.length; i < len; ++i) {
+    pair = pairs[i];
+    pos = pair.indexOf('=');
+    if (pos == -1) {
+      obj[decodeURIComponent(pair)] = '';
+    } else {
+      obj[decodeURIComponent(pair.slice(0, pos))] =
+        decodeURIComponent(pair.slice(pos + 1));
+    }
+  }
+
+  return obj;
+}
+
+/**
+ * Expose parser.
+ */
+
+request.parseString = parseString;
+
+/**
+ * Default MIME type map.
+ *
+ *     superagent.types.xml = 'application/xml';
+ *
+ */
+
+request.types = {
+  html: 'text/html',
+  json: 'application/json',
+  xml: 'text/xml',
+  urlencoded: 'application/x-www-form-urlencoded',
+  'form': 'application/x-www-form-urlencoded',
+  'form-data': 'application/x-www-form-urlencoded'
+};
+
+/**
+ * Default serialization map.
+ *
+ *     superagent.serialize['application/xml'] = function(obj){
+ *       return 'generated xml here';
+ *     };
+ *
+ */
+
+request.serialize = {
+  'application/x-www-form-urlencoded': serialize,
+  'application/json': JSON.stringify,
+};
+
+/**
+  * Default parsers.
+  *
+  *     superagent.parse['application/xml'] = function(str){
+  *       return { object parsed from str };
+  *     };
+  *
+  */
+
+request.parse = {
+  'application/x-www-form-urlencoded': parseString,
+  'application/json': JSON.parse,
+};
+
+/**
+ * Parse the given header `str` into
+ * an object containing the mapped fields.
+ *
+ * @param {String} str
+ * @return {Object}
+ * @api private
+ */
+
+function parseHeader(str) {
+  var lines = str.split(/\r?\n/);
+  var fields = {};
+  var index;
+  var line;
+  var field;
+  var val;
+
+  for (var i = 0, len = lines.length; i < len; ++i) {
+    line = lines[i];
+    index = line.indexOf(':');
+    if (index === -1) { // could be empty line, just skip it
+      continue;
+    }
+    field = line.slice(0, index).toLowerCase();
+    val = trim(line.slice(index + 1));
+    fields[field] = val;
+  }
+
+  return fields;
+}
+
+/**
+ * Check if `mime` is json or has +json structured syntax suffix.
+ *
+ * @param {String} mime
+ * @return {Boolean}
+ * @api private
+ */
+
+function isJSON(mime) {
+  // should match /json or +json
+  // but not /json-seq
+  return /[\/+]json($|[^-\w])/.test(mime);
+}
+
+/**
+ * Initialize a new `Response` with the given `xhr`.
+ *
+ *  - set flags (.ok, .error, etc)
+ *  - parse header
+ *
+ * Examples:
+ *
+ *  Aliasing `superagent` as `request` is nice:
+ *
+ *      request = superagent;
+ *
+ *  We can use the promise-like API, or pass callbacks:
+ *
+ *      request.get('/').end(function(res){});
+ *      request.get('/', function(res){});
+ *
+ *  Sending data can be chained:
+ *
+ *      request
+ *        .post('/user')
+ *        .send({ name: 'tj' })
+ *        .end(function(res){});
+ *
+ *  Or passed to `.send()`:
+ *
+ *      request
+ *        .post('/user')
+ *        .send({ name: 'tj' }, function(res){});
+ *
+ *  Or passed to `.post()`:
+ *
+ *      request
+ *        .post('/user', { name: 'tj' })
+ *        .end(function(res){});
+ *
+ * Or further reduced to a single call for simple cases:
+ *
+ *      request
+ *        .post('/user', { name: 'tj' }, function(res){});
+ *
+ * @param {XMLHTTPRequest} xhr
+ * @param {Object} options
+ * @api private
+ */
+
+function Response(req) {
+  this.req = req;
+  this.xhr = this.req.xhr;
+  // responseText is accessible only if responseType is '' or 'text' and on older browsers
+  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
+     ? this.xhr.responseText
+     : null;
+  this.statusText = this.req.xhr.statusText;
+  var status = this.xhr.status;
+  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
+  if (status === 1223) {
+    status = 204;
+  }
+  this._setStatusProperties(status);
+  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
+  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
+  // getResponseHeader still works. so we get content-type even if getting
+  // other headers fails.
+  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
+  this._setHeaderProperties(this.header);
+
+  if (null === this.text && req._responseType) {
+    this.body = this.xhr.response;
+  } else {
+    this.body = this.req.method != 'HEAD'
+      ? this._parseBody(this.text ? this.text : this.xhr.response)
+      : null;
+  }
+}
+
+ResponseBase(Response.prototype);
+
+/**
+ * Parse the given body `str`.
+ *
+ * Used for auto-parsing of bodies. Parsers
+ * are defined on the `superagent.parse` object.
+ *
+ * @param {String} str
+ * @return {Mixed}
+ * @api private
+ */
+
+Response.prototype._parseBody = function(str) {
+  var parse = request.parse[this.type];
+  if (this.req._parser) {
+    return this.req._parser(this, str);
+  }
+  if (!parse && isJSON(this.type)) {
+    parse = request.parse['application/json'];
+  }
+  return parse && str && (str.length || str instanceof Object)
+    ? parse(str)
+    : null;
+};
+
+/**
+ * Return an `Error` representative of this response.
+ *
+ * @return {Error}
+ * @api public
+ */
+
+Response.prototype.toError = function(){
+  var req = this.req;
+  var method = req.method;
+  var url = req.url;
+
+  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
+  var err = new Error(msg);
+  err.status = this.status;
+  err.method = method;
+  err.url = url;
+
+  return err;
+};
+
+/**
+ * Expose `Response`.
+ */
+
+request.Response = Response;
+
+/**
+ * Initialize a new `Request` with the given `method` and `url`.
+ *
+ * @param {String} method
+ * @param {String} url
+ * @api public
+ */
+
+function Request(method, url) {
+  var self = this;
+  this._query = this._query || [];
+  this.method = method;
+  this.url = url;
+  this.header = {}; // preserves header name case
+  this._header = {}; // coerces header names to lowercase
+  this.on('end', function(){
+    var err = null;
+    var res = null;
+
+    try {
+      res = new Response(self);
+    } catch(e) {
+      err = new Error('Parser is unable to parse the response');
+      err.parse = true;
+      err.original = e;
+      // issue #675: return the raw response if the response parsing fails
+      if (self.xhr) {
+        // ie9 doesn't have 'response' property
+        err.rawResponse = typeof self.xhr.responseType == 'undefined' ? self.xhr.responseText : self.xhr.response;
+        // issue #876: return the http status code if the response parsing fails
+        err.status = self.xhr.status ? self.xhr.status : null;
+        err.statusCode = err.status; // backwards-compat only
+      } else {
+        err.rawResponse = null;
+        err.status = null;
+      }
+
+      return self.callback(err);
     }
 
-    opts.max = max || opts.max;
+    self.emit('response', res);
 
-    return ellipsize(str, opts.max, opts.ellipse, opts.chars, opts.truncate);
+    var new_err;
+    try {
+      if (!self._isResponseOK(res)) {
+        new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
+      }
+    } catch(custom_err) {
+      new_err = custom_err; // ok() callback can throw
+    }
+
+    // #1000 don't catch errors from the callback to avoid double calling it
+    if (new_err) {
+      new_err.original = err;
+      new_err.response = res;
+      new_err.status = res.status;
+      self.callback(new_err, res);
+    } else {
+      self.callback(null, res);
+    }
+  });
+}
+
+/**
+ * Mixin `Emitter` and `RequestBase`.
+ */
+
+Emitter(Request.prototype);
+RequestBase(Request.prototype);
+
+/**
+ * Set Content-Type to `type`, mapping values from `request.types`.
+ *
+ * Examples:
+ *
+ *      superagent.types.xml = 'application/xml';
+ *
+ *      request.post('/')
+ *        .type('xml')
+ *        .send(xmlstring)
+ *        .end(callback);
+ *
+ *      request.post('/')
+ *        .type('application/xml')
+ *        .send(xmlstring)
+ *        .end(callback);
+ *
+ * @param {String} type
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.type = function(type){
+  this.set('Content-Type', request.types[type] || type);
+  return this;
+};
+
+/**
+ * Set Accept to `type`, mapping values from `request.types`.
+ *
+ * Examples:
+ *
+ *      superagent.types.json = 'application/json';
+ *
+ *      request.get('/agent')
+ *        .accept('json')
+ *        .end(callback);
+ *
+ *      request.get('/agent')
+ *        .accept('application/json')
+ *        .end(callback);
+ *
+ * @param {String} accept
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.accept = function(type){
+  this.set('Accept', request.types[type] || type);
+  return this;
+};
+
+/**
+ * Set Authorization field value with `user` and `pass`.
+ *
+ * @param {String} user
+ * @param {String} [pass] optional in case of using 'bearer' as type
+ * @param {Object} options with 'type' property 'auto', 'basic' or 'bearer' (default 'basic')
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.auth = function(user, pass, options){
+  if (1 === arguments.length) pass = '';
+  if (typeof pass === 'object' && pass !== null) { // pass is optional and can be replaced with options
+    options = pass;
+    pass = '';
+  }
+  if (!options) {
+    options = {
+      type: 'function' === typeof btoa ? 'basic' : 'auto',
+    };
+  }
+
+  var encoder = function(string) {
+    if ('function' === typeof btoa) {
+      return btoa(string);
+    }
+    throw new Error('Cannot use basic auth, btoa is not a function');
+  };
+
+  return this._auth(user, pass, options, encoder);
+};
+
+/**
+ * Add query-string `val`.
+ *
+ * Examples:
+ *
+ *   request.get('/shoes')
+ *     .query('size=10')
+ *     .query({ color: 'blue' })
+ *
+ * @param {Object|String} val
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.query = function(val){
+  if ('string' != typeof val) val = serialize(val);
+  if (val) this._query.push(val);
+  return this;
+};
+
+/**
+ * Queue the given `file` as an attachment to the specified `field`,
+ * with optional `options` (or filename).
+ *
+ * ``` js
+ * request.post('/upload')
+ *   .attach('content', new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
+ *   .end(callback);
+ * ```
+ *
+ * @param {String} field
+ * @param {Blob|File} file
+ * @param {String|Object} options
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.attach = function(field, file, options){
+  if (file) {
+    if (this._data) {
+      throw Error("superagent can't mix .send() and .attach()");
+    }
+
+    this._getFormData().append(field, file, options || file.name);
+  }
+  return this;
+};
+
+Request.prototype._getFormData = function(){
+  if (!this._formData) {
+    this._formData = new root.FormData();
+  }
+  return this._formData;
+};
+
+/**
+ * Invoke the callback with `err` and `res`
+ * and handle arity check.
+ *
+ * @param {Error} err
+ * @param {Response} res
+ * @api private
+ */
+
+Request.prototype.callback = function(err, res){
+  if (this._shouldRetry(err, res)) {
+    return this._retry();
+  }
+
+  var fn = this._callback;
+  this.clearTimeout();
+
+  if (err) {
+    if (this._maxRetries) err.retries = this._retries - 1;
+    this.emit('error', err);
+  }
+
+  fn(err, res);
+};
+
+/**
+ * Invoke callback with x-domain error.
+ *
+ * @api private
+ */
+
+Request.prototype.crossDomainError = function(){
+  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
+  err.crossDomain = true;
+
+  err.status = this.status;
+  err.method = this.method;
+  err.url = this.url;
+
+  this.callback(err);
+};
+
+// This only warns, because the request is still likely to work
+Request.prototype.buffer = Request.prototype.ca = Request.prototype.agent = function(){
+  console.warn("This is not supported in browser version of superagent");
+  return this;
+};
+
+// This throws, because it can't send/receive data as expected
+Request.prototype.pipe = Request.prototype.write = function(){
+  throw Error("Streaming is not supported in browser version of superagent");
+};
+
+/**
+ * Check if `obj` is a host object,
+ * we don't want to serialize these :)
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api private
+ */
+Request.prototype._isHost = function _isHost(obj) {
+  // Native objects stringify to [object File], [object Blob], [object FormData], etc.
+  return obj && 'object' === typeof obj && !Array.isArray(obj) && Object.prototype.toString.call(obj) !== '[object Object]';
+}
+
+/**
+ * Initiate request, invoking callback `fn(res)`
+ * with an instanceof `Response`.
+ *
+ * @param {Function} fn
+ * @return {Request} for chaining
+ * @api public
+ */
+
+Request.prototype.end = function(fn){
+  if (this._endCalled) {
+    console.warn("Warning: .end() was called twice. This is not supported in superagent");
+  }
+  this._endCalled = true;
+
+  // store callback
+  this._callback = fn || noop;
+
+  // querystring
+  this._finalizeQueryString();
+
+  return this._end();
+};
+
+Request.prototype._end = function() {
+  var self = this;
+  var xhr = (this.xhr = request.getXHR());
+  var data = this._formData || this._data;
+
+  this._setTimeouts();
+
+  // state change
+  xhr.onreadystatechange = function(){
+    var readyState = xhr.readyState;
+    if (readyState >= 2 && self._responseTimeoutTimer) {
+      clearTimeout(self._responseTimeoutTimer);
+    }
+    if (4 != readyState) {
+      return;
+    }
+
+    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
+    // result in the error "Could not complete the operation due to error c00c023f"
+    var status;
+    try { status = xhr.status } catch(e) { status = 0; }
+
+    if (!status) {
+      if (self.timedout || self._aborted) return;
+      return self.crossDomainError();
+    }
+    self.emit('end');
+  };
+
+  // progress
+  var handleProgress = function(direction, e) {
+    if (e.total > 0) {
+      e.percent = e.loaded / e.total * 100;
+    }
+    e.direction = direction;
+    self.emit('progress', e);
+  };
+  if (this.hasListeners('progress')) {
+    try {
+      xhr.onprogress = handleProgress.bind(null, 'download');
+      if (xhr.upload) {
+        xhr.upload.onprogress = handleProgress.bind(null, 'upload');
+      }
+    } catch(e) {
+      // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
+      // Reported here:
+      // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
+    }
+  }
+
+  // initiate request
+  try {
+    if (this.username && this.password) {
+      xhr.open(this.method, this.url, true, this.username, this.password);
+    } else {
+      xhr.open(this.method, this.url, true);
+    }
+  } catch (err) {
+    // see #1149
+    return this.callback(err);
+  }
+
+  // CORS
+  if (this._withCredentials) xhr.withCredentials = true;
+
+  // body
+  if (!this._formData && 'GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !this._isHost(data)) {
+    // serialize stuff
+    var contentType = this._header['content-type'];
+    var serialize = this._serializer || request.serialize[contentType ? contentType.split(';')[0] : ''];
+    if (!serialize && isJSON(contentType)) {
+      serialize = request.serialize['application/json'];
+    }
+    if (serialize) data = serialize(data);
+  }
+
+  // set header fields
+  for (var field in this.header) {
+    if (null == this.header[field]) continue;
+
+    if (this.header.hasOwnProperty(field))
+      xhr.setRequestHeader(field, this.header[field]);
+  }
+
+  if (this._responseType) {
+    xhr.responseType = this._responseType;
+  }
+
+  // send stuff
+  this.emit('request', this);
+
+  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
+  // We need null here if data is undefined
+  xhr.send(typeof data !== 'undefined' ? data : null);
+  return this;
+};
+
+request.agent = function() {
+  return new Agent();
+};
+
+["GET", "POST", "OPTIONS", "PATCH", "PUT", "DELETE"].forEach(function(method) {
+  Agent.prototype[method.toLowerCase()] = function(url, fn) {
+    var req = new request.Request(method, url);
+    this._setDefaults(req);
+    if (fn) {
+      req.end(fn);
+    }
+    return req;
+  };
+});
+
+Agent.prototype.del = Agent.prototype['delete'];
+
+/**
+ * GET `url` with optional callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed|Function} [data] or fn
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.get = function(url, data, fn) {
+  var req = request('GET', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.query(data);
+  if (fn) req.end(fn);
+  return req;
+};
+
+/**
+ * HEAD `url` with optional callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed|Function} [data] or fn
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.head = function(url, data, fn) {
+  var req = request('HEAD', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.query(data);
+  if (fn) req.end(fn);
+  return req;
+};
+
+/**
+ * OPTIONS query to `url` with optional callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed|Function} [data] or fn
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.options = function(url, data, fn) {
+  var req = request('OPTIONS', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.send(data);
+  if (fn) req.end(fn);
+  return req;
+};
+
+/**
+ * DELETE `url` with optional `data` and callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed} [data]
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+function del(url, data, fn) {
+  var req = request('DELETE', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.send(data);
+  if (fn) req.end(fn);
+  return req;
+}
+
+request['del'] = del;
+request['delete'] = del;
+
+/**
+ * PATCH `url` with optional `data` and callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed} [data]
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.patch = function(url, data, fn) {
+  var req = request('PATCH', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.send(data);
+  if (fn) req.end(fn);
+  return req;
+};
+
+/**
+ * POST `url` with optional `data` and callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed} [data]
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.post = function(url, data, fn) {
+  var req = request('POST', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.send(data);
+  if (fn) req.end(fn);
+  return req;
+};
+
+/**
+ * PUT `url` with optional `data` and callback `fn(res)`.
+ *
+ * @param {String} url
+ * @param {Mixed|Function} [data] or fn
+ * @param {Function} [fn]
+ * @return {Request}
+ * @api public
+ */
+
+request.put = function(url, data, fn) {
+  var req = request('PUT', url);
+  if ('function' == typeof data) (fn = data), (data = null);
+  if (data) req.send(data);
+  if (fn) req.end(fn);
+  return req;
 };
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8474,14 +9366,14 @@ exports.Settings = Settings;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Contact_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -8531,24 +9423,80 @@ var Contact = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Contact);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(27).default;
+"use strict";
+
+
+var defaults = {
+    ellipse: '…',
+    chars: [' ', '-'],
+    max: 140,
+    truncate: true
+};
+
+function ellipsize(str, max, ellipse, chars, truncate) {
+    var last = 0,
+        c = '';
+
+    if (str.length < max) return str;
+
+    for (var i = 0, len = str.length; i < len; i++) {
+        c = str.charAt(i);
+
+        if (chars.indexOf(c) !== -1) {
+            last = i;
+        }
+
+        if (i < max) continue;
+        if (last === 0) {
+            return !truncate ? '' : str.substring(0, max - 1) + ellipse;
+        }
+
+        return str.substring(0, last) + ellipse;
+    }
+
+    return str;
+}
+
+module.exports = function(str, max, opts) {
+    if (typeof str !== 'string' || str.length === 0) return '';
+    if (max === 0) return '';
+
+    opts = opts || {};
+
+    for (var key in defaults) {
+        if (opts[key] === null || typeof opts[key] === 'undefined') {
+            opts[key] = defaults[key];
+        }
+    }
+
+    opts.max = max || opts.max;
+
+    return ellipsize(str, opts.max, opts.ellipse, opts.chars, opts.truncate);
+};
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(29).default;
 module.exports.default = module.exports;
 
 
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__img_loader_mp4__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Loader_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Loader_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -8590,27 +9538,27 @@ var Loader = function (_Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Loader);
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_inferno__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno_router__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ellipsize__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ellipsize__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ellipsize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ellipsize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_luxon__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_luxon__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_luxon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_superagent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__App__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__App__ = __webpack_require__(42);
 
 
 
@@ -8622,22 +9570,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var Home = function Home(props, cb) {
     return __webpack_require__.e/* require.ensure */(0).then((function () {
-        return cb(null, __webpack_require__(47).default);
+        return cb(null, __webpack_require__(55).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Post = function Post(props, cb) {
-    return __webpack_require__.e/* require.ensure */(4).then((function () {
-        return cb(null, __webpack_require__(48).default);
+    return __webpack_require__.e/* require.ensure */(3).then((function () {
+        return cb(null, __webpack_require__(56).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Projects = function Projects(props, cb) {
     return __webpack_require__.e/* require.ensure */(1).then((function () {
-        return cb(null, __webpack_require__(78).default);
+        return cb(null, __webpack_require__(54).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Blog = function Blog(props, cb) {
     return __webpack_require__.e/* require.ensure */(2).then((function () {
-        return cb(null, __webpack_require__(46).default);
+        return cb(null, __webpack_require__(53).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var browserHistory = __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default()();
@@ -8681,13 +9629,13 @@ document.addEventListener('DOMContentLoaded', function (e) {
 });
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8703,19 +9651,19 @@ var _warning = __webpack_require__(8);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(19);
+var _invariant = __webpack_require__(21);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
-var _LocationUtils = __webpack_require__(20);
+var _LocationUtils = __webpack_require__(22);
 
 var _PathUtils = __webpack_require__(9);
 
-var _createTransitionManager = __webpack_require__(23);
+var _createTransitionManager = __webpack_require__(25);
 
 var _createTransitionManager2 = _interopRequireDefault(_createTransitionManager);
 
-var _DOMUtils = __webpack_require__(24);
+var _DOMUtils = __webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -9000,7 +9948,7 @@ var createBrowserHistory = function createBrowserHistory() {
 exports.default = createBrowserHistory;
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9059,7 +10007,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9070,11 +10018,11 @@ exports.locationsAreEqual = exports.createLocation = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var _resolvePathname = __webpack_require__(21);
+var _resolvePathname = __webpack_require__(23);
 
 var _resolvePathname2 = _interopRequireDefault(_resolvePathname);
 
-var _valueEqual = __webpack_require__(22);
+var _valueEqual = __webpack_require__(24);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
@@ -9143,7 +10091,7 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 };
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9220,7 +10168,7 @@ function resolvePathname(to) {
 /* harmony default export */ __webpack_exports__["default"] = (resolvePathname);
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9265,7 +10213,7 @@ function valueEqual(a, b) {
 /* harmony default export */ __webpack_exports__["default"] = (valueEqual);
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9356,7 +10304,7 @@ var createTransitionManager = function createTransitionManager() {
 exports.default = createTransitionManager;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9417,7 +10365,7 @@ var isExtraneousPopstateEvent = exports.isExtraneousPopstateEvent = function isE
 };
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12250,7 +13198,7 @@ exports.version = version;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12260,11 +13208,11 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-var createElement = _interopDefault(__webpack_require__(14));
+var createElement = _interopDefault(__webpack_require__(16));
 var Component = _interopDefault(__webpack_require__(1));
 var Inferno = __webpack_require__(0);
 var Inferno__default = _interopDefault(Inferno);
-var pathToRegexp = _interopDefault(__webpack_require__(29));
+var pathToRegexp = _interopDefault(__webpack_require__(31));
 
 /**
  * @module Inferno-Shared
@@ -12999,7 +13947,7 @@ exports['default'] = index;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13143,7 +14091,7 @@ exports['default'] = createElement;
 
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13468,10 +14416,10 @@ exports['default'] = Component;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isarray = __webpack_require__(30)
+var isarray = __webpack_require__(32)
 
 /**
  * Expose `pathToRegexp`.
@@ -13900,7 +14848,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -13909,19 +14857,19 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__.p + "loader.mp4";
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(33);
+var content = __webpack_require__(35);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -13946,7 +14894,7 @@ if(false) {
 }
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -13960,7 +14908,7 @@ exports.push([module.i, ".loader {\n  width: 10rem;\n  max-width: 100%;\n  max-h
 
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 
@@ -14055,1499 +15003,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 35 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-var App = function (_Component) {
-    _inherits(App, _Component);
-
-    function App() {
-        _classCallCheck(this, App);
-
-        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
-    }
-
-    App.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'app-element', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */]), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components_Navigation__["a" /* default */]), this.props.children]);
-    };
-
-    return App;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-/* harmony default export */ __webpack_exports__["a"] = (App);
-
-/***/ }),
-/* 36 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Navigation_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LazyImage__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_inferno__);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-
-
-
-
-
-var NavigationMobile = function (_Component) {
-    _inherits(NavigationMobile, _Component);
-
-    function NavigationMobile(props) {
-        _classCallCheck(this, NavigationMobile);
-
-        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-        _this.wrapper = null;
-        _this.outerWrapper = null;
-        _this.handle = null;
-        _this.parent = null;
-        _this.background = null;
-        _this.touchStart = 0;
-        _this.touchLast = 0;
-        _this.height = 0;
-        _this.touchLastTime = 0;
-        _this.touchStartTime = 0;
-        _this.touchDelta = 0;
-        _this.velocityLast = 0;
-        _this.touchLastBuffer = 0;
-        _this.top = 0;
-        _this.opened = false;
-        _this.diameter = 75;
-        _this.onLoadingStateChange = function (isLoading) {
-            if (isLoading === false) {
-                __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].removeUpdateListener(_this.onLoadingStateChange);
-            }
-            _this.setState({ loading: isLoading });
-        };
-        _this.onResize = function () {
-            _this.setState({ width: window.innerWidth, maxHeight: window.innerHeight - _this.diameter - 20 });
-        };
-        _this.calculateVelocity = function () {
-            var now = new Date().getTime();
-            if (now - _this.touchLastTime > 10) {
-                var velocityNew = _this.touchDelta / (now - _this.touchLastTime);
-                _this.velocityLast = -velocityNew;
-                _this.touchLastTime = now;
-                _this.touchLastBuffer = _this.touchLast;
-            }
-        };
-        _this.dragRender = function () {
-            var y = _this.top + _this.touchLast - _this.touchStart;
-            _this.outerWrapper.style.transform = 'translate3d(0, ' + (y > 0 ? Math.log((y + 100) / 100) * 100 : y) + 'px, 0)';
-            _this.background.style.opacity = _this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (_this.height - 300)));
-        };
-        _this.dragStart = function (e) {
-            if (e.touches) {
-                _this.touchStart = e.touches[0].clientY;
-                e.preventDefault();
-            }
-            _this.outerWrapper.style.transition = 'none';
-            _this.height = _this.wrapper.getBoundingClientRect().height;
-            _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
-            _this.touchStartTime = new Date().getTime();
-            _this.parent.style.height = '100%';
-            _this.background.style.display = 'block';
-            _this.background.style.transition = 'no';
-        };
-        _this.dragMove = function (e) {
-            _this.touchLast = e.touches[0].clientY;
-            _this.touchDelta = _this.touchLastBuffer - e.touches[0].clientY;
-            if (_this.touchLast - _this.touchStart > 5) {
-                e.preventDefault();
-            }
-            _this.calculateVelocity();
-            window.requestAnimationFrame(_this.dragRender);
-        };
-        _this.dragComplete = function () {
-            var delta = _this.touchLast - _this.touchStart;
-            _this.touchStart = -1;
-            _this.touchLast = -1;
-            var navHeight = _this.wrapper.getBoundingClientRect().height - 300;
-            var y = _this.top + delta;
-            var percent = (y + navHeight) / navHeight;
-            if (delta < 1 && new Date().getTime() - _this.touchStartTime < 3000) {
-                _this.opened = !_this.opened;
-                _this.velocityLast = 0;
-            } else {
-                if (_this.opened && _this.velocityLast < -0.5) {
-                    _this.opened = false;
-                    _this.top = -navHeight;
-                } else if (!_this.opened && _this.velocityLast > 0.5) {
-                    _this.opened = true;
-                    _this.top = 0;
-                }
-            }
-            _this.top = _this.opened ? 0 : -navHeight;
-            var animTime = Math.abs(percent) * 100 + 200;
-            var slope = Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight));
-            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + (isNaN(slope) ? 0 : slope) + ',0.1,1)';
-            _this.background.style.transition = 'opacity ' + animTime + 'ms';
-            if (!_this.opened) {
-                setTimeout(function () {
-                    _this.background.style.display = 'none';
-                    _this.parent.style.height = null;
-                }, animTime);
-            }
-            window.requestAnimationFrame(_this.dragRender);
-        };
-        _this.onClick = function (e) {
-            _this.touchStart = 0;
-            _this.touchLast = 0;
-            _this.velocityLast = 0;
-            _this.touchStartTime = new Date().getTime();
-            _this.dragStart(e);
-            _this.dragComplete();
-        };
-        _this.dragEnd = function (e) {
-            e.preventDefault();
-            _this.calculateVelocity();
-            _this.dragComplete();
-        };
-        _this.dragCancel = _this.dragEnd;
-        _this.attachHandle = function (el) {
-            if (_this.handle == null) {
-                _this.handle = el;
-                el.addEventListener('touchstart', _this.dragStart, { passive: false });
-                el.addEventListener('touchend', _this.dragEnd, { passive: false });
-                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
-                el.addEventListener('touchmove', _this.dragMove, { passive: false });
-            }
-        };
-        _this.attachWrapper = function (el) {
-            if (_this.wrapper == null) {
-                _this.wrapper = el;
-            }
-        };
-        _this.attachOuterWrapper = function (el) {
-            if (_this.outerWrapper == null) {
-                _this.outerWrapper = el;
-            }
-        };
-        _this.attachParent = function (el) {
-            if (_this.parent == null) {
-                _this.parent = el;
-            }
-        };
-        _this.attachBackground = function (el) {
-            if (_this.background == null) {
-                _this.background = el;
-                el.addEventListener('touchstart', _this.dragStart, { passive: false });
-                el.addEventListener('touchend', _this.dragEnd, { passive: false });
-                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
-                el.addEventListener('touchmove', _this.dragMove, { passive: false });
-            }
-        };
-        _this.onScroll = function (e) {
-            if (window.scrollY <= 0) {
-                if (_this.state.scrolledTop === false) {
-                    _this.setState({ scrolledTop: true });
-                }
-            } else {
-                if (_this.state.scrolledTop) {
-                    _this.setState({ scrolledTop: false });
-                }
-            }
-        };
-        _this.state = {
-            active: false,
-            loading: true,
-            maxHeight: 10000,
-            scrolledTop: true,
-            width: window.innerWidth
-        };
-        return _this;
-    }
-
-    NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll);
-        window.removeEventListener('resize', this.onResize);
-    };
-
-    NavigationMobile.prototype.componentDidMount = function componentDidMount() {
-        __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
-        this.setState({ loading: __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].isLoading });
-        window.addEventListener('resize', this.onResize);
-        window.addEventListener('scroll', this.onScroll);
-        this.onResize();
-    };
-
-    NavigationMobile.prototype.render = function render() {
-        var state = this.state;
-        var diameter = this.diameter;
-        var radius_squared = Math.pow(diameter / 2, 2);
-        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-parent', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-main', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
-            'onClick': this.onClick,
-            'to': '/',
-            'className': 'br',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].HOME
-            }), 'Home']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
-            'onClick': this.onClick,
-            'to': '/about/',
-            'className': '',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].ABOUT
-            }), 'About']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
-            'onClick': this.onClick,
-            'to': '/projects/',
-            'className': 'br',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].PALETTE
-            }), 'Projects']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
-            'onClick': this.onClick,
-            'to': '/blog/',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].OPEN_BOOK
-            }), 'Blog']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-contact', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'h3', null, 'Get in Touch'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__Contact__["a" /* default */])])], {
-            'style': { maxHeight: state.maxHeight }
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(128, 'svg', 'navigation-mobile-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
-            'in': 'SourceAlpha',
-            'stdDeviation': '5'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feOffset', null, null, {
-            'dx': '0',
-            'dy': '4',
-            'result': 'offsetblur'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feFuncA', null, null, {
-            'type': 'linear',
-            'slope': '0.075'
-        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
-            'in': 'SourceGraphic'
-        })])], {
-            'xmlns': 'http://www.w3.org/2000/svg',
-            'id': 'dropshadow',
-            'height': '130%'
-        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'path', null, null, {
-            'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
-            'stroke-width': 0,
-            'fill': 'white'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'circle', null, null, {
-            'cx': state.width / 2,
-            'cy': diameter * 0.33,
-            'r': diameter / 2,
-            'fill': 'white'
-        })], {
-            'filter': 'url(#dropshadow)'
-        })], {
-            'width': state.width,
-            'height': diameter * 0.95
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__LazyImage__["a" /* default */], null, null, {
-            'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a,
-            'style': { height: diameter * 0.6 },
-            'className': 'navigation-mobile-bar-handle-logo'
-        })], {
-            'onClick': this.onClick
-        }, null, this.attachHandle)], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
-    };
-
-    return NavigationMobile;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-var Navigation = function (_Component2) {
-    _inherits(Navigation, _Component2);
-
-    function Navigation() {
-        _classCallCheck(this, Navigation);
-
-        return _possibleConstructorReturn(this, _Component2.apply(this, arguments));
-    }
-
-    Navigation.prototype.render = function render() {
-        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, NavigationMobile);
-    };
-
-    return Navigation;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-/* harmony default export */ __webpack_exports__["a"] = (Navigation);
-
-/***/ }),
 /* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(38);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.navigation-mobile-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-mobile-parent > .navigation-mobile-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-mobile-parent > .navigation-mobile {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    transform: translate3d(0, -100%, 0); }\n    .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative;\n      transition: transform 500ms;\n      transform: translate3d(0, 0, 0); }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar h1 {\n        margin: 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main {\n        display: flex;\n        overflow-y: auto;\n        flex-flow: row wrap; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact {\n          padding: 0.5rem;\n          flex: 1 auto; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3 {\n            text-align: center;\n            color: #AAA;\n            font-weight: 300;\n            font-size: 0.8rem; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n          text-align: center;\n          text-decoration: none;\n          color: #666;\n          font-weight: 300;\n          font-size: 0.8rem;\n          display: block;\n          padding: 1.25rem;\n          box-sizing: border-box;\n          width: 50%;\n          border-bottom: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a.br {\n            border-right: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a > i {\n            font-size: 2.25rem;\n            display: block;\n            margin: 0 0 0.5rem 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle > .navigation-mobile-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation-mobile-parent > .navigation-mobile.loading > .navigation-mobile-bar {\n      transform: translate3d(0, -130px, 0); }\n    .navigation-mobile-parent > .navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "logo-theme.png";
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(41);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Contact.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Contact.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.contact {\n  text-align: center; }\n  .contact > .contact-social > a {\n    padding: 0.8rem;\n    font-size: 1.4rem;\n    text-decoration: none;\n    opacity: 0.6;\n    color: rgba(33, 33, 33, 0.8);\n    display: inline-block;\n    vertical-align: top;\n    transition: opacity .5s; }\n    .contact > .contact-social > a.contact-resume {\n      border-radius: 5px;\n      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);\n      font-size: 0.7rem;\n      letter-spacing: .1em;\n      text-transform: uppercase;\n      padding: 0.55rem 0.8rem;\n      margin: 0.6rem;\n      background: transparent;\n      border: 1px solid rgba(33, 33, 33, 0.8);\n      font-weight: 700; }\n    .contact > .contact-social > a:hover {\n      opacity: 1; }\n  .contact > .contact-email {\n    display: block;\n    padding: 0.8rem;\n    font-size: 1rem;\n    color: #2ac648;\n    text-decoration: none;\n    transition: opacity 500ms; }\n    .contact > .contact-email:hover {\n      opacity: 0.5; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(43);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background, .lazy-image-loader {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.lazy-image-loader {\n  display: block;\n  white-space: nowrap;\n  font-size: 0; }\n  .lazy-image-loader.loaded {\n    background: transparent;\n    animation: none; }\n\n.lazy-image {\n  opacity: 0;\n  transition: opacity 250ms; }\n  .lazy-image.loaded {\n    opacity: 1; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(45);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(3)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./App.scss", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./App.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\",-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n     ========================================================================== */\n/**\n   * Remove the margin in all browsers (opinionated).\n   */\nbody {\n  margin: 0; }\n\n/**\n   * Add the correct display in IE 9-.\n   */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n   * Correct the font size and margin on `h1` elements within `section` and\n   * `article` contexts in Chrome, Firefox, and Safari.\n   */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in IE.\n   */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n   * Add the correct margin in IE 8.\n   */\nfigure {\n  margin: 1em 40px; }\n\n/**\n   * 1. Add the correct box sizing in Firefox.\n   * 2. Show the overflow in Edge and IE.\n   */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n     ========================================================================== */\n/**\n   * 1. Remove the gray background on active links in IE 10.\n   * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n   */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n   * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n   */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n   * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n   */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n   * Add the correct font weight in Chrome, Edge, and Safari.\n   */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n   * Add the correct font style in Android 4.3-.\n   */\ndfn {\n  font-style: italic; }\n\n/**\n   * Add the correct background and color in IE 9-.\n   */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n   * Add the correct font size in all browsers.\n   */\nsmall {\n  font-size: 80%; }\n\n/**\n   * Prevent `sub` and `sup` elements from affecting the line height in\n   * all browsers.\n   */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n   * Add the correct display in iOS 4-7.\n   */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n   * Remove the border on images inside links in IE 10-.\n   */\nimg {\n  border-style: none; }\n\n/**\n   * Hide the overflow in IE.\n   */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n     ========================================================================== */\n/**\n   * 1. Change the font styles in all browsers (opinionated).\n   * 2. Remove the margin in Firefox and Safari.\n   */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n   * Show the overflow in IE.\n   * 1. Show the overflow in Edge.\n   */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n   * Remove the inheritance of text transform in Edge, Firefox, and IE.\n   * 1. Remove the inheritance of text transform in Firefox.\n   */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n   * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n   *    controls in Android 4.\n   * 2. Correct the inability to style clickable types in iOS and Safari.\n   */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n   * Remove the inner border and padding in Firefox.\n   */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n   * Restore the focus styles unset by the previous rule.\n   */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n   * Correct the padding in Firefox.\n   */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n   * 1. Correct the text wrapping in Edge and IE.\n   * 2. Correct the color inheritance from `fieldset` elements in IE.\n   * 3. Remove the padding so developers are not caught out when they zero out\n   *    `fieldset` elements in all browsers.\n   */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n   * 1. Add the correct display in IE 9-.\n   * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n   */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n   * Remove the default vertical scrollbar in IE.\n   */\ntextarea {\n  overflow: auto; }\n\n/**\n   * 1. Add the correct box sizing in IE 10-.\n   * 2. Remove the padding in IE 10-.\n   */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n   * Correct the cursor style of increment and decrement buttons in Chrome.\n   */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n   * 1. Correct the odd appearance in Chrome and Safari.\n   * 2. Correct the outline style in Safari.\n   */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n   * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n   */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n   * 1. Correct the inability to style clickable types in iOS and Safari.\n   * 2. Change font properties to `inherit` in Safari.\n   */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n     ========================================================================== */\n/*\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in Edge, IE, and Firefox.\n   */\ndetails,\nmenu {\n  display: block; }\n\n/*\n   * Add the correct display in all browsers.\n   */\nsummary {\n  display: list-item; }\n\n/* Scripting\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\ncanvas {\n  display: inline-block; }\n\n/**\n   * Add the correct display in IE.\n   */\ntemplate {\n  display: none; }\n\n/* Hidden\n     ========================================================================== */\n/**\n   * Add the correct display in IE 10-.\n   */\n[hidden] {\n  display: none; }\n\nhtml {\n  height: 100%;\n  touch-action: manipulation; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n\n.nav-spacer {\n  height: 72px; }\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Check if `obj` is an object.
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-function isObject(obj) {
-  return null !== obj && 'object' === typeof obj;
-}
-
-module.exports = isObject;
-
-
-/***/ }),
-/* 50 */,
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/**
- * Root reference for iframes.
- */
-
-var root;
-if (typeof window !== 'undefined') { // Browser window
-  root = window;
-} else if (typeof self !== 'undefined') { // Web Worker
-  root = self;
-} else { // Other environments
-  console.warn("Using browser-only version of superagent in non-browser environment");
-  root = this;
-}
-
-var Emitter = __webpack_require__(53);
-var RequestBase = __webpack_require__(54);
-var isObject = __webpack_require__(49);
-var ResponseBase = __webpack_require__(55);
-var Agent = __webpack_require__(57);
-
-/**
- * Noop.
- */
-
-function noop(){};
-
-/**
- * Expose `request`.
- */
-
-var request = exports = module.exports = function(method, url) {
-  // callback
-  if ('function' == typeof url) {
-    return new exports.Request('GET', method).end(url);
-  }
-
-  // url first
-  if (1 == arguments.length) {
-    return new exports.Request('GET', method);
-  }
-
-  return new exports.Request(method, url);
-}
-
-exports.Request = Request;
-
-/**
- * Determine XHR.
- */
-
-request.getXHR = function () {
-  if (root.XMLHttpRequest
-      && (!root.location || 'file:' != root.location.protocol
-          || !root.ActiveXObject)) {
-    return new XMLHttpRequest;
-  } else {
-    try { return new ActiveXObject('Microsoft.XMLHTTP'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP.6.0'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP.3.0'); } catch(e) {}
-    try { return new ActiveXObject('Msxml2.XMLHTTP'); } catch(e) {}
-  }
-  throw Error("Browser-only version of superagent could not find XHR");
-};
-
-/**
- * Removes leading and trailing whitespace, added to support IE.
- *
- * @param {String} s
- * @return {String}
- * @api private
- */
-
-var trim = ''.trim
-  ? function(s) { return s.trim(); }
-  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
-
-/**
- * Serialize the given `obj`.
- *
- * @param {Object} obj
- * @return {String}
- * @api private
- */
-
-function serialize(obj) {
-  if (!isObject(obj)) return obj;
-  var pairs = [];
-  for (var key in obj) {
-    pushEncodedKeyValuePair(pairs, key, obj[key]);
-  }
-  return pairs.join('&');
-}
-
-/**
- * Helps 'serialize' with serializing arrays.
- * Mutates the pairs array.
- *
- * @param {Array} pairs
- * @param {String} key
- * @param {Mixed} val
- */
-
-function pushEncodedKeyValuePair(pairs, key, val) {
-  if (val != null) {
-    if (Array.isArray(val)) {
-      val.forEach(function(v) {
-        pushEncodedKeyValuePair(pairs, key, v);
-      });
-    } else if (isObject(val)) {
-      for(var subkey in val) {
-        pushEncodedKeyValuePair(pairs, key + '[' + subkey + ']', val[subkey]);
-      }
-    } else {
-      pairs.push(encodeURIComponent(key)
-        + '=' + encodeURIComponent(val));
-    }
-  } else if (val === null) {
-    pairs.push(encodeURIComponent(key));
-  }
-}
-
-/**
- * Expose serialization method.
- */
-
-request.serializeObject = serialize;
-
-/**
-  * Parse the given x-www-form-urlencoded `str`.
-  *
-  * @param {String} str
-  * @return {Object}
-  * @api private
-  */
-
-function parseString(str) {
-  var obj = {};
-  var pairs = str.split('&');
-  var pair;
-  var pos;
-
-  for (var i = 0, len = pairs.length; i < len; ++i) {
-    pair = pairs[i];
-    pos = pair.indexOf('=');
-    if (pos == -1) {
-      obj[decodeURIComponent(pair)] = '';
-    } else {
-      obj[decodeURIComponent(pair.slice(0, pos))] =
-        decodeURIComponent(pair.slice(pos + 1));
-    }
-  }
-
-  return obj;
-}
-
-/**
- * Expose parser.
- */
-
-request.parseString = parseString;
-
-/**
- * Default MIME type map.
- *
- *     superagent.types.xml = 'application/xml';
- *
- */
-
-request.types = {
-  html: 'text/html',
-  json: 'application/json',
-  xml: 'text/xml',
-  urlencoded: 'application/x-www-form-urlencoded',
-  'form': 'application/x-www-form-urlencoded',
-  'form-data': 'application/x-www-form-urlencoded'
-};
-
-/**
- * Default serialization map.
- *
- *     superagent.serialize['application/xml'] = function(obj){
- *       return 'generated xml here';
- *     };
- *
- */
-
-request.serialize = {
-  'application/x-www-form-urlencoded': serialize,
-  'application/json': JSON.stringify,
-};
-
-/**
-  * Default parsers.
-  *
-  *     superagent.parse['application/xml'] = function(str){
-  *       return { object parsed from str };
-  *     };
-  *
-  */
-
-request.parse = {
-  'application/x-www-form-urlencoded': parseString,
-  'application/json': JSON.parse,
-};
-
-/**
- * Parse the given header `str` into
- * an object containing the mapped fields.
- *
- * @param {String} str
- * @return {Object}
- * @api private
- */
-
-function parseHeader(str) {
-  var lines = str.split(/\r?\n/);
-  var fields = {};
-  var index;
-  var line;
-  var field;
-  var val;
-
-  for (var i = 0, len = lines.length; i < len; ++i) {
-    line = lines[i];
-    index = line.indexOf(':');
-    if (index === -1) { // could be empty line, just skip it
-      continue;
-    }
-    field = line.slice(0, index).toLowerCase();
-    val = trim(line.slice(index + 1));
-    fields[field] = val;
-  }
-
-  return fields;
-}
-
-/**
- * Check if `mime` is json or has +json structured syntax suffix.
- *
- * @param {String} mime
- * @return {Boolean}
- * @api private
- */
-
-function isJSON(mime) {
-  // should match /json or +json
-  // but not /json-seq
-  return /[\/+]json($|[^-\w])/.test(mime);
-}
-
-/**
- * Initialize a new `Response` with the given `xhr`.
- *
- *  - set flags (.ok, .error, etc)
- *  - parse header
- *
- * Examples:
- *
- *  Aliasing `superagent` as `request` is nice:
- *
- *      request = superagent;
- *
- *  We can use the promise-like API, or pass callbacks:
- *
- *      request.get('/').end(function(res){});
- *      request.get('/', function(res){});
- *
- *  Sending data can be chained:
- *
- *      request
- *        .post('/user')
- *        .send({ name: 'tj' })
- *        .end(function(res){});
- *
- *  Or passed to `.send()`:
- *
- *      request
- *        .post('/user')
- *        .send({ name: 'tj' }, function(res){});
- *
- *  Or passed to `.post()`:
- *
- *      request
- *        .post('/user', { name: 'tj' })
- *        .end(function(res){});
- *
- * Or further reduced to a single call for simple cases:
- *
- *      request
- *        .post('/user', { name: 'tj' }, function(res){});
- *
- * @param {XMLHTTPRequest} xhr
- * @param {Object} options
- * @api private
- */
-
-function Response(req) {
-  this.req = req;
-  this.xhr = this.req.xhr;
-  // responseText is accessible only if responseType is '' or 'text' and on older browsers
-  this.text = ((this.req.method !='HEAD' && (this.xhr.responseType === '' || this.xhr.responseType === 'text')) || typeof this.xhr.responseType === 'undefined')
-     ? this.xhr.responseText
-     : null;
-  this.statusText = this.req.xhr.statusText;
-  var status = this.xhr.status;
-  // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
-  if (status === 1223) {
-    status = 204;
-  }
-  this._setStatusProperties(status);
-  this.header = this.headers = parseHeader(this.xhr.getAllResponseHeaders());
-  // getAllResponseHeaders sometimes falsely returns "" for CORS requests, but
-  // getResponseHeader still works. so we get content-type even if getting
-  // other headers fails.
-  this.header['content-type'] = this.xhr.getResponseHeader('content-type');
-  this._setHeaderProperties(this.header);
-
-  if (null === this.text && req._responseType) {
-    this.body = this.xhr.response;
-  } else {
-    this.body = this.req.method != 'HEAD'
-      ? this._parseBody(this.text ? this.text : this.xhr.response)
-      : null;
-  }
-}
-
-ResponseBase(Response.prototype);
-
-/**
- * Parse the given body `str`.
- *
- * Used for auto-parsing of bodies. Parsers
- * are defined on the `superagent.parse` object.
- *
- * @param {String} str
- * @return {Mixed}
- * @api private
- */
-
-Response.prototype._parseBody = function(str) {
-  var parse = request.parse[this.type];
-  if (this.req._parser) {
-    return this.req._parser(this, str);
-  }
-  if (!parse && isJSON(this.type)) {
-    parse = request.parse['application/json'];
-  }
-  return parse && str && (str.length || str instanceof Object)
-    ? parse(str)
-    : null;
-};
-
-/**
- * Return an `Error` representative of this response.
- *
- * @return {Error}
- * @api public
- */
-
-Response.prototype.toError = function(){
-  var req = this.req;
-  var method = req.method;
-  var url = req.url;
-
-  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
-  var err = new Error(msg);
-  err.status = this.status;
-  err.method = method;
-  err.url = url;
-
-  return err;
-};
-
-/**
- * Expose `Response`.
- */
-
-request.Response = Response;
-
-/**
- * Initialize a new `Request` with the given `method` and `url`.
- *
- * @param {String} method
- * @param {String} url
- * @api public
- */
-
-function Request(method, url) {
-  var self = this;
-  this._query = this._query || [];
-  this.method = method;
-  this.url = url;
-  this.header = {}; // preserves header name case
-  this._header = {}; // coerces header names to lowercase
-  this.on('end', function(){
-    var err = null;
-    var res = null;
-
-    try {
-      res = new Response(self);
-    } catch(e) {
-      err = new Error('Parser is unable to parse the response');
-      err.parse = true;
-      err.original = e;
-      // issue #675: return the raw response if the response parsing fails
-      if (self.xhr) {
-        // ie9 doesn't have 'response' property
-        err.rawResponse = typeof self.xhr.responseType == 'undefined' ? self.xhr.responseText : self.xhr.response;
-        // issue #876: return the http status code if the response parsing fails
-        err.status = self.xhr.status ? self.xhr.status : null;
-        err.statusCode = err.status; // backwards-compat only
-      } else {
-        err.rawResponse = null;
-        err.status = null;
-      }
-
-      return self.callback(err);
-    }
-
-    self.emit('response', res);
-
-    var new_err;
-    try {
-      if (!self._isResponseOK(res)) {
-        new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
-      }
-    } catch(custom_err) {
-      new_err = custom_err; // ok() callback can throw
-    }
-
-    // #1000 don't catch errors from the callback to avoid double calling it
-    if (new_err) {
-      new_err.original = err;
-      new_err.response = res;
-      new_err.status = res.status;
-      self.callback(new_err, res);
-    } else {
-      self.callback(null, res);
-    }
-  });
-}
-
-/**
- * Mixin `Emitter` and `RequestBase`.
- */
-
-Emitter(Request.prototype);
-RequestBase(Request.prototype);
-
-/**
- * Set Content-Type to `type`, mapping values from `request.types`.
- *
- * Examples:
- *
- *      superagent.types.xml = 'application/xml';
- *
- *      request.post('/')
- *        .type('xml')
- *        .send(xmlstring)
- *        .end(callback);
- *
- *      request.post('/')
- *        .type('application/xml')
- *        .send(xmlstring)
- *        .end(callback);
- *
- * @param {String} type
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.type = function(type){
-  this.set('Content-Type', request.types[type] || type);
-  return this;
-};
-
-/**
- * Set Accept to `type`, mapping values from `request.types`.
- *
- * Examples:
- *
- *      superagent.types.json = 'application/json';
- *
- *      request.get('/agent')
- *        .accept('json')
- *        .end(callback);
- *
- *      request.get('/agent')
- *        .accept('application/json')
- *        .end(callback);
- *
- * @param {String} accept
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.accept = function(type){
-  this.set('Accept', request.types[type] || type);
-  return this;
-};
-
-/**
- * Set Authorization field value with `user` and `pass`.
- *
- * @param {String} user
- * @param {String} [pass] optional in case of using 'bearer' as type
- * @param {Object} options with 'type' property 'auto', 'basic' or 'bearer' (default 'basic')
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.auth = function(user, pass, options){
-  if (1 === arguments.length) pass = '';
-  if (typeof pass === 'object' && pass !== null) { // pass is optional and can be replaced with options
-    options = pass;
-    pass = '';
-  }
-  if (!options) {
-    options = {
-      type: 'function' === typeof btoa ? 'basic' : 'auto',
-    };
-  }
-
-  var encoder = function(string) {
-    if ('function' === typeof btoa) {
-      return btoa(string);
-    }
-    throw new Error('Cannot use basic auth, btoa is not a function');
-  };
-
-  return this._auth(user, pass, options, encoder);
-};
-
-/**
- * Add query-string `val`.
- *
- * Examples:
- *
- *   request.get('/shoes')
- *     .query('size=10')
- *     .query({ color: 'blue' })
- *
- * @param {Object|String} val
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.query = function(val){
-  if ('string' != typeof val) val = serialize(val);
-  if (val) this._query.push(val);
-  return this;
-};
-
-/**
- * Queue the given `file` as an attachment to the specified `field`,
- * with optional `options` (or filename).
- *
- * ``` js
- * request.post('/upload')
- *   .attach('content', new Blob(['<a id="a"><b id="b">hey!</b></a>'], { type: "text/html"}))
- *   .end(callback);
- * ```
- *
- * @param {String} field
- * @param {Blob|File} file
- * @param {String|Object} options
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.attach = function(field, file, options){
-  if (file) {
-    if (this._data) {
-      throw Error("superagent can't mix .send() and .attach()");
-    }
-
-    this._getFormData().append(field, file, options || file.name);
-  }
-  return this;
-};
-
-Request.prototype._getFormData = function(){
-  if (!this._formData) {
-    this._formData = new root.FormData();
-  }
-  return this._formData;
-};
-
-/**
- * Invoke the callback with `err` and `res`
- * and handle arity check.
- *
- * @param {Error} err
- * @param {Response} res
- * @api private
- */
-
-Request.prototype.callback = function(err, res){
-  if (this._shouldRetry(err, res)) {
-    return this._retry();
-  }
-
-  var fn = this._callback;
-  this.clearTimeout();
-
-  if (err) {
-    if (this._maxRetries) err.retries = this._retries - 1;
-    this.emit('error', err);
-  }
-
-  fn(err, res);
-};
-
-/**
- * Invoke callback with x-domain error.
- *
- * @api private
- */
-
-Request.prototype.crossDomainError = function(){
-  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
-  err.crossDomain = true;
-
-  err.status = this.status;
-  err.method = this.method;
-  err.url = this.url;
-
-  this.callback(err);
-};
-
-// This only warns, because the request is still likely to work
-Request.prototype.buffer = Request.prototype.ca = Request.prototype.agent = function(){
-  console.warn("This is not supported in browser version of superagent");
-  return this;
-};
-
-// This throws, because it can't send/receive data as expected
-Request.prototype.pipe = Request.prototype.write = function(){
-  throw Error("Streaming is not supported in browser version of superagent");
-};
-
-/**
- * Check if `obj` is a host object,
- * we don't want to serialize these :)
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-Request.prototype._isHost = function _isHost(obj) {
-  // Native objects stringify to [object File], [object Blob], [object FormData], etc.
-  return obj && 'object' === typeof obj && !Array.isArray(obj) && Object.prototype.toString.call(obj) !== '[object Object]';
-}
-
-/**
- * Initiate request, invoking callback `fn(res)`
- * with an instanceof `Response`.
- *
- * @param {Function} fn
- * @return {Request} for chaining
- * @api public
- */
-
-Request.prototype.end = function(fn){
-  if (this._endCalled) {
-    console.warn("Warning: .end() was called twice. This is not supported in superagent");
-  }
-  this._endCalled = true;
-
-  // store callback
-  this._callback = fn || noop;
-
-  // querystring
-  this._finalizeQueryString();
-
-  return this._end();
-};
-
-Request.prototype._end = function() {
-  var self = this;
-  var xhr = (this.xhr = request.getXHR());
-  var data = this._formData || this._data;
-
-  this._setTimeouts();
-
-  // state change
-  xhr.onreadystatechange = function(){
-    var readyState = xhr.readyState;
-    if (readyState >= 2 && self._responseTimeoutTimer) {
-      clearTimeout(self._responseTimeoutTimer);
-    }
-    if (4 != readyState) {
-      return;
-    }
-
-    // In IE9, reads to any property (e.g. status) off of an aborted XHR will
-    // result in the error "Could not complete the operation due to error c00c023f"
-    var status;
-    try { status = xhr.status } catch(e) { status = 0; }
-
-    if (!status) {
-      if (self.timedout || self._aborted) return;
-      return self.crossDomainError();
-    }
-    self.emit('end');
-  };
-
-  // progress
-  var handleProgress = function(direction, e) {
-    if (e.total > 0) {
-      e.percent = e.loaded / e.total * 100;
-    }
-    e.direction = direction;
-    self.emit('progress', e);
-  };
-  if (this.hasListeners('progress')) {
-    try {
-      xhr.onprogress = handleProgress.bind(null, 'download');
-      if (xhr.upload) {
-        xhr.upload.onprogress = handleProgress.bind(null, 'upload');
-      }
-    } catch(e) {
-      // Accessing xhr.upload fails in IE from a web worker, so just pretend it doesn't exist.
-      // Reported here:
-      // https://connect.microsoft.com/IE/feedback/details/837245/xmlhttprequest-upload-throws-invalid-argument-when-used-from-web-worker-context
-    }
-  }
-
-  // initiate request
-  try {
-    if (this.username && this.password) {
-      xhr.open(this.method, this.url, true, this.username, this.password);
-    } else {
-      xhr.open(this.method, this.url, true);
-    }
-  } catch (err) {
-    // see #1149
-    return this.callback(err);
-  }
-
-  // CORS
-  if (this._withCredentials) xhr.withCredentials = true;
-
-  // body
-  if (!this._formData && 'GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !this._isHost(data)) {
-    // serialize stuff
-    var contentType = this._header['content-type'];
-    var serialize = this._serializer || request.serialize[contentType ? contentType.split(';')[0] : ''];
-    if (!serialize && isJSON(contentType)) {
-      serialize = request.serialize['application/json'];
-    }
-    if (serialize) data = serialize(data);
-  }
-
-  // set header fields
-  for (var field in this.header) {
-    if (null == this.header[field]) continue;
-
-    if (this.header.hasOwnProperty(field))
-      xhr.setRequestHeader(field, this.header[field]);
-  }
-
-  if (this._responseType) {
-    xhr.responseType = this._responseType;
-  }
-
-  // send stuff
-  this.emit('request', this);
-
-  // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
-  // We need null here if data is undefined
-  xhr.send(typeof data !== 'undefined' ? data : null);
-  return this;
-};
-
-request.agent = function() {
-  return new Agent();
-};
-
-["GET", "POST", "OPTIONS", "PATCH", "PUT", "DELETE"].forEach(function(method) {
-  Agent.prototype[method.toLowerCase()] = function(url, fn) {
-    var req = new request.Request(method, url);
-    this._setDefaults(req);
-    if (fn) {
-      req.end(fn);
-    }
-    return req;
-  };
-});
-
-Agent.prototype.del = Agent.prototype['delete'];
-
-/**
- * GET `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.get = function(url, data, fn) {
-  var req = request('GET', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.query(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * HEAD `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.head = function(url, data, fn) {
-  var req = request('HEAD', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.query(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * OPTIONS query to `url` with optional callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.options = function(url, data, fn) {
-  var req = request('OPTIONS', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * DELETE `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed} [data]
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-function del(url, data, fn) {
-  var req = request('DELETE', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-}
-
-request['del'] = del;
-request['delete'] = del;
-
-/**
- * PATCH `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed} [data]
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.patch = function(url, data, fn) {
-  var req = request('PATCH', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * POST `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed} [data]
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.post = function(url, data, fn) {
-  var req = request('POST', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-/**
- * PUT `url` with optional `data` and callback `fn(res)`.
- *
- * @param {String} url
- * @param {Mixed|Function} [data] or fn
- * @param {Function} [fn]
- * @return {Request}
- * @api public
- */
-
-request.put = function(url, data, fn) {
-  var req = request('PUT', url);
-  if ('function' == typeof data) (fn = data), (data = null);
-  if (data) req.send(data);
-  if (fn) req.end(fn);
-  return req;
-};
-
-
-/***/ }),
-/* 52 */,
-/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -15716,7 +15172,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 54 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15725,7 +15181,7 @@ Emitter.prototype.hasListeners = function(event){
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = __webpack_require__(49);
+var isObject = __webpack_require__(10);
 
 /**
  * Expose `RequestBase`.
@@ -16417,7 +15873,7 @@ RequestBase.prototype._setTimeouts = function() {
 
 
 /***/ }),
-/* 55 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16427,7 +15883,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = __webpack_require__(56);
+var utils = __webpack_require__(40);
 
 /**
  * Expose `ResponseBase`.
@@ -16558,7 +16014,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
 
 
 /***/ }),
-/* 56 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16636,7 +16092,7 @@ exports.cleanHeader = function(header, changesOrigin){
 
 
 /***/ }),
-/* 57 */
+/* 41 */
 /***/ (function(module, exports) {
 
 function Agent() {
@@ -16659,6 +16115,638 @@ Agent.prototype._setDefaults = function(req) {
 };
 
 module.exports = Agent;
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+var App = function (_Component) {
+    _inherits(App, _Component);
+
+    function App() {
+        _classCallCheck(this, App);
+
+        return _possibleConstructorReturn(this, _Component.apply(this, arguments));
+    }
+
+    App.prototype.render = function render() {
+        return Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(2, 'div', 'app-element', [Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__["a" /* default */]), Object(__WEBPACK_IMPORTED_MODULE_4_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1__components_Navigation__["a" /* default */]), this.props.children]);
+    };
+
+    return App;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (App);
+
+/***/ }),
+/* 43 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_inferno_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_inferno_router__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Navigation_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icon__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LazyImage__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_inferno__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+
+
+
+
+
+var NavigationMobile = function (_Component) {
+    _inherits(NavigationMobile, _Component);
+
+    function NavigationMobile(props) {
+        _classCallCheck(this, NavigationMobile);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+        _this.wrapper = null;
+        _this.outerWrapper = null;
+        _this.handle = null;
+        _this.parent = null;
+        _this.background = null;
+        _this.touchStart = 0;
+        _this.touchLast = 0;
+        _this.height = 0;
+        _this.touchLastTime = 0;
+        _this.touchStartTime = 0;
+        _this.touchDelta = 0;
+        _this.velocityLast = 0;
+        _this.touchLastBuffer = 0;
+        _this.top = 0;
+        _this.opened = false;
+        _this.diameter = 75;
+        _this.onResize = function () {
+            _this.setState({ width: window.innerWidth, maxHeight: window.innerHeight - _this.diameter - 20 });
+        };
+        _this.calculateVelocity = function () {
+            var now = new Date().getTime();
+            if (now - _this.touchLastTime > 10) {
+                var velocityNew = _this.touchDelta / (now - _this.touchLastTime);
+                _this.velocityLast = -velocityNew;
+                _this.touchLastTime = now;
+                _this.touchLastBuffer = _this.touchLast;
+            }
+        };
+        _this.dragRender = function () {
+            var y = _this.top + _this.touchLast - _this.touchStart;
+            _this.outerWrapper.style.transform = 'translate3d(0, ' + (y > 0 ? Math.log((y + 100) / 100) * 100 : y) + 'px, 0)';
+            _this.background.style.opacity = _this.opened ? '1' : '' + Math.min(1, Math.max(0, 1 - -y / (_this.height - 300)));
+        };
+        _this.dragStart = function (e) {
+            if (e.touches) {
+                _this.touchStart = e.touches[0].clientY;
+                e.preventDefault();
+            }
+            _this.outerWrapper.style.transition = 'none';
+            _this.height = _this.wrapper.getBoundingClientRect().height;
+            _this.top = _this.opened ? 0 : -_this.wrapper.getBoundingClientRect().height + 300;
+            _this.touchStartTime = new Date().getTime();
+            _this.parent.style.height = '100%';
+            _this.background.style.display = 'block';
+            _this.background.style.transition = 'no';
+        };
+        _this.dragMove = function (e) {
+            _this.touchLast = e.touches[0].clientY;
+            _this.touchDelta = _this.touchLastBuffer - e.touches[0].clientY;
+            if (_this.touchLast - _this.touchStart > 5) {
+                e.preventDefault();
+            }
+            _this.calculateVelocity();
+            window.requestAnimationFrame(_this.dragRender);
+        };
+        _this.dragComplete = function () {
+            var delta = _this.touchLast - _this.touchStart;
+            _this.touchStart = -1;
+            _this.touchLast = -1;
+            var navHeight = _this.wrapper.getBoundingClientRect().height - 300;
+            var y = _this.top + delta;
+            var percent = (y + navHeight) / navHeight;
+            if (delta < 1 && new Date().getTime() - _this.touchStartTime < 3000) {
+                _this.opened = !_this.opened;
+                _this.velocityLast = 0;
+            } else {
+                if (_this.opened && _this.velocityLast < -0.5) {
+                    _this.opened = false;
+                    _this.top = -navHeight;
+                } else if (!_this.opened && _this.velocityLast > 0.5) {
+                    _this.opened = true;
+                    _this.top = 0;
+                }
+            }
+            _this.top = _this.opened ? 0 : -navHeight;
+            var animTime = Math.abs(percent) * 100 + 200;
+            var slope = Math.abs(_this.velocityLast) * (0.1 * animTime) / Math.abs(y - (_this.top + navHeight));
+            _this.outerWrapper.style.transition = 'all ' + animTime + 'ms cubic-bezier(0.1,' + (isNaN(slope) ? 0 : slope) + ',0.1,1)';
+            _this.background.style.transition = 'opacity ' + animTime + 'ms';
+            if (!_this.opened) {
+                setTimeout(function () {
+                    _this.background.style.display = 'none';
+                    _this.parent.style.height = null;
+                }, animTime);
+            }
+            window.requestAnimationFrame(_this.dragRender);
+        };
+        _this.onClick = function (e) {
+            _this.touchStart = 0;
+            _this.touchLast = 0;
+            _this.velocityLast = 0;
+            _this.touchStartTime = new Date().getTime();
+            _this.dragStart(e);
+            _this.dragComplete();
+        };
+        _this.dragEnd = function (e) {
+            e.preventDefault();
+            _this.calculateVelocity();
+            _this.dragComplete();
+        };
+        _this.dragCancel = _this.dragEnd;
+        _this.attachHandle = function (el) {
+            if (_this.handle == null) {
+                _this.handle = el;
+                el.addEventListener('touchstart', _this.dragStart, { passive: false });
+                el.addEventListener('touchend', _this.dragEnd, { passive: false });
+                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
+                el.addEventListener('touchmove', _this.dragMove, { passive: false });
+            }
+        };
+        _this.attachWrapper = function (el) {
+            if (_this.wrapper == null) {
+                _this.wrapper = el;
+            }
+        };
+        _this.attachOuterWrapper = function (el) {
+            if (_this.outerWrapper == null) {
+                _this.outerWrapper = el;
+            }
+        };
+        _this.attachParent = function (el) {
+            if (_this.parent == null) {
+                _this.parent = el;
+            }
+        };
+        _this.attachBackground = function (el) {
+            if (_this.background == null) {
+                _this.background = el;
+                el.addEventListener('touchstart', _this.dragStart, { passive: false });
+                el.addEventListener('touchend', _this.dragEnd, { passive: false });
+                el.addEventListener('touchcancel', _this.dragCancel, { passive: false });
+                el.addEventListener('touchmove', _this.dragMove, { passive: false });
+            }
+        };
+        _this.onScroll = function (e) {
+            if (window.scrollY <= 0) {
+                if (_this.state.scrolledTop === false) {
+                    _this.setState({ scrolledTop: true });
+                }
+            } else {
+                if (_this.state.scrolledTop) {
+                    _this.setState({ scrolledTop: false });
+                }
+            }
+        };
+        _this.state = {
+            active: false,
+            maxHeight: 10000,
+            scrolledTop: true,
+            width: window.innerWidth
+        };
+        return _this;
+    }
+
+    NavigationMobile.prototype.componentWillUnmount = function componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll);
+        window.removeEventListener('resize', this.onResize);
+    };
+
+    NavigationMobile.prototype.componentDidMount = function componentDidMount() {
+        window.addEventListener('resize', this.onResize);
+        window.addEventListener('scroll', this.onScroll);
+        this.onResize();
+    };
+
+    NavigationMobile.prototype.render = function render() {
+        var state = this.state;
+        var diameter = this.diameter;
+        var radius_squared = Math.pow(diameter / 2, 2);
+        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-parent', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile' + (state.active ? ' active' : '') + (this.props.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-main', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/',
+            'className': 'br',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].HOME
+            }), 'Home']
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/about/',
+            'className': '',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].ABOUT
+            }), 'About']
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/projects/',
+            'className': 'br',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].PALETTE
+            }), 'Projects']
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'onClick': this.onClick,
+            'to': '/blog/',
+            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].OPEN_BOOK
+            }), 'Blog']
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-contact', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'h3', null, 'Get in Touch'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__Contact__["a" /* default */])])], {
+            'style': { maxHeight: state.maxHeight }
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(128, 'svg', 'navigation-mobile-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+            'in': 'SourceAlpha',
+            'stdDeviation': '5'
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feOffset', null, null, {
+            'dx': '0',
+            'dy': '4',
+            'result': 'offsetblur'
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+            'type': 'linear',
+            'slope': '0.075'
+        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+            'in': 'SourceGraphic'
+        })])], {
+            'xmlns': 'http://www.w3.org/2000/svg',
+            'id': 'dropshadow',
+            'height': '130%'
+        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'path', null, null, {
+            'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
+            'stroke-width': 0,
+            'fill': 'white'
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'circle', null, null, {
+            'cx': state.width / 2,
+            'cy': diameter * 0.33,
+            'r': diameter / 2,
+            'fill': 'white'
+        })], {
+            'filter': 'url(#dropshadow)'
+        })], {
+            'width': state.width,
+            'height': diameter * 0.95
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__LazyImage__["a" /* default */], null, null, {
+            'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a,
+            'style': { height: diameter * 0.6 },
+            'className': 'navigation-mobile-bar-handle-logo'
+        })], {
+            'onClick': this.onClick
+        }, null, this.attachHandle)], null, null, this.attachWrapper), null, null, this.attachOuterWrapper)], null, null, this.attachParent);
+    };
+
+    return NavigationMobile;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+var NavigationDesktop = function (_Component2) {
+    _inherits(NavigationDesktop, _Component2);
+
+    function NavigationDesktop(props) {
+        _classCallCheck(this, NavigationDesktop);
+
+        var _this2 = _possibleConstructorReturn(this, _Component2.call(this, props));
+
+        _this2.lastScroll = 0;
+        _this2.onScroll = function (e) {
+            var doc = document.documentElement;
+            var scrollY = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
+            var diff = _this2.lastScroll - scrollY;
+            _this2.lastScroll = scrollY;
+            if (_this2.state.scrollTop === false && scrollY <= 0) {
+                _this2.setState({ scrollTop: true });
+            } else if (_this2.state.scrollTop === true && scrollY > 0) {
+                _this2.setState({ scrollTop: false });
+            }
+            if (_this2.state.scrollHidden === false && diff < 0 && scrollY > 0) {
+                _this2.setState({ scrollHidden: true });
+            } else if (_this2.state.scrollHidden === true && diff > 0) {
+                _this2.setState({ scrollHidden: false });
+            }
+        };
+        _this2.state = {
+            scrollHidden: false,
+            scrollTop: true
+        };
+        return _this2;
+    }
+
+    NavigationDesktop.prototype.componentDidMount = function componentDidMount() {
+        window.addEventListener('scroll', this.onScroll);
+    };
+
+    NavigationDesktop.prototype.componentWillUnmount = function componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll);
+    };
+
+    NavigationDesktop.prototype.render = function render() {
+        var _state = this.state,
+            scrollTop = _state.scrollTop,
+            scrollHidden = _state.scrollHidden;
+
+        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (scrollTop ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : ''), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-inner', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-left', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'to': '/about/',
+            'style': 'transition-delay:0.14s',
+            children: 'ABOUT'
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'to': '/projects/',
+            'style': 'transition-delay:0.07s',
+            children: 'PROJECTS'
+        })]), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'to': '/',
+            'className': 'navigation-desktop-home',
+            children: Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__LazyImage__["a" /* default */], null, null, {
+                'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a
+            })
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-right', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            'to': '/blog/',
+            'class': 'blog-toggle',
+            'style': 'transition-delay:0.14s',
+            children: 'BLOG'
+        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'a', null, 'CONTACT', {
+            'href': 'javascript:void(0);',
+            'style': 'transition-delay:0.07s'
+        })])]));
+    };
+
+    return NavigationDesktop;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+var Navigation = function (_Component3) {
+    _inherits(Navigation, _Component3);
+
+    function Navigation() {
+        _classCallCheck(this, Navigation);
+
+        var _this3 = _possibleConstructorReturn(this, _Component3.apply(this, arguments));
+
+        _this3.onResize = function () {
+            _this3.forceUpdate();
+        };
+        _this3.onLoadingStateChange = function (isLoading) {
+            if (isLoading === false) {
+                __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].removeUpdateListener(_this3.onLoadingStateChange);
+            }
+            Navigation.loading = isLoading;
+            _this3.forceUpdate();
+        };
+        return _this3;
+    }
+
+    Navigation.prototype.componentDidMount = function componentDidMount() {
+        window.addEventListener('resize', this.onResize);
+        __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
+        Navigation.loading = __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].isLoading;
+        this.forceUpdate();
+    };
+
+    Navigation.prototype.componentWillUnmount = function componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+    };
+
+    Navigation.prototype.render = function render() {
+        return window.innerWidth < 750 ? Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, NavigationMobile, null, null, {
+            'loading': Navigation.loading
+        }) : Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, NavigationDesktop, null, null, {
+            'loading': Navigation.loading
+        });
+    };
+
+    return Navigation;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (Navigation);
+
+Navigation.loading = true;
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(45);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Navigation.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.navigation-desktop {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  box-sizing: border-box;\n  background: #FFF;\n  padding: 10px 0px;\n  z-index: 99;\n  opacity: 0;\n  height: 88px;\n  margin-right: 16px;\n  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);\n  transition: opacity 1s ease-out, transform 300ms ease, box-shadow 300ms ease, background 300ms ease; }\n  .navigation-desktop.scroll-hidden {\n    transform: translate3d(0, -100%, 0) !important;\n    opacity: 0; }\n  .navigation-desktop.top {\n    box-shadow: none; }\n  .navigation-desktop > .navigation-desktop-inner {\n    position: relative;\n    text-align: center; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-left {\n      right: 50%;\n      position: absolute;\n      margin-right: 56px;\n      top: 0px; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-right {\n      top: 0px;\n      left: 50%;\n      position: absolute;\n      margin-left: 56px; }\n    .navigation-desktop > .navigation-desktop-inner a {\n      color: #BBB;\n      display: inline-block;\n      box-sizing: border-box;\n      font-weight: 400;\n      font-size: 14px;\n      letter-spacing: 5px;\n      line-height: 14px;\n      text-decoration: none;\n      transition: all 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      transform: translate3d(0, -100%, 0);\n      padding: 26px; }\n      .navigation-desktop > .navigation-desktop-inner a:hover, .navigation-desktop > .navigation-desktop-inner a.active {\n        color: #2ac648; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home {\n      transform: translate3d(0, -100%, 0);\n      transition: 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      margin: 4px;\n      padding: 0px;\n      height: 56px;\n      width: 56px; }\n      .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home img {\n        height: 64px;\n        width: 64px;\n        margin-top: -4px;\n        margin-left: -4px; }\n  .navigation-desktop.loaded {\n    opacity: 1; }\n    .navigation-desktop.loaded > .navigation-desktop-inner > .navigation-desktop-home, .navigation-desktop.loaded > .navigation-desktop-inner a {\n      transform: translate3d(0, 0, 0); }\n\n.navigation-mobile-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-mobile-parent > .navigation-mobile-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-mobile-parent > .navigation-mobile {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    transform: translate3d(0, -100%, 0); }\n    .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative;\n      transition: transform 500ms;\n      transform: translate3d(0, 0, 0); }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar h1 {\n        margin: 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main {\n        display: flex;\n        overflow-y: auto;\n        flex-flow: row wrap; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact {\n          padding: 0.5rem;\n          flex: 1 auto; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3 {\n            text-align: center;\n            color: #AAA;\n            font-weight: 300;\n            font-size: 0.8rem; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n          text-align: center;\n          text-decoration: none;\n          color: #666;\n          font-weight: 300;\n          font-size: 0.8rem;\n          display: block;\n          padding: 1.25rem;\n          box-sizing: border-box;\n          width: 50%;\n          border-bottom: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a.br {\n            border-right: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a > i {\n            font-size: 2.25rem;\n            display: block;\n            margin: 0 0 0.5rem 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle > .navigation-mobile-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation-mobile-parent > .navigation-mobile.loading > .navigation-mobile-bar {\n      transform: translate3d(0, -130px, 0); }\n    .navigation-mobile-parent > .navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n\n/*body.dark-top {/\n    .navigation-desktop.top {\n        -webkit-backdrop-filter: blur(5px);\n        background: rgba(0, 0, 0, 0.75);\n        border-top: 2px solid $theme;\n        >.navigation-desktop-inner {\n            >.navigation-desktop-home {\n                border-radius: 100%;\n                background: #FFF;\n                padding: 16px 8px 16px 19px;\n                height: 94px;\n                width: 94px;\n                margin: -9px -6px -9px -14px;\n                box-shadow: 0px 0px 20px rgba(0,0,0,0.05);\n            }\n            a{\n                color: rgba(255, 255, 255, 0.75);\n                &:hover, &.active {\n                    color: rgba(255, 255, 255 , 1);\n                }\n            }\n        }\n    }\n}*/\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "logo-theme.png";
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(48);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Contact.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./Contact.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.contact {\n  text-align: center; }\n  .contact > .contact-social > a {\n    padding: 0.8rem;\n    font-size: 1.4rem;\n    text-decoration: none;\n    opacity: 0.6;\n    color: rgba(33, 33, 33, 0.8);\n    display: inline-block;\n    vertical-align: top;\n    transition: opacity .5s; }\n    .contact > .contact-social > a.contact-resume {\n      border-radius: 5px;\n      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);\n      font-size: 0.7rem;\n      letter-spacing: .1em;\n      text-transform: uppercase;\n      padding: 0.55rem 0.8rem;\n      margin: 0.6rem;\n      background: transparent;\n      border: 1px solid rgba(33, 33, 33, 0.8);\n      font-weight: 700; }\n    .contact > .contact-social > a:hover {\n      opacity: 1; }\n  .contact > .contact-email {\n    display: block;\n    padding: 0.8rem;\n    font-size: 1rem;\n    color: #2ac648;\n    text-decoration: none;\n    transition: opacity 500ms; }\n    .contact > .contact-email:hover {\n      opacity: 0.5; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(50);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/lib/loader.js!./LazyImage.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background, .lazy-image-loader {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.lazy-image-loader {\n  display: block;\n  white-space: nowrap;\n  font-size: 0; }\n  .lazy-image-loader.loaded {\n    background: transparent;\n    animation: none; }\n\n.lazy-image {\n  opacity: 0;\n  transition: opacity 250ms; }\n  .lazy-image.loaded {\n    opacity: 1; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(52);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(3)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./App.scss", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/sass-loader/lib/loader.js!./App.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, ".body-font, body {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */\n/* Document\n   ========================================================================== */\n/**\n * 1. Correct the line height in all browsers.\n * 2. Prevent adjustments of font size after orientation changes in\n *    IE on Windows Phone and in iOS.\n */\nhtml {\n  line-height: 1.15;\n  /* 1 */\n  -ms-text-size-adjust: 100%;\n  /* 2 */\n  -webkit-text-size-adjust: 100%;\n  /* 2 */ }\n\n/* Sections\n     ========================================================================== */\n/**\n   * Remove the margin in all browsers (opinionated).\n   */\nbody {\n  margin: 0; }\n\n/**\n   * Add the correct display in IE 9-.\n   */\narticle,\naside,\nfooter,\nheader,\nnav,\nsection {\n  display: block; }\n\n/**\n   * Correct the font size and margin on `h1` elements within `section` and\n   * `article` contexts in Chrome, Firefox, and Safari.\n   */\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\n/* Grouping content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in IE.\n   */\nfigcaption,\nfigure,\nmain {\n  /* 1 */\n  display: block; }\n\n/**\n   * Add the correct margin in IE 8.\n   */\nfigure {\n  margin: 1em 40px; }\n\n/**\n   * 1. Add the correct box sizing in Firefox.\n   * 2. Show the overflow in Edge and IE.\n   */\nhr {\n  box-sizing: content-box;\n  /* 1 */\n  height: 0;\n  /* 1 */\n  overflow: visible;\n  /* 2 */ }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\npre {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/* Text-level semantics\n     ========================================================================== */\n/**\n   * 1. Remove the gray background on active links in IE 10.\n   * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n   */\na {\n  background-color: transparent;\n  /* 1 */\n  -webkit-text-decoration-skip: objects;\n  /* 2 */ }\n\n/**\n   * 1. Remove the bottom border in Chrome 57- and Firefox 39-.\n   * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n   */\nabbr[title] {\n  border-bottom: none;\n  /* 1 */\n  text-decoration: underline;\n  /* 2 */\n  text-decoration: underline dotted;\n  /* 2 */ }\n\n/**\n   * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n   */\nb,\nstrong {\n  font-weight: inherit; }\n\n/**\n   * Add the correct font weight in Chrome, Edge, and Safari.\n   */\nb,\nstrong {\n  font-weight: bolder; }\n\n/**\n   * 1. Correct the inheritance and scaling of font size in all browsers.\n   * 2. Correct the odd `em` font sizing in all browsers.\n   */\ncode,\nkbd,\nsamp {\n  font-family: monospace, monospace;\n  /* 1 */\n  font-size: 1em;\n  /* 2 */ }\n\n/**\n   * Add the correct font style in Android 4.3-.\n   */\ndfn {\n  font-style: italic; }\n\n/**\n   * Add the correct background and color in IE 9-.\n   */\nmark {\n  background-color: #ff0;\n  color: #000; }\n\n/**\n   * Add the correct font size in all browsers.\n   */\nsmall {\n  font-size: 80%; }\n\n/**\n   * Prevent `sub` and `sup` elements from affecting the line height in\n   * all browsers.\n   */\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsub {\n  bottom: -0.25em; }\n\nsup {\n  top: -0.5em; }\n\n/* Embedded content\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\naudio,\nvideo {\n  display: inline-block; }\n\n/**\n   * Add the correct display in iOS 4-7.\n   */\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n/**\n   * Remove the border on images inside links in IE 10-.\n   */\nimg {\n  border-style: none; }\n\n/**\n   * Hide the overflow in IE.\n   */\nsvg:not(:root) {\n  overflow: hidden; }\n\n/* Forms\n     ========================================================================== */\n/**\n   * 1. Change the font styles in all browsers (opinionated).\n   * 2. Remove the margin in Firefox and Safari.\n   */\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  font-family: sans-serif;\n  /* 1 */\n  font-size: 100%;\n  /* 1 */\n  line-height: 1.15;\n  /* 1 */\n  margin: 0;\n  /* 2 */ }\n\n/**\n   * Show the overflow in IE.\n   * 1. Show the overflow in Edge.\n   */\nbutton,\ninput {\n  /* 1 */\n  overflow: visible; }\n\n/**\n   * Remove the inheritance of text transform in Edge, Firefox, and IE.\n   * 1. Remove the inheritance of text transform in Firefox.\n   */\nbutton,\nselect {\n  /* 1 */\n  text-transform: none; }\n\n/**\n   * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n   *    controls in Android 4.\n   * 2. Correct the inability to style clickable types in iOS and Safari.\n   */\nbutton,\nhtml [type=\"button\"],\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button;\n  /* 2 */ }\n\n/**\n   * Remove the inner border and padding in Firefox.\n   */\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0; }\n\n/**\n   * Restore the focus styles unset by the previous rule.\n   */\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText; }\n\n/**\n   * Correct the padding in Firefox.\n   */\nfieldset {\n  padding: 0.35em 0.75em 0.625em; }\n\n/**\n   * 1. Correct the text wrapping in Edge and IE.\n   * 2. Correct the color inheritance from `fieldset` elements in IE.\n   * 3. Remove the padding so developers are not caught out when they zero out\n   *    `fieldset` elements in all browsers.\n   */\nlegend {\n  box-sizing: border-box;\n  /* 1 */\n  color: inherit;\n  /* 2 */\n  display: table;\n  /* 1 */\n  max-width: 100%;\n  /* 1 */\n  padding: 0;\n  /* 3 */\n  white-space: normal;\n  /* 1 */ }\n\n/**\n   * 1. Add the correct display in IE 9-.\n   * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.\n   */\nprogress {\n  display: inline-block;\n  /* 1 */\n  vertical-align: baseline;\n  /* 2 */ }\n\n/**\n   * Remove the default vertical scrollbar in IE.\n   */\ntextarea {\n  overflow: auto; }\n\n/**\n   * 1. Add the correct box sizing in IE 10-.\n   * 2. Remove the padding in IE 10-.\n   */\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box;\n  /* 1 */\n  padding: 0;\n  /* 2 */ }\n\n/**\n   * Correct the cursor style of increment and decrement buttons in Chrome.\n   */\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\n/**\n   * 1. Correct the odd appearance in Chrome and Safari.\n   * 2. Correct the outline style in Safari.\n   */\n[type=\"search\"] {\n  -webkit-appearance: textfield;\n  /* 1 */\n  outline-offset: -2px;\n  /* 2 */ }\n\n/**\n   * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.\n   */\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\n/**\n   * 1. Correct the inability to style clickable types in iOS and Safari.\n   * 2. Change font properties to `inherit` in Safari.\n   */\n::-webkit-file-upload-button {\n  -webkit-appearance: button;\n  /* 1 */\n  font: inherit;\n  /* 2 */ }\n\n/* Interactive\n     ========================================================================== */\n/*\n   * Add the correct display in IE 9-.\n   * 1. Add the correct display in Edge, IE, and Firefox.\n   */\ndetails,\nmenu {\n  display: block; }\n\n/*\n   * Add the correct display in all browsers.\n   */\nsummary {\n  display: list-item; }\n\n/* Scripting\n     ========================================================================== */\n/**\n   * Add the correct display in IE 9-.\n   */\ncanvas {\n  display: inline-block; }\n\n/**\n   * Add the correct display in IE.\n   */\ntemplate {\n  display: none; }\n\n/* Hidden\n     ========================================================================== */\n/**\n   * Add the correct display in IE 10-.\n   */\n[hidden] {\n  display: none; }\n\nhtml {\n  height: 100%;\n  touch-action: manipulation; }\n\nbody {\n  padding: 0;\n  margin: 0;\n  font-size: 16px; }\n\n@media (min-width: 751px) {\n  .navigation-desktop-spacer {\n    height: 88px; } }\n\n@media (max-width: 750px) {\n  .navigation-mobile-spacer {\n    height: 72px; } }\n", ""]);
+
+// exports
 
 
 /***/ })

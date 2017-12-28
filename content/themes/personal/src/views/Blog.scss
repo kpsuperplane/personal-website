@@ -38,6 +38,7 @@
         display: block;
         >h3 {
             @extend .head-font;
+            font-weight: 500;
             color: $theme;
             font-size: 1.25rem;
             line-height: 1.5rem;

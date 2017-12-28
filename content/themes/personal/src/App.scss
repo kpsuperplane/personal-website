@@ -10,6 +10,13 @@ body {
     font-size: 16px;
     @extend .body-font;
 }
-.nav-spacer {
-    height: 72px;
+@media (min-width: 751px) {
+    .navigation-desktop-spacer {
+        height: 88px;
+    }
+}
+@media (max-width: 750px) {
+    .navigation-mobile-spacer {
+        height: 72px;
+    }
 }

@@ -10,7 +10,7 @@ import LazyImage from './LazyImage';
 
 import GlobalLoader from './GlobalLoader';
 
-class NavigationMobile extends Component <{}, {width: number, maxHeight: number, active: boolean, loading: boolean, scrolledTop: boolean}> {
+class NavigationMobile extends Component <{loading: boolean}, {width: number, maxHeight: number, active: boolean, scrolledTop: boolean}> {
     private wrapper: HTMLElement|null = null;
     private outerWrapper: HTMLElement|null = null;
     private handle: HTMLElement|null = null;
@@ -31,17 +31,10 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         super(props);
         this.state = {
             active: false,
-            loading: true,
             maxHeight: 10000,
             scrolledTop: true,
             width: window.innerWidth
         };
-    }
-    private onLoadingStateChange = (isLoading: boolean) => {
-        if (isLoading === false) {
-            GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
-        }
-        this.setState({loading: isLoading});
     }
     private onResize = () => {
         this.setState({width: window.innerWidth, maxHeight: window.innerHeight - this.diameter - 20});
@@ -177,8 +170,6 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         window.removeEventListener('resize', this.onResize);
     }
     public componentDidMount() {
-        GlobalLoader.addUpdateListener(this.onLoadingStateChange);
-        this.setState({loading: GlobalLoader.isLoading});
         window.addEventListener('resize', this.onResize);
         window.addEventListener('scroll', this.onScroll);
         this.onResize();
@@ -189,7 +180,7 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
         const radius_squared = Math.pow(diameter / 2, 2);
         return <div className="navigation-mobile-parent" ref={this.attachParent}>
             <div className="navigation-mobile-background" ref={this.attachBackground}></div>
-            <div className={'navigation-mobile' + (state.active ? ' active' : '') + (state.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
+            <div className={'navigation-mobile' + (state.active ? ' active' : '') + (this.props.loading ? ' loading' : '')} ref={this.attachOuterWrapper}>
                 <div className="navigation-mobile-bar" ref={this.attachWrapper}>
                     <div className="navigation-mobile-bar-main" style={{maxHeight: state.maxHeight}}>
                         <Link onClick={this.onClick} to="/" className="br"><Icon icon={Icons.HOME} />Home</Link>
@@ -229,8 +220,77 @@ class NavigationMobile extends Component <{}, {width: number, maxHeight: number,
     }
 }
 
-export default class Navigation extends Component<any, any> {
+class NavigationDesktop extends Component<{loading: boolean}, {scrollHidden: boolean, scrollTop: boolean}> {
+    private lastScroll: number = 0;
+    constructor(props) {
+        super(props);
+        this.state = {
+            scrollHidden: false,
+            scrollTop: true
+        };
+    }
+    private onScroll = (e) => {
+        const doc = document.documentElement;
+        const scrollY = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+        const diff = this.lastScroll - scrollY;
+        this.lastScroll = scrollY;
+        if (this.state!!.scrollTop === false && scrollY <= 0) {
+            this.setState({scrollTop: true});
+        } else if (this.state!!.scrollTop === true && scrollY > 0) {
+            this.setState({scrollTop: false});
+        }
+        if (this.state!!.scrollHidden === false && diff < 0 && scrollY > 0) {
+            this.setState({scrollHidden: true});
+        } else if (this.state!!.scrollHidden === true && diff > 0) {
+            this.setState({scrollHidden: false});
+        }
+    }
+    public componentDidMount() {
+        window.addEventListener('scroll', this.onScroll);
+    }
+    public componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll);
+    }
     public render() {
-        return <NavigationMobile />;
+        const { scrollTop, scrollHidden } = this.state!!;
+        return <div className={'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (scrollTop ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : '')}>
+            <div className="navigation-desktop-inner">
+                <div className="navigation-desktop-left">
+                    <Link to="/about/" style="transition-delay:0.14s">ABOUT</Link>
+                    <Link to="/projects/" style="transition-delay:0.07s">PROJECTS</Link>
+                </div>
+                <Link to="/" className="navigation-desktop-home"><LazyImage path={LogoTheme} /></Link>
+                <div className="navigation-desktop-right">
+                    <Link to="/blog/" class="blog-toggle" style="transition-delay:0.14s">BLOG</Link>
+                    <a href="javascript:void(0);" style="transition-delay:0.07s">CONTACT</a>
+                </div>
+            </div>
+        </div>;
+    }
+}
+
+export default class Navigation extends Component<{}, {}> {
+    private static loading: boolean = true;
+    private onResize = () => {
+        this.forceUpdate();
+    }
+    private onLoadingStateChange = (isLoading: boolean) => {
+        if (isLoading === false) {
+            GlobalLoader.removeUpdateListener(this.onLoadingStateChange);
+        }
+        Navigation.loading = isLoading;
+        this.forceUpdate();
+    }
+    public componentDidMount() {
+        window.addEventListener('resize', this.onResize);
+        GlobalLoader.addUpdateListener(this.onLoadingStateChange);
+        Navigation.loading = GlobalLoader.isLoading;
+        this.forceUpdate();
+    }
+    public componentWillUnmount() {
+        window.removeEventListener('resize', this.onResize);
+    }
+    public render() {
+        return window.innerWidth < 750 ? <NavigationMobile loading={Navigation.loading} /> : <NavigationDesktop loading={Navigation.loading} />;
     }
 }

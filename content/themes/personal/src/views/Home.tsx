@@ -263,6 +263,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             posts: null,
             projects: null
         };
+        View.setDark(false);
         getPosts('1', (posts) => {
             this.setState({posts: posts.posts});
         }, true, 5);

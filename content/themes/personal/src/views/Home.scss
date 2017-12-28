@@ -17,6 +17,7 @@
         top: 0;
         left: 0;
         width: 100%;
+        @extend .body-font;
         .home-content-inner {
             flex: 0;
             text-align: center;

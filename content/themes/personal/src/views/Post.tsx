@@ -25,6 +25,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
+                    View.setDark(post.feature_image !== null);
                     this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null}, () => {
                         for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
                             const wrapper = document.createElement('div');
@@ -64,7 +65,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                     <LazyImage path={image} forceWaitSize={true} />,
                     <svg className="post-header-curve" viewBox="0 0 400 60" height="2%" preserveAspectRatio="none">
                     <path d="M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60" strokeWidth={0} fill="white" />
-                </svg>] : <div class="nav-spacer"></div>}
+                </svg>] : <div className="navigation-mobile-spacer navigation-desktop-spacer" />}
                 <div className="post-header-inner">
                     <h1>{title}</h1>
                 </div>

@@ -40,14 +40,9 @@
             height: 3rem;
             margin-bottom: 2rem;
         }
-        @keyframes app-loader-intro {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
         .app-loader.visible {
+            transition: none;
             opacity: 1;
-            animation-name: app-loader-intro;
-            animation-duration: 250ms;
         }
         .app-loader.visible img {
             transform: scale(1);

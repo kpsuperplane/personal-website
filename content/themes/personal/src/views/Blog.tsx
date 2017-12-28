@@ -84,6 +84,7 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
             pagination: null,
             posts: null
         };
+        View.setDark(true);
     }
     private load = () => {
         const page = Number(this.props.params.page || '1');
@@ -93,6 +94,7 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
         this.lastPath = window.location.href;
         getPosts(page, (posts) => {
             if (posts) {
+                View.setDark(true);
                 window.scrollTo(0, 0);
                 this.setState(posts);
             } else {
@@ -104,7 +106,7 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
         this.load();
     }
     public componentDidUpdate(props) {
-        if (window.location.href !== this.lastPath) {
+        if (window.location.href !== this.lastPath && window.location.href.indexOf('/blog/') !== -1) {
             this.load();
         }
     }

@@ -10,6 +10,7 @@
     touch-action: manipulation;
     box-shadow: none;
     color: #FFF;    
+    @extend .body-font;
     &:hover {
         transform: scale(1.1);
         box-shadow: 0px 2px 10px rgba(0,0,0,0.1);

@@ -1,4 +1,20 @@
 @import '../common';
+@keyframes swipe-indicator {
+    0% {opacity: 0.5;}
+    6.25% {opacity: 1;}
+    12.5% {opacity: 0.5;}
+    25% {opacity: 0.5;}
+    31.25% {opacity: 1;}
+    37.5% {opacity: 0.5;}
+    50% {opacity: 0.5;}
+    56.25% {opacity: 1;}
+    62.5% {opacity: 0.5;}
+    75% {opacity: 0.5;}
+    81.25% {opacity: 1;}
+    87.5% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
 .home-component {
     overflow-y: hidden;
     position: static;
@@ -49,6 +65,20 @@
         .home-contact {
             flex: 0;
             padding-bottom: 2rem;
+            .swipe-up-indicator {
+                display: block;
+                margin-bottom: 1rem;
+                >i {
+                    opacity: 0;
+                    display: block;
+                    text-align: center;
+                    animation: swipe-indicator 8s;
+                    transform: scaleX(2);
+                    animation-iteration-count: 1;
+                    color: #FFF;
+                    margin-bottom: -0.5rem;
+                }
+            }
             a {
                 color: #FFF !important;
                 border-color: #FFF !important;
@@ -223,6 +253,9 @@
         .home-content h1 {
             font-size: 3.5rem;
             font-weight: 100 !important;
+        }
+        .swipe-up-indicator {
+            display: none !important;
         }
         .content-wrapper {
             display: none;

@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "4bc09b75b9dc9cd09b0b" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "a6216410e8d38d0d4dd1" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -998,6 +998,7 @@ var Icons;
     Icons["ABOUT"] = "fas fa-info-circle";
     Icons["CHEVRON_LEFT"] = "fas fa-chevron-left";
     Icons["CHEVRON_RIGHT"] = "fas fa-chevron-right";
+    Icons["CHEVRON_UP"] = "fas fa-chevron-up";
     Icons["GITHUB"] = "fab fa-github";
     Icons["HOME"] = "fas fa-home";
     Icons["LINKEDIN"] = "fab fa-linkedin";
@@ -16667,7 +16668,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.contact {\n  text-align: center; }\n  .contact > .contact-social > a {\n    padding: 0.8rem;\n    font-size: 1.4rem;\n    text-decoration: none;\n    opacity: 0.6;\n    color: rgba(33, 33, 33, 0.8);\n    display: inline-block;\n    vertical-align: top;\n    transition: opacity .5s; }\n    .contact > .contact-social > a.contact-resume {\n      border-radius: 5px;\n      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);\n      font-size: 0.7rem;\n      letter-spacing: .1em;\n      text-transform: uppercase;\n      padding: 0.55rem 0.8rem;\n      margin: 0.6rem;\n      background: transparent;\n      border: 1px solid rgba(33, 33, 33, 0.8);\n      font-weight: 700; }\n    .contact > .contact-social > a:hover {\n      opacity: 1; }\n  .contact > .contact-email {\n    display: block;\n    padding: 0.8rem;\n    font-size: 1rem;\n    color: #2ac648;\n    text-decoration: none;\n    transition: opacity 500ms; }\n    .contact > .contact-email:hover {\n      opacity: 0.5; }\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.contact {\n  text-align: center; }\n  .contact > .contact-social > a {\n    padding: 0.8rem;\n    font-size: 1.4rem;\n    text-decoration: none;\n    opacity: 0.6;\n    color: rgba(33, 33, 33, 0.8);\n    display: inline-block;\n    vertical-align: top;\n    transition: opacity .5s; }\n    .contact > .contact-social > a.contact-resume {\n      border-radius: 5px;\n      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);\n      font-size: 0.7rem;\n      letter-spacing: .1em;\n      text-transform: uppercase;\n      padding: 0.6rem 0.8rem 0.5rem 0.8rem;\n      margin: 0.6rem;\n      background: transparent;\n      border: 1px solid rgba(33, 33, 33, 0.8);\n      font-weight: 700; }\n    .contact > .contact-social > a:hover {\n      opacity: 1; }\n  .contact > .contact-email {\n    display: block;\n    padding: 0.8rem;\n    font-size: 1rem;\n    color: #2ac648;\n    text-decoration: none;\n    transition: opacity 500ms; }\n    .contact > .contact-email:hover {\n      opacity: 0.5; }\n", ""]);
 
 // exports
 

@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "a6216410e8d38d0d4dd1" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "2eb9f1281da6fcd949e6" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -9526,10 +9526,10 @@ var Loader = function (_Component) {
             'src': __WEBPACK_IMPORTED_MODULE_1__img_loader_mp4___default.a,
             'type': 'video/mp4'
         }), {
-            'loop': 'loop',
-            'autoplay': 'autoplay',
-            'muted': 'muted',
-            'playsinline': 'playsinline'
+            'loop': true,
+            'autoplay': true,
+            'muted': true,
+            'playsinline': true
         });
     };
 

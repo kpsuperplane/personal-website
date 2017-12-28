@@ -430,7 +430,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     public render() {
         const { posts, projects } = this.state!!;
         return (<div className="home-component" ref={this.attachWrapper}>
-            <video loop="loop" muted="muted" className="home-video" playsinline="playsinline" ref={this.attachVideo}>
+            <video loop="loop" autoplay muted className="home-video" playsinline ref={this.attachVideo}>
                 <source src="/assets/home-video.webm" type="video/webm" />
                 <source src="/assets/home-video.mp4" type="video/mp4" />
             </video>

@@ -106,7 +106,9 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     }
     public render() {
         const {story, visible} = this.state!!;
-        if (story === null) {
+        if (1 === 1) {
+            return null;
+        } else if (story === null) {
             return <div className={'home-prompt home-message' + (visible ? ' visible' : '')}>
                 <LazyImage path={Thinking} style={{width: '5rem', height: '5.1367rem'}} /><br />
                 <Button onClick={this.start}>Tell me a story</Button>
@@ -165,6 +167,9 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
     }
     private touchEnd = (e) => {
+        if (window.scrollY === 1) {
+            window.scrollTo(0, 0);
+        }
         if (!this.dragging) {
             return;
         }
@@ -257,6 +262,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private content: HTMLElement|null = null;
     private wrapper: HTMLElement|null = null;
     private hero: HTMLElement|null = null;
+    private video: HTMLVideoElement|null = null;
     constructor(props) {
         super(props);
         this.state = {
@@ -305,6 +311,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchLast = this.touchStart;
         this.content!!.style.transition = 'border-radius 500ms';
         this.content!!.style.boxShadow = 'none';
+        this.video!!.pause();
         this.dragRender();
     }
     private calculateVelocity() {
@@ -340,6 +347,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         }
         if (this.opened === false) {
             this.content!!.style.boxShadow = null;
+            this.video!!.play();
         }
         this.touchStart = -1;
         this.touchLast = -1;
@@ -393,6 +401,11 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.content = el;
         }
     }
+    private attachVideo = (el) => {
+        if (this.video == null) {
+            this.video = el;
+        }
+    }
     public componentWillUnmount() {
         const el = this.wrapper!!;
         el.removeEventListener('touchstart', this.dragStart);
@@ -408,15 +421,19 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     public render() {
         const { posts, projects } = this.state!!;
         return (<div className="home-component" ref={this.attachWrapper}>
+            <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline="playsinline" ref={this.attachVideo}>
+                <source src="/assets/home-video.webm" type="video/webm" />
+                <source src="/assets/home-video.mp4" type="video/mp4" />
+            </video>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
                     <HomeContent />
                 </div>
             </div>
             <div ref={this.attachContent} className="content-wrapper">
-                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} />) : null}</HorizontalScroll>
-                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} />) : null}</HorizontalScroll>
-                <Footer />
+                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} />) : null}</HorizontalScroll>
+                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
+                { (posts || projects) ? <Footer /> : null }
             </div>
         </div>);
     }

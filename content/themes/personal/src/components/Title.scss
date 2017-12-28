@@ -14,6 +14,12 @@
             @extend .head-font;
             font-weight: 300;
         }
+        small {
+            color: #FFF;
+            @extend .body-font;
+            opacity: 0.25;
+            font-weight: 300;
+        }
     }
     .title-curve {
         display: none;

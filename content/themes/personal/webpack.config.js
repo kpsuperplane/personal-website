@@ -37,7 +37,7 @@ module.exports = {
 				loaders: ["style-loader", "css-loader", "sass-loader"],
 				exclude: /node_modules/
 			}, {
-				test: /\.(jpe?g|png|gif|svg|mp4)$/i,
+				test: /\.(jpe?g|png|gif|svg|mp4|webm)$/i,
 				loaders: [
 					'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
 					{

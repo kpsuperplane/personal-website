@@ -20,6 +20,7 @@ export interface ProjectInterface {
     title: string;
     theme: string;
     featured: boolean;
+    forceWait: boolean | null;
 }
 
 interface PaginationInterface {
@@ -32,7 +33,7 @@ interface PaginationInterface {
 }
 
 export const Project = (project: ProjectInterface) => <Link to={project.url} className="project-preview">
-    <LazyImage path={project.feature_image} forceWaitSize={true} loader={true}/>
+    <LazyImage path={project.feature_image} forceWaitSize={project.forceWait !== null ? project.forceWait : true} loader={true}/>
     <div className="project-preview-theme" style={{backgroundColor: project.theme}} />
     <div className="project-preview-gradient" />
     <span className="project-preview-body">
@@ -113,7 +114,7 @@ export default class Projects extends View<{pagination: PaginationInterface | nu
     public render() {
         const { projects, pagination } = this.state!!;
         return <div>
-            <Title title="Projects" image={ProjectImage} />
+            <Title title="Projects" image={ProjectImage} note="Photo: JK Liu" />
             {projects ? <div className="project-entries">{projects.map((post) => <Project {...post} key={post.url}/>)}</div> : null}
             <PaginationEl {...pagination} />
             {projects ? <Footer /> : null}

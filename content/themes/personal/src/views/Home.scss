@@ -4,6 +4,20 @@
     position: static;
     background: #FFF;
     background-size: cover;
+    .home-video {
+        min-width: 100%; 
+        min-height: 100%; 
+        
+        /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+        width: auto;
+        height: auto;
+        
+        /* Center the video */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
     .home-content {
         height: 100%;
         background-size: cover;
@@ -14,12 +28,14 @@
         flex-direction: column;
         justify-content: center;
         position: absolute;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 0%, transparent 50%);
         top: 0;
         left: 0;
         width: 100%;
         @extend .body-font;
         .home-content-inner {
             flex: 0;
+            position: relative;
             text-align: center;
         }
         .home-message {
@@ -182,6 +198,23 @@
             }
             &:hover {
                 opacity: 0.5;
+            }
+        }
+    }
+}
+.home-template .navigation-desktop.top {
+    background: transparent;
+    >.navigation-desktop-inner {
+        img.theme {
+            display: none !important;
+        }
+        img.white {
+            display: block !important;
+        }
+        a {
+            color: #FFF;
+            &:hover {
+                color: rgba(255, 255, 255, 0.5);
             }
         }
     }

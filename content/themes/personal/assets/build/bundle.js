@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "d520ca3f9cdedef2e515" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "cd7a918e1c94a8b91b5b" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -1191,7 +1191,7 @@ module.exports = isObject;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(49);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -9373,7 +9373,7 @@ exports.Settings = Settings;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Contact_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Contact_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
@@ -9570,22 +9570,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var Home = function Home(props, cb) {
     return __webpack_require__.e/* require.ensure */(0).then((function () {
-        return cb(null, __webpack_require__(55).default);
+        return cb(null, __webpack_require__(56).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Post = function Post(props, cb) {
     return __webpack_require__.e/* require.ensure */(3).then((function () {
-        return cb(null, __webpack_require__(56).default);
+        return cb(null, __webpack_require__(57).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Projects = function Projects(props, cb) {
     return __webpack_require__.e/* require.ensure */(1).then((function () {
-        return cb(null, __webpack_require__(54).default);
+        return cb(null, __webpack_require__(55).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var Blog = function Blog(props, cb) {
     return __webpack_require__.e/* require.ensure */(2).then((function () {
-        return cb(null, __webpack_require__(53).default);
+        return cb(null, __webpack_require__(54).default);
     }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var browserHistory = __WEBPACK_IMPORTED_MODULE_1_history_createBrowserHistory___default()();
@@ -16126,7 +16126,7 @@ module.exports = Agent;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Navigation__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__App_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__App_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_inferno__);
@@ -16173,17 +16173,20 @@ var App = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Navigation_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Navigation_scss__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Contact__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__LazyImage__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_inferno__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_logo_white_png__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_logo_white_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__img_logo_white_png__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Contact__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icon__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__LazyImage__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_inferno__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -16372,56 +16375,56 @@ var NavigationMobile = function (_Component) {
         var state = this.state;
         var diameter = this.diameter;
         var radius_squared = Math.pow(diameter / 2, 2);
-        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-parent', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile' + (state.active ? ' active' : '') + (this.props.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-main', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-parent', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-background', null, null, null, this.attachBackground), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile' + (state.active ? ' active' : '') + (this.props.loading ? ' loading' : ''), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-main', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'onClick': this.onClick,
             'to': '/',
             'className': 'br',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].HOME
+            children: [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_6__Icon__["a" /* Icons */].HOME
             }), 'Home']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'onClick': this.onClick,
             'to': '/about/',
             'className': '',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].ABOUT
+            children: [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_6__Icon__["a" /* Icons */].ABOUT
             }), 'About']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'onClick': this.onClick,
             'to': '/projects/',
             'className': 'br',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].PALETTE
+            children: [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_6__Icon__["a" /* Icons */].PALETTE
             }), 'Projects']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'onClick': this.onClick,
             'to': '/blog/',
-            children: [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Icon__["b" /* default */], null, null, {
-                'icon': __WEBPACK_IMPORTED_MODULE_5__Icon__["a" /* Icons */].OPEN_BOOK
+            children: [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__Icon__["b" /* default */], null, null, {
+                'icon': __WEBPACK_IMPORTED_MODULE_6__Icon__["a" /* Icons */].OPEN_BOOK
             }), 'Blog']
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-contact', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'h3', null, 'Get in Touch'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_4__Contact__["a" /* default */])])], {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-contact', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'h3', null, 'Get in Touch'), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_5__Contact__["a" /* default */])])], {
             'style': { maxHeight: state.maxHeight }
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(128, 'svg', 'navigation-mobile-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-mobile-bar-handle', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(128, 'svg', 'navigation-mobile-bar-handle-background', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'defs', null, Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'filter', null, [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feGaussianBlur', null, null, {
             'in': 'SourceAlpha',
             'stdDeviation': '5'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feOffset', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feOffset', null, null, {
             'dx': '0',
             'dy': '4',
             'result': 'offsetblur'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feFuncA', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feComponentTransfer', null, Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feFuncA', null, null, {
             'type': 'linear',
             'slope': '0.075'
-        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feMerge', null, [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feMergeNode'), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'feMergeNode', null, null, {
             'in': 'SourceGraphic'
         })])], {
             'xmlns': 'http://www.w3.org/2000/svg',
             'id': 'dropshadow',
             'height': '130%'
-        })), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'path', null, null, {
+        })), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'g', null, [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'path', null, null, {
             'd': 'M0,0 C 0,' + diameter * 0.15 + ' 0,' + diameter * 0.4 + ' ' + (state.width / 2 - diameter) + ',' + diameter * 0.4 + ' C ' + (state.width / 2 - diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2) - 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 - Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' L ' + (state.width / 2 + Math.sqrt(radius_squared / 2)) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2)) + ' C ' + (state.width / 2 + Math.sqrt(radius_squared / 2) + 10) + ',' + (diameter * 0.33 + Math.sqrt(radius_squared / 2) - 20) + ' ' + (state.width / 2 + diameter * 0.75) + ',' + diameter * 0.4 + ' ' + (state.width / 2 + diameter) + ',' + diameter * 0.4 + ' C ' + state.width + ',' + diameter * 0.4 + ' ' + state.width + ',' + diameter * 0.15 + ' ' + state.width + ',0',
             'stroke-width': 0,
             'fill': 'white'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'circle', null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'circle', null, null, {
             'cx': state.width / 2,
             'cy': diameter * 0.33,
             'r': diameter / 2,
@@ -16431,7 +16434,7 @@ var NavigationMobile = function (_Component) {
         })], {
             'width': state.width,
             'height': diameter * 0.95
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__LazyImage__["a" /* default */], null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__LazyImage__["a" /* default */], null, null, {
             'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a,
             'style': { height: diameter * 0.6 },
             'className': 'navigation-mobile-bar-handle-logo'
@@ -16488,26 +16491,30 @@ var NavigationDesktop = function (_Component2) {
             scrollTop = _state.scrollTop,
             scrollHidden = _state.scrollHidden;
 
-        return Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (scrollTop ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : ''), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-inner', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-left', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        return Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (scrollTop ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : ''), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-desktop-inner', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-desktop-left', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'to': '/about/',
             'style': 'transition-delay:0.14s',
             children: 'ABOUT'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'to': '/projects/',
             'style': 'transition-delay:0.07s',
             children: 'PROJECTS'
-        })]), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+        })]), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'to': '/',
             'className': 'navigation-desktop-home',
-            children: Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_6__LazyImage__["a" /* default */], null, null, {
+            children: [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__LazyImage__["a" /* default */], null, null, {
+                'className': 'theme',
                 'path': __WEBPACK_IMPORTED_MODULE_3__img_logo_theme_png___default.a
-            })
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'div', 'navigation-desktop-right', [Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
+            }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_7__LazyImage__["a" /* default */], null, null, {
+                'className': 'white',
+                'path': __WEBPACK_IMPORTED_MODULE_4__img_logo_white_png___default.a
+            })]
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'div', 'navigation-desktop-right', [Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, __WEBPACK_IMPORTED_MODULE_1_inferno_router__["Link"], null, null, {
             'to': '/blog/',
             'class': 'blog-toggle',
             'style': 'transition-delay:0.14s',
             children: 'BLOG'
-        }), Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(2, 'a', null, 'CONTACT', {
+        }), Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(2, 'a', null, 'CONTACT', {
             'href': 'javascript:void(0);',
             'style': 'transition-delay:0.07s'
         })])]));
@@ -16529,7 +16536,7 @@ var Navigation = function (_Component3) {
         };
         _this3.onLoadingStateChange = function (isLoading) {
             if (isLoading === false) {
-                __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].removeUpdateListener(_this3.onLoadingStateChange);
+                __WEBPACK_IMPORTED_MODULE_8__GlobalLoader__["a" /* default */].removeUpdateListener(_this3.onLoadingStateChange);
             }
             Navigation.loading = isLoading;
             _this3.forceUpdate();
@@ -16539,8 +16546,8 @@ var Navigation = function (_Component3) {
 
     Navigation.prototype.componentDidMount = function componentDidMount() {
         window.addEventListener('resize', this.onResize);
-        __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
-        Navigation.loading = __WEBPACK_IMPORTED_MODULE_7__GlobalLoader__["a" /* default */].isLoading;
+        __WEBPACK_IMPORTED_MODULE_8__GlobalLoader__["a" /* default */].addUpdateListener(this.onLoadingStateChange);
+        Navigation.loading = __WEBPACK_IMPORTED_MODULE_8__GlobalLoader__["a" /* default */].isLoading;
         this.forceUpdate();
     };
 
@@ -16549,9 +16556,9 @@ var Navigation = function (_Component3) {
     };
 
     Navigation.prototype.render = function render() {
-        return window.innerWidth < 750 ? Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, NavigationMobile, null, null, {
+        return window.innerWidth < 750 ? Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, NavigationMobile, null, null, {
             'loading': Navigation.loading
-        }) : Object(__WEBPACK_IMPORTED_MODULE_8_inferno__["createVNode"])(16, NavigationDesktop, null, null, {
+        }) : Object(__WEBPACK_IMPORTED_MODULE_9_inferno__["createVNode"])(16, NavigationDesktop, null, null, {
             'loading': Navigation.loading
         });
     };
@@ -16603,7 +16610,7 @@ exports = module.exports = __webpack_require__(2)(undefined);
 
 
 // module
-exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.navigation-desktop {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  box-sizing: border-box;\n  background: #FFF;\n  padding: 10px 0px;\n  z-index: 99;\n  opacity: 0;\n  height: 88px;\n  margin-right: 16px;\n  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);\n  transition: opacity 1s ease-out, transform 300ms ease, box-shadow 300ms ease, background 300ms ease; }\n  .navigation-desktop.scroll-hidden {\n    transform: translate3d(0, -100%, 0) !important;\n    opacity: 0; }\n  .navigation-desktop.top {\n    box-shadow: none; }\n  .navigation-desktop > .navigation-desktop-inner {\n    position: relative;\n    text-align: center; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-left {\n      right: 50%;\n      position: absolute;\n      margin-right: 56px;\n      top: 0px; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-right {\n      top: 0px;\n      left: 50%;\n      position: absolute;\n      margin-left: 56px; }\n    .navigation-desktop > .navigation-desktop-inner a {\n      color: #BBB;\n      display: inline-block;\n      box-sizing: border-box;\n      font-weight: 400;\n      font-size: 14px;\n      letter-spacing: 5px;\n      line-height: 14px;\n      text-decoration: none;\n      transition: all 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      transform: translate3d(0, -100%, 0);\n      padding: 26px; }\n      .navigation-desktop > .navigation-desktop-inner a:hover, .navigation-desktop > .navigation-desktop-inner a.active {\n        color: #2ac648; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home {\n      transform: translate3d(0, -100%, 0);\n      transition: 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      margin: 4px;\n      padding: 0px;\n      height: 56px;\n      width: 56px; }\n      .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home img {\n        height: 64px;\n        width: 64px;\n        margin-top: -4px;\n        margin-left: -4px; }\n  .navigation-desktop.loaded {\n    opacity: 1; }\n    .navigation-desktop.loaded > .navigation-desktop-inner > .navigation-desktop-home, .navigation-desktop.loaded > .navigation-desktop-inner a {\n      transform: translate3d(0, 0, 0); }\n\n.navigation-mobile-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-mobile-parent > .navigation-mobile-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-mobile-parent > .navigation-mobile {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    transform: translate3d(0, -100%, 0); }\n    .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative;\n      transition: transform 500ms;\n      transform: translate3d(0, 0, 0); }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar h1 {\n        margin: 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main {\n        display: flex;\n        overflow-y: auto;\n        flex-flow: row wrap; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact {\n          padding: 0.5rem;\n          flex: 1 auto; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3 {\n            text-align: center;\n            color: #AAA;\n            font-weight: 300;\n            font-size: 0.8rem; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n          text-align: center;\n          text-decoration: none;\n          color: #666;\n          font-weight: 300;\n          font-size: 0.8rem;\n          display: block;\n          padding: 1.25rem;\n          box-sizing: border-box;\n          width: 50%;\n          border-bottom: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a.br {\n            border-right: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a > i {\n            font-size: 2.25rem;\n            display: block;\n            margin: 0 0 0.5rem 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle > .navigation-mobile-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation-mobile-parent > .navigation-mobile.loading > .navigation-mobile-bar {\n      transform: translate3d(0, -130px, 0); }\n    .navigation-mobile-parent > .navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n\n/*body.dark-top {/\n    .navigation-desktop.top {\n        -webkit-backdrop-filter: blur(5px);\n        background: rgba(0, 0, 0, 0.75);\n        border-top: 2px solid $theme;\n        >.navigation-desktop-inner {\n            >.navigation-desktop-home {\n                border-radius: 100%;\n                background: #FFF;\n                padding: 16px 8px 16px 19px;\n                height: 94px;\n                width: 94px;\n                margin: -9px -6px -9px -14px;\n                box-shadow: 0px 0px 20px rgba(0,0,0,0.05);\n            }\n            a{\n                color: rgba(255, 255, 255, 0.75);\n                &:hover, &.active {\n                    color: rgba(255, 255, 255 , 1);\n                }\n            }\n        }\n    }\n}*/\n", ""]);
+exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; }\n\n.head-font, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3, .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n  font-family: \"museo-slab\", 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; }\n\n.code-font {\n  font-family: \"source-code-pro\", sans-serif; }\n\n@keyframes loadingBackgroundAnimation {\n  0% {\n    background-position: bottom left; }\n  100% {\n    background-position: top right; } }\n\n.loading-background {\n  animation-duration: 3s;\n  animation-iteration-count: infinite;\n  animation-name: loadingBackgroundAnimation;\n  animation-timing-function: linear;\n  background: #f6f7f8;\n  background: linear-gradient(45deg, #f6f7f8 25%, #dee1e2 50%, #f6f7f8 75%);\n  background-size: 400% 400%; }\n\n.navigation-desktop {\n  position: fixed;\n  top: 0px;\n  left: 0px;\n  width: 100%;\n  box-sizing: border-box;\n  background: #FFF;\n  padding: 10px 0px;\n  z-index: 99;\n  opacity: 0;\n  height: 88px;\n  margin-right: 16px;\n  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.05);\n  transition: opacity 1s ease-out, transform 300ms ease, box-shadow 300ms ease, background 300ms ease; }\n  .navigation-desktop.scroll-hidden {\n    transform: translate3d(0, -100%, 0) !important;\n    opacity: 0; }\n  .navigation-desktop.top {\n    box-shadow: none; }\n  .navigation-desktop > .navigation-desktop-inner {\n    position: relative;\n    text-align: center; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-left {\n      right: 50%;\n      position: absolute;\n      margin-right: 56px;\n      top: 0px; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-right {\n      top: 0px;\n      left: 50%;\n      position: absolute;\n      margin-left: 56px; }\n    .navigation-desktop > .navigation-desktop-inner a {\n      color: #BBB;\n      display: inline-block;\n      box-sizing: border-box;\n      font-weight: 400;\n      font-size: 14px;\n      letter-spacing: 5px;\n      line-height: 14px;\n      text-decoration: none;\n      transition: all 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      transform: translate3d(0, -100%, 0);\n      padding: 26px; }\n      .navigation-desktop > .navigation-desktop-inner a:hover, .navigation-desktop > .navigation-desktop-inner a.active {\n        color: #2ac648; }\n    .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home {\n      transform: translate3d(0, -100%, 0);\n      transition: 500ms cubic-bezier(0.215, 0.61, 0.355, 1);\n      margin: 4px;\n      padding: 0px;\n      height: 56px;\n      width: 56px; }\n      .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home img {\n        height: 64px;\n        width: 64px;\n        margin-top: -4px;\n        margin-left: -4px; }\n        .navigation-desktop > .navigation-desktop-inner > .navigation-desktop-home img.white {\n          display: none; }\n  .navigation-desktop.loaded {\n    opacity: 1; }\n    .navigation-desktop.loaded > .navigation-desktop-inner > .navigation-desktop-home, .navigation-desktop.loaded > .navigation-desktop-inner a {\n      transform: translate3d(0, 0, 0); }\n\n.navigation-mobile-parent {\n  position: fixed;\n  top: 0;\n  z-index: 101;\n  left: 0;\n  width: 100%; }\n  .navigation-mobile-parent > .navigation-mobile-background {\n    height: 100%;\n    width: 100%;\n    top: 0;\n    left: 0;\n    background: rgba(0, 0, 0, 0.5);\n    opacity: 0;\n    display: none; }\n  .navigation-mobile-parent > .navigation-mobile {\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 100%;\n    transform: translate3d(0, -100%, 0); }\n    .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar {\n      padding-top: 300px;\n      margin-top: -300px;\n      background: #FFF;\n      position: relative;\n      transition: transform 500ms;\n      transform: translate3d(0, 0, 0); }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar h1 {\n        margin: 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main {\n        display: flex;\n        overflow-y: auto;\n        flex-flow: row wrap; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact {\n          padding: 0.5rem;\n          flex: 1 auto; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > .navigation-mobile-bar-contact h3 {\n            text-align: center;\n            color: #AAA;\n            font-weight: 300;\n            font-size: 0.8rem; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a {\n          text-align: center;\n          text-decoration: none;\n          color: #666;\n          font-weight: 300;\n          font-size: 0.8rem;\n          display: block;\n          padding: 1.25rem;\n          box-sizing: border-box;\n          width: 50%;\n          border-bottom: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a.br {\n            border-right: 1px solid #EEE; }\n          .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-main > a > i {\n            font-size: 2.25rem;\n            display: block;\n            margin: 0 0 0.5rem 0; }\n      .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle {\n        top: 100%;\n        left: 0;\n        position: absolute; }\n        .navigation-mobile-parent > .navigation-mobile > .navigation-mobile-bar > .navigation-mobile-bar-handle > .navigation-mobile-bar-handle-logo {\n          position: absolute;\n          left: 50%;\n          top: 7px;\n          transform: translateX(-40%); }\n    .navigation-mobile-parent > .navigation-mobile.loading > .navigation-mobile-bar {\n      transform: translate3d(0, -130px, 0); }\n    .navigation-mobile-parent > .navigation-mobile.active {\n      transform: translate3d(0, 0, 0); }\n\n/*body.dark-top {/\n    .navigation-desktop.top {\n        -webkit-backdrop-filter: blur(5px);\n        background: rgba(0, 0, 0, 0.75);\n        border-top: 2px solid $theme;\n        >.navigation-desktop-inner {\n            >.navigation-desktop-home {\n                border-radius: 100%;\n                background: #FFF;\n                padding: 16px 8px 16px 19px;\n                height: 94px;\n                width: 94px;\n                margin: -9px -6px -9px -14px;\n                box-shadow: 0px 0px 20px rgba(0,0,0,0.05);\n            }\n            a{\n                color: rgba(255, 255, 255, 0.75);\n                &:hover, &.active {\n                    color: rgba(255, 255, 255 , 1);\n                }\n            }\n        }\n    }\n}*/\n", ""]);
 
 // exports
 
@@ -16618,10 +16625,16 @@ module.exports = __webpack_require__.p + "logo-theme.png";
 /* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__.p + "logo-white.png";
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(48);
+var content = __webpack_require__(49);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -16646,7 +16659,7 @@ if(false) {
 }
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -16660,13 +16673,13 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-s
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -16691,7 +16704,7 @@ if(false) {
 }
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);
@@ -16705,13 +16718,13 @@ exports.push([module.i, ".body-font {\n  font-family: \"proxima-nova\", -apple-s
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -16736,7 +16749,7 @@ if(false) {
 }
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)(undefined);

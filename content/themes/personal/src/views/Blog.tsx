@@ -21,6 +21,7 @@ export interface PostInterface {
     title: string;
     excerpt: string;
     featured: boolean;
+    forceWait: boolean | null;
 }
 
 interface PaginationInterface {
@@ -33,7 +34,7 @@ interface PaginationInterface {
 }
 
 export const Post = (post: PostInterface) => <Link to={post.url} className={'post-preview' + (!post.feature_image ? ' no-image' : '')}>
-    {post.feature_image ? <LazyImage path={post.feature_image} forceWaitSize={true} loader={true}/> : null}
+    {post.feature_image ? <LazyImage path={post.feature_image} forceWaitSize={post.forceWait !== null ? post.forceWait : true} loader={true}/> : null}
     <span className="post-preview-body">
         <h3>{post.title}</h3>
         <p><strong>{post.published_at.toLocaleString(DateTime.DATE_FULL)}</strong>{post.excerpt}</p>

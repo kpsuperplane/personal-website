@@ -63,6 +63,9 @@
                 width: 64px;
                 margin-top: -4px;
                 margin-left: -4px;
+                &.white {
+                    display: none;
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ import { Link } from 'inferno-router';
 import './Navigation.scss';
 
 import LogoTheme from '../img/logo-theme.png';
+import LogoWhite from '../img/logo-white.png';
 import Contact from './Contact';
 import Icon, { Icons } from './Icon';
 import LazyImage from './LazyImage';
@@ -259,7 +260,7 @@ class NavigationDesktop extends Component<{loading: boolean}, {scrollHidden: boo
                     <Link to="/about/" style="transition-delay:0.14s">ABOUT</Link>
                     <Link to="/projects/" style="transition-delay:0.07s">PROJECTS</Link>
                 </div>
-                <Link to="/" className="navigation-desktop-home"><LazyImage path={LogoTheme} /></Link>
+                <Link to="/" className="navigation-desktop-home"><LazyImage className="theme" path={LogoTheme} /><LazyImage className="white" path={LogoWhite} /></Link>
                 <div className="navigation-desktop-right">
                     <Link to="/blog/" class="blog-toggle" style="transition-delay:0.14s">BLOG</Link>
                     <a href="javascript:void(0);" style="transition-delay:0.07s">CONTACT</a>

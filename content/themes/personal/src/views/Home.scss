@@ -1,9 +1,12 @@
 @import '../common';
 .home-component {
     overflow-y: hidden;
-    position: relative;
+    position: absolute;
     background: #FFF;
     background-size: cover;
+    top: 0;
+    left: 0;
+    width: 100%;
     .home-content {
         height: 100%;
         background-size: cover;

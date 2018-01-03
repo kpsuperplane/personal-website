@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "a43151e9d68a30fedeb3" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "71910d8efa7587482af1" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -886,7 +886,7 @@ var GlobalLoader = function (_Component) {
     GlobalLoader.dequeue = function dequeue() {
         var callback = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
 
-        --GlobalLoader.queueSize;
+        GlobalLoader.queueSize = Math.max(GlobalLoader.queueSize - 1, 0);
         if (GlobalLoader.pageStage !== -2) {
             clearTimeout(GlobalLoader.pageStage);
             GlobalLoader.removeInitial();
@@ -896,6 +896,11 @@ var GlobalLoader = function (_Component) {
             GlobalLoader.callbacks.push(callback);
         }
         GlobalLoader.queueState();
+    };
+
+    GlobalLoader.reset = function reset() {
+        GlobalLoader.queueSize = 0;
+        GlobalLoader.dequeue();
     };
 
     GlobalLoader.prototype.startLoad = function startLoad() {
@@ -9609,6 +9614,7 @@ function handleNavigation(route) {
         }
         lastPage = newPage;
         document.body.classList.add(lastPage);
+        __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__["a" /* default */].reset();
         __WEBPACK_IMPORTED_MODULE_4__components_GlobalLoader__["a" /* default */].queue();
     }
     return Object(__WEBPACK_IMPORTED_MODULE_3_inferno_router__["doAllAsyncBefore"])(matched);

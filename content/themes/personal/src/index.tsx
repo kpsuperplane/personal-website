@@ -34,6 +34,7 @@ function handleNavigation(route) {
         }
         lastPage = newPage;
         document.body.classList.add(lastPage);
+        GlobalLoader.reset();
         GlobalLoader.queue();
     }
     return doAllAsyncBefore(matched);

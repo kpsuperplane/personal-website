@@ -265,6 +265,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
+    private loadingPosts: boolean = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -273,12 +274,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         };
         this.onResize();
         View.setDark(false);
-        getPosts('1', (posts) => {
-            this.setState({posts: posts.posts});
-        }, true, 5);
-        getProjects('1', (projects) => {
-            this.setState({projects: projects.projects});
-        }, 5);
     }
     private updatePosition = () => {
         this.top = this.content!!.getBoundingClientRect().top;
@@ -395,6 +390,15 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         this.updateHeight();
+        if (this.isMobile && this.state!!.posts === null && this.loadingPosts === false) {
+            this.loadingPosts = true;
+            getPosts('1', (posts) => {
+                this.setState({posts: posts.posts});
+            }, true, 5);
+            getProjects('1', (projects) => {
+                this.setState({projects: projects.projects});
+            }, 5);
+        }
     }
     private attachWrapper = (el) => {
         if (this.wrapper == null) {
@@ -435,8 +439,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     public render() {
         const { posts, projects } = this.state!!;
-        const { type, effectiveType} = ((navigator as any).connection || {type: undefined, effectiveType: undefined});
-        const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && (effectiveType === undefined || effectiveType === '4g')) : !this.isMobile;
+        const { type, downlink } = ((navigator as any).connection || {type: undefined, downlink: undefined});
+        const fastConnection = (downlink === undefined || downlink >= 2.5);
+        const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
         return (<div className="home-component" ref={this.attachWrapper}>
             <video loop="loop" autoplay muted className="home-video" playsinline ref={this.attachVideo}>
                 <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />

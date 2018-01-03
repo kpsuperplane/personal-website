@@ -65,7 +65,7 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
         GlobalLoader.queueState(forceAnim);
     }
     public static dequeue(callback: (() => void) | null = null) {
-        --GlobalLoader.queueSize;
+        GlobalLoader.queueSize = Math.max(GlobalLoader.queueSize - 1, 0);
         if (GlobalLoader.pageStage !== -2) {
             clearTimeout(GlobalLoader.pageStage);
             GlobalLoader.removeInitial();
@@ -75,6 +75,10 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
             GlobalLoader.callbacks.push(callback);
         }
         GlobalLoader.queueState();
+    }
+    public static reset() {
+        GlobalLoader.queueSize = 0;
+        GlobalLoader.dequeue();
     }
 
     private timeout: number | null = null;

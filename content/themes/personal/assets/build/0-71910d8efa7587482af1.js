@@ -744,6 +744,7 @@ var Home = function (_View) {
         _this6.hero = null;
         _this6.video = null;
         _this6.isMobile = false;
+        _this6.loadingPosts = false;
         _this6.updatePosition = function () {
             _this6.top = _this6.content.getBoundingClientRect().top;
         };
@@ -850,6 +851,15 @@ var Home = function (_View) {
             _this6.isMobile = window.innerWidth <= 750;
             _this6.top = _this6.opened ? 0 : _this6.winHeight * 0.85;
             _this6.updateHeight();
+            if (_this6.isMobile && _this6.state.posts === null && _this6.loadingPosts === false) {
+                _this6.loadingPosts = true;
+                Object(__WEBPACK_IMPORTED_MODULE_12__views_Blog__["getPosts"])('1', function (posts) {
+                    _this6.setState({ posts: posts.posts });
+                }, true, 5);
+                Object(__WEBPACK_IMPORTED_MODULE_13__views_Projects__["getProjects"])('1', function (projects) {
+                    _this6.setState({ projects: projects.projects });
+                }, 5);
+            }
         };
         _this6.attachWrapper = function (el) {
             if (_this6.wrapper == null) {
@@ -882,12 +892,6 @@ var Home = function (_View) {
         };
         _this6.onResize();
         __WEBPACK_IMPORTED_MODULE_0__View__["a" /* default */].setDark(false);
-        Object(__WEBPACK_IMPORTED_MODULE_12__views_Blog__["getPosts"])('1', function (posts) {
-            _this6.setState({ posts: posts.posts });
-        }, true, 5);
-        Object(__WEBPACK_IMPORTED_MODULE_13__views_Projects__["getProjects"])('1', function (projects) {
-            _this6.setState({ projects: projects.projects });
-        }, 5);
         return _this6;
     }
 
@@ -920,11 +924,12 @@ var Home = function (_View) {
             posts = _state3.posts,
             projects = _state3.projects;
 
-        var _ref = navigator.connection || { type: undefined, effectiveType: undefined },
+        var _ref = navigator.connection || { type: undefined, downlink: undefined },
             type = _ref.type,
-            effectiveType = _ref.effectiveType;
+            downlink = _ref.downlink;
 
-        var assumeWifi = type ? (type === 'wifi' || type === 'ethernet' || type === 'mixed') && (effectiveType === undefined || effectiveType === '4g') : !this.isMobile;
+        var fastConnection = downlink === undefined || downlink >= 2.5;
+        var assumeWifi = type ? (type === 'wifi' || type === 'ethernet' || type === 'mixed') && fastConnection : downlink ? !this.isMobile && fastConnection : !this.isMobile;
         return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'video', 'home-video', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'source', null, null, {
             'src': '/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm',
             'type': 'video/webm'

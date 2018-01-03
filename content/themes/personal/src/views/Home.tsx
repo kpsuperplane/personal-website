@@ -264,12 +264,14 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private wrapper: HTMLElement|null = null;
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
+    private isMobile: boolean = false;
     constructor(props) {
         super(props);
         this.state = {
             posts: null,
             projects: null
         };
+        this.onResize();
         View.setDark(false);
         getPosts('1', (posts) => {
             this.setState({posts: posts.posts});
@@ -282,8 +284,10 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.top = this.content!!.getBoundingClientRect().top;
     }
     private updateHeight = () => {
-        this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
-        this.hero!!.style.height = this.winHeight + 'px';
+        if (this.wrapper && this.hero) { 
+            this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
+            this.hero!!.style.height = this.winHeight + 'px';
+        }
     }
     private dragRender = () => {
         const delta = this.touchLast - this.touchStart;
@@ -300,7 +304,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
     }
     private dragStart = (e: TouchEvent) => {
-        if (window.innerWidth > 750) {
+        if (!this.isMobile) {
             return;
         }
         this.updatePosition();
@@ -328,7 +332,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         }
     }
     private dragEnd = (e: TouchEvent) => {
-        if (window.innerWidth > 750) {
+        if (!this.isMobile) {
             return;
         }
         this.calculateVelocity();
@@ -366,7 +370,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private dragCancel = this.dragEnd;
     private dragMove = (e: TouchEvent) => {
-        if (window.innerWidth > 750) {
+        if (!this.isMobile) {
             return;
         }
         this.touchLast = e.touches[0].clientY;
@@ -388,9 +392,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private onResize = () => {
         this.winHeight = window.innerHeight;
+        this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         this.updateHeight();
-        requestAnimationFrame(this.dragRender);
     }
     private attachWrapper = (el) => {
         if (this.wrapper == null) {
@@ -431,10 +435,12 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     public render() {
         const { posts, projects } = this.state!!;
+        const { type, effectiveType} = ((navigator as any).connection || {type: undefined, effectiveType: undefined});
+        const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && (effectiveType === undefined || effectiveType === '4g')) : !this.isMobile;
         return (<div className="home-component" ref={this.attachWrapper}>
             <video loop="loop" autoplay muted className="home-video" playsinline ref={this.attachVideo}>
-                <source src="/assets/home-video.webm" type="video/webm" />
-                <source src="/assets/home-video.mp4" type="video/mp4" />
+                <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />
+                <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
             </video>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">

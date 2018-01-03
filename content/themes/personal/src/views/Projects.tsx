@@ -33,7 +33,7 @@ interface PaginationInterface {
 }
 
 export const Project = (project: ProjectInterface) => <Link to={project.url} className="project-preview">
-    <LazyImage path={project.feature_image} forceWaitSize={project.forceWait !== null ? project.forceWait : true} loader={true}/>
+    <LazyImage path={project.feature_image} forceWait={project.forceWait} loader={true}/>
     <div className="project-preview-theme" style={{backgroundColor: project.theme}} />
     <div className="project-preview-gradient" />
     <span className="project-preview-body">
@@ -56,7 +56,7 @@ class PaginationEl extends Component<PaginationInterface, {}> {
 }
 
 export const getProjects = (page, callback: (projects) => any, limit = 10) => {
-    GlobalLoader.queue(true);
+    GlobalLoader.queue();
     get(ghost.url.api('posts', {page, filter: 'page:true+tag:[project-page]', limit, include: 'tags'})).end((err, {body}) => {
         GlobalLoader.dequeue(() => {
             if (body.posts.length === 0) {

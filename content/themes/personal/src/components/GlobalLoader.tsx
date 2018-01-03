@@ -2,7 +2,7 @@
 import Component from 'inferno-component';
 
 import Loader from './Loader';
-export default class GlobalLoader extends Component<{}, {loading: boolean, visible: boolean}> {
+export default class GlobalLoader extends Component<{}, {loading: boolean, visible: number}> {
 
     private static instances: GlobalLoader[] = [];
     private static queueSize: number = 0;
@@ -44,18 +44,23 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
         if (this.timeout !== null) {
             clearTimeout(this.timeout);
         }
-        this.timeout = setTimeout(this.updateState, forceAnim ? 0 : 250);
+        this.timeout = setTimeout(this.updateState, forceAnim ? 0 : 50);
     }
     private static removeInitial() {
             document.getElementById('main-app-loader')!!.remove();
     }
     public static queue(forceAnim: boolean = false) {
+        if (this.queueSize === 0) {
+            GlobalLoader.instances.forEach((instance) => {
+                instance.startLoad();
+            });
+        }
         ++GlobalLoader.queueSize;
         if (GlobalLoader.pageStage === -1) {
             GlobalLoader.pageStage = setTimeout(() => {
                 GlobalLoader.pageStage = -2;
                 GlobalLoader.removeInitial();
-            }, 500);
+            }, 350);
         }
         GlobalLoader.queueState(forceAnim);
     }
@@ -78,23 +83,26 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
         super(props);
         this.state = {
             loading: false,
-            visible: false
+            visible: 0
         };
         GlobalLoader.add(this);
     }
     private hide = () => {
-        this.setState({loading: false});
+        this.setState({loading: false, visible: 0});
+    }
+    private startLoad() {
+        this.setState({loading: true, visible: 1});
     }
     private updateState(loading: boolean) {
-        if (this.state!!.loading !== loading) {
+        if (this.state!!.loading !== loading || this.state!!.visible === 1) {
             if (this.timeout !== null) {
                 window.clearTimeout(this.timeout);
             }
             // non-loading to loading
             if (loading === true) {
-                this.setState({loading: true, visible: true});
+                this.setState({loading: true, visible: 2});
             } else { // transition and hide
-                this.setState({visible: false});
+                this.setState({visible: 0});
                 this.timeout = setTimeout(this.hide, 300);
             }
         }
@@ -103,7 +111,7 @@ export default class GlobalLoader extends Component<{}, {loading: boolean, visib
         GlobalLoader.remove(this);
     }
     public render() {
-        return this.state!!.loading ? <div className={'app-loader' + (this.state!!.visible ? ' visible' : '')}>
+        return this.state!!.loading ? <div className={'app-loader' + (['', ' blank', ' visible'][this.state!!.visible])}>
             <img src="/assets/logo-black.png" class="app-loader-logo" />
             <Loader />
         </div> : null;

@@ -24,6 +24,7 @@ body {
     .navigation-desktop.top {
         background: transparent;
         >.navigation-desktop-inner {
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             img.theme {
                 display: none !important;
             }

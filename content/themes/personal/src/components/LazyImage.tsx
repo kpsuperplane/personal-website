@@ -2,7 +2,7 @@ import Component from 'inferno-component';
 import GlobalLoader from './GlobalLoader';
 import './LazyImage.scss';
 
-export default class LazyImage extends Component<{path: string, forceWaitSize: boolean | null, loader: boolean | null}, {loaded: boolean}> {
+export default class LazyImage extends Component<{path: string, forceWait: boolean | null, loader: boolean | null}, {loaded: boolean}> {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,7 +12,7 @@ export default class LazyImage extends Component<{path: string, forceWaitSize: b
         img.addEventListener('load', () => {
             this.setState({loaded: true});
         });
-        if (props.forceWaitSize) {
+        if (props.forceWait === true) {
             GlobalLoader.queue(true);
             const poll = setInterval(() => {
                 if (img.naturalWidth) {

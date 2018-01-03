@@ -34,7 +34,7 @@ interface PaginationInterface {
 }
 
 export const Post = (post: PostInterface) => <Link to={post.url} className={'post-preview' + (!post.feature_image ? ' no-image' : '')}>
-    {post.feature_image ? <LazyImage path={post.feature_image} forceWaitSize={post.forceWait !== null ? post.forceWait : true} loader={true}/> : null}
+    {post.feature_image ? <LazyImage path={post.feature_image} forceWait={post.forceWait} loader={true}/> : null}
     <span className="post-preview-body">
         <h3>{post.title}</h3>
         <p><strong>{post.published_at.toLocaleString(DateTime.DATE_FULL)}</strong>{post.excerpt}</p>
@@ -55,7 +55,7 @@ class PaginationEl extends Component<PaginationInterface, {}> {
 }
 
 export const getPosts = (page, callback: (posts) => any, withImages = false, limit = 10) => {
-    GlobalLoader.queue(true);
+    GlobalLoader.queue();
     get(ghost.url.api('posts', {page, filter: withImages ? 'feature_image:-null' : '', limit, fields: 'feature_image, url, published_at, title, custom_excerpt, html'})).end((err, {body}) => {
         GlobalLoader.dequeue(() => {
             if (body.posts.length === 0) {
@@ -115,7 +115,7 @@ export default class Blog extends View<{pagination: PaginationInterface | null, 
         const { posts, pagination } = this.state!!;
         return <div>
             <Title title="My Blog" image={BlogImage} />
-            {posts ? <div className="blog-entries">{posts.map((post) => <Post {...post} key={post.url}/>)}</div> : null}
+            {posts ? <div className="blog-entries">{posts.map((post) => <Post {...post} forceWait={true} key={post.url}/>)}</div> : null}
             <PaginationEl {...pagination} />
             {posts ? <Footer /> : null}
         </div>;

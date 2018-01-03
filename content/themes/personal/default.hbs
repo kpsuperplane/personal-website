@@ -33,15 +33,24 @@
             opacity: 0;
         }
         .app-loader img {
-            transition: transform 250ms;
             transform: scale(0.9);
         }
         .app-loader-logo {
             height: 3rem;
             margin-bottom: 2rem;
         }
+        .app-loader * {
+            opacity: 0;
+            transition: all 250ms;
+        }
         .app-loader.visible {
+            opacity: 1;
+        }
+        .app-loader.blank {
+            opacity: 1;
             transition: none;
+        }
+        .app-loader.visible * {
             opacity: 1;
         }
         .app-loader.visible img {

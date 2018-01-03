@@ -19,7 +19,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
     }
     private load = () => {
         this.lastPath = window.location.pathname;
-        GlobalLoader.queue(true);
+        GlobalLoader.queue();
         get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, '')})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
                 window.scrollTo(0, 0);
@@ -62,7 +62,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         return <div><article className="post">
             <header className={'post-header' + (image ? ' has-feature-image' : '')}>
                 {image ? [
-                    <LazyImage path={image} forceWaitSize={true} />,
+                    <LazyImage path={image} />,
                     <svg className="post-header-curve" viewBox="0 0 400 60" height="2%" preserveAspectRatio="none">
                     <path d="M 0,60 L 0,50 C 100,0 300,0 400,50 L 400,60" strokeWidth={0} fill="white" />
                 </svg>] : <div className="navigation-mobile-spacer navigation-desktop-spacer" />}

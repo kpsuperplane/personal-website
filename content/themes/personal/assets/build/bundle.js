@@ -86,7 +86,7 @@
 /******/ 		if (__webpack_require__.nc) {
 /******/ 			script.setAttribute("nonce", __webpack_require__.nc);
 /******/ 		}
-/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "c2d2acefa247dc3c67c0" + ".js";
+/******/ 		script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + "-" + "af26970047768c4f5517" + ".js";
 /******/ 		var timeout = setTimeout(onScriptComplete, 120000);
 /******/ 		script.onerror = script.onload = onScriptComplete;
 /******/ 		function onScriptComplete() {
@@ -1200,71 +1200,6 @@ module.exports = isObject;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-
-
-
-var LazyImage = function (_Component) {
-    _inherits(LazyImage, _Component);
-
-    function LazyImage(props) {
-        _classCallCheck(this, LazyImage);
-
-        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
-
-        _this.state = {
-            loaded: false
-        };
-        var img = new Image();
-        img.addEventListener('load', function () {
-            _this.setState({ loaded: true });
-        });
-        if (props.forceWait === true) {
-            __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__["a" /* default */].queue(true);
-            var poll = setInterval(function () {
-                if (img.naturalWidth) {
-                    clearInterval(poll);
-                    __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__["a" /* default */].dequeue();
-                }
-            }, 30);
-        }
-        img.src = props.path;
-        return _this;
-    }
-
-    LazyImage.prototype.render = function render() {
-        var image = Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'img', 'lazy-image' + (this.state.loaded ? ' loaded' : '') + (this.props.className ? ' ' + this.props.className : ''), null, _extends({
-            'src': this.props.path
-        }, this.props));
-        return this.props.loader ? Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'span', 'lazy-image-loader' + (this.state.loaded ? ' loaded' : ''), image) : image;
-    };
-
-    return LazyImage;
-}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
-
-/* harmony default export */ __webpack_exports__["a"] = (LazyImage);
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2188,6 +2123,71 @@ request.put = function(url, data, fn) {
   return req;
 };
 
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LazyImage_scss___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__LazyImage_scss__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_inferno__);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var LazyImage = function (_Component) {
+    _inherits(LazyImage, _Component);
+
+    function LazyImage(props) {
+        _classCallCheck(this, LazyImage);
+
+        var _this = _possibleConstructorReturn(this, _Component.call(this, props));
+
+        _this.state = {
+            loaded: false
+        };
+        var img = new Image();
+        img.addEventListener('load', function () {
+            _this.setState({ loaded: true });
+        });
+        if (props.forceWait === true) {
+            __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__["a" /* default */].queue(true);
+            var poll = setInterval(function () {
+                if (img.naturalWidth) {
+                    clearInterval(poll);
+                    __WEBPACK_IMPORTED_MODULE_1__GlobalLoader__["a" /* default */].dequeue();
+                }
+            }, 30);
+        }
+        img.src = props.path;
+        return _this;
+    }
+
+    LazyImage.prototype.render = function render() {
+        var image = Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'img', 'lazy-image' + (this.state.loaded ? ' loaded' : '') + (this.props.className ? ' ' + this.props.className : ''), null, _extends({
+            'src': this.props.path
+        }, this.props));
+        return this.props.loader ? Object(__WEBPACK_IMPORTED_MODULE_3_inferno__["createVNode"])(2, 'span', 'lazy-image-loader' + (this.state.loaded ? ' loaded' : ''), image) : image;
+    };
+
+    return LazyImage;
+}(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
+
+/* harmony default export */ __webpack_exports__["a"] = (LazyImage);
 
 /***/ }),
 /* 13 */
@@ -9571,7 +9571,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_ellipsize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_ellipsize__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_luxon__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_luxon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_luxon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_superagent__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__App__ = __webpack_require__(42);
 
@@ -16193,7 +16193,7 @@ var App = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__img_logo_white_png___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__img_logo_white_png__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Contact__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Icon__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__LazyImage__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__LazyImage__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__GlobalLoader__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_inferno__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_inferno___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_inferno__);

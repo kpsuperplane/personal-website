@@ -48,7 +48,7 @@ var Post = function (_View) {
                     window.scrollTo(0, 0);
                     if (body && body.posts && body.posts.length > 0) {
                         var post = body.posts[0];
-                        __WEBPACK_IMPORTED_MODULE_4__View__["a" /* default */].setDark(post.feature_image !== null);
+                        __WEBPACK_IMPORTED_MODULE_4__View__["a" /* default */].setDark(post.feature_image);
                         _this.setState({ content: { __html: post.html }, title: post.title, image: post.feature_image || null }, function () {
                             for (var _iterator = document.getElementsByClassName('post')[0].getElementsByTagName('iframe'), _isArray = Array.isArray(_iterator), _i = 0, _iterator = _isArray ? _iterator : _iterator[Symbol.iterator]();;) {
                                 var _ref2;

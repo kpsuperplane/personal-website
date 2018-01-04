@@ -25,7 +25,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
-                    View.setDark(post.feature_image !== null);
+                    View.setDark(post.feature_image);
                     this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null}, () => {
                         for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
                             const wrapper = document.createElement('div');

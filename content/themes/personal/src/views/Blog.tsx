@@ -37,7 +37,7 @@ export const Post = (post: PostInterface) => <Link to={post.url} className={'pos
     {post.feature_image ? <LazyImage path={post.feature_image} forceWait={post.forceWait} loader={true}/> : null}
     <span className="post-preview-body">
         <h3>{post.title}</h3>
-        <p><strong>{post.published_at.toLocaleString(DateTime.DATE_FULL)}</strong>{post.excerpt}</p>
+        <p><strong>{post.published_at.toLocaleString(DateTime.DATE_FULL)}</strong><span dangerouslySetInnerHTML={{__html: post.excerpt}} /></p>
     </span>
 </Link>;
 

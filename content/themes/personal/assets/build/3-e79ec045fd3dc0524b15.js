@@ -97,10 +97,11 @@ var Post = function (_View) {
         return _this;
     }
 
-    Post.prototype.componentDidUpdate = function componentDidUpdate(props) {
+    Post.prototype.componentDidUpdate = function componentDidUpdate() {
         if (window.location.pathname !== this.lastPath && !(window.location.pathname in ['blog', 'projects'])) {
             this.load();
         }
+        _View.prototype.componentDidUpdate.call(this);
     };
 
     Post.prototype.render = function render() {
@@ -139,11 +140,14 @@ var Post = function (_View) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_superagent__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -160,6 +164,22 @@ var View = function (_Component) {
         return _this;
     }
 
+    View.prototype.componentDidMount = function componentDidMount() {
+        this.componentDidUpdate();
+    };
+
+    View.prototype.componentDidUpdate = function componentDidUpdate() {
+        if (View._lastPath !== window.location.href) {
+            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].queue();
+            View._lastPath = window.location.href;
+            Object(__WEBPACK_IMPORTED_MODULE_2_superagent__["get"])(View._lastPath).end(function (err, res) {
+                __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();
+                var html = res.text;
+                document.title = html.match(/<title>(.*)<\/title>/)[1];
+            });
+        }
+    };
+
     return View;
 }(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
 
@@ -168,6 +188,7 @@ var View = function (_Component) {
 View.setDark = function (dark) {
     document.body.classList[dark ? 'add' : 'remove']('dark-top');
 };
+View._lastPath = window.location.href;
 
 /***/ }),
 

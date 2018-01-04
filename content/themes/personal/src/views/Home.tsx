@@ -108,7 +108,7 @@ class HomeContent extends Component<{}, {story: any, visible: boolean}> {
     public render() {
         const {story, visible} = this.state!!;
         if (1 === 1) {
-            return <h1>Hi, I'm Kevin</h1>;
+            return <h1>Hey, I'm Kevin</h1>;
         } else if (story === null) {
             return <div className={'home-prompt home-message' + (visible ? ' visible' : '')}>
                 <LazyImage path={Thinking} style={{width: '5rem', height: '5.1367rem'}} /><br />
@@ -436,11 +436,12 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     public componentDidMount() {
         this.onResize();
         this.dragRender();
+        super.componentDidMount();
     }
     public render() {
         const { posts, projects } = this.state!!;
         const { type, downlink } = ((navigator as any).connection || {type: undefined, downlink: undefined});
-        const fastConnection = (downlink === undefined || downlink >= 2.5);
+        const fastConnection = (downlink === undefined || downlink >= 3.5);
         const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
         return (<div className="home-component" ref={this.attachWrapper}>
             <video loop="loop" autoplay muted className="home-video" playsinline ref={this.attachVideo}>

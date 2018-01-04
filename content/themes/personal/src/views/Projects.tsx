@@ -95,7 +95,7 @@ export default class Projects extends View<{pagination: PaginationInterface | nu
         this.lastPath = window.location.href;
         getProjects(page, (projects) => {
             if (projects) {
-                View.setDark(true);
+                View.setDark(false);
                 window.scrollTo(0, 0);
                 this.setState(projects);
             } else {
@@ -105,11 +105,13 @@ export default class Projects extends View<{pagination: PaginationInterface | nu
     }
     public componentDidMount() {
         this.load();
+        super.componentDidMount();
     }
-    public componentDidUpdate(props) {
+    public componentDidUpdate() {
         if (window.location.href !== this.lastPath && window.location.href.indexOf('/projects/') !== -1) {
             this.load();
         }
+        super.componentDidUpdate();
     }
     public render() {
         const { projects, pagination } = this.state!!;

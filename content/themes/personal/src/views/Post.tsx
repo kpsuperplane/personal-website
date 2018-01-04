@@ -43,10 +43,11 @@ export default class Post extends View<{content: any | null,  image: string | nu
             });
         });
     }
-    public componentDidUpdate(props) {
+    public componentDidUpdate() {
         if (window.location.pathname !== this.lastPath && !(window.location.pathname in ['blog', 'projects'])) {
             this.load();
         }
+        super.componentDidUpdate();
     }
     private handleClick = (e) => {
         if (e.target && e.target.tagName === 'A' && e.target.attributes && e.target.attributes.href && !(e.target.attributes.target && e.target.attributes.target !== '_self')) {

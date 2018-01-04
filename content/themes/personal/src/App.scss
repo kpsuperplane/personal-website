@@ -10,33 +10,3 @@ body {
     font-size: 16px;
     @extend .body-font;
 }
-@media (min-width: 751px) {
-    .navigation-desktop-spacer {
-        height: 88px;
-    }
-}
-@media (max-width: 750px) {
-    .navigation-mobile-spacer {
-        height: 72px;
-    }
-}
-.home-template, .projects-template, .blog-template {
-    .navigation-desktop.top {
-        background: transparent;
-        >.navigation-desktop-inner {
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            img.theme {
-                display: none !important;
-            }
-            img.white {
-                display: block !important;
-            }
-            a {
-                color: #FFF;
-                &:hover {
-                    color: rgba(255, 255, 255, 0.5);
-                }
-            }
-        }
-    }
-}

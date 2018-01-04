@@ -145,7 +145,7 @@ var Blog = function (_View) {
             _this2.lastPath = window.location.href;
             getPosts(page, function (posts) {
                 if (posts) {
-                    __WEBPACK_IMPORTED_MODULE_12__View__["a" /* default */].setDark(true);
+                    __WEBPACK_IMPORTED_MODULE_12__View__["a" /* default */].setDark(false);
                     window.scrollTo(0, 0);
                     _this2.setState(posts);
                 } else {
@@ -157,18 +157,19 @@ var Blog = function (_View) {
             pagination: null,
             posts: null
         };
-        __WEBPACK_IMPORTED_MODULE_12__View__["a" /* default */].setDark(true);
         return _this2;
     }
 
     Blog.prototype.componentDidMount = function componentDidMount() {
         this.load();
+        _View.prototype.componentDidMount.call(this);
     };
 
-    Blog.prototype.componentDidUpdate = function componentDidUpdate(props) {
+    Blog.prototype.componentDidUpdate = function componentDidUpdate() {
         if (window.location.href !== this.lastPath && window.location.href.indexOf('/blog/') !== -1) {
             this.load();
         }
+        _View.prototype.componentDidUpdate.call(this);
     };
 
     Blog.prototype.render = function render() {
@@ -338,7 +339,7 @@ var Projects = function (_View) {
             _this2.lastPath = window.location.href;
             getProjects(page, function (projects) {
                 if (projects) {
-                    __WEBPACK_IMPORTED_MODULE_11__View__["a" /* default */].setDark(true);
+                    __WEBPACK_IMPORTED_MODULE_11__View__["a" /* default */].setDark(false);
                     window.scrollTo(0, 0);
                     _this2.setState(projects);
                 } else {
@@ -355,12 +356,14 @@ var Projects = function (_View) {
 
     Projects.prototype.componentDidMount = function componentDidMount() {
         this.load();
+        _View.prototype.componentDidMount.call(this);
     };
 
-    Projects.prototype.componentDidUpdate = function componentDidUpdate(props) {
+    Projects.prototype.componentDidUpdate = function componentDidUpdate() {
         if (window.location.href !== this.lastPath && window.location.href.indexOf('/projects/') !== -1) {
             this.load();
         }
+        _View.prototype.componentDidUpdate.call(this);
     };
 
     Projects.prototype.render = function render() {
@@ -556,7 +559,7 @@ var HomeContent = function (_Component2) {
             visible = _state2.visible;
 
         if (true) {
-            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'h1', null, 'Hi, I\'m Kevin');
+            return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'h1', null, 'Hey, I\'m Kevin');
         } else if (story === null) {
             return createVNode(2, 'div', 'home-prompt home-message' + (visible ? ' visible' : ''), [createVNode(16, LazyImage, null, null, {
                 'path': Thinking,
@@ -917,6 +920,7 @@ var Home = function (_View) {
     Home.prototype.componentDidMount = function componentDidMount() {
         this.onResize();
         this.dragRender();
+        _View.prototype.componentDidMount.call(this);
     };
 
     Home.prototype.render = function render() {
@@ -928,7 +932,7 @@ var Home = function (_View) {
             type = _ref.type,
             downlink = _ref.downlink;
 
-        var fastConnection = downlink === undefined || downlink >= 2.5;
+        var fastConnection = downlink === undefined || downlink >= 3.5;
         var assumeWifi = type ? (type === 'wifi' || type === 'ethernet' || type === 'mixed') && fastConnection : downlink ? !this.isMobile && fastConnection : !this.isMobile;
         return Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'div', 'home-component', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'video', 'home-video', [Object(__WEBPACK_IMPORTED_MODULE_15_inferno__["createVNode"])(2, 'source', null, null, {
             'src': '/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm',
@@ -990,11 +994,14 @@ var Home = function (_View) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_inferno_component___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_inferno_component__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_superagent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_superagent__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -1011,6 +1018,22 @@ var View = function (_Component) {
         return _this;
     }
 
+    View.prototype.componentDidMount = function componentDidMount() {
+        this.componentDidUpdate();
+    };
+
+    View.prototype.componentDidUpdate = function componentDidUpdate() {
+        if (View._lastPath !== window.location.href) {
+            __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].queue();
+            View._lastPath = window.location.href;
+            Object(__WEBPACK_IMPORTED_MODULE_2_superagent__["get"])(View._lastPath).end(function (err, res) {
+                __WEBPACK_IMPORTED_MODULE_1__components_GlobalLoader__["a" /* default */].dequeue();
+                var html = res.text;
+                document.title = html.match(/<title>(.*)<\/title>/)[1];
+            });
+        }
+    };
+
     return View;
 }(__WEBPACK_IMPORTED_MODULE_0_inferno_component___default.a);
 
@@ -1019,6 +1042,7 @@ var View = function (_Component) {
 View.setDark = function (dark) {
     document.body.classList[dark ? 'add' : 'remove']('dark-top');
 };
+View._lastPath = window.location.href;
 
 /***/ }),
 /* 59 */

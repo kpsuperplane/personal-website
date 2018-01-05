@@ -11,12 +11,18 @@ import Footer from '../components/Footer';
 import Icon, { Icons } from '../components/Icon';
 import LazyImage from '../components/LazyImage';
 import Loader from '../components/Loader';
+import { Curve } from '../components/Title';
 import Thinking from '../img/thinking.jpg';
 
 import { getPosts, Post, PostInterface } from '../views/Blog';
 import { getProjects, Project, ProjectInterface } from '../views/Projects';
 
 import './Home.scss';
+
+const getScrollY = () => {
+    const doc = document.documentElement;
+    return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+};
 
 class Story<T> extends Component<{onComplete: Function}, T> {}
 
@@ -168,7 +174,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
     }
     private touchEnd = (e) => {
-        if (window.scrollY === 1) {
+        if (getScrollY() === 1) {
             window.scrollTo(0, 0);
         }
         if (!this.dragging) {
@@ -247,7 +253,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     }
 }
 
-export default class Home extends View<{posts: PostInterface[] | null, projects: ProjectInterface[] | null}> {
+export default class Home extends View<{posts: PostInterface[] | null, projects: ProjectInterface[] | null, mouseMode: boolean}> {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
@@ -265,13 +271,20 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
-    private loadingPosts: boolean = false;
+    private lastScrollY: number = 0;
     constructor(props) {
         super(props);
         this.state = {
+            mouseMode: true,
             posts: null,
             projects: null
         };
+        getPosts('1', (posts) => {
+            this.setState({posts: posts.posts});
+        }, true, 5);
+        getProjects('1', (projects) => {
+            this.setState({projects: projects.projects});
+        }, 5);
         this.onResize();
         View.setDark(false);
     }
@@ -279,7 +292,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.top = this.content!!.getBoundingClientRect().top;
     }
     private updateHeight = () => {
-        if (this.wrapper && this.hero) { 
+        if (this.wrapper && this.hero) {
             this.wrapper!!.style.height = this.opened ? null : this.winHeight + 'px';
             this.hero!!.style.height = this.winHeight + 'px';
         }
@@ -302,12 +315,25 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         if (!this.isMobile) {
             return;
         }
-        this.updatePosition();
-        this.startTop = window.scrollY <= 0;
-        if (this.opened && window.scrollY < 1) {
+        if (this.state!!.mouseMode) {
+            this.setState({mouseMode: false});
+            if (this.lastScrollY < this.winHeight * 0.85) {
+                this.top = this.winHeight * 0.85 - this.lastScrollY;
+                window.scrollTo(0, 0);
+                this.opened = false;
+            } else {
+                this.top = this.winHeight * 0.85;
+                this.content!!.style.transform = `translate3d(0, 0, 0)`;
+                window.scrollTo(this.lastScrollY - this.top, 0);
+                this.opened = true;
+            }
+        } else {
+            this.updatePosition();
+        }
+        this.startTop = this.lastScrollY <= 0;
+        if (this.opened && this.lastScrollY < 1) {
             window.scrollTo(0, 1);
         }
-        this.content!!.style.borderRadius = null;
         this.touchStart = e.touches[0].clientY;
         this.touchLastTime = new Date().getTime();
         this.touchStartTime = this.touchLastTime;
@@ -355,6 +381,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.content!!.style.boxShadow = null;
             this.video!!.play();
         }
+        this.lastScrollY = 0;
         this.touchStart = -1;
         this.touchLast = -1;
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
@@ -371,12 +398,13 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         const y = this.top + this.touchLast - this.touchStart;
-        if (this.opened && window.scrollY - y < 1 && this.startTop) {
+        if (this.opened && this.lastScrollY - y < 1 && this.startTop) {
             this.opened = false;
             this.touchStart = this.touchLast - 1;
             this.touchDelta = 0;
             this.top = 0;
             this.updateHeight();
+            this.content!!.style.borderRadius = null;
             e.preventDefault();
         }
         if (!this.opened) {
@@ -390,15 +418,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         this.updateHeight();
-        if (this.isMobile && this.state!!.posts === null && this.loadingPosts === false) {
-            this.loadingPosts = true;
-            getPosts('1', (posts) => {
-                this.setState({posts: posts.posts});
-            }, true, 5);
-            getProjects('1', (projects) => {
-                this.setState({projects: projects.projects});
-            }, 5);
-        }
     }
     private attachWrapper = (el) => {
         if (this.wrapper == null) {
@@ -425,29 +444,46 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.video!!.play();
         }
     }
+    private onWheel = (e) => {
+        if (!this.state!!.mouseMode) {
+            this.setState({mouseMode: true});
+            this.top = this.winHeight * 0.85;
+            this.touchLast = 0;
+            this.touchStart = 0;
+            this.content!!.style.borderRadius = null;
+            this.content!!.style.boxShadow = null;
+            this.content!!.style.transition = 'none';
+            this.content!!.style.transform = `translate3d(0, ${this.top}px, 0)`;
+            window.scrollTo(0, this.lastScrollY + this.top);
+        }
+    }
+    private onScroll = () => {
+        this.lastScrollY = getScrollY();
+    }
     public componentWillUnmount() {
-        const el = this.wrapper!!;
-        el.removeEventListener('touchstart', this.dragStart);
-        el.removeEventListener('touchend', this.dragEnd);
-        el.removeEventListener('touchcancel', this.dragCancel);
-        el.removeEventListener('touchmove', this.dragMove);
         window.removeEventListener('resize', this.onResize);
+        window.removeEventListener('scroll', this.onScroll);
+        window.removeEventListener('wheel', this.onWheel);
     }
     public componentDidMount() {
         this.onResize();
         this.dragRender();
+        window.addEventListener('scroll', this.onScroll);
+        window.addEventListener('wheel', this.onWheel);
         super.componentDidMount();
     }
     public render() {
-        const { posts, projects } = this.state!!;
+        const { posts, projects, mouseMode } = this.state!!;
         const { type, downlink } = ((navigator as any).connection || {type: undefined, downlink: undefined});
         const fastConnection = (downlink === undefined || downlink >= 3.5);
         const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
-        return (<div className="home-component" ref={this.attachWrapper}>
-            <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
-                <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />
-                <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
-            </video>
+        return (<div className={'home-component' + (mouseMode ? ' mousemode' : '')} ref={this.attachWrapper}>
+            <div className="home-video-wrapper">
+                <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
+                    <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />
+                    <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
+                </video>
+            </div>
             <div className="home-content" ref={this.attachHero}>
                 <div className="home-content-inner">
                     <HomeContent />
@@ -461,9 +497,12 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
                     <Contact hideEmail={true} />
                 </div>
             </div>
+            <div className="content-background"><Curve /></div>
             <div ref={this.attachContent} className="content-wrapper">
-                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
-                <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
+                <div className="content-wrapper-inner">
+                    <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
+                    <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
+                </div>
                 { (posts || projects) ? <Footer /> : null }
             </div>
         </div>);

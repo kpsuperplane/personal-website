@@ -15,11 +15,23 @@
     100% {opacity: 0;}
 }
 
+
 .home-component {
     overflow-y: hidden;
     position: static;
     background: #FFF;
     background-size: cover;
+    .content-background {
+        display: none;
+    }
+    .home-video-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
     .home-video {
         min-width: 100%; 
         min-height: 100%; 
@@ -44,7 +56,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        position: absolute;
+        position: fixed;
         background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, transparent 30%, transparent 60%, rgba(0, 0, 0, 0.15) 100%);
         top: 0;
         left: 0;
@@ -108,6 +120,7 @@
         transform-origin: top center;
         transform: translateY(85vh);
         background: #FFF;
+        margin: 0 auto;
         transition-timing-function: ease-out;
         -webkit-transition-timing-function: ease-out;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -189,6 +202,10 @@
             }
         }
     }
+    &.mousemode {
+        height: auto !important;
+        overflow-y: visible !important;
+    }
 }
 .h-scroll {
     position: relative;
@@ -202,6 +219,7 @@
         }
     }
     >.h-scroll-nav {
+        cursor: pointer;
         position: absolute;
         top: 50%;
         padding: 0.5rem;
@@ -256,15 +274,59 @@
 }
 @media (min-width: 750px) {
     .home-template {
-        .home-content h1 {
-            font-size: 3.5rem;
-            font-weight: 100 !important;
-        }
-        .swipe-up-indicator {
-            display: none !important;
+        .home-content, .home-video {
+            position: absolute;
+            overflow: hidden;
         }
         .content-wrapper {
-            display: none;
+            overflow: visible;
+            padding: 2rem;
+            background: transparent;
+            box-shadow: none;
+            border-radius: none;
+            max-width: 700px;
+        }
+        .content-wrapper-inner {
+            overflow: hidden;
+            margin-bottom: 4rem;
+            border-radius: 1rem;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,.1);
+        }
+        .content-background {
+            display: block;
+            position: absolute;
+            top: 100%;
+            height: 100%;
+            width: 100%;
+            background: #FFF;
+            >svg {
+                margin-top: -80px;
+                height: 80px;
+                width: 100%;
+                display: block;
+            }
+        }
+        .home-component .lazy-image-loader {
+            height: 18rem;
+        }
+        .home-component .home-projects > .h-scroll-nav.left {
+            left: 2rem;
+            right: auto;
+        }
+        .home-component .home-projects > .h-scroll-nav.right {
+            right: 2rem;
+        }
+        .home-component .home-projects > .h-scroll-nav {
+            top: 7rem;
+            background: rgba(255, 255, 255, 0.25);
+        }
+        .home-component .home-projects > .h-scroll-contents > .project-preview > .project-preview-body {
+            padding-bottom: 3.5rem;
+        }
+        .home-component .home-projects > .h-scroll-indicator {
+            margin-top: -3.5rem;
+            margin-bottom: 0.5rem;
         }
     }
 }

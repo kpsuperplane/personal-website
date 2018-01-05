@@ -120,6 +120,9 @@
         >img {
             position: absolute;
             top: 50%;
+            background-size: cover;
+            background-position: center center;
+            height: 100%;
             transform: translateY(-50%) !important;
             width: 100%;
         }

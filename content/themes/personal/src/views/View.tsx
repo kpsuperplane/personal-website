@@ -9,7 +9,13 @@ export default class View<T> extends Component<any, T> {
         document.body.classList[dark ? 'add' : 'remove']('dark-top');
     }
     private static _lastPath: string = window.location.href;
-    constructor(props) {
+    constructor(P, props) {
+        for (const bodyClass of document.body.classList) {
+            if (bodyClass.indexOf('-template') != -1) {
+                document.body.classList.remove(bodyClass);
+            }
+        }
+        document.body.classList.add(P + '-template');
         super(props);
         GlobalLoader.dequeue();
     }

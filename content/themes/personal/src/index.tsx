@@ -23,17 +23,12 @@ const Projects = (props, cb) => require.ensure([], () => cb(null, (require('./vi
 const Blog = (props, cb) => require.ensure([], () => cb(null, (require('./views/Blog') as any).default));
 
 const browserHistory = createBrowserHistory();
-let lastPage = '';
+let lastPage = null;
 
 function handleNavigation(route) {
     const matched = match(routes, route);
-    const newPage = matched.matched.props.children.props.children.props.getComponent.name.toLowerCase() + '-template';
-    if (newPage !== lastPage) {
-        if (lastPage !== '') {
-            document.body.classList.remove(lastPage);
-        }
-        lastPage = newPage;
-        document.body.classList.add(lastPage);
+    if (matched.type !== lastPage) {
+        lastPage = matched.type;
         GlobalLoader.reset();
         GlobalLoader.queue();
     }

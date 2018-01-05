@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CleanObsoleteChunks = require('webpack-clean-obsolete-chunks');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
 	entry: "./src/index.tsx", // Point to main file
 	output: {
@@ -34,7 +36,7 @@ module.exports = {
 				exclude: /node_modules/
 			}, {
 				test: /\.s?css$/,
-				loaders: ["style-loader", "css-loader", "sass-loader"],
+				loaders: ExtractTextPlugin.extract({fallback: 'style-loader', use: ["css-loader", "sass-loader"]}),
 				exclude: /node_modules/
 			}, {
 				test: /\.(jpe?g|png|gif|svg|mp4|webm)$/i,
@@ -67,11 +69,16 @@ module.exports = {
 		historyApiFallback: true
 	},
 	plugins: [
+		new webpack.EnvironmentPlugin(['NODE_ENV']),
         new CleanObsoleteChunks(),
 		new CleanWebpackPlugin(
 			["assets/build"], {
 				verbose: true
 			}
-		)
+		),
+		new ExtractTextPlugin({
+			filename: 'bundle.min.css', 
+			allChunks: true }),
+		new UglifyJSPlugin()
 	]
 };

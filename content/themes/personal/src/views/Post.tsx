@@ -9,7 +9,7 @@ import './Post.scss';
 export default class Post extends View<{content: any | null,  image: string | null, title: string}> {
     private lastPath: string = '';
     constructor(props) {
-        super(props);
+        super('post', props);
         this.state = {
             content: null,
             image: null,

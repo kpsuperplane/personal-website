@@ -10,56 +10,10 @@
     <title>{{meta_title}}</title>
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no" />
-    <style type="text/css">
-        html {
-            height: 100%;
-        }
-        body {
-            font-size: 16px;
-        }
-        .app-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-            background: #FFF;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            transition: opacity 250ms;
-            opacity: 0;
-        }
-        .app-loader img {
-            transform: scale(0.9);
-        }
-        .app-loader-logo {
-            height: 3rem;
-            margin-bottom: 2rem;
-        }
-        .app-loader * {
-            opacity: 0;
-            transition: all 250ms;
-        }
-        .app-loader.visible {
-            opacity: 1;
-        }
-        .app-loader.blank {
-            opacity: 1;
-            transition: none;
-        }
-        .app-loader.visible * {
-            opacity: 1;
-        }
-        .app-loader.visible img {
-            transform: scale(1);
-        }
-    </style>
 
     <link rel="stylesheet" href="https://use.typekit.net/upz7elf.css">
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset "build/bundle.min.css"}}">
 
     {{!-- This tag outputes SEO meta+structured data and other important settings --}}
     {{ghost_head}}
@@ -79,7 +33,7 @@
         }, 500);
     </script>
     <script type="text/javascript" src="{{asset "build/bundle.js"}}" id="bundle"></script>
-    
+
     {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
     {{ghost_foot}}
 

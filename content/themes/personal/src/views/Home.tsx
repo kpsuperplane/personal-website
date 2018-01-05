@@ -273,7 +273,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private isMobile: boolean = false;
     private lastScrollY: number = 0;
     constructor(props) {
-        super(props);
+        super('home', props);
         this.state = {
             mouseMode: true,
             posts: null,

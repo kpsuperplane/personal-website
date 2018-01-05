@@ -81,7 +81,7 @@ export const getProjects = (page, callback: (projects) => any, limit = 10) => {
 export default class Projects extends View<{pagination: PaginationInterface | null, projects: ProjectInterface[] | null}> {
     private lastPath: string = '';
     constructor(props) {
-        super(props);
+        super('projects', props);
         this.state = {
             pagination: null,
             projects: null

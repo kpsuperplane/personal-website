@@ -81,7 +81,7 @@ export const getPosts = (page, callback: (posts) => any, withImages = false, lim
 export default class Blog extends View<{pagination: PaginationInterface | null, posts: PostInterface[] | null}> {
     private lastPath: string = '';
     constructor(props) {
-        super(props);
+        super('blog', props);
         this.state = {
             pagination: null,
             posts: null

@@ -417,6 +417,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.winHeight = window.innerHeight;
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
+        this.content!!.style.transform = `translate3d(0, ${this.top}px, 0)`;
         this.updateHeight();
     }
     private attachWrapper = (el) => {
@@ -449,6 +450,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.setState({mouseMode: true});
             this.top = this.winHeight * 0.85;
             this.touchLast = 0;
+            this.opened = false;
             this.touchStart = 0;
             this.content!!.style.borderRadius = null;
             this.content!!.style.boxShadow = null;

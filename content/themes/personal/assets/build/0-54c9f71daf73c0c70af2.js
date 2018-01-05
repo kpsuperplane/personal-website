@@ -877,7 +877,9 @@ var Home = function (_View) {
             _this6.winHeight = window.innerHeight;
             _this6.isMobile = window.innerWidth <= 750;
             _this6.top = _this6.opened ? 0 : _this6.winHeight * 0.85;
-            _this6.content.style.transform = 'translate3d(0, ' + _this6.top + 'px, 0)';
+            if (_this6.content) {
+                _this6.content.style.transform = 'translate3d(0, ' + _this6.top + 'px, 0)';
+            }
             _this6.updateHeight();
         };
         _this6.attachWrapper = function (el) {

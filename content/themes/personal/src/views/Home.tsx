@@ -417,7 +417,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.winHeight = window.innerHeight;
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
-        this.content!!.style.transform = `translate3d(0, ${this.top}px, 0)`;
+        if (this.content) {
+            this.content.style.transform = `translate3d(0, ${this.top}px, 0)`;
+        }
         this.updateHeight();
     }
     private attachWrapper = (el) => {

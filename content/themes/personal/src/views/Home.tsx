@@ -461,6 +461,15 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private onScroll = () => {
         this.lastScrollY = getScrollY();
+        if (this.lastScrollY <= 0) {
+            if (this.video!!.paused) {
+                this.video!!.play();
+            }
+        } else {
+            if (!this.video!!.paused) {
+                this.video!!.pause();
+            }
+        }
     }
     public componentWillUnmount() {
         window.removeEventListener('resize', this.onResize);

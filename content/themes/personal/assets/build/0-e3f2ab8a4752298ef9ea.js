@@ -921,6 +921,15 @@ var Home = function (_View) {
         };
         _this6.onScroll = function () {
             _this6.lastScrollY = getScrollY();
+            if (_this6.lastScrollY <= 0) {
+                if (_this6.video.paused) {
+                    _this6.video.play();
+                }
+            } else {
+                if (!_this6.video.paused) {
+                    _this6.video.pause();
+                }
+            }
         };
         _this6.state = {
             mouseMode: true,

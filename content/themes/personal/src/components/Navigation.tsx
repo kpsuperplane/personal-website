@@ -9,6 +9,8 @@ import Contact from './Contact';
 import Icon, { Icons } from './Icon';
 import LazyImage from './LazyImage';
 
+import ContactBg from '../img/contact-bg.jpg';
+
 import GlobalLoader from './GlobalLoader';
 
 class NavigationMobile extends Component <{loading: boolean}, {width: number, maxHeight: number, active: boolean, scrolledTop: boolean}> {
@@ -223,12 +225,12 @@ class NavigationMobile extends Component <{loading: boolean}, {width: number, ma
     }
 }
 
-class NavigationDesktop extends Component<{loading: boolean}, {contact: boolean, scrollHidden: boolean, scrollTop: boolean}> {
+class NavigationDesktop extends Component<{loading: boolean}, {contact: number, scrollHidden: boolean, scrollTop: boolean}> {
     private lastScroll: number = 0;
     constructor(props) {
         super(props);
         this.state = {
-            contact: false,
+            contact: -1,
             scrollHidden: false,
             scrollTop: true
         };
@@ -250,10 +252,10 @@ class NavigationDesktop extends Component<{loading: boolean}, {contact: boolean,
         }
     }
     private contact = () => {
-        this.setState({contact: !this.state!!.contact, scrollHidden: false});
+        this.setState({contact: this.state!!.contact === 1 ? 0 : 1, scrollHidden: false});
     }
     private navigate = () => {
-        this.setState({contact:  false});
+        this.setState({contact:  0});
     }
     public componentDidMount() {
         window.addEventListener('scroll', this.onScroll);
@@ -263,9 +265,9 @@ class NavigationDesktop extends Component<{loading: boolean}, {contact: boolean,
     }
     public render() {
         const { contact, scrollTop, scrollHidden } = this.state!!;
-        return <div className={'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (contact ? ' contact' : '') + (scrollTop && !contact ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : '')}>
+        return <div className={'navigation-desktop' + (this.props.loading ? '' : ' loaded') + (contact === 1 ? ' contact' : '') + (scrollTop && contact !== 1 ? ' top' : '') + (scrollHidden ? ' scroll-hidden' : '')}>
             <div className="navigation-desktop-contact">
-                <div className="navigation-desktop-contact-inner">
+                <div className="navigation-desktop-contact-inner" style={ contact >= 0 ? {backgroundImage: `url(${ContactBg})`} : null }>
                     <h2>Get in Touch</h2>
                     <p>Opportunity, cordiality, or just plain curiosity? Either way, feel free to get in touch with one of the ways below!</p>
                     <Contact />
@@ -278,8 +280,8 @@ class NavigationDesktop extends Component<{loading: boolean}, {contact: boolean,
                 </div>
                 <Link to="/" onClick={this.navigate} className="navigation-desktop-home"><LazyImage className="theme" path={LogoTheme} /><LazyImage className="white" path={LogoWhite} /></Link>
                 <div className="navigation-desktop-right">
-                    <Link to="/blog/" class="blog-toggle" onClick={this.navigate} style="transition-delay:0.14s">BLOG</Link>
-                    <a href="javascript:void(0);" onClick={this.contact} class={contact ? 'active' : ''} style="transition-delay:0.07s">CONTACT</a>
+                    <Link to="/blog/" class="blog-toggle" onClick={this.navigate} style="transition-delay:0.07s">BLOG</Link>
+                    <a href="javascript:void(0);" onClick={this.contact} class={contact ? 'active' : ''} style="transition-delay:0.14s">CONTACT</a>
                 </div>
             </div>
         </div>;

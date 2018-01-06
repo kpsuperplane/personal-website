@@ -62,10 +62,13 @@
     box-sizing: border-box;
     border-bottom: 1px solid #EEE;
     margin-bottom: 10px;
-    padding: 3rem;
     background: #FFF; }
     .navigation-desktop > .navigation-desktop-contact .navigation-desktop-contact-inner {
       width: 750px;
+      padding: 3rem;
+      background-position: center right;
+      background-size: contain;
+      background-repeat: no-repeat;
       margin: 0 auto;
       position: relative;
       text-align: left; }
@@ -75,11 +78,8 @@
         line-height: 2rem;
         font-weight: 300; }
       .navigation-desktop > .navigation-desktop-contact .navigation-desktop-contact-inner .contact {
-        position: absolute;
-        text-align: right;
-        bottom: -0.3rem;
-        right: 0;
-        margin-right: -0.8rem; }
+        text-align: left;
+        margin-left: -0.8rem; }
       .navigation-desktop > .navigation-desktop-contact .navigation-desktop-contact-inner h2 {
         font-weight: 300; }
   .navigation-desktop > .navigation-desktop-inner {

@@ -328,7 +328,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         } else {
             this.updatePosition();
         }
-        this.startTop = lastScrollY <= 1;
+        this.startTop = lastScrollY <= 1 && getScrollY() <= 1;
         if (this.opened && lastScrollY < 1 && getScrollY() < 1) {
             window.scrollTo(0, 1);
         }

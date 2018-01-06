@@ -19,6 +19,8 @@ import { getProjects, Project, ProjectInterface } from '../views/Projects';
 
 import './Home.scss';
 
+let lastScrollY: number = -1;
+
 const getScrollY = () => {
     const doc = document.documentElement;
     return (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
@@ -174,7 +176,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
     }
     private touchEnd = (e) => {
-        if (getScrollY() === 1) {
+        if (lastScrollY === 1) {
             window.scrollTo(0, 0);
         }
         if (!this.dragging) {
@@ -271,7 +273,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
-    private lastScrollY: number = 0;
     constructor(props) {
         super('home', props);
         this.state = {
@@ -317,21 +318,21 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         }
         if (this.state!!.mouseMode) {
             this.setState({mouseMode: false});
-            if (this.lastScrollY < this.winHeight * 0.85) {
-                this.top = this.winHeight * 0.85 - this.lastScrollY;
+            if (lastScrollY < this.winHeight * 0.85) {
+                this.top = this.winHeight * 0.85 - lastScrollY;
                 window.scrollTo(0, 0);
                 this.opened = false;
             } else {
                 this.top = this.winHeight * 0.85;
                 this.content!!.style.transform = `translate3d(0, 0, 0)`;
-                window.scrollTo(this.lastScrollY - this.top, 0);
+                window.scrollTo(lastScrollY - this.top, 0);
                 this.opened = true;
             }
         } else {
             this.updatePosition();
         }
-        this.startTop = this.lastScrollY <= 0;
-        if (this.opened && this.lastScrollY < 1) {
+        this.startTop = lastScrollY <= 0;
+        if (this.opened && lastScrollY < 1) {
             window.scrollTo(0, 1);
         }
         this.touchStart = e.touches[0].clientY;
@@ -381,7 +382,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.content!!.style.boxShadow = null;
             this.video!!.play();
         }
-        this.lastScrollY = 0;
+        lastScrollY = 0;
         this.touchStart = -1;
         this.touchLast = -1;
         const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
@@ -398,7 +399,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.touchLast = e.touches[0].clientY;
         this.touchDelta = this.touchLastBuffer - e.touches[0].clientY;
         const y = this.top + this.touchLast - this.touchStart;
-        if (this.opened && this.lastScrollY - y < 1 && this.startTop) {
+        if (this.opened && lastScrollY - y < 1 && this.startTop) {
             this.opened = false;
             this.touchStart = this.touchLast - 1;
             this.touchDelta = 0;
@@ -458,12 +459,12 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.content!!.style.boxShadow = null;
             this.content!!.style.transition = 'none';
             this.content!!.style.transform = `translate3d(0, ${this.top}px, 0)`;
-            window.scrollTo(0, this.lastScrollY + this.top);
+            window.scrollTo(0, lastScrollY + this.top);
         }
     }
     private onScroll = () => {
-        this.lastScrollY = getScrollY();
-        if (this.lastScrollY <= 0) {
+        lastScrollY = getScrollY();
+        if (lastScrollY <= 0) {
             if (this.video!!.paused) {
                 this.video!!.play();
             }

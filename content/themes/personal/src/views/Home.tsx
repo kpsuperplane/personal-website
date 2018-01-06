@@ -328,8 +328,8 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         } else {
             this.updatePosition();
         }
-        this.startTop = lastScrollY <= 0;
-        if (this.opened && lastScrollY < 1) {
+        this.startTop = lastScrollY <= 1;
+        if (this.opened && lastScrollY < 1 && getScrollY() < 1) {
             window.scrollTo(0, 1);
         }
         this.touchStart = e.touches[0].clientY;
@@ -361,6 +361,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         if (percent > 1) {
             percent = 1 - (percent - 1);
         }
+        let scrollDown = false;
         if (this.opened === false) {
             if (delta < 1 && this.touchLast > this.top && new Date().getTime() - this.touchStartTime < 3000) {
                 e.preventDefault();
@@ -374,6 +375,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
                 this.opened = false;
                 this.top = this.winHeight * 0.85;
             }
+            scrollDown = this.opened;
         }
         if (this.opened === false) {
             this.content!!.style.boxShadow = null;
@@ -387,6 +389,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
         this.dragRender();
+        if (scrollDown) {
+            window.scrollTo(0, 1);
+        }
     }
     private dragCancel = this.dragEnd;
     private dragMove = (e: TouchEvent) => {

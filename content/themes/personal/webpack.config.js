@@ -79,6 +79,6 @@ module.exports = {
 		new ExtractTextPlugin({
 			filename: 'bundle.min.css', 
 			allChunks: true }),
-		//new UglifyJSPlugin()
+		new UglifyJSPlugin()
 	]
 };

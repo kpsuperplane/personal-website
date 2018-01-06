@@ -53,6 +53,7 @@
     "fs-extra": "3.0.1",
     "ghost-gql": "0.0.8",
     "ghost-ignition": "2.8.16",
+    "ghost-storage-adapter-s3": "^2.3.0",
     "ghost-storage-base": "0.0.1",
     "glob": "5.0.15",
     "got": "7.1.0",

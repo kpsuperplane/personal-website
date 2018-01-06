@@ -17,7 +17,17 @@ console.log(JSON.stringify({
         port: dbString.port,
         charset: 'utf8'
     }
-  },
+  },        
+  "storage": {
+      "active": 'ghost-s3',
+      'ghost-s3': {
+          accessKeyId: process.env.S3_ACCESS_KEY,
+          secretAccessKey: process.env.S3_ACCESS_SECRET,
+          bucket: 'static.kevinpei.com',
+          region: 'ca-central-1',
+          assetHost: 'https://static.kevinpei.com/'
+      }
+  }
   "mail": {
     "transport": "SMTP",
     "options": {

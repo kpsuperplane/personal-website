@@ -27,7 +27,7 @@ console.log(JSON.stringify({
           region: 'ca-central-1',
           assetHost: 'https://static.kevinpei.com/'
       }
-  }
+  },
   "mail": {
     "transport": "SMTP",
     "options": {

@@ -176,9 +176,6 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
         }
     }
     private touchEnd = (e) => {
-        if (lastScrollY === 1) {
-            window.scrollTo(0, 0);
-        }
         if (!this.dragging) {
             return;
         }

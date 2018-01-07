@@ -41,7 +41,7 @@ module.exports = {
 			}, {
 				test: /\.(jpe?g|png|gif|svg|mp4|webm)$/i,
 				loaders: [
-					'file-loader?hash=sha512&digest=hex&name=[name].[ext]',
+					'file-loader?hash=sha512&digest=hex&name=[name]-[hash].[ext]',
 					{
 						loader: 'image-webpack-loader?bypassOnDebug&interlaced=false',
 						query: {

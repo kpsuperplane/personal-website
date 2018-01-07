@@ -1,2 +1,2 @@
 #!/bin/bash
-cd content/themes/personal && yarn install && NODE_ENV="production" webpack
+cd content/themes/personal && yarn global add webpack && yarn install && NODE_ENV="production" webpack

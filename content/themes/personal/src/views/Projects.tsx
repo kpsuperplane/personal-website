@@ -33,7 +33,7 @@ interface PaginationInterface {
 }
 
 export const Project = (project: ProjectInterface) => <Link to={project.url} className="project-preview">
-    <LazyImage path={project.feature_image} forceWait={project.forceWait} loader={true}/>
+    <LazyImage path={project.feature_image} asBackground={true} forceWait={project.forceWait} loader={true}/>
     <div className="project-preview-theme" style={{backgroundColor: project.theme}} />
     <div className="project-preview-gradient" />
     <span className="project-preview-body">

@@ -26,7 +26,6 @@
     transition: opacity 1s ease-out, transform 300ms ease, box-shadow 300ms ease, background 300ms ease, box-shadow 300ms;
     >.navigation-desktop-contact {
         width: 100%;
-        box-sizing: border-box;
         border-bottom: 1px solid #EEE;
         margin-bottom: 10px;
         background: #FFF;
@@ -37,6 +36,7 @@
             background-size: contain;
             background-repeat: no-repeat;
             margin: 0 auto;
+            box-sizing: border-box;
             position: relative;
             text-align: left;
             p {

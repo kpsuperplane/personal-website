@@ -12,8 +12,12 @@
 .lazy-image {
     opacity: 0;
     transition: opacity 250ms;
-    background-size: cover;
-    background-position: center center;
+    &.as-background {
+        background-size: cover;
+        background-position: center center;
+        height: 100%;
+        width: 100%;
+    }
     &.loaded {
         opacity: 1;
     }

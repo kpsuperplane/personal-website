@@ -140,7 +140,11 @@
             width: 100%;
         }
     }
+    .home-about {
+        padding: 2rem;
+    }
     .home-blog {
+        border-bottom: 1px solid #EEE;
         >.h-scroll-nav {
             top: 10.85rem;
             background: #FFF;
@@ -152,6 +156,16 @@
             text-align: center;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             color: $theme;
+            display: block;
+            opacity: 0.25;
+            cursor: default;
+            &.active {
+                cursor: pointer;
+                opacity: 1;
+            }
+            &.right {
+                padding: 0.65rem 0.6rem 0.65rem 0.7rem;
+            }
         }
         >.h-scroll-indicator {
             margin-top: -1rem;
@@ -176,9 +190,14 @@
             color: #FFF;
             transition: opacity 250ms;
             opacity: 0.5;
+            cursor: default;
             display: block;
             &.active {
+                cursor: pointer;
                 opacity: 1;
+            }
+            &.right {
+                padding: 0.65rem 0.6rem 0.65rem 0.7rem;
             }
             &.left {
                 right: 3.5rem;
@@ -223,6 +242,7 @@
         position: absolute;
         top: 50%;
         padding: 0.5rem;
+        text-align: center;
         font-size: 1rem;
         display: none;
         &.active {
@@ -287,12 +307,10 @@
             max-width: 700px;
         }
         .content-wrapper-inner {
-            overflow: hidden;
             background: #FFF;
             margin-bottom: 4rem;
             border-radius: 1rem;
             position: relative;
-            box-shadow: 0 0 50px rgba(0,0,0,.1);
         }
         .content-background {
             display: block;
@@ -306,6 +324,20 @@
                 height: 80px;
                 width: 100%;
                 display: block;
+            }
+        }
+        .home-about {
+            margin: 2rem 0;
+        }
+        .h-scroll {
+            box-shadow: 0 0 50px rgba(0,0,0,.1);
+            &.home-blog {
+                border-radius: 1rem;
+                overflow: hidden;
+            }
+            &.home-projects {
+                border-radius: 1rem;
+                overflow: hidden;
             }
         }
         .home-component .lazy-image-loader {

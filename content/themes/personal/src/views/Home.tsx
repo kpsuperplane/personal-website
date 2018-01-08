@@ -517,7 +517,10 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             <div ref={this.attachContent} className="content-wrapper">
                 <div className="content-wrapper-inner">
                     <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
-                    <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
+                    <div className="home-about">
+                        <h2>About Me</h2>
+                    </div>
+                    <HorizontalScroll linkText={<span><Icon icon={Icons.PALETTE} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
                 </div>
                 { (posts || projects) ? <Footer /> : null }
             </div>

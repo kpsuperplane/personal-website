@@ -141,7 +141,16 @@
         }
     }
     .home-about {
-        padding: 2rem;
+        padding: 4rem 2rem;
+        p{
+            @extend .body-font;
+            font-size: 1.25rem;
+            line-height: 2.5rem;
+        }
+        .button-container {
+            text-align: right;
+            padding-top: 1rem;
+        }
     }
     .home-blog {
         border-bottom: 1px solid #EEE;
@@ -327,7 +336,16 @@
             }
         }
         .home-about {
-            margin: 2rem 0;
+            padding: 10rem 2rem;
+            text-align: center;
+            p {
+                font-size: 1.8rem;
+                line-height: 3.6rem;
+                font-weight: 300;
+            }
+            .button-container {
+                text-align: center;
+            }
         }
         .h-scroll {
             box-shadow: 0 0 50px rgba(0,0,0,.1);

@@ -307,7 +307,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         } else {
             this.openedPreviously = false;
         }
-        this.content!!.style.transform = `translate3d(0, ${y}px, 0)`;
+        this.content!!.style.transform = this.state!!.mouseMode ? null : `translate3d(0, ${y}px, 0)`;
     }
     private dragStart = (e: TouchEvent) => {
         if (!this.isMobile) {
@@ -421,7 +421,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         if (this.content) {
-            this.content.style.transform = `translate3d(0, ${this.top}px, 0)`;
+            this.content.style.transform = this.state!!.mouseMode ? null : `translateY(${this.top}px)`;
         }
         this.updateHeight();
     }
@@ -460,7 +460,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             this.content!!.style.borderRadius = null;
             this.content!!.style.boxShadow = null;
             this.content!!.style.transition = 'none';
-            this.content!!.style.transform = `translate3d(0, ${this.top}px, 0)`;
+            this.content!!.style.transform = null;
             window.scrollTo(0, lastScrollY + this.top);
         }
     }
@@ -518,7 +518,8 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
                 <div className="content-wrapper-inner">
                     <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
                     <div className="home-about">
-                        <h2>About Me</h2>
+                        <p>Skiing like a madman, git committing with passion, and coding for the betterment of society.</p>
+                        <div className="button-container"><Link to="/about" className="button">About Me</Link></div>
                     </div>
                     <HorizontalScroll linkText={<span><Icon icon={Icons.PALETTE} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
                 </div>

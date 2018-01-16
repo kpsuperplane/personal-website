@@ -214,7 +214,7 @@
                 padding: 0.65rem 0.6rem 0.65rem 0.7rem;
             }
             &.left {
-                right: 3.5rem;
+                right: 3rem;
                 left: auto;
             }
         }
@@ -258,6 +258,7 @@
         position: absolute;
         top: 50%;
         padding: 0.5rem;
+        transform: rotate(0);  // Safari GPU compositor sucks
         text-align: center;
         font-size: 1rem;
         display: none;

@@ -515,15 +515,19 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
             </div>
             <div className="content-background"><Curve /></div>
             <div ref={this.attachContent} className="content-wrapper">
-                <div className="content-wrapper-inner">
-                    <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
-                    <div className="home-about">
-                        <p>Skiing like a madman, git committing with passion, and coding for the betterment of society.</p>
-                        <div className="button-container"><Link to="/about" className="button">About Me</Link></div>
+                <div className="content-wrapper-inner-wrapper">
+                    <div className="content-wrapper-inner">
+                        <HorizontalScroll linkText={<span><Icon icon={Icons.NEWSPAPER} />All Posts</span>} linkTo="/blog/" className="home-blog">{posts ? posts.map((post) => <Post {...post} key={post.url} forceWait={false} asBackground={true} />) : null}</HorizontalScroll>
+                        <div className="home-about">
+                            <div className="home-about-inner">
+                                <p>Skiing like a madman, git committing with passion, and coding for the betterment of society.</p>
+                                <div className="button-container"><Link to="/about" className="button">About Me</Link></div>
+                            </div>
+                        </div>
+                        <HorizontalScroll linkText={<span><Icon icon={Icons.PALETTE} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
                     </div>
-                    <HorizontalScroll linkText={<span><Icon icon={Icons.PALETTE} />All Projects</span>} linkTo="/projects/" className="home-projects">{projects ? projects.map((project) => <Project {...project} key={project.url} forceWait={false} />) : null}</HorizontalScroll>
+                    { (posts || projects) ? <Footer /> : null }
                 </div>
-                { (posts || projects) ? <Footer /> : null }
             </div>
         </div>);
     }

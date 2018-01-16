@@ -141,15 +141,20 @@
         }
     }
     .home-about {
-        padding: 4rem 2rem;
-        p{
-            @extend .body-font;
-            font-size: 1.25rem;
-            line-height: 2.5rem;
-        }
-        .button-container {
-            text-align: right;
-            padding-top: 1rem;
+        background: url('../img/skiing.jpg') center center;
+        background-size: cover;
+        .home-about-inner {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 4rem 2rem;
+            text-align: center;
+            p{
+                @extend .body-font;
+                font-size: 1.25rem;
+                line-height: 2.5rem;
+            }
+            .button-container {
+                padding: 1rem 0;
+            }
         }
     }
     .home-blog {
@@ -237,6 +242,7 @@
 }
 .h-scroll {
     position: relative;
+    background: #FFF;
     >.h-scroll-contents {
         display: flex;
         flex-direction: row;
@@ -309,17 +315,22 @@
         }
         .content-wrapper {
             overflow: visible;
-            padding: 2rem;
             background: transparent;
+            background: url('../img/skiing.jpg') 30% 150px;
+            background-size: cover;
+            background-repeat: no-repeat;
             box-shadow: none;
-            border-radius: none;
-            max-width: 700px;
+            border-radius: 0;
         }
         .content-wrapper-inner {
-            background: #FFF;
-            margin-bottom: 4rem;
+            margin:0 auto 4rem auto;
             border-radius: 1rem;
             position: relative;
+            max-width: 700px;
+        }
+        .content-wrapper-inner-wrapper {
+            padding: 2rem;
+            background: linear-gradient(transparent 0px, transparent 145px, #FFF 150px, rgba(255, 255, 255, 0.9) 50%, #FFF 100%);
         }
         .content-background {
             display: block;
@@ -327,7 +338,6 @@
             top: 100%;
             height: 100%;
             width: 100%;
-            background: #FFF;
             >svg {
                 margin-top: -80px;
                 height: 80px;
@@ -336,15 +346,19 @@
             }
         }
         .home-about {
+            background: transparent;
             padding: 10rem 2rem;
             text-align: center;
-            p {
-                font-size: 1.8rem;
-                line-height: 3.6rem;
-                font-weight: 300;
-            }
-            .button-container {
-                text-align: center;
+            .home-about-inner {
+                background: transparent;
+                p {
+                    font-size: 2.25rem;
+                    line-height: 3.6rem;
+                    font-weight: 300;
+                }
+                .button-container {
+                    text-align: center;
+                }
             }
         }
         .h-scroll {

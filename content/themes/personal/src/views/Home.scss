@@ -118,7 +118,7 @@
     .content-wrapper {
         position: relative;
         transform-origin: top center;
-        transform: translateY(85vh);
+        transform: translateY(85vh) rotate(0);
         background: #FFF;
         margin: 0 auto;
         transition-timing-function: ease-out;
@@ -243,13 +243,14 @@
 .h-scroll {
     position: relative;
     background: #FFF;
+    transform: rotate(0); // Safari GPU compositor sucks
     >.h-scroll-contents {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
+        white-space: nowrap;
         >* {
+            vertical-align: top;
             width: 100%;
-            flex: 0 0 auto;
+            display: inline-block;
+            white-space: normal;
         }
     }
     >.h-scroll-nav {

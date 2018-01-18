@@ -441,6 +441,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private attachContent = (el) => {
         if (this.content == null) {
             this.content = el;
+            this.onResize();
         }
     }
     private attachVideo = (el) => {
@@ -481,7 +482,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         window.removeEventListener('wheel', this.onWheel);
     }
     public componentDidMount() {
-        this.onResize();
         this.dragRender();
         window.addEventListener('scroll', this.onScroll);
         window.addEventListener('wheel', this.onWheel);

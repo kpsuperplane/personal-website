@@ -3,9 +3,9 @@
     .post {
         padding: 0 2rem 2rem 2rem;
         .instagram-media {
-            min-width: 100%;
-            width:1px;
-            *width: 100%;
+            min-width: 100% !important;
+            width:1px !important;
+            *width: 100% !important;
         }
         header.post-header {
             text-align: center;

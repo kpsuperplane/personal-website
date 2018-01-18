@@ -29,6 +29,7 @@
     "inferno-router": "^3.10.1",
     "luxon": "^0.2.9",
     "node-sass": "^4.5.3",
+    "postscribe": "^2.0.8",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "superagent": "^3.8.2",

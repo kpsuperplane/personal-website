@@ -39,7 +39,7 @@
             }
         }
 
-        h1, h2, h3, h4, h5, p, ol, li, img, pre, .iframe-wrapper {
+        h1, h2, h3, h4, h5, p, ol, li, img, pre, .iframe-wrapper, .constrained-script {
             @extend .body-font;
             display: block;
             max-width: 700px;

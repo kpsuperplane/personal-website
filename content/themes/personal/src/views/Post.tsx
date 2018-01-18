@@ -1,3 +1,4 @@
+import postscribe from 'postscribe';
 import { get } from 'superagent';
 import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
@@ -26,7 +27,17 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
                     View.setDark(post.feature_image);
-                    this.setState({content: {__html: post.html}, title: post.title, image: post.feature_image || null}, () => {
+                    let html = post.html;
+                    const scripts: Array<{id: number, match: string}> = [];
+                    html = html.replace(/<script(.*)><\/script>/gi, (match) => {
+                        const id = scripts.length;
+                        scripts.push({id, match});
+                        return '<div id="script-' + id + '" class="' + (match.indexOf(' constrain-width ') !== 0 ? 'constrained-script' : '') + '"></div>';
+                    });
+                    this.setState({content: {__html: html}, title: post.title, image: post.feature_image || null}, () => {
+                        for (const script of scripts) {
+                            postscribe('#script-' + script.id, script.match);
+                        }
                         for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
                             const wrapper = document.createElement('div');
                             wrapper.classList.add('iframe-wrapper');

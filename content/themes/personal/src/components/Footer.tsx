@@ -23,7 +23,7 @@ export default class Footer extends Component<{}, {hover: boolean}> {
     }
     public render() {
         return (<footer className="footer">
-            <Link to="/about" onMouseEnter={this.onTouchStart} onMouseLeave={this.onTouchEnd} onClick={this.onTouchEnd} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} className={'footer-about' + (this.state!!.hover ? ' touched' : '')}><LazyImage path={FooterProfile} /></Link>
+            <Link to="/about/" onMouseEnter={this.onTouchStart} onMouseLeave={this.onTouchEnd} onClick={this.onTouchEnd} onTouchStart={this.onTouchStart} onTouchEnd={this.onTouchEnd} className={'footer-about' + (this.state!!.hover ? ' touched' : '')}><LazyImage path={FooterProfile} /></Link>
             <p>Skiing like a madman, git committing with passion, and coding for the betterment of society.</p>
             <Contact />
         </footer>);

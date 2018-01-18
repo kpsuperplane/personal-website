@@ -420,7 +420,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         if (this.content) {
-            this.content.style.transform = this.state!!.mouseMode ? null : `translateY(85vh)`;
+            this.content.style.transform = this.state!!.mouseMode ? null : `translateY(${this.top}px)`;
         }
         this.updateHeight();
     }

@@ -2,6 +2,11 @@
 .post-template {
     .post {
         padding: 0 2rem 2rem 2rem;
+        .instagram-media {
+            min-width: 100%;
+            width:1px;
+            *width: 100%;
+        }
         header.post-header {
             text-align: center;
             margin: 0 -2rem 3rem -2rem;

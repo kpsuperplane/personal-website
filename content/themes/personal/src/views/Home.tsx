@@ -270,6 +270,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
+    private firstResize: boolean = true;
     constructor(props) {
         super('home', props);
         this.state = {
@@ -420,7 +421,8 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         if (this.content) {
-            this.content.style.transform = this.state!!.mouseMode ? null : `translateY(${this.top}px)`;
+            this.content.style.transform = (this.state!!.mouseMode && !this.firstResize) ? null : `translateY(${this.top}px)`;
+            this.firstResize = false;
         }
         this.updateHeight();
     }
@@ -441,7 +443,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     private attachContent = (el) => {
         if (this.content == null) {
             this.content = el;
-            this.onResize();
         }
     }
     private attachVideo = (el) => {
@@ -483,6 +484,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     public componentDidMount() {
         this.dragRender();
+        this.onResize();
         window.addEventListener('scroll', this.onScroll);
         window.addEventListener('wheel', this.onWheel);
         super.componentDidMount();

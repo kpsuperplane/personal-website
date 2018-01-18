@@ -283,7 +283,6 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         getProjects('1', (projects) => {
             this.setState({projects: projects.projects});
         }, 5);
-        this.onResize();
         View.setDark(false);
     }
     private updatePosition = () => {

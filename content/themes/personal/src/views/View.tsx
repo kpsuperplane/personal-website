@@ -11,7 +11,7 @@ export default class View<T> extends Component<any, T> {
     private static _lastPath: string = window.location.href;
     constructor(P, props) {
         for (const bodyClass of document.body.classList) {
-            if (bodyClass.indexOf('-template') != -1) {
+            if (bodyClass.indexOf('-template') !== -1) {
                 document.body.classList.remove(bodyClass);
             }
         }
@@ -29,7 +29,7 @@ export default class View<T> extends Component<any, T> {
             get(View._lastPath).end((err, res) => {
                 GlobalLoader.dequeue();
                 const html: string = res.text;
-                document.title = html.match(/<title>(.*)<\/title>/)!![1];
+                document.querySelector('title')!!.innerHTML = html.match(/<title>(.*)<\/title>/)!![1];
             });
         }
     }

@@ -280,7 +280,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         };
         getPosts('1', (posts) => {
             this.setState({posts: posts.posts});
-        }, true, 5);
+        }, true, 4);
         getProjects('1', (projects) => {
             this.setState({projects: projects.projects});
         }, 5);

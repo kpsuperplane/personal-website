@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/deploy
     docker:
       - image: buildpack-deps:latest
+    parallelism: 1
     steps:
       - checkout
       - deploy:

@@ -44,7 +44,7 @@
             }
         }
 
-        h1, h2, h3, h4, h5, p, ol, li, img, pre, .iframe-wrapper, .constrained-script {
+        h1, h2, h3, h4, h5, p, ol, li, img, pre, .iframe-wrapper, .constrained-script, video {
             @extend .body-font;
             display: block;
             max-width: 700px;
@@ -74,7 +74,7 @@
             max-width: none;
         }
 
-        img, .iframe-wrapper{
+        img, .iframe-wrapper, video{
             width: 100%;
             overflow: hidden;
             box-shadow: 0 2px 50px rgba(0,0,0,.1);

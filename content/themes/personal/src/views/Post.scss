@@ -44,7 +44,7 @@
             }
         }
 
-        h1, h2, h3, h4, h5, p, ol, li, img, pre, .iframe-wrapper, .constrained-script, video {
+        h1, h2, h3, h4, h5, p, ol, ul, li, img, pre, .iframe-wrapper, .constrained-script, video {
             @extend .body-font;
             display: block;
             max-width: 700px;
@@ -52,6 +52,10 @@
             box-sizing: border-box;
             color: #444;
             margin: 0 auto 2rem auto;
+        }
+
+        li {
+            display: list-item !important;
         }
 
         .iframe-wrapper {

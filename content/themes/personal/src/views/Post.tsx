@@ -4,16 +4,18 @@ import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
 import LazyImage from '../components/LazyImage';
 import View from './View';
+import { DateTime } from 'luxon';
 
 import './Post.scss';
 
-export default class Post extends View<{content: any | null,  image: string | null, title: string}> {
+export default class Post extends View<{content: any | null,  image: string | null, title: string, published_at: string}> {
     private lastPath: string = '';
     constructor(props) {
         super('post', props);
         this.state = {
             content: null,
             image: null,
+            published_at: '',
             title: ''
         };
         this.load();
@@ -26,6 +28,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
                     const post = body.posts[0];
+                    const published_at = DateTime.fromISO(post.published_at);
                     View.setDark(post.feature_image);
                     let html = post.html;
                     const scripts: Array<{id: number, match: string}> = [];
@@ -34,7 +37,11 @@ export default class Post extends View<{content: any | null,  image: string | nu
                         scripts.push({id, match});
                         return '<div id="script-' + id + '" class="' + (match.indexOf(' constrain-width ') !== 0 ? 'constrained-script' : '') + '"></div>';
                     });
-                    this.setState({content: {__html: html}, title: post.title, image: post.feature_image || null}, () => {
+                    this.setState({content: {__html: html},
+                        image: post.feature_image || null,
+                        published_at: post.page ? '' : (post.tags.indexOf('project-page') === -1 ? published_at.toLocaleString(DateTime.DATE_FULL) : published_at.toFormat('MMMM kkkk')),
+                        title: post.title
+                    }, () => {
                         for (const script of scripts) {
                             postscribe('#script-' + script.id, script.match);
                         }
@@ -70,7 +77,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         }
     }
     public render() {
-        const { content, title, image } = this.state!!;
+        const { content, title, image, published_at } = this.state!!;
         return <div><article className="post">
             <header className={'post-header' + (image ? ' has-feature-image' : '')}>
                 {image ? [
@@ -80,6 +87,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 </svg>] : <div className="navigation-mobile-spacer navigation-desktop-spacer" />}
                 <div className="post-header-inner">
                     <h1>{title}</h1>
+                    {published_at ? <h5>{published_at}</h5> : null}
                 </div>
             </header>
             <section className="post-content" onClick={this.handleClick} dangerouslySetInnerHTML={content} />

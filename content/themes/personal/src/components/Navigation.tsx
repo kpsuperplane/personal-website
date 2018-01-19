@@ -281,7 +281,7 @@ class NavigationDesktop extends Component<{loading: boolean}, {contact: number, 
                 <Link to="/" onClick={this.navigate} className="navigation-desktop-home"><LazyImage className="theme" path={LogoTheme} /><LazyImage className="white" path={LogoWhite} /></Link>
                 <div className="navigation-desktop-right">
                     <Link to="/blog/" class="blog-toggle" onClick={this.navigate} style="transition-delay:0.07s">BLOG</Link>
-                    <a href="javascript:void(0);" onClick={this.contact} class={contact ? 'active' : ''} style="transition-delay:0.14s">CONTACT</a>
+                    <a href="javascript:void(0);" onClick={this.contact} class={contact === 1 ? 'active' : ''} style="transition-delay:0.14s">CONTACT</a>
                 </div>
             </div>
         </div>;

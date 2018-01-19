@@ -70,6 +70,10 @@
             }
         }
 
+        img.full {
+            max-width: none;
+        }
+
         img, .iframe-wrapper{
             width: 100%;
             overflow: hidden;

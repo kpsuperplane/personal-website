@@ -252,7 +252,7 @@ class HorizontalScroll extends Component<{}, {selected: number}> {
     }
 }
 
-export default class Home extends View<{posts: PostInterface[] | null, projects: ProjectInterface[] | null, mouseMode: boolean}> {
+export default class Home extends View<{opened: boolean, posts: PostInterface[] | null, projects: ProjectInterface[] | null, mouseMode: boolean}> {
     private top: number = 0;
     private touchStart: number = -1;
     private velocityLast: number = 0;
@@ -275,6 +275,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         super('home', props);
         this.state = {
             mouseMode: true,
+            opened: false,
             posts: null,
             projects: null
         };
@@ -389,6 +390,9 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
         this.dragRender();
+        setTimeout(() => {
+            this.setState({opened: this.opened});
+        }, animTime);
         if (scrollDown) {
             window.scrollTo(0, 1);
         }
@@ -403,6 +407,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         const y = this.top + this.touchLast - this.touchStart;
         if (this.opened && lastScrollY - y < 1 && this.startTop) {
             this.opened = false;
+            this.setState({opened: false});
             this.touchStart = this.touchLast - 1;
             this.touchDelta = 0;
             this.top = 0;
@@ -453,7 +458,7 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
     }
     private onWheel = (e) => {
         if (!this.state!!.mouseMode) {
-            this.setState({mouseMode: true});
+            this.setState({mouseMode: true, opened: false});
             this.top = this.winHeight * 0.85;
             this.touchLast = 0;
             this.opened = false;
@@ -490,18 +495,18 @@ export default class Home extends View<{posts: PostInterface[] | null, projects:
         super.componentDidMount();
     }
     public render() {
-        const { posts, projects, mouseMode } = this.state!!;
+        const { posts, projects, mouseMode, opened } = this.state!!;
         const { type, downlink } = ((navigator as any).connection || {type: undefined, downlink: undefined});
         const fastConnection = (downlink === undefined || downlink >= 3.5);
         const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
         return (<div className={'home-component' + (mouseMode ? ' mousemode' : '')} ref={this.attachWrapper}>
-            <div className="home-video-wrapper">
+            <div className={'home-video-wrapper' + opened ? ' opened' : '' }>
                 <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
                     <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />
                     <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
                 </video>
             </div>
-            <div className="home-content" ref={this.attachHero}>
+            <div className={'home-content' + opened ? ' opened' : '' } ref={this.attachHero}>
                 <div className="home-content-inner">
                     <HomeContent />
                 </div>

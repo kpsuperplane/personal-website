@@ -27,6 +27,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
             GlobalLoader.dequeue(() => {
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
+                    delete (window as any).instgrm;
                     const post = body.posts[0];
                     const published_at = DateTime.fromISO(post.published_at);
                     View.setDark(post.feature_image);

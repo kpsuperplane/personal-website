@@ -270,7 +270,6 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
-    private firstResize: boolean = true;
     constructor(props) {
         super('home', props);
         this.state = {
@@ -426,8 +425,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         this.isMobile = window.innerWidth <= 750;
         this.top = this.opened ? 0 : this.winHeight * 0.85;
         if (this.content) {
-            this.content.style.transform = (this.state!!.mouseMode && !this.firstResize) ? null : `translateY(${this.top}px)`;
-            this.firstResize = false;
+            this.content.style.transform = this.state!!.mouseMode ? null : `translateY(${this.top}px)`;
         }
         this.updateHeight();
     }

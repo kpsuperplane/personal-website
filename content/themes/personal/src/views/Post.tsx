@@ -23,7 +23,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
     private load = () => {
         this.lastPath = window.location.pathname;
         GlobalLoader.queue();
-        get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, '')})).end((err, {body}) => {
+        get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, ''), include: 'tags'})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
                 window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {

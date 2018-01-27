@@ -1,10 +1,15 @@
+import * as hljs from 'highlight.js/lib/highlight.js';
+const languages = ['cpp', 'java', 'javascript', 'json', 'kotlin', 'markdown', 'php', 'python', 'rust', 'shell', 'sql', 'swift', 'tex', 'typescript', 'yaml'];
+for (const language of languages) {
+    hljs.registerLanguage(language, require('highlight.js/lib/languages/' + language));
+}
+import { DateTime } from 'luxon';
 import postscribe from 'postscribe';
 import { get } from 'superagent';
 import Footer from '../components/Footer';
 import GlobalLoader from '../components/GlobalLoader';
 import LazyImage from '../components/LazyImage';
 import View from './View';
-import { DateTime } from 'luxon';
 
 import './Post.scss';
 
@@ -46,7 +51,11 @@ export default class Post extends View<{content: any | null,  image: string | nu
                         for (const script of scripts) {
                             postscribe('#script-' + script.id, script.match);
                         }
-                        for (const el of document.getElementsByClassName('post')[0].getElementsByTagName('iframe')) {
+                        const postElement = document.getElementsByClassName('post')[0];
+                        for (const block of postElement.getElementsByTagName('pre')) {
+                            hljs.highlightBlock(block);
+                        }
+                        for (const el of postElement.getElementsByTagName('iframe')) {
                             const wrapper = document.createElement('div');
                             wrapper.classList.add('iframe-wrapper');
                             const innerWrapper = document.createElement('div');

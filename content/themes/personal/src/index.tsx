@@ -11,12 +11,6 @@ import 'superagent';
 
 import App from './App';
 
-declare var require: {
-    <T>(path: string): T;
-    (paths: string[], callback: (...modules: any[]) => void): void;
-    ensure: (paths: string[], callback: (require: <T>(path: string) => T) => void) => void;
-};
-
 const Home = (props, cb) => require.ensure([], () => cb(null, (require('./views/Home') as any).default));
 const Post = (props, cb) => require.ensure([], () => cb(null, (require('./views/Post') as any).default));
 const Projects = (props, cb) => require.ensure([], () => cb(null, (require('./views/Projects') as any).default));

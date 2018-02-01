@@ -124,8 +124,10 @@
     .content-wrapper {
         position: relative;
         transform-origin: top center;
-        -webkit-transform-style: preserve-3d;
-        -webkit-backface-visibility: hidden;
+        &, * {
+            -webkit-transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+        }
         transform: translate3d(0, 0, 0);
         background: #FFF;
         margin: 0 auto;

@@ -47,7 +47,7 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate3d(-50%,-50%, 0);
     }
     .home-content {
         height: 100%;
@@ -124,7 +124,9 @@
     .content-wrapper {
         position: relative;
         transform-origin: top center;
-        transform: rotate(0);
+        -webkit-transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        transform: translate3d(0, 0, 0);
         background: #FFF;
         margin: 0 auto;
         transition-timing-function: ease-out;
@@ -249,7 +251,7 @@
 .h-scroll {
     position: relative;
     background: #FFF;
-    transform: rotate(0); // Safari GPU compositor sucks
+    transform: translate3d(0, 0, 0); // Safari GPU compositor sucks
     >.h-scroll-contents {
         white-space: nowrap;
         >* {
@@ -264,7 +266,7 @@
         position: absolute;
         top: 50%;
         padding: 0.5rem;
-        transform: rotate(0);  // Safari GPU compositor sucks
+        transform: translate3d(0, 0, 0);  // Safari GPU compositor sucks
         text-align: center;
         font-size: 1rem;
         display: none;

@@ -263,7 +263,6 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private touchStartTime: number = -1;
     private opened: boolean = false;
     private startTop: boolean = false;
-    private openedPreviously: boolean = false;
     private winHeight: number = window.innerHeight;
     private content: HTMLElement|null = null;
     private wrapper: HTMLElement|null = null;
@@ -298,15 +297,6 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private dragRender = () => {
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
-        if (this.opened || y < 5) {
-            if (this.openedPreviously) {
-                return true;
-            } else {
-                this.openedPreviously = true;
-            }
-        } else {
-            this.openedPreviously = false;
-        }
         this.content!!.style.transform = this.state!!.mouseMode ? null : `translate3d(0, ${y}px, 0)`;
     }
     private dragStart = (e: TouchEvent) => {
@@ -354,6 +344,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         if (!this.isMobile) {
             return;
         }
+        e.stopPropagation();
         this.calculateVelocity();
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
@@ -377,10 +368,6 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
             }
             scrollDown = this.opened;
         }
-        if (this.opened === false) {
-            this.content!!.style.boxShadow = null;
-            this.video!!.play();
-        }
         lastScrollY = 0;
         this.touchStart = -1;
         this.touchLast = -1;
@@ -389,6 +376,10 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
         this.dragRender();
+        if (this.opened === false) {
+            this.content!!.style.boxShadow = null;
+            this.video!!.play();
+        }
         setTimeout(() => {
             this.setState({opened: this.opened});
         }, animTime);

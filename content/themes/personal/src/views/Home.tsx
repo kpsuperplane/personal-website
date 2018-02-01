@@ -375,14 +375,16 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
-        this.dragRender();
         if (this.opened === false) {
             this.content!!.style.boxShadow = null;
             this.video!!.play();
         }
         setTimeout(() => {
-            this.setState({opened: this.opened});
-        }, animTime);
+            this.dragRender();
+            setTimeout(() => {
+                this.setState({opened: this.opened});
+            }, animTime);
+        }, 10);
         if (scrollDown) {
             window.scrollTo(0, 1);
         }

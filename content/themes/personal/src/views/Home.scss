@@ -124,7 +124,7 @@
     .content-wrapper {
         position: relative;
         transform-origin: top center;
-        transform: translate3d(0, 0, 0);
+        transform: rotate(0);
         background: #FFF;
         margin: 0 auto;
         transition-timing-function: ease-out;
@@ -249,7 +249,7 @@
 .h-scroll {
     position: relative;
     background: #FFF;
-    transform: translate3d(0, 0, 0); // Safari GPU compositor sucks
+    transform: rotate(0); // Safari GPU compositor sucks
     >.h-scroll-contents {
         white-space: nowrap;
         >* {
@@ -264,7 +264,7 @@
         position: absolute;
         top: 50%;
         padding: 0.5rem;
-        transform: translate3d(0, 0, 0);  // Safari GPU compositor sucks
+        transform: rotate(0);  // Safari GPU compositor sucks
         text-align: center;
         font-size: 1rem;
         display: none;

@@ -371,7 +371,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         lastScrollY = 0;
         this.touchStart = -1;
         this.touchLast = -1;
-        const animTime = (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100;
+        const animTime = Math.max(100, (this.opened ? Math.abs(percent) : (1 - Math.abs(percent))) * 200 + 100);
         this.content!!.style.transition = `all ${animTime}ms cubic-bezier(0.1,${(Math.abs(this.velocityLast) * (0.1 * animTime)) / Math.abs(y - this.top)},0.1,1)`;
         this.content!!.style.borderRadius = this.opened ? '0' : null;
         this.updateHeight();
@@ -379,12 +379,10 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
             this.content!!.style.boxShadow = null;
             this.video!!.play();
         }
+        this.dragRender();
         setTimeout(() => {
-            this.dragRender();
-            setTimeout(() => {
-                this.setState({opened: this.opened});
-            }, animTime);
-        }, 10);
+            this.setState({opened: this.opened});
+        }, animTime);
         if (scrollDown) {
             window.scrollTo(0, 1);
         }

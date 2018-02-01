@@ -269,6 +269,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private hero: HTMLElement|null = null;
     private video: HTMLVideoElement|null = null;
     private isMobile: boolean = false;
+    private openedPreviously: boolean = false;
     constructor(props) {
         super('home', props);
         this.state = {
@@ -297,6 +298,15 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private dragRenderOpts = (dragging: boolean = true) => {
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
+        if (this.opened || y < 5) {
+            if (this.openedPreviously) {
+                return true;
+            } else {
+                this.openedPreviously = true;
+            }
+        } else {
+            this.openedPreviously = false;
+        }
         this.content!!.style.transform = this.state!!.mouseMode ?
             null :
             (dragging ? `translate3d(0, ${y}px, 0)` : `translateY(${y}px)`);

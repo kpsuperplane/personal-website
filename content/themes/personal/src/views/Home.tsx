@@ -294,13 +294,14 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
             this.hero!!.style.height = this.winHeight + 'px';
         }
     }
-    private dragRender = (dragging: boolean = true) => {
+    private dragRenderOpts = (dragging: boolean = true) => {
         const delta = this.touchLast - this.touchStart;
         const y = this.top + delta;
         this.content!!.style.transform = this.state!!.mouseMode ?
             null :
             (dragging ? `translate3d(0, ${y}px, 0)` : `translateY(${y}px)`);
     }
+    private dragRender = () => this.dragRenderOpts();
     private dragStart = (e: TouchEvent) => {
         if (!this.isMobile) {
             return;
@@ -380,7 +381,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
             this.content!!.style.boxShadow = null;
             this.video!!.play();
         }
-        this.dragRender(false);
+        this.dragRenderOpts(false);
         setTimeout(() => {
             this.setState({opened: this.opened});
         }, animTime);

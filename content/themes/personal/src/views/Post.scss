@@ -1,7 +1,7 @@
 @import '../common';
 .post-template {
     .post {
-        padding: 0 2rem 2rem 2rem;
+        padding: 0 3rem 2rem 3rem;
         .instagram-media {
             min-width: 100% !important;
             width:1px !important;
@@ -9,7 +9,7 @@
         }
         header.post-header {
             text-align: center;
-            margin: 0 -2rem 3rem -2rem;
+            margin: 0 -3rem 3rem -3rem;
             &.has-feature-image {
                 img {
                     padding: 0;
@@ -30,23 +30,24 @@
                     background: #FFF;
                     position: relative;
                     h1 {
-                        margin-top: 2rem;
                         padding-top: 0;
-                    }
-                    h5 {
-                        margin-top: 1rem;
-                        color: #AAA;
-                        margin-bottom: 3rem;
-                        font-weight: 400;
                     }
                 }
             }
             .post-header-inner {
                 padding: 2rem;
                 h1 {
+                    margin-top: 2rem;
+                    padding-top: 2rem;
                     font-weight: 300;
                     margin: 0 auto;
                     text-align: center;
+                }
+                h5 {
+                    margin-top: 1rem;
+                    color: #AAA;
+                    margin-bottom: 0;
+                    font-weight: 400;
                 }
             }
         }
@@ -63,6 +64,7 @@
 
         li {
             display: list-item !important;
+            margin-bottom: 1rem;
         }
 
         ul, ol {
@@ -99,7 +101,7 @@
             }
         }
 
-        p {
+        p, ul, ol {
             line-height: 1.9em;
             font-size: 1.1rem;
         }
@@ -107,10 +109,10 @@
         h1 {
             @extend .head-font;
             text-align: center;
-            font-size: 3.58rem;
+            font-size: 3rem;
         }
 
-        h2 {@extend .head-font; font-size: 2.827rem; font-weight: 300;}
+        h2 {@extend .head-font; font-size: 2.327rem; font-weight: 300;}
 
         h3 {font-size: 1.999rem;}
 
@@ -203,15 +205,17 @@
                 }
                 margin-bottom: 2rem;
                 .post-header-inner {
-                    padding-top: 2rem;
+                    padding-top: 3rem;
                     margin-top: -5px;
                     border-radius: 5px 5px 0 0;
-                    >h1 {
-                        margin-top: 0;
-                    }
-                    >h5 {
-                        margin-bottom: 0;
-                    }
+                }
+            }
+            header .post-header-inner {
+                >h1 {
+                    margin-top: 0;
+                }
+                >h5 {
+                    margin-bottom: 0;
                 }
             }
             h1 { font-size: 2rem; }

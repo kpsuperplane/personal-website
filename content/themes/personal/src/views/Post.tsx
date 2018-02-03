@@ -62,7 +62,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
     }
     private load = () => {
         if ((window as any).post) {
-            const content = document.querySelector('#post-content')!!;
+            const content = document.querySelector('#post-content')!! as HTMLInputElement;
             const post = {...(window as any).post, html: content.value};
             content.remove();
             // tslint:disable-next-line:no-eval
@@ -76,7 +76,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
                     const post = body.posts[0];
                     this.renderPost(post);
                 } else {
-                    // this.context.router.push('/', null);
+                    this.context.router.push('/', null);
                 }
             });
         });

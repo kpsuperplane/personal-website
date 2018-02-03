@@ -37,6 +37,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
             scripts.push({id, match});
             return '<div id="script-' + id + '" class="' + (match.indexOf(' constrain-width ') !== 0 ? 'constrained-script' : '') + '"></div>';
         });
+        document.querySelector('title')!!.innerHTML = post.title;
         this.setState({content: {__html: html},
             image: post.feature_image || null,
             published_at: post.page ? '' : (post.tags.indexOf('project-page') === -1 ? published_at.toLocaleString(DateTime.DATE_FULL) : published_at.toFormat('MMMM kkkk')),
@@ -61,6 +62,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         });
     }
     private load = () => {
+        this.lastPath = window.location.pathname;
         if ((window as any).post && location.pathname.substr(0, 3) === '/p/') {
             const content = document.querySelector('#post-content')!! as HTMLInputElement;
             const post = {...(window as any).post, html: content.value};
@@ -69,7 +71,6 @@ export default class Post extends View<{content: any | null,  image: string | nu
             setTimeout(() => this.renderPost(post), 0);
             return;
         }
-        this.lastPath = window.location.pathname;
         GlobalLoader.queue();
         get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, ''), include: 'tags'})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
@@ -86,7 +87,7 @@ export default class Post extends View<{content: any | null,  image: string | nu
         if (window.location.pathname !== this.lastPath && !(window.location.pathname in ['blog', 'projects'])) {
             this.load();
         }
-        super.componentDidUpdate();
+        super.componentDidUpdate(false);
     }
     private handleClick = (e) => {
         if (e.target && e.target.tagName === 'A' && e.target.attributes && e.target.attributes.href && !(e.target.attributes.target && e.target.attributes.target !== '_self')) {

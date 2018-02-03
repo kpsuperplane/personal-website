@@ -22,8 +22,8 @@ export default class View<T> extends Component<any, T> {
     public componentDidMount() {
         this.componentDidUpdate();
     }
-    public componentDidUpdate() {
-        if (View._lastPath !== window.location.href) {
+    public componentDidUpdate(withTitle: boolean = true) {
+        if (View._lastPath !== window.location.href && withTitle) {
             GlobalLoader.queue();
             View._lastPath = window.location.href;
             get(View._lastPath).end((err, res) => {

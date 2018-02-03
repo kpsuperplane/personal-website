@@ -1,7 +1,7 @@
 @import '../common';
 .post-template {
     .post {
-        padding: 0 3rem 2rem 3rem;
+        padding: 0 2rem 2rem 2rem;
         .instagram-media {
             min-width: 100% !important;
             width:1px !important;
@@ -9,7 +9,7 @@
         }
         header.post-header {
             text-align: center;
-            margin: 0 -3rem 3rem -3rem;
+            margin: 0 -2rem 3rem -2rem;
             &.has-feature-image {
                 img {
                     padding: 0;

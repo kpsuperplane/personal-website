@@ -61,12 +61,13 @@ export default class Post extends View<{content: any | null,  image: string | nu
         });
     }
     private load = () => {
-        if ((window as any).post) {
+        if ((window as any).post && location.pathname.substr(0, 3) === '/p/') {
             const content = document.querySelector('#post-content')!! as HTMLInputElement;
             const post = {...(window as any).post, html: content.value};
             content.remove();
             // tslint:disable-next-line:no-eval
             setTimeout(() => this.renderPost(post), 0);
+            return;
         }
         this.lastPath = window.location.pathname;
         GlobalLoader.queue();

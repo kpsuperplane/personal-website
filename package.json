@@ -7,6 +7,7 @@
     "type": "git",
     "url": "git://github.com/kpsuperplane/personal-website.git"
   },
+  "cacheDirectories": ["node_modules", "current/node_modules", "content/adapters/storage/ghost-s3/node_modules", "content/themes/personal/node_modules"],
   "license": "MIT",
   "scripts": {
     "start": "node versions/1.19.0/index.js",

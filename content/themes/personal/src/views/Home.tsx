@@ -503,7 +503,6 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         return (<div className={'home-component' + (mouseMode ? ' mousemode' : '')} ref={this.attachWrapper}>
             <div className={'home-video-wrapper' + (opened ? ' opened' : '') }>
                 <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
-                    <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.webm'} type="video/webm" />
                     <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
                 </video>
             </div>

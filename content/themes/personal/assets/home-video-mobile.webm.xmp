@@ -1,5 +1,5 @@
 <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c143 79.161210, 2017/08/11-10:28:36        " rdfhash="2D6BFCCB3E101BECE7D70D07F8424F88" merged="0">
+<x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c143 79.161210, 2017/08/11-10:28:36        " rdfhash="929A0B6A33585EC6BF2C5E5034B08BF2" merged="0">
  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
   <rdf:Description rdf:about=""
     xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
@@ -7,16 +7,16 @@
     xmlns:stRef="http://ns.adobe.com/xap/1.0/sType/ResourceRef#"
     xmlns:xmp="http://ns.adobe.com/xap/1.0/"
     xmlns:xmpDM="http://ns.adobe.com/xmp/1.0/DynamicMedia/"
-    xmlns:creatorAtom="http://ns.adobe.com/creatorAtom/1.0/"
     xmlns:stDim="http://ns.adobe.com/xap/1.0/sType/Dimensions#"
     xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmpMM:InstanceID="xmp.iid:1dab4d48-81ed-4368-bad7-c3039bcf208c"
-   xmpMM:DocumentID="c81c8230-ec0a-b8ba-9bc7-a46800000057"
-   xmpMM:OriginalDocumentID="xmp.did:e24777f8-9b8b-40ff-91c8-45a7123a17ff"
-   xmp:MetadataDate="2018-01-02T21:42:04-05:00"
-   xmp:ModifyDate="2018-01-02T21:42:04-05:00"
-   xmp:CreatorTool="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
-   xmp:CreateDate="2018-01-02T21:34:22-05:00"
+    xmlns:creatorAtom="http://ns.adobe.com/creatorAtom/1.0/"
+   xmpMM:InstanceID="xmp.iid:1ad119ee-5036-48d2-9bda-e403b803a089"
+   xmpMM:DocumentID="c1f14eb2-3698-8ef3-7c14-a34000000057"
+   xmpMM:OriginalDocumentID="xmp.did:28cf7148-8264-4ac9-a022-be25d4c72e61"
+   xmp:MetadataDate="2018-02-03T16:40:36-05:00"
+   xmp:ModifyDate="2018-02-03T16:40:36-05:00"
+   xmp:CreateDate="2018-02-03T16:38:49-05:00"
+   xmp:CreatorTool="Adobe Premiere Pro CC 2018.0 (Macintosh)"
    xmpDM:videoFrameRate="29.970030"
    xmpDM:videoFieldOrder="Progressive"
    xmpDM:videoPixelAspectRatio="1/1"
@@ -27,25 +27,43 @@
     <rdf:Seq>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="9a51b85a-0bfb-5956-a8cf-939100000084"
-      stEvt:when="2018-01-02T21:42:04-05:00"
+      stEvt:instanceID="db6fa7af-1da5-0caa-4d0a-385c00000084"
+      stEvt:when="2018-02-03T16:40:36-05:00"
       stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
+      stEvt:changed="/"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="9bd448c5-cdd9-307c-97f7-f3ce00000076"
+      stEvt:when="2018-02-03T16:34:20-05:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
       stEvt:changed="/"/>
      <rdf:li
       stEvt:action="created"
-      stEvt:instanceID="xmp.iid:06f8d98f-1407-416b-a8f4-ac9d8d969f1a"
-      stEvt:when="2018-01-02T20:14:05-05:00"
-      stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"/>
+      stEvt:instanceID="xmp.iid:36090eab-8ec0-481d-8885-e57511fe5436"
+      stEvt:when="2018-02-03T16:31:04-05:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:00a28fcd-d973-4e31-b682-fe00e1ac07ca"
-      stEvt:when="2018-01-02T21:42:04-05:00"
+      stEvt:instanceID="xmp.iid:be18abdf-b50e-4284-a58f-68cef17aee39"
+      stEvt:when="2018-02-03T16:34:20-05:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
+      stEvt:changed="/"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:ae75ab33-69c4-4cd8-9a98-98e1bd08a3fb"
+      stEvt:when="2018-02-03T16:34:20-05:00"
+      stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
+      stEvt:changed="/metadata"/>
+     <rdf:li
+      stEvt:action="saved"
+      stEvt:instanceID="xmp.iid:176897a2-132b-4c7e-9efa-90e1d31cee5b"
+      stEvt:when="2018-02-03T16:40:36-05:00"
       stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
       stEvt:changed="/"/>
      <rdf:li
       stEvt:action="saved"
-      stEvt:instanceID="xmp.iid:1dab4d48-81ed-4368-bad7-c3039bcf208c"
-      stEvt:when="2018-01-02T21:42:04-05:00"
+      stEvt:instanceID="xmp.iid:1ad119ee-5036-48d2-9bda-e403b803a089"
+      stEvt:when="2018-02-03T16:40:36-05:00"
       stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
       stEvt:changed="/metadata"/>
     </rdf:Seq>
@@ -83,17 +101,21 @@
       stRef:maskMarkers="None"/>
     </rdf:Bag>
    </xmpMM:Ingredients>
+   <xmpMM:DerivedFrom
+    stRef:instanceID="xmp.iid:ae75ab33-69c4-4cd8-9a98-98e1bd08a3fb"
+    stRef:documentID="4e0957d9-23be-2215-f0ad-155400000049"
+    stRef:originalDocumentID="xmp.did:38a268cd-1b0a-40a1-9412-7ca04949ba13"/>
    <xmpMM:Pantry>
     <rdf:Bag>
      <rdf:li>
       <rdf:Description
        xmp:CreateDate="2017-12-25T15:22Z"
-       xmp:ModifyDate="2018-01-02T20:13:02-05:00"
-       xmp:MetadataDate="2018-01-02T20:13:02-05:00"
+       xmp:ModifyDate="2018-02-03T16:06:03-05:00"
+       xmp:MetadataDate="2018-02-03T16:06:03-05:00"
        xmpDM:logComment="0.9.143"
        xmpMM:InstanceID="0654d966-9cb7-7b35-cf6d-bdfd00000070"
        xmpMM:DocumentID="659bea67-fbd0-41f5-507c-552600000043"
-       xmpMM:OriginalDocumentID="xmp.did:71da2e28-3638-4694-9d49-3260d8a4c8f3">
+       xmpMM:OriginalDocumentID="xmp.did:54de1767-7ccf-455c-8798-d540accac6b4">
       <xmpDM:duration
        xmpDM:value="1985984"
        xmpDM:scale="1/30000"/>
@@ -102,8 +124,8 @@
         <rdf:li
          stEvt:action="saved"
          stEvt:instanceID="0654d966-9cb7-7b35-cf6d-bdfd00000070"
-         stEvt:when="2018-01-02T20:13:02-05:00"
-         stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
+         stEvt:when="2018-02-03T16:06:03-05:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
          stEvt:changed="/"/>
        </rdf:Seq>
       </xmpMM:History>
@@ -112,12 +134,12 @@
      <rdf:li>
       <rdf:Description
        xmp:CreateDate="2017-12-25T15:23:33Z"
-       xmp:ModifyDate="2018-01-02T20:13:03-05:00"
-       xmp:MetadataDate="2018-01-02T20:13:03-05:00"
+       xmp:ModifyDate="2018-02-03T16:06:05-05:00"
+       xmp:MetadataDate="2018-02-03T16:06:05-05:00"
        xmpDM:logComment="0.9.143"
        xmpMM:InstanceID="0d42fd01-0e6e-71b8-cbc4-cd1300000070"
        xmpMM:DocumentID="5d036d85-a1f9-c599-9dab-3d8e00000043"
-       xmpMM:OriginalDocumentID="xmp.did:27c70bcd-c77c-406a-a5c3-9775821b533d">
+       xmpMM:OriginalDocumentID="xmp.did:64a0208f-d731-4a87-a3db-a33958ce2c3a">
       <xmpDM:duration
        xmpDM:value="798798"
        xmpDM:scale="1/30000"/>
@@ -126,8 +148,8 @@
         <rdf:li
          stEvt:action="saved"
          stEvt:instanceID="0d42fd01-0e6e-71b8-cbc4-cd1300000070"
-         stEvt:when="2018-01-02T20:13:03-05:00"
-         stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
+         stEvt:when="2018-02-03T16:06:05-05:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
          stEvt:changed="/"/>
        </rdf:Seq>
       </xmpMM:History>
@@ -136,12 +158,12 @@
      <rdf:li>
       <rdf:Description
        xmp:CreateDate="2017-12-25T15:20:38Z"
-       xmp:ModifyDate="2018-01-02T20:13-05:00"
-       xmp:MetadataDate="2018-01-02T20:13-05:00"
+       xmp:ModifyDate="2018-02-03T16:06:03-05:00"
+       xmp:MetadataDate="2018-02-03T16:06:03-05:00"
        xmpDM:logComment="0.9.143"
        xmpMM:InstanceID="c3953cd0-93e2-d6ab-c0cb-cef300000070"
        xmpMM:DocumentID="321c7b11-ab31-b727-9dd7-46d200000043"
-       xmpMM:OriginalDocumentID="xmp.did:876411d9-2225-4cc0-a089-1c86f73156a0">
+       xmpMM:OriginalDocumentID="xmp.did:a96bb0c2-8f25-484e-a8b5-bd2998adbe2d">
       <xmpDM:duration
        xmpDM:value="495495"
        xmpDM:scale="1/30000"/>
@@ -150,8 +172,8 @@
         <rdf:li
          stEvt:action="saved"
          stEvt:instanceID="c3953cd0-93e2-d6ab-c0cb-cef300000070"
-         stEvt:when="2018-01-02T20:13-05:00"
-         stEvt:softwareAgent="Adobe Adobe Media Encoder CC 2018.0 (Macintosh)"
+         stEvt:when="2018-02-03T16:06:03-05:00"
+         stEvt:softwareAgent="Adobe Premiere Pro CC 2018.0 (Macintosh)"
          stEvt:changed="/"/>
        </rdf:Seq>
       </xmpMM:History>
@@ -159,10 +181,21 @@
      </rdf:li>
     </rdf:Bag>
    </xmpMM:Pantry>
-   <xmpMM:DerivedFrom
-    stRef:instanceID="xmp.iid:06f8d98f-1407-416b-a8f4-ac9d8d969f1a"
-    stRef:documentID="xmp.did:06f8d98f-1407-416b-a8f4-ac9d8d969f1a"
-    stRef:originalDocumentID="xmp.did:06f8d98f-1407-416b-a8f4-ac9d8d969f1a"/>
+   <xmpDM:projectRef
+    xmpDM:type="movie"/>
+   <xmpDM:videoFrameSize
+    stDim:w="720"
+    stDim:h="720"
+    stDim:unit="pixel"/>
+   <xmpDM:startTimecode
+    xmpDM:timeFormat="2997DropTimecode"
+    xmpDM:timeValue="00;00;00;00"/>
+   <xmpDM:altTimecode
+    xmpDM:timeValue="00;00;00;00"
+    xmpDM:timeFormat="2997DropTimecode"/>
+   <xmpDM:duration
+    xmpDM:value="2138136"
+    xmpDM:scale="1/90000"/>
    <creatorAtom:windowsAtom
     creatorAtom:extension=".prproj"
     creatorAtom:invocationFlags="/L"/>
@@ -170,21 +203,6 @@
     creatorAtom:applicationCode="1347449455"
     creatorAtom:invocationAppleEvent="1129468018"
     creatorAtom:posixProjectPath="/Users/kevin/Documents/Drone Flights/2017-12-25 Collingwood/Render.prproj"/>
-   <xmpDM:projectRef
-    xmpDM:type="movie"/>
-   <xmpDM:startTimecode
-    xmpDM:timeFormat="2997DropTimecode"
-    xmpDM:timeValue="00;00;00;00"/>
-   <xmpDM:videoFrameSize
-    stDim:w="1280"
-    stDim:h="720"
-    stDim:unit="pixel"/>
-   <xmpDM:duration
-    xmpDM:value="712"
-    xmpDM:scale="1001/30000"/>
-   <xmpDM:altTimecode
-    xmpDM:timeValue="00;00;00;00"
-    xmpDM:timeFormat="2997DropTimecode"/>
   </rdf:Description>
  </rdf:RDF>
 </x:xmpmeta>

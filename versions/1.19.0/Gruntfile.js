@@ -326,8 +326,8 @@ var config = require('./core/server/config'),
             // Run grunt tasks in submodule Gruntfiles
             subgrunt: {
                 options: {
-                    npmInstall: false,
-                    npmPath: 'yarn'
+                    npmInstall: true,
+                    npmPath: 'npm'
                 },
 
                 init: {

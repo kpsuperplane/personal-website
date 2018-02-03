@@ -2,9 +2,12 @@
 {{#if post.published_at}}
 <script type="text/javascript">
 window.post = {
-    {{#each post}}
-        {{@key}}: `{{{this}}}`,
-    {{/each}}
+    published_at: '1970-01-01T00:00:00Z',
+    feature_image: `{{post.feature_image}}`,
+    page: {{post.page}},
+    tags: [],
+    title: `{{post.title}}`
 };
 </script>
+<textarea id="post-content">{{{post.html}}}</textarea>
 {{/if}}

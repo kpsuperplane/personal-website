@@ -25,48 +25,55 @@ export default class Post extends View<{content: any | null,  image: string | nu
         };
         this.load();
     }
+    private renderPost = (post) => {
+        delete (window as any).instgrm;
+        window.scrollTo(0, 0);
+        const published_at = DateTime.fromISO(post.published_at);
+        View.setDark(post.feature_image);
+        let html = post.html;
+        const scripts: Array<{id: number, match: string}> = [];
+        html = html.replace(/<script(.*)><\/script>/gi, (match) => {
+            const id = scripts.length;
+            scripts.push({id, match});
+            return '<div id="script-' + id + '" class="' + (match.indexOf(' constrain-width ') !== 0 ? 'constrained-script' : '') + '"></div>';
+        });
+        console.log(html);
+        this.setState({content: {__html: html},
+            image: post.feature_image || null,
+            published_at: post.page ? '' : (post.tags.indexOf('project-page') === -1 ? published_at.toLocaleString(DateTime.DATE_FULL) : published_at.toFormat('MMMM kkkk')),
+            title: post.title
+        }, () => {
+            for (const script of scripts) {
+                postscribe('#script-' + script.id, script.match);
+            }
+            const postElement = document.getElementsByClassName('post')[0];
+            for (const block of postElement.getElementsByTagName('pre')) {
+                hljs.highlightBlock(block);
+            }
+            for (const el of postElement.getElementsByTagName('iframe')) {
+                const wrapper = document.createElement('div');
+                wrapper.classList.add('iframe-wrapper');
+                const innerWrapper = document.createElement('div');
+                innerWrapper.classList.add('iframe-inner-wrapper');
+                wrapper.appendChild(innerWrapper);
+                el.parentNode!!.insertBefore(wrapper, el);
+                innerWrapper.appendChild(el);
+            }
+        });
+    }
     private load = () => {
+        if ((window as any).post) {
+            setTimeout(() => this.renderPost((window as any).post), 0);
+        }
         this.lastPath = window.location.pathname;
         GlobalLoader.queue();
         get(ghost.url.api('posts', {filter: 'page:[false,true]+slug:' + this.lastPath.replace(/\//g, ''), include: 'tags'})).end((err, {body}) => {
             GlobalLoader.dequeue(() => {
-                window.scrollTo(0, 0);
                 if (body && body.posts && body.posts.length > 0) {
-                    delete (window as any).instgrm;
                     const post = body.posts[0];
-                    const published_at = DateTime.fromISO(post.published_at);
-                    View.setDark(post.feature_image);
-                    let html = post.html;
-                    const scripts: Array<{id: number, match: string}> = [];
-                    html = html.replace(/<script(.*)><\/script>/gi, (match) => {
-                        const id = scripts.length;
-                        scripts.push({id, match});
-                        return '<div id="script-' + id + '" class="' + (match.indexOf(' constrain-width ') !== 0 ? 'constrained-script' : '') + '"></div>';
-                    });
-                    this.setState({content: {__html: html},
-                        image: post.feature_image || null,
-                        published_at: post.page ? '' : (post.tags.indexOf('project-page') === -1 ? published_at.toLocaleString(DateTime.DATE_FULL) : published_at.toFormat('MMMM kkkk')),
-                        title: post.title
-                    }, () => {
-                        for (const script of scripts) {
-                            postscribe('#script-' + script.id, script.match);
-                        }
-                        const postElement = document.getElementsByClassName('post')[0];
-                        for (const block of postElement.getElementsByTagName('pre')) {
-                            hljs.highlightBlock(block);
-                        }
-                        for (const el of postElement.getElementsByTagName('iframe')) {
-                            const wrapper = document.createElement('div');
-                            wrapper.classList.add('iframe-wrapper');
-                            const innerWrapper = document.createElement('div');
-                            innerWrapper.classList.add('iframe-inner-wrapper');
-                            wrapper.appendChild(innerWrapper);
-                            el.parentNode!!.insertBefore(wrapper, el);
-                            innerWrapper.appendChild(el);
-                        }
-                    });
+                    this.renderPost(post);
                 } else {
-                    this.context.router.push('/', null);
+                    // this.context.router.push('/', null);
                 }
             });
         });

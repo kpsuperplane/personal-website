@@ -32,6 +32,7 @@ function handleNavigation(route) {
 const routes = (<Router history={ browserHistory } asyncBefore={handleNavigation} >
     <Route component={ App }>
         <IndexRoute getComponent={Home} />
+        <Route path="p" getComponent={Projects} />
         <Route path="projects" getComponent={Projects} />
         <Route path="blog" getComponent={Blog} />
         <Route path="*" getComponent={Post} />

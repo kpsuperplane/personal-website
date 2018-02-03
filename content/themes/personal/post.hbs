@@ -1,1 +1,10 @@
 {{!< default}}
+{{#if post.published_at}}
+<script type="text/javascript">
+window.post = {
+    {{#each post}}
+        {{@key}}: `{{{this}}}`,
+    {{/each}}
+};
+</script>
+{{/if}}

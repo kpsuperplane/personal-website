@@ -215,6 +215,24 @@
         height: 72px;
     }
 }
+.projects-template, .blog-template, .dark-top {
+    .navigation-desktop.top {
+        >.navigation-desktop-inner {
+            img.theme {
+                display: none !important;
+            }
+            img.white {
+                display: block !important;
+            }
+            a {
+                color: #FFF;
+                &:hover {
+                    color: rgba(255, 255, 255, 0.5);
+                }
+            }
+        }
+    }
+}
 .home-template, .projects-template, .blog-template, .dark-top {
     .navigation-desktop.top {
         background: transparent;

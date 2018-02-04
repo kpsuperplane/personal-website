@@ -5,6 +5,8 @@ import createElement from 'inferno-create-element';
 import { Link } from 'inferno-router';
 import {get} from 'superagent';
 
+import 'objectFitPolyfill';
+
 import Button from '../components/Button';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -454,7 +456,12 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
     private attachVideo = (el) => {
         if (this.video == null) {
             this.video = el;
-            this.video!!.play();
+            this.video!!.addEventListener('canplay', () => {
+                this.video!!.play();
+            });
+            this.video!!.addEventListener('loadedmetadata', () => {
+                (window as any).objectFitPolyfill(this.video!!);
+            });
         }
     }
     private onWheel = (e) => {
@@ -504,8 +511,8 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
         return (<div className={'home-component' + (mouseMode ? ' mousemode' : '')} ref={this.attachWrapper}>
             <div className={'home-video-wrapper' + (opened ? ' opened' : '') }>
-                <video loop="loop" autoplay="autoplay" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
-                    <source src={'/assets/home-video' + (assumeWifi ? '' : '-mobile') + '.mp4'} type="video/mp4" />
+                <video loop="loop" autoplay="autoplay" data-object-fit="cover" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
+                    <source src={'/assets/home-video-' + (assumeWifi ? 'desktop' : 'mobile') + '.mp4'} type="video/mp4" />
                 </video>
             </div>
             <div className={'home-content' + (opened ? ' opened' : '') } ref={this.attachHero}>

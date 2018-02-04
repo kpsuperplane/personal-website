@@ -512,7 +512,7 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         const assumeWifi = type ? ((type === 'wifi' || type === 'ethernet'  || type === 'mixed') && fastConnection) : (downlink ? (!this.isMobile && fastConnection) : !this.isMobile);
         return (<div className={'home-component' + (mouseMode ? ' mousemode' : '')} ref={this.attachWrapper}>
             <div className={'home-video-wrapper' + (opened ? ' opened' : '') }>
-                <video loop="loop" autoplay="autoplay" data-object-fit="cover" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
+                <video loop="loop" preload="auto" autoplay="autoplay" data-object-fit="cover" muted="muted" className="home-video" playsinline ref={this.attachVideo}>
                     <source src={'/assets/home-video' + (assumeWifi ? (reallyFastConnection ? '-desktop' : '') : '-mobile') + '.mp4'} type="video/mp4" />
                 </video>
             </div>

@@ -487,12 +487,14 @@ export default class Home extends View<{opened: boolean, posts: PostInterface[] 
         window.removeEventListener('resize', this.onResize);
         window.removeEventListener('scroll', this.onScroll);
         window.removeEventListener('wheel', this.onWheel);
+        window.removeEventListener('focus', this.onScroll);
     }
     public componentDidMount() {
         this.dragRender();
         this.onResize();
         window.addEventListener('scroll', this.onScroll);
         window.addEventListener('wheel', this.onWheel);
+        window.addEventListener('focus', this.onScroll);
         super.componentDidMount();
     }
     public render() {

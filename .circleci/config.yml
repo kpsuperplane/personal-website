@@ -8,14 +8,14 @@ jobs:
     steps:
       - checkout
       - deploy:
-          name: Deploy beta to Dokku
+          name: Deploy to Dokku
           command: |
             ./deploy.sh
 workflows:
   version: 2
-  beta:
+  master:
     jobs:
       - build:
           filters:
             branches:
-              only: "2017"
+              only: "master"

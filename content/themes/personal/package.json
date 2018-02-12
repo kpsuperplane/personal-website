@@ -18,7 +18,6 @@
   "license": "MIT",
   "dependencies": {
     "base64-inline-loader": "^1.1.0",
-    "childnode-remove": "^1.0.1",
     "css-loader": "^0.28.4",
     "cubic-bezier": "^0.1.2",
     "ellipsize": "^0.0.3",

@@ -2,6 +2,14 @@ import 'es6-object-assign/auto';
 import 'es6-promise/auto';
 import './types';
 
+if (!Element.prototype.remove) {
+    Element.prototype.remove = function remove() {
+       if (this.parentNode) {
+         this.parentNode.removeChild(this);
+       }
+    };
+}
+
 import createBrowserHistory from 'history/createBrowserHistory';
 import { render } from 'inferno';
 import { doAllAsyncBefore, IndexRoute, match, Route, Router } from 'inferno-router';

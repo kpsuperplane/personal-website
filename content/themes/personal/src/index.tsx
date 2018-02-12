@@ -1,4 +1,4 @@
-import 'promise-polyfill';
+require('promise-polyfill');
 import './types';
 
 import createBrowserHistory from 'history/createBrowserHistory';

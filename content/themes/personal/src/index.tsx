@@ -1,4 +1,4 @@
-require('promise-polyfill');
+import 'es6-promise/auto';
 import './types';
 
 import createBrowserHistory from 'history/createBrowserHistory';

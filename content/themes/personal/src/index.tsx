@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import 'es6-object-assign/auto';
 import 'es6-promise/auto';
 import './types';

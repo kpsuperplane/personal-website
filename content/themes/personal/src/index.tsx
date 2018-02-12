@@ -1,6 +1,6 @@
 import 'es6-object-assign/auto';
 import 'es6-promise/auto';
-require('childnode-remove').polyfill();
+(require('childnode-remove') as any).polyfill();
 import './types';
 
 import createBrowserHistory from 'history/createBrowserHistory';

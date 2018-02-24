@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "base64-inline-loader": "^1.1.0",
     "css-loader": "^0.28.4",
     "cubic-bezier": "^0.1.2",

@@ -56,6 +56,10 @@ export default class Post extends View<{content: any | null,  image: string | nu
                 el.parentNode!!.insertBefore(wrapper, el);
                 innerWrapper.appendChild(el);
             }
+            const { hash } = window.location;
+            if (hash && document.querySelector(hash)) {
+                document.querySelector(hash)!!.scrollIntoView();
+            }
             for (const script of scripts) {
                 postscribe('#script-' + script.id, script.match);
             }

@@ -32,7 +32,7 @@
     "inferno-component": "^3.10.1",
     "inferno-router": "^3.10.1",
     "luxon": "^0.2.9",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "objectFitPolyfill": "^2.1.0",
     "postscribe": "^2.0.8",
     "sass-loader": "^6.0.6",

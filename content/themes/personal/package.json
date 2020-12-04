@@ -26,7 +26,7 @@
     "es6-promise": "^4.2.4",
     "file-loader": "^1.1.4",
     "global": "^4.3.2",
-    "highlight.js": "^9.12.0",
+    "highlight.js": "^10.4.1",
     "image-webpack-loader": "^3.4.2",
     "inferno": "^3.10.1",
     "inferno-component": "^3.10.1",

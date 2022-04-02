@@ -31,7 +31,8 @@ console.log(JSON.stringify({
   "mail": {
     "transport": "SMTP",
     "options": {
-        "service": "Mailgun",
+        "service": "iCloud",
+        "host": "smtp.mail.me.com",
         "auth": {
             "user": process.env.MAILUSER,
             "pass": process.env.MAILPASS

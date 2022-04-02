@@ -1,7 +1,7 @@
 const dbString = require('url').parse(process.env.DATABASE_URL),
       auth = dbString.auth.split(':');
 console.log(JSON.stringify({
-  "url": "http://kevinpei.com",
+  "url": "http://138.197.138.204",
   "server": {
     host: '0.0.0.0',
     port: 5000

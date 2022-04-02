@@ -30,6 +30,7 @@ console.log(JSON.stringify({
   },
   "mail": {
     "transport": "SMTP",
+    "from": "kpsuperplane@icloud.com",
     "options": {
         "service": "iCloud",
         "host": "smtp.mail.me.com",

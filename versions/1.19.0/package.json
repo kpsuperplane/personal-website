@@ -46,7 +46,7 @@
     "cors": "2.8.4",
     "csv-parser": "1.12.0",
     "downsize": "0.0.8",
-    "express": "4.16.2",
+    "express": "4.17.3",
     "express-brute": "1.0.1",
     "express-hbs": "1.0.4",
     "extract-zip": "1.6.6",

@@ -77,7 +77,7 @@
     "mysql": "2.15.0",
     "nconf": "0.9.1",
     "netjet": "1.1.4",
-    "nodemailer": "0.7.1",
+    "nodemailer": "6.6.1",
     "oauth2orize": "1.11.0",
     "passport": "0.4.0",
     "passport-http-bearer": "1.0.1",

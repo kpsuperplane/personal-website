@@ -84,7 +84,7 @@
     "passport-oauth2-client-password": "0.1.2",
     "path-match": "1.2.4",
     "rss": "1.2.2",
-    "sanitize-html": "1.16.1",
+    "sanitize-html": "2.3.2",
     "semver": "5.4.1",
     "simple-dom": "0.3.2",
     "simple-html-tokenizer": "0.4.3",
